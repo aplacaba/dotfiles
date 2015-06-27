@@ -5,8 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="amuse"
-ZSH_THEME="nicoulaj"
+ZSH_THEME="sorin"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -49,7 +48,7 @@ ZSH_THEME="nicoulaj"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby zsh-syntax-highlighting web-search)
+plugins=(git ruby zsh-syntax-highlighting web-search spectrum)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -103,16 +102,17 @@ alias procs='ps -ef'
 alias update-ruby-build='cd /home/a655321/.rbenv/plugins/ruby-build && git pull'
 alias copy-sshkeys='cat ~/.ssh/id_rsa.pub | xclip -sel clip'
 alias desktop-connect='ssh alacaba@192.168.1.5'
-alias mount-desktop='sshfs alacaba@192.168.1.5:/mnt ~/muh\ desktop'
+alias mount-desktop='sshfs alacaba@192.168.1.5:/home/alacaba ~/Local\ Desktop'
 alias unmount-desktop='sudo umount ~/muh\ desktop'
 
 # Tmux Aliases
 alias t='tmux -2 new-session -s '
 alias ta='tmux -2 attach-session -t'
 alias tl='tmux list-sessions'
-alias tk='tmux kill-session -t'
+alias tx='tmux kill-session -t'
 alias reload-tmux='tmux source-file ~/.tmux.conf'
 alias copy-tbpass='cat ~/.tbpass.txt | xclip -sel clip'
+alias venueey-staging='ssh -i ~/.ssh/venueey.pem ubuntu@ec2-52-74-249-98.ap-southeast-1.compute.amazonaws.com'
 export EDITOR='vim'
 
 export GOPATH="$HOME/go"
@@ -125,6 +125,6 @@ stty stop ''
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-fortune -ae | cowsay -f bong -n
+fortune -ae | cowsay -f daemon -n
 
 # export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

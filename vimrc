@@ -51,7 +51,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline_powerline_fonts=1
-let g:airline_theme='wombat'
+let g:airline_theme='ubaryd'
 let g:netrw_winsize=25
 
 syntax on
@@ -114,11 +114,13 @@ nnoremap <C-t>     <Esc>:NERDTreeToggle<CR>
 " resizing vsplits
 nnoremap <leader>> <Esc>:30winc <<CR><Esc>
 nnoremap <leader>< <Esc>:30winc ><CR><Esc>
-nnoremap <leader><Space> <Esc>:nohl<CR><Esc>
 
 " resizing horizontal split
 nnoremap <leader>- <Esc>:10winc -<CR><Esc>
 nnoremap <leader>+ <Esc>:10winc +<CR><Esc>
+
+" remove highlights on text
+nnoremap <leader><Space> <Esc>:nohl<CR><Esc>
 
 nnoremap ; :
 noremap j gj
@@ -131,8 +133,8 @@ map <Leader> <Plugin>(easymotion-prefix)
 
 if has("autocmd")
   augroup inivisible_chars
-    au!
-    autocmd BufWritePre * :%s/\s\+$//e
+  au!
+  autocmd BufWritePre * :%s/\s\+$//e
   augroup end
 
   autocmd BufNewFile,BufRead *.html,*.erb set filetype=html.eruby
@@ -144,7 +146,7 @@ if has("autocmd")
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
 endif
 
-"set background=dark
+set background=dark
 highlight LineNr ctermfg=black
 
 let g:tmuxline_preset = 'nightly_fox'
@@ -160,6 +162,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 hi LineNr ctermfg=gray
 
 set t_Co=16
+"colo solarized
 highlight clear SignColumn
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=yellow
