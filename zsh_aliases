@@ -1,0 +1,33 @@
+alias tl='tmux list-sessions'
+alias gg='git grep --break --heading -n'
+alias be='bundle exec'
+alias migrate='r_migrate test; r_migrate development'
+alias rollback='r_rollback test; r_rollback development'
+alias define='/home/alacaba/Scripts/define/define.rb'
+alias btp-connect='ssh tmux@192.168.43.212'
+alias bo='bundle open'
+alias rserver='be rails s -b 127.0.0.1'
+alias agrep='ack-grep'
+alias gs='git status'
+alias pairprog='ssh tmux@192.168.43.212'
+alias rails3='rails _3.2.19_'
+alias rails30='rails _3.0_'
+alias procs='ps -ef'
+alias update-ruby-build='cd /home/a655321/.rbenv/plugins/ruby-build && git pull'
+alias copy-sshkeys='cat ~/.ssh/id_rsa.pub | xclip -sel clip'
+alias desktop-connect='ssh alacaba@192.168.1.8'
+alias mount-desktop='sshfs alacaba@192.168.1.8:/mnt ~/Local\ Desktop'
+alias unmount-desktop='sudo umount ~/muh\ desktop'
+alias copy-tbpass='cat ~/.tbpass.txt | xclip -sel clip'
+
+# Tmux Aliases
+alias t='tmux new-session -s '
+alias ta='tmux attach-session -t'
+alias tl='tmux list-sessions'
+alias tx='tmux kill-session -t'
+alias reload-tmux='tmux source-file ~/.tmux.conf'
+
+# dev aliases
+alias venueey-staging='ssh -i ~/.ssh/venueey.pem ubuntu@ec2-52-74-20-216.ap-southeast-1.compute.amazonaws.com'
+alias venueey-production='ssh ubuntu@ec2-54-169-92-86.ap-southeast-1.compute.amazonaws.com'
+

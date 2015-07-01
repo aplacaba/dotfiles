@@ -51,7 +51,7 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline_powerline_fonts=1
-let g:airline_theme='ubaryd'
+let g:airline_theme='sol'
 let g:netrw_winsize=25
 
 syntax on
@@ -137,16 +137,18 @@ if has("autocmd")
   autocmd BufWritePre * :%s/\s\+$//e
   augroup end
 
-  autocmd BufNewFile,BufRead *.html,*.erb set filetype=html.eruby
-  autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-  autocmd BufNewFile,BufRead *.slim set filetype=slim
-  autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-  autocmd BufRead,BufNewFile *.go set filetype=go
-  autocmd BufRead,BufNewFile *.ts set filetype=typescript
+  autocmd BufNewFile,BufRead *.html,*.erb   set filetype=html.eruby
+  autocmd BufNewFile,BufRead *.html.twig    set filetype=html.twig
+  autocmd BufNewFile,BufRead *.slim         set filetype=slim
+  autocmd BufNewFile,BufRead *.coffee       set filetype=coffee
+  autocmd BufRead,BufNewFile *.go           set filetype=go
+  autocmd BufRead,BufNewFile *.ts           set filetype=typescript
+  autocmd BufRead,BufNewFile *.py,*.pyc     set filetype=python
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
 endif
 
-set background=dark
+"set background=light
+"colo solarized
 highlight LineNr ctermfg=black
 
 let g:tmuxline_preset = 'nightly_fox'
@@ -162,7 +164,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 hi LineNr ctermfg=gray
 
 set t_Co=16
-"colo solarized
 highlight clear SignColumn
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=yellow
