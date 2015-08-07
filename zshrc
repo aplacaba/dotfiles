@@ -1,4 +1,3 @@
-[ -e "${HOME}/.zsh_aliases" ] && source "${HOME}/.zsh_aliases"
 [ -e "${HOME}/.zshrc_local" ] && source "${HOME}/.zshrc_local"
 source ~/.antigen/antigen.zsh
 
@@ -18,6 +17,8 @@ antigen bundles<<EOBUNDLES
   tmux
   lein
 EOBUNDLES
+
+[ -e "${HOME}/.zsh_aliases" ] && source "${HOME}/.zsh_aliases"
 
 antigen theme sorin
 antigen apply

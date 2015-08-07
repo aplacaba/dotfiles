@@ -2,35 +2,40 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-"Vundle
+" Vundle
 Plugin 'gmarik/Vundle.vim'
 
-"Plugins
+" Plugins
+
+" Rice
 Plugin 'bling/vim-airline'
-Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'tpope/vim-endwise'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'spf13/vim-autoclose'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-rails'
+
+" Utils
 Plugin 'amirh/HTML-AutoCloseTag'
 Plugin 'tpope/vim-fugitive'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-endwise'
+Plugin 'spf13/vim-autoclose'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'gorodinskiy/vim-coloresque'
-Plugin 'elzr/vim-json'
-Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'Lokaltog/vim-easymotion'
-Plugin 'fatih/vim-go'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
+
+" Syntax
+Plugin 'tpope/vim-rails'
+Plugin 'pangloss/vim-javascript'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'elzr/vim-json'
+Plugin 'fatih/vim-go'
 Plugin 'slim-template/vim-slim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'whatyouhide/vim-gotham'
 Plugin 'paranoida/vim-airlineish'
 Plugin 'leafgarland/typescript-vim'
 
@@ -50,8 +55,11 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
-let g:airline_powerline_fonts=1
-let g:airline_theme='sol'
+"let g:airline_powerline_fonts=1
+"let g:airline_theme='understated'
+"let g:airline_theme='jellybeans'
+let g:airline_theme='raven'
+"let g:airline_theme='powerlineish'
 let g:netrw_winsize=25
 
 syntax on
@@ -86,7 +94,7 @@ set backspace=indent,eol,start
 set wildmode=list:full
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set encoding=utf8
-"set cursorline
+set cursorline
 set splitright
 set splitbelow
 set list
@@ -147,8 +155,6 @@ if has("autocmd")
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
 endif
 
-"set background=light
-"colo solarized
 highlight LineNr ctermfg=black
 
 let g:tmuxline_preset = 'nightly_fox'
@@ -161,11 +167,19 @@ let g:gitgutter_eager = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 
-hi LineNr ctermfg=gray
+"set t_Co=256
+"colo grb256
+"color gruvbox
+"colo jellyx
 
-set t_Co=16
+set background=dark
+set t_Co=256
+colo hybrid
 highlight clear SignColumn
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=yellow
 highlight GitGutterDelete ctermfg=red
 highlight GitGutterChangeDelete ctermfg=yellow
+highlight LineNr ctermfg=gray
+
+"set fillchars+=vert:
