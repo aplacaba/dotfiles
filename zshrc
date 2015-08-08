@@ -20,5 +20,5 @@ EOBUNDLES
 
 [ -e "${HOME}/.zsh_aliases" ] && source "${HOME}/.zsh_aliases"
 
-antigen theme sorin
+antigen theme muse
 antigen apply

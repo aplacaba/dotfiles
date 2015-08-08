@@ -14,6 +14,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'altercation/vim-colors-solarized'
+"Plugin 'itchyny/lightline.vim'
 
 " Utils
 Plugin 'amirh/HTML-AutoCloseTag'
@@ -48,13 +49,27 @@ endif
 
 let mapleader="\<Tab>"
 let g:airline#extensions#tabline#enabled=1
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+
+function! AirlineInit()
+  let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
+  let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks'])
+endfunction
+
+
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#right_sep = ' '
+let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+"let g:airline_left_sep = ''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
+"let g:airline_symbols.branch = ''
+"let g:airline_symbols.readonly = ''
+"let g:airline_symbols.linenr = ''
 "let g:airline_powerline_fonts=1
 "let g:airline_theme='understated'
 "let g:airline_theme='jellybeans'
@@ -166,6 +181,7 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+autocmd VimEnter * call AirlineInit()
 
 "set t_Co=256
 "colo grb256
@@ -183,3 +199,5 @@ highlight GitGutterChangeDelete ctermfg=yellow
 highlight LineNr ctermfg=gray
 
 "set fillchars+=vert:
+set noerrorbells visualbell t_vb=
+autocmd GUIEnter * set visualbell t_vb=
