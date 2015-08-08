@@ -1,0 +1,44 @@
+! Fonts
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.autohint:   true
+Xft.hintstyle:  hintfull
+URxvt.letterSpace: -1
+URxvt*font: xft:Monaco for Powerline:regular:pixelsize=12
+!URxvt*font: xft:Source Code Pro for Powerline:regular:pixelsize=11
+
+
+! Colors
+URxvt*foreground: white
+URxvt*background: #1c1c1c
+
+! Tomorrow base16
+*color0:  #1d1f21
+*color1:  #cc6666
+*color2:  #b5bd68
+*color3:  #f0c674
+*color4:  #81a2be
+*color5:  #b294bb
+*color6:  #8abeb7
+*color7:  #c5c8c6
+*color8:  #969896
+*color9:  #cc6666
+*color10: #b5bd68
+*color11: #f0c674
+*color12: #81a2be
+*color13: #b294bb
+*color14: #8abeb7
+*color15: #ffffff
+
+URxvt*scrollBar: false
+URxvt*keysym.Shift-Control-V: perl:clipboard:paste
+URxvt*iso14755: False
+URxvt*perl-ext-common: default,clipboard
+URxvt*iconFile: /usr/share/icons/Numix-Circle/scalable/apps/xterm-color.svg
+!URxvt*visualBell:   true
+
+URxvt.perl-ext-common : default,matcher
+URxvt.urlLauncher     : firefox
+URxvt.matcher.button  : 1
