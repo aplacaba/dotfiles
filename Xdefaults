@@ -6,39 +6,73 @@ Xft.hinting:    true
 Xft.autohint:   true
 Xft.hintstyle:  hintfull
 URxvt.letterSpace: -1
-URxvt*font: xft:Monaco for Powerline:regular:pixelsize=12
+URxvt*font: xft:Monaco for Powerline:regular:size=11
 !URxvt*font: xft:Source Code Pro for Powerline:regular:pixelsize=11
 
-
-! Colors
-URxvt*foreground: white
-URxvt*background: #1c1c1c
-
-! Tomorrow base16
-*color0:  #1d1f21
-*color1:  #cc6666
-*color2:  #b5bd68
-*color3:  #f0c674
-*color4:  #81a2be
-*color5:  #b294bb
-*color6:  #8abeb7
-*color7:  #c5c8c6
-*color8:  #969896
-*color9:  #cc6666
-*color10: #b5bd68
-*color11: #f0c674
-*color12: #81a2be
-*color13: #b294bb
-*color14: #8abeb7
-*color15: #ffffff
 
 URxvt*scrollBar: false
 URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 URxvt*iso14755: False
-URxvt*perl-ext-common: default,clipboard
 URxvt*iconFile: /usr/share/icons/Numix-Circle/scalable/apps/xterm-color.svg
-!URxvt*visualBell:   true
-
-URxvt.perl-ext-common : default,matcher
+URxvt*perl-ext-common: default,clipboard
 URxvt.urlLauncher     : firefox
 URxvt.matcher.button  : 1
+
+! Colors
+URxvt*foreground: white
+URxvt*background: #1c1c1c
+! gnometerm
+!! Black
+!*color0:   #000000
+!*color8:   #555753
+
+!! Red
+!*color1:   #cc0000
+!*color9:   #ef2929
+
+!! Green
+!*color2:   #4e9a06
+!*color10:  #8ae234
+
+!! Yellow
+!*color3:   #c4a000
+!*color11:  #fce94f
+
+!! Blue
+!*color4:   #3465a4
+!*color12:  #729fcf
+
+!! Magenta
+!*color5:   #75507b
+!*color13:  #ad7fa8
+
+!! Cyan
+!*color6:   #06989a
+!*color14:  #34e2e2
+
+
+! Colorful Colors
+!Negro-----------
+*color0: #151515
+*color8: #696969
+!Rojo------------
+*color1: #FF8EAF
+*color9: #ED4C7A
+!Verde------------
+*color2:  #A6E25F
+*color10: #A6E179
+!Amarillo---------
+*color3: #F8E578
+*color11: #FFDF6B
+!Azul-------------
+*color4: #A6E2F0
+*color12: #79D2FF
+!Magenta----------
+*color5: #E85B92
+*color13: #BB5D79
+!Cyan-------------
+*color6: #5F868F
+*color14: #87A8AF
+!Blanco-----------
+*color7: #D5F1F2
+*color15: #E2F1F6

@@ -29,6 +29,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
+Plugin 'vim-scripts/BufOnly.vim'
 
 " Syntax
 Plugin 'tpope/vim-rails'
@@ -109,7 +110,7 @@ set backspace=indent,eol,start
 set wildmode=list:full
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set encoding=utf8
-set cursorline
+"set cursorline
 set splitright
 set splitbelow
 set list
@@ -133,6 +134,7 @@ nnoremap <C-L>     <Esc>:bn<CR>
 nnoremap <C-H>     <Esc>:bp<CR>
 nnoremap <C-s>     <Esc>:w<CR>
 nnoremap <C-t>     <Esc>:NERDTreeToggle<CR>
+"nnoremap <C-S-w>   <Esc>:BufOnly<CR>
 
 " resizing vsplits
 nnoremap <leader>> <Esc>:30winc <<CR><Esc>
@@ -190,7 +192,7 @@ autocmd VimEnter * call AirlineInit()
 
 set background=dark
 set t_Co=256
-colo hybrid
+"colo hybrid
 highlight clear SignColumn
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=yellow
@@ -198,6 +200,6 @@ highlight GitGutterDelete ctermfg=red
 highlight GitGutterChangeDelete ctermfg=yellow
 highlight LineNr ctermfg=gray
 
-"set fillchars+=vert:
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
+hi NonText ctermfg=gray
