@@ -5,7 +5,7 @@ Xft.rgba:       rgb
 Xft.hinting:    true
 Xft.autohint:   true
 Xft.hintstyle:  hintfull
-URxvt.letterSpace: -1
+URxvt*letterSpace: -1
 URxvt*font: xft:Monaco for Powerline:regular:size=11
 !URxvt*font: xft:Source Code Pro for Powerline:regular:pixelsize=11
 
@@ -14,65 +14,43 @@ URxvt*scrollBar: false
 URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 URxvt*iso14755: False
 URxvt*iconFile: /usr/share/icons/Numix-Circle/scalable/apps/xterm-color.svg
-URxvt*perl-ext-common: default,clipboard
-URxvt.urlLauncher     : firefox
-URxvt.matcher.button  : 1
+
+URxvt*perl-ext-common : default,clipboard,matcher
+URxvt*url-launcher    : xdg-open
+URxvt*matcher.button  : 1
 
 ! Colors
-URxvt*foreground: white
-URxvt*background: #1c1c1c
-! gnometerm
-!! Black
-!*color0:   #000000
-!*color8:   #555753
+URxvt*foreground: gray
+URxvt*background: #231d20
+URxvt*transparent: true
+URxvt*shading: 160
 
-!! Red
-!*color1:   #cc0000
-!*color9:   #ef2929
+! my custom theme, tlh based
+*background: #101010
+*foreground: #66FF66
 
-!! Green
-!*color2:   #4e9a06
-!*color10:  #8ae234
+!black
+*color0:  #1c1c1c
+*color8:  #4d4d4d
+!red
+*color1:  #e32c57
+*color9:  #e32c57
+!green
+*color2:  #61BC3B
+*color10: #86DF5D
+!yellow
+*color3:  #ffe755
+*color11: #ffe755
+!blue
+*color4:  #4695c8
+*color12: #5a9dc8
+!magenta
+*color5:  #da1657
+*color13: #da4375
+!cyan
+*color6:  #43afce
+*color14: #69b8ce
+!white
+*color7:  #f3ebe2
+*color15: #eeeeee
 
-!! Yellow
-!*color3:   #c4a000
-!*color11:  #fce94f
-
-!! Blue
-!*color4:   #3465a4
-!*color12:  #729fcf
-
-!! Magenta
-!*color5:   #75507b
-!*color13:  #ad7fa8
-
-!! Cyan
-!*color6:   #06989a
-!*color14:  #34e2e2
-
-
-! Colorful Colors
-!Negro-----------
-*color0: #151515
-*color8: #696969
-!Rojo------------
-*color1: #FF8EAF
-*color9: #ED4C7A
-!Verde------------
-*color2:  #A6E25F
-*color10: #A6E179
-!Amarillo---------
-*color3: #F8E578
-*color11: #FFDF6B
-!Azul-------------
-*color4: #A6E2F0
-*color12: #79D2FF
-!Magenta----------
-*color5: #E85B92
-*color13: #BB5D79
-!Cyan-------------
-*color6: #5F868F
-*color14: #87A8AF
-!Blanco-----------
-*color7: #D5F1F2
-*color15: #E2F1F6

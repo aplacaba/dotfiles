@@ -80,6 +80,8 @@ let g:netrw_winsize=25
 
 syntax on
 syntax enable
+set nocompatible
+set ruler
 set number
 set tabstop=2
 set shiftwidth=2
@@ -110,7 +112,6 @@ set backspace=indent,eol,start
 set wildmode=list:full
 set wildignore=*.swp,*.bak,*.pyc,*.class
 set encoding=utf8
-"set cursorline
 set splitright
 set splitbelow
 set list
@@ -134,17 +135,17 @@ nnoremap <C-L>     <Esc>:bn<CR>
 nnoremap <C-H>     <Esc>:bp<CR>
 nnoremap <C-s>     <Esc>:w<CR>
 nnoremap <C-t>     <Esc>:NERDTreeToggle<CR>
-"nnoremap <C-S-w>   <Esc>:BufOnly<CR>
 
 " resizing vsplits
 nnoremap <leader>> <Esc>:30winc <<CR><Esc>
 nnoremap <leader>< <Esc>:30winc ><CR><Esc>
+nnoremap <leader>xa <Esc>:BufOnly<CR><Esc>
 
 " resizing horizontal split
 nnoremap <leader>- <Esc>:10winc -<CR><Esc>
 nnoremap <leader>+ <Esc>:10winc +<CR><Esc>
 
-" remove highlights on text
+" Clear Search
 nnoremap <leader><Space> <Esc>:nohl<CR><Esc>
 
 nnoremap ; :
@@ -170,20 +171,20 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.ts           set filetype=typescript
   autocmd BufRead,BufNewFile *.py,*.pyc     set filetype=python
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
+  autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
+  autocmd VimEnter * call AirlineInit()
+  autocmd GUIEnter * set visualbell t_vb=
 endif
 
 highlight LineNr ctermfg=black
 
 let g:tmuxline_preset = 'nightly_fox'
 let g:typescript_compiler_options = '-sourcemap'
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 let g:indent_guides_auto_colors = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-autocmd VimEnter * call AirlineInit()
 
 "set t_Co=256
 "colo grb256
@@ -191,15 +192,14 @@ autocmd VimEnter * call AirlineInit()
 "colo jellyx
 
 set background=dark
-set t_Co=256
-"colo hybrid
-highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow
-highlight GitGutterDelete ctermfg=red
-highlight GitGutterChangeDelete ctermfg=yellow
-highlight LineNr ctermfg=gray
-
+set t_Co=16
 set noerrorbells visualbell t_vb=
-autocmd GUIEnter * set visualbell t_vb=
+"colo hybrid
+hi clear SignColumn
+hi GitGutterAdd ctermfg=green
+hi GitGutterChange ctermfg=yellow
+hi GitGutterDelete ctermfg=red
+hi GitGutterChangeDelete ctermfg=yellow
+hi LineNr ctermfg=gray
 hi NonText ctermfg=gray
+hi CursorLine term=bold cterm=bold guibg=Grey40
