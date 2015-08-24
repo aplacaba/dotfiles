@@ -58,9 +58,9 @@ endfunction
 
 
 let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#left_alt_sep = ' '
 let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline#extensions#tabline#right_alt_sep = ' '
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 
@@ -72,11 +72,7 @@ let g:airline_right_alt_sep = ''
 "let g:airline_symbols.readonly = ''
 "let g:airline_symbols.linenr = ''
 "let g:airline_powerline_fonts=1
-"let g:airline_theme='understated'
-"let g:airline_theme='jellybeans'
 let g:airline_theme='raven'
-"let g:airline_theme='powerlineish'
-let g:netrw_winsize=25
 
 syntax on
 syntax enable

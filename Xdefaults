@@ -7,7 +7,8 @@ Xft.autohint:   true
 Xft.hintstyle:  hintfull
 URxvt*letterSpace: -1
 URxvt*font: xft:Monaco for Powerline:regular:size=11
-!URxvt*font: xft:Source Code Pro for Powerline:regular:pixelsize=11
+!URxvt*font: xft:Monospace:regular:size=11
+!URxvt*font: xft:Source Code Pro for Powerline:regular:size=11
 
 
 URxvt*scrollBar: false
@@ -36,11 +37,21 @@ URxvt*shading: 160
 *color1:  #e32c57
 *color9:  #e32c57
 !green
-*color2:  #61BC3B
-*color10: #86DF5D
+*color2:#6cb87a
+*color10:#6cb87a
+!*color10:  #c5f779
+!*color2:   #aece91
+!*color10:  #cfefb3
+!*color2:  #61BC3B
+!*color10:  #61BC3B
+!*color10: #86DF5D
+
 !yellow
-*color3:  #ffe755
-*color11: #ffe755
+*.color3:       #f6e497
+*.color11:       #f6e497
+!*.color11:      #d1c180
+!*color3:  #ffe755
+!*color11: #ffe755
 !blue
 *color4:  #4695c8
 *color12: #5a9dc8
