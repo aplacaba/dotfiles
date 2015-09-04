@@ -18,6 +18,7 @@ Plugin 'altercation/vim-colors-solarized'
 
 " Utils
 Plugin 'amirh/HTML-AutoCloseTag'
+Plugin 'othree/html5.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-endwise'
