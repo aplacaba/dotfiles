@@ -25,32 +25,88 @@ URxvt*transparent: true
 URxvt*shading: 160
 
 ! my custom theme
-*background: #101010
-*foreground: #66FF66
+!*background: #101010
+!*foreground: #66FF66
 
-!black
-*color0:  #1c1c1c
-*color8:  #4d4d4d
-!red
-*color1:  #e32c57
-*color9:  #e32c57
-!green
-*color2:#1ED760
-*color10:   #FDD75A
+!!black
+!*color0:  #1c1c1c
+!*color8:  #4d4d4d
+!!red
+!*color1:  #e32c57
+!*color9:  #e32c57
+!!green
+!*color2:    #66e487
+!*color10:    #66e487
+!!*color2:   #FDD75A
+!!*color10:   #FDD75A
 
-!yellow
-*.color3:       #f6e497
-*.color11:       #f6e497
-!blue
-*color4  : #3465A4
-*color12 : #729FCF
-!magenta
-*color5:  #da1657
-*color13: #da4375
-!cyan
-*.color6:      #3e8ab3
-*.color14:      #3e8ab3
-!white
-*color7:  #f3ebe2
-*color15: #eeeeee
+!!yellow
+!*.color3:       #f6e497
+!*.color11:       #f6e497
+!!blue
+!*color4  : #3465A4
+!*color12 : #729FCF
+!!magenta
+!*color5:  #da1657
+!*color13: #da4375
+!!cyan
+!*.color6:      #3e8ab3
+!*.color14:      #3e8ab3
+!!white
+!*color7:  #f3ebe2
+!*color15: #eeeeee
+
+URxvt*foreground: #CCCCCC
+URxvt*background: #111111
+!!black
+!*color0: #222222
+!*color8: #666666
+!!red
+!*color1: #E84F4F
+!*color9: #D23D3D
+!!green
+!*color2: #B7CE42
+!*color10: #BDE077
+!!yellow
+!*color3: #FEA63C
+!*color11: #FFE863
+!!blue
+!*color4: #66A9B9
+!*color12: #AACCBB
+!!magenta
+!*color5: #B7416E
+!*color13: #E16A98
+!!cyan
+!*color6: #6D878D
+!*color14: #42717B
+!!white
+!*color7: #CCCCCC
+!*color15: #FFFFFF
+
+
+!Negro-----------
+*color0: #151515
+*color8: #696969
+!Rojo------------
+*color1: #FF8EAF
+*color9: #ED4C7A
+!Verde------------
+*color2:  #A6E25F
+*color10: #A6E179
+!Amarillo---------
+*color3: #F8E578
+*color11: #FFDF6B
+!Azul-------------
+*color4: #A6E2F0
+*color12: #79D2FF
+!Magenta----------
+*color5: #E85B92
+*color13: #BB5D79
+!Cyan-------------
+*color6: #5F868F
+*color14: #87A8AF
+!Blanco-----------
+*color7: #D5F1F2
+*color15: #E2F1F6
+
 
