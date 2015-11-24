@@ -41,6 +41,7 @@ Plugin 'fatih/vim-go'
 Plugin 'slim-template/vim-slim'
 Plugin 'paranoida/vim-airlineish'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'junegunn/vim-easy-align'
 
 call vundle#end()
 filetype plugin indent on
@@ -133,9 +134,14 @@ nnoremap <C-H>     <Esc>:bp<CR>
 nnoremap <C-s>     <Esc>:w<CR>
 nnoremap <C-t>     <Esc>:NERDTreeToggle<CR>
 
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)"
+
 " resizing vsplits
-nnoremap <leader>> <Esc>:30winc <<CR><Esc>
 nnoremap <leader>< <Esc>:30winc ><CR><Esc>
+nnoremap <leader>> <Esc>:30winc <<CR><Esc>
 nnoremap <leader>xa <Esc>:BufOnly<CR><Esc>
 
 " resizing horizontal split
