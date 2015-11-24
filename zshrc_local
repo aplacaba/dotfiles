@@ -20,7 +20,10 @@ export KERN_DIR=/usr/src/kernels/`uname -r`
 export PATH="/usr/local/heroku/bin:$PATH"
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}"'
 
+export NVM_DIR="/home/alacaba/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 eval "$(rbenv init -)"
+
 stty stop ''
 fortune -ae | cowsay -f koala -n
 

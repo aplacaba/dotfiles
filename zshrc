@@ -23,5 +23,3 @@ EOBUNDLES
 antigen theme pure
 antigen apply
 
-export NVM_DIR="/home/alacaba/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
