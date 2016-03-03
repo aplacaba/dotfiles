@@ -41,7 +41,6 @@ Plugin 'fatih/vim-go'
 Plugin 'slim-template/vim-slim'
 Plugin 'paranoida/vim-airlineish'
 Plugin 'leafgarland/typescript-vim'
-Plugin 'junegunn/vim-easy-align'
 Plugin 'mxw/vim-jsx'
 
 call vundle#end()
@@ -79,6 +78,7 @@ let g:airline_theme='raven'
 
 syntax on
 syntax enable
+set linespace=1
 set nocompatible
 set ruler
 set number
@@ -135,14 +135,9 @@ nnoremap <C-H>     <Esc>:bp<CR>
 nnoremap <C-s>     <Esc>:w<CR>
 nnoremap <C-t>     <Esc>:NERDTreeToggle<CR>
 
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)"
-
 " resizing vsplits
-nnoremap <leader>< <Esc>:30winc ><CR><Esc>
 nnoremap <leader>> <Esc>:30winc <<CR><Esc>
+nnoremap <leader>< <Esc>:30winc ><CR><Esc>
 nnoremap <leader>xa <Esc>:BufOnly<CR><Esc>
 
 " resizing horizontal split
@@ -196,7 +191,8 @@ let g:gitgutter_eager = 0
 "colo jellyx
 
 set background=dark
-set t_Co=16
+set t_Co=256
+colo hybrid
 set noerrorbells visualbell t_vb=
 "colo hybrid
 hi clear SignColumn
@@ -207,3 +203,16 @@ hi GitGutterChangeDelete ctermfg=yellow
 hi LineNr ctermfg=gray
 hi NonText ctermfg=gray
 hi CursorLine term=bold cterm=bold guibg=Grey40
+
+
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 11
+"set guifont=Monaco\ Regular\ 11
+"set guifont=Inconsolata\ Regular\ 12
+
+nmap <C-V> "+gP
+"imap <C-V> <ESC><C-V>i
+"vmap <C-C> "+y
