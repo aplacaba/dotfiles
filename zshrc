@@ -10,12 +10,13 @@ antigen bundles<<EOBUNDLES
   npm
   node
   rbenv
-  zsh-users/zsh-completions src
-  zsh-users/zsh-syntax-highlighting
   command-not-found
   history
   tmux
   lein
+  zsh-users/zsh-completions src
+  zsh-users/zsh-syntax-highlighting
+  zsh-users/zsh-history-substring-search
 EOBUNDLES
 
 [ -e "${HOME}/.zsh_aliases" ] && source "${HOME}/.zsh_aliases"
