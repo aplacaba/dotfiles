@@ -9,6 +9,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Rice
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -43,6 +44,7 @@ Plugin 'paranoida/vim-airlineish'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'mxw/vim-jsx'
+Plugin 'elixir-lang/vim-elixir'
 
 call vundle#end()
 filetype plugin indent on
@@ -75,6 +77,7 @@ let g:airline_right_alt_sep = ''
 "let g:airline_symbols.readonly = ''
 "let g:airline_symbols.linenr = ''
 "let g:airline_powerline_fonts=1
+"let g:airline_theme='distinguished'
 let g:airline_theme='raven'
 
 syntax on
@@ -174,6 +177,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.go           set filetype=go
   autocmd BufRead,BufNewFile *.ts           set filetype=typescript
   autocmd BufRead,BufNewFile *.py,*.pyc     set filetype=python
+  autocmd BufRead,BufNewFile *.ex           set filetype=elixir
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
