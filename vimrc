@@ -208,6 +208,6 @@ hi GitGutterAdd ctermfg=green
 hi GitGutterChange ctermfg=yellow
 hi GitGutterDelete ctermfg=red
 hi GitGutterChangeDelete ctermfg=yellow
-hi LineNr ctermfg=gray
+hi LineNr ctermfg=yellow
 hi NonText ctermfg=gray
 hi CursorLine term=bold cterm=bold guibg=Grey40

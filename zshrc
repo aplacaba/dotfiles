@@ -21,7 +21,6 @@ EOBUNDLES
 
 [ -e "${HOME}/.zsh_aliases" ] && source "${HOME}/.zsh_aliases"
 
-#antigen theme pure
-antigen theme sammy
+antigen theme pure
 antigen apply
 
