@@ -26,7 +26,11 @@ export NVM_DIR="/home/alacaba/.nvm"
 nvm use 4.0.0
 
 eval "$(rbenv init -)"
+export PATH="$HOME/.exenv/bin:$PATH"
+test -s "$HOME/.exenv/bin/exenv" && eval "$(exenv init -)"
+
 
 stty stop ''
 fortune -ae | cowsay -f koala -n
+
 

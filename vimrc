@@ -170,14 +170,14 @@ if has("autocmd")
   autocmd BufWritePre * :%s/\s\+$//e
   augroup end
 
-  autocmd BufNewFile,BufRead *.html,*.erb   set filetype=html.eruby
-  autocmd BufNewFile,BufRead *.html.twig    set filetype=html.twig
-  autocmd BufNewFile,BufRead *.slim         set filetype=slim
-  autocmd BufNewFile,BufRead *.coffee       set filetype=coffee
-  autocmd BufRead,BufNewFile *.go           set filetype=go
-  autocmd BufRead,BufNewFile *.ts           set filetype=typescript
-  autocmd BufRead,BufNewFile *.py,*.pyc     set filetype=python
-  autocmd BufRead,BufNewFile *.ex           set filetype=elixir
+  autocmd BufNewFile,BufRead *.html,*.erb               set filetype=html.eruby
+  autocmd BufNewFile,BufRead *.html.twig                set filetype=html.twig
+  autocmd BufNewFile,BufRead *.slim                     set filetype=slim
+  autocmd BufNewFile,BufRead *.coffee                   set filetype=coffee
+  autocmd BufRead,BufNewFile *.go                       set filetype=go
+  autocmd BufRead,BufNewFile *.ts                       set filetype=typescript
+  autocmd BufRead,BufNewFile *.py,*.pyc                 set filetype=python
+  autocmd BufRead,BufNewFile *.ex,*.exs,*.eex           set filetype=elixir
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
@@ -208,6 +208,6 @@ hi GitGutterAdd ctermfg=green
 hi GitGutterChange ctermfg=yellow
 hi GitGutterDelete ctermfg=red
 hi GitGutterChangeDelete ctermfg=yellow
-hi LineNr ctermfg=gray
+hi LineNr ctermfg=white
 hi NonText ctermfg=gray
 hi CursorLine term=bold cterm=bold guibg=Grey40
