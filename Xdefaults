@@ -8,7 +8,7 @@ Xft.hintstyle:  hintfull
 !URxvt*font: xft:Monaco:regular:size=11
 !URxvt*font: xft:Source Code Pro for Powerline:regular:size=12
 URxvt*letterSpace: -2
-URxvt*font: xft:Inconsolata-g:regular:size=12
+URxvt*font: xft:Inconsolata-dz:regular:size=12
 URxvt*cursorBlink: true
 
 URxvt*scrollBar: false
