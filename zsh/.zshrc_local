@@ -23,7 +23,7 @@ export NVM_DIR="/home/alacaba/.nvm"
 
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-nvm use 4.0.0
+nvm use 5.0.0
 
 eval "$(rbenv init -)"
 export PATH="$HOME/.exenv/bin:$PATH"

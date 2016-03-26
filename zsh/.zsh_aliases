@@ -19,6 +19,7 @@ alias desktop-connect='ssh alacaba@192.168.1.8'
 alias mount-desktop='sshfs alacaba@192.168.1.8:/mnt ~/Local\ Desktop'
 alias unmount-desktop='sudo umount ~/muh\ desktop'
 alias copy-tbpass='cat ~/.tbpass.txt | xclip -sel clip'
+alias @sci='cd ~/Workspace/@sci'
 
 # Tmux Aliases
 alias t='tmux new-session -s '
