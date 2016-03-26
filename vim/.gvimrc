@@ -9,12 +9,12 @@ Plugin 'gmarik/Vundle.vim'
 
 " Rice
 Plugin 'bling/vim-airline'
+Plugin 'bling/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'itchyny/lightline.vim'
 
 " Utils
 Plugin 'amirh/HTML-AutoCloseTag'
@@ -58,22 +58,8 @@ function! AirlineInit()
   let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks'])
 endfunction
 
-
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = ' '
-let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#right_alt_sep = ' '
-let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch = ''
-"let g:airline_symbols.readonly = ''
-"let g:airline_symbols.linenr = ''
-"let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=1
 let g:airline_theme='raven'
 
 syntax on
@@ -185,16 +171,11 @@ let g:indent_guides_auto_colors = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
-"set t_Co=256
-"colo grb256
-"color gruvbox
-"colo jellyx
-
 set background=dark
 set t_Co=256
 colo hybrid
 set noerrorbells visualbell t_vb=
-"colo hybrid
+colo hybrid
 hi clear SignColumn
 hi GitGutterAdd ctermfg=green
 hi GitGutterChange ctermfg=yellow
@@ -209,9 +190,7 @@ set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
-set guifont=Source\ Code\ Pro\ for\ Powerline\ Regular\ 11
-"set guifont=Monaco\ Regular\ 11
-"set guifont=Inconsolata\ Regular\ 12
+set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
 
 nmap <C-V> "+gP
 "imap <C-V> <ESC><C-V>i

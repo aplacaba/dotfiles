@@ -15,7 +15,6 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'altercation/vim-colors-solarized'
-"Plugin 'itchyny/lightline.vim'
 
 " Utils
 Plugin 'amirh/HTML-AutoCloseTag'
@@ -61,23 +60,6 @@ function! AirlineInit()
   let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks'])
 endfunction
 
-
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = ' '
-let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#right_alt_sep = ' '
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch = ''
-"let g:airline_symbols.readonly = ''
-"let g:airline_symbols.linenr = ''
-"let g:airline_powerline_fonts=1
-"let g:airline_theme='distinguished'
 let g:airline_theme='raven'
 
 syntax on
@@ -120,7 +102,9 @@ set list
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace"
 set mouse=a
 set mousehide
-
+set background=dark
+set t_Co=16
+set noerrorbells visualbell t_vb=
 
 if has('statusline')
   set laststatus=2
@@ -131,6 +115,8 @@ if has('statusline')
   set statusline+=\ [%{getcwd()}] " Current dir
   set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav inf
 endif
+
+" Mappings
 
 nnoremap <C-X>     <Esc>:bd!<CR>
 nnoremap <C-L>     <Esc>:bn<CR>
@@ -189,20 +175,11 @@ highlight LineNr ctermfg=black
 
 let g:tmuxline_preset = 'nightly_fox'
 let g:typescript_compiler_options = '-sourcemap'
-
 let g:indent_guides_auto_colors = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 
-"set t_Co=256
-"colo grb256
-"color gruvbox
-"colo jellyx
 
-set background=dark
-set t_Co=16
-set noerrorbells visualbell t_vb=
-"colo hybrid
 hi clear SignColumn
 hi GitGutterAdd ctermfg=green
 hi GitGutterChange ctermfg=yellow
