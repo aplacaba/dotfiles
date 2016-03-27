@@ -188,3 +188,4 @@ hi GitGutterChangeDelete ctermfg=yellow
 hi LineNr ctermfg=red
 hi NonText ctermfg=magenta
 hi CursorLine term=bold cterm=bold guibg=Grey40
+hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
