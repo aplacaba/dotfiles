@@ -9,7 +9,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Rice
 Plugin 'bling/vim-airline'
-Plugin 'bling/vim-airline-themes'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -42,22 +42,26 @@ Plugin 'slim-template/vim-slim'
 Plugin 'paranoida/vim-airlineish'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mxw/vim-jsx'
+Plugin 'junegunn/vim-easy-align'
 
 call vundle#end()
+
+let mapleader="\<Tab>"
+
 filetype plugin indent on
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-let mapleader="\<Tab>"
-let g:airline#extensions#tabline#enabled=1
-
 function! AirlineInit()
   let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
   let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks'])
 endfunction
 
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = ' '
+let g:airline#extensions#tabline#enabled=1
 let g:airline_right_alt_sep = ''
 let g:airline_powerline_fonts=1
 let g:airline_theme='raven'

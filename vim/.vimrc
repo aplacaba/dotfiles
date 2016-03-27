@@ -107,7 +107,7 @@ set t_Co=16
 set noerrorbells visualbell t_vb=
 
 if has('statusline')
-  set laststatus=2
+  "set laststatus=2
   set statusline=%<%f\ " Filename
   set statusline+=%w%h%m%r " Options
   set statusline+=%{fugitive#statusline()} " Git Hotness
