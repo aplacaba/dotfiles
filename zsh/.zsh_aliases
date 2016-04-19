@@ -23,6 +23,7 @@ alias @sci='cd ~/Workspace/@sci'
 alias rebit='ssh ubuntu@ec2-54-251-155-242.ap-southeast-1.compute.amazonaws.com'
 alias rebit2='ssh ubuntu@ec2-54-255-154-58.ap-southeast-1.compute.amazonaws.com'
 alias rebit-staging='ssh ubuntu@http://ec2-54-255-175-65.ap-southeast-1.compute.amazonaws.com:3000'
+alias @saunders='cd ~/Workspace/@saunders'
 
 # Tmux Aliases
 #alias t='tmux new-session'
