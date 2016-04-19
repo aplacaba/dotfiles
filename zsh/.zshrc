@@ -1,4 +1,3 @@
-[ -e "${HOME}/.zshrc_local" ] && source "${HOME}/.zshrc_local"
 source ~/.antigen/antigen.zsh
 
 antigen use oh-my-zsh
@@ -20,6 +19,7 @@ antigen bundles<<EOBUNDLES
 EOBUNDLES
 
 [ -e "${HOME}/.zsh_aliases" ] && source "${HOME}/.zsh_aliases"
+[ -e "${HOME}/.zshrc_local" ] && source "${HOME}/.zshrc_local"
 
 antigen theme pure
 antigen apply

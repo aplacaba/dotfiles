@@ -110,7 +110,7 @@ set mousehide
 
 
 if has('statusline')
-  set laststatus=2
+  "set laststatus=2
   set statusline=%<%f\ " Filename
   set statusline+=%w%h%m%r " Options
   set statusline+=%{fugitive#statusline()} " Git Hotness
@@ -177,8 +177,8 @@ let g:gitgutter_eager = 0
 
 set background=dark
 set t_Co=256
-colo hybrid
 set noerrorbells visualbell t_vb=
+
 colo hybrid
 hi clear SignColumn
 hi GitGutterAdd ctermfg=green
@@ -189,7 +189,6 @@ hi LineNr ctermfg=gray
 hi NonText ctermfg=gray
 hi CursorLine term=bold cterm=bold guibg=Grey40
 
-
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
@@ -197,5 +196,5 @@ set guioptions-=L
 set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
 
 nmap <C-V> "+gP
-"imap <C-V> <ESC><C-V>i
-"vmap <C-C> "+y
+imap <C-V> <Esc><C-V>i
+vmap <C-C> "+y
