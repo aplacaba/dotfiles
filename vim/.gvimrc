@@ -195,6 +195,6 @@ set guioptions-=r
 set guioptions-=L
 set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
 
-nmap <C-V> "+gP
-imap <C-V> <Esc><C-V>i
+nmap <C-Q> "+gP
+"imap <C-Q> <Esc><C-V>i
 vmap <C-C> "+y

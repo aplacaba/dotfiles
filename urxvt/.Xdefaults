@@ -22,9 +22,12 @@ URxvt*matcher.button  : 1
 
 ! Colors
 URxvt*foreground: gray
-URxvt*background: #231d20
-URxvt*transparent: true
-URxvt*shading: 160
+xRxvt*background: #231d20
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0200/c800
+
+!URxvt*transparent: true
+!URxvt*shading: 30
 
 !!!Negro-----------
 !*color0: #151515

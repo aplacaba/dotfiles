@@ -23,6 +23,8 @@ alias @sci='cd ~/Workspace/@sci'
 alias rebit='ssh ubuntu@ec2-54-251-155-242.ap-southeast-1.compute.amazonaws.com'
 alias rebit2='ssh ubuntu@ec2-54-255-154-58.ap-southeast-1.compute.amazonaws.com'
 alias rebit-staging='ssh ubuntu@http://ec2-54-255-175-65.ap-southeast-1.compute.amazonaws.com:3000'
+alias vts='ssh root@139.162.35.204'
+alias vts-staging='ssh root@139.162.50.137'
 alias @saunders='cd ~/Workspace/@saunders'
 
 # Tmux Aliases
@@ -38,5 +40,5 @@ alias venueey-production='ssh ubuntu@ec2-54-169-92-86.ap-southeast-1.compute.ama
 
 function t()
 {
-  tmux new-session $1
+  tmux new-session -s $1
 }
