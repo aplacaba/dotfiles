@@ -5,10 +5,10 @@ Xft.rgba:       none
 Xft.hinting:    true
 Xft.autohint:   true
 Xft.hintstyle:  hintfull
-!URxvt*font: xft:Monaco:regular:size=11
-!URxvt*font: xft:Source Code Pro for Powerline:regular:size=12
 URxvt*letterSpace: -1
-URxvt*font: xft:Inconsolata for Powerline:medium:size=13
+URxvt*font: xft:Monaco:regular:size=10
+!URxvt*font: xft:Inconsolata for Powerline:medium:size=13
+!URxvt*font: xft:Source Code Pro for Powerline:size=11
 URxvt*cursorBlink: true
 
 URxvt*scrollBar: false
@@ -21,9 +21,9 @@ URxvt*url-launcher    : xdg-open
 URxvt*matcher.button  : 1
 
 ! Colors
-URxvt*foreground: gray
+URxvt*foreground: white
 xRxvt*background: #231d20
-urxvt*depth: 32
+urxvt*depth: 30
 urxvt*background: rgba:0000/0000/0200/c800
 
 !URxvt*transparent: true

@@ -31,6 +31,7 @@ Plugin 'editorconfig/editorconfig-vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'vim-scripts/BufOnly.vim'
+Plugin 'freitass/todo.txt-vim'
 
 " Syntax
 Plugin 'tpope/vim-rails'
@@ -44,6 +45,7 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'mxw/vim-jsx'
 Plugin 'elixir-lang/vim-elixir'
+Plugin 'rust-lang/rust.vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -167,6 +169,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.ts                       set filetype=typescript
   autocmd BufRead,BufNewFile *.py,*.pyc                 set filetype=python
   autocmd BufRead,BufNewFile *.ex,*.exs,*.eex           set filetype=elixir
+  autocmd BufRead,BufNewFile *.rs,*.toml                set filetype=rust
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4

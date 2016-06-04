@@ -193,7 +193,11 @@ set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
-set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
+"set guifont=Inconsolata\ for\ Powerline\ Regular\ 12
+"set guifont=Source\ Code\ Pro\ for\ Powerline\ 11
+"set guifont=Anonymous\ Pro\ for\ Powerline\ Regular\ 11
+set guifont=Monaco\ 10
+
 
 nmap <C-Q> "+gP
 "imap <C-Q> <Esc><C-V>i
