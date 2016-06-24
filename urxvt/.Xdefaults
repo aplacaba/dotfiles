@@ -4,10 +4,13 @@ Xft.antialias:  true
 Xft.rgba:       none
 Xft.hinting:    true
 Xft.autohint:   true
-Xft.hintstyle:  hintfull
-URxvt*letterSpace: -1
-URxvt*font: xft:Monaco:regular:size=10
-!URxvt*font: xft:Inconsolata for Powerline:medium:size=13
+Xft.hintstyle:  hintslight
+URxvt*letterSpace: -2
+!URxvt*font: xft:Monaco:regular:size=10
+!URxvt*font: xft:Inconsolata-dz for Powerline, dz:size=12
+!URxvt*font: xft:Inconsolata-g for Powerline, g:pixelsize=11
+!URxvt*font: xft:Inconsolata for Powerline:regular:size=13
+URxvt*font: xft:Liberation Mono:regular:pixelsize=15
 !URxvt*font: xft:Source Code Pro for Powerline:size=11
 URxvt*cursorBlink: true
 
@@ -22,9 +25,12 @@ URxvt*matcher.button  : 1
 
 ! Colors
 URxvt*foreground: white
-xRxvt*background: #231d20
-urxvt*depth: 30
-urxvt*background: rgba:0000/0000/0200/c800
+URxvt*background: #090300
+!black
+!urxvt*depth: 30
+!urxvt*background: rgba:0000/0000/0200/c800
+urxvt*visualBell:  false
+
 
 !URxvt*transparent: true
 !URxvt*shading: 30
