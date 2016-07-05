@@ -59,11 +59,41 @@ function! AirlineInit()
   let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks'])
 endfunction
 
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = ' '
 let g:airline#extensions#tabline#enabled=1
-let g:airline_right_alt_sep = ''
-let g:airline_powerline_fonts=1
+"let g:airline_right_alt_sep = ''
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = ' '
+"let g:airline_powerline_fonts=1
+"" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+      let g:airline_symbols = {}
+    endif
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+ let g:airline_symbols.whitespace = 'Ξ'
+
+" " airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''"
+
+
 let g:airline_theme='raven'
 
 syntax on
@@ -194,10 +224,10 @@ set guioptions-=T
 set guioptions-=r
 set guioptions-=L
 "set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
-set guifont=Liberation\ Mono\ for\ Powerline\ Regular\ 11
+"set guifont=Liberation\ Mono\ for\ Powerline\ Regular\ 11
 "set guifont=Ubuntu\ Mono\ derivative\ Powerline\ 13
 "set guifont=Source\ Code\ Pro\ for\ Powerline\ 11
-"set guifont=Anonymous\ Pro\ for\ Powerline\ Regular\ 11
+set guifont=Consolas\ 11
 "set guifont=Monaco\ 10
 
 

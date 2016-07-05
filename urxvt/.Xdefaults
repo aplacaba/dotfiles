@@ -4,26 +4,26 @@ Xft.antialias:  true
 Xft.rgba:       none
 Xft.hinting:    true
 Xft.autohint:   true
-Xft.hintstyle:  hintslight
-URxvt*letterSpace: -2
-!URxvt*font: xft:Monaco:regular:size=10
-!URxvt*font: xft:Inconsolata-dz for Powerline, dz:size=12
-!URxvt*font: xft:Inconsolata-g for Powerline, g:pixelsize=11
-!URxvt*font: xft:Inconsolata for Powerline:regular:size=13
-URxvt*font: xft:Liberation Mono:regular:pixelsize=15
-!URxvt*font: xft:Source Code Pro for Powerline:size=11
-URxvt*cursorBlink: true
+Xft.hintstyle:  hintfull
+URxvt*letterSpace: -1
+URxvt*font: xft:consolas:regular:pixelsize=16
+!URxvt*letterSpace: -2.5
+!URxvt*font: xft:Liberation Mono for Powerline:regular:pixelsize=15
 
+! misc
+URxvt*cursorBlink: true
 URxvt*scrollBar: false
 URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 URxvt*iso14755: False
 URxvt*iconFile: /usr/share/icons/Numix-Circle/scalable/apps/xterm-color.svg
 
+! perl exts
 URxvt*perl-ext-common : default,clipboard,matcher,remote-clipboard
 URxvt*url-launcher    : xdg-open
 URxvt*matcher.button  : 1
 
-! Colors
+! Look up for more colors:
+! http://xcolors.net
 URxvt*foreground: white
 URxvt*background: #090300
 !black
@@ -31,34 +31,9 @@ URxvt*background: #090300
 !urxvt*background: rgba:0000/0000/0200/c800
 urxvt*visualBell:  false
 
-
 !URxvt*transparent: true
 !URxvt*shading: 30
 
-!!!Negro-----------
-!*color0: #151515
-!*color8: #696969
-!!Rojo------------
-!*color1: #FF8EAF
-!*color9: #ED4C7A
-!!Verde------------
-!*color2:  #A6E25F
-!*color10: #A6E179
-!!Amarillo---------
-!*color3: #F8E578
-!*color11: #FFDF6B
-!!Azul-------------
-!*color4: #A6E2F0
-!*color12: #79D2FF
-!!Magenta----------
-!*color5: #E85B92
-!*color13: #BB5D79
-!!Cyan-------------
-!*color6: #5F868F
-!*color14: #87A8AF
-!!Blanco-----------
-!*color7: #D5F1F2
-!*color15: #E2F1F6
 
 !black
 *color0:  #251f1f

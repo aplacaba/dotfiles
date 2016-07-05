@@ -59,6 +59,7 @@ endif
 
 let mapleader="\<Tab>"
 let g:airline#extensions#tabline#enabled=1
+"let g:airline#extensions#bufferline#enabled=1
 
 function! AirlineInit()
   let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
@@ -112,7 +113,7 @@ set t_Co=16
 set noerrorbells visualbell t_vb=
 
 if has('statusline')
-  "set laststatus=2
+  set laststatus=2
   set statusline=%<%f\ " Filename
   set statusline+=%w%h%m%r " Options
   set statusline+=%{fugitive#statusline()} " Git Hotness
@@ -184,7 +185,7 @@ let g:typescript_compiler_options = '-sourcemap'
 let g:indent_guides_auto_colors = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
-
+"let g:airline_powerline_fonts = 1
 
 hi clear SignColumn
 hi GitGutterAdd ctermfg=green

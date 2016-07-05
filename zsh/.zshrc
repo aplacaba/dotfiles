@@ -1,27 +1,67 @@
-source ~/.antigen/antigen.zsh
+if [[ ! -d ~/.zplug ]]; then
+    git clone https://github.com/zplug/zplug ~/.zplug
+    source ~/.zplug/init.zsh && zplug update --self
+fi
+
+autoload -U compinit && compinit
+
+# Essential
+source ~/.zplug/init.zsh
+
+zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
+zplug "zsh-users/zsh-autosuggestions"
+zplug "robertzk/send.zsh"
+
+# ohmyzsh
+zplug "themes/pure", from:oh-my-zsh
+zplug "plugins/git", from:oh-my-zsh
+zplug "plugins/history", from:oh-my-zsh
+zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "plugins/tmux", from:oh-my-zsh
+
+# Install packages that have not been installed yet
+if ! zplug check --verbose; then
+  printf "Install? [y/N]: "
+  if read -q; then
+    echo; zplug install
+  else
+    echo
+  fi
+fi
+
+bindkey -e
+
+zplug load
 
 [ -e "${HOME}/.zshrc_local" ] && source "${HOME}/.zshrc_local"
-
-antigen use oh-my-zsh
-
-antigen bundles<<EOBUNDLES
-  git
-  heroku
-  bundler
-  npm
-  node
-  rbenv
-  command-not-found
-  history
-  tmux
-  lein
-  zsh-users/zsh-completions src
-  zsh-users/zsh-syntax-highlighting
-  zsh-users/zsh-history-substring-search
-EOBUNDLES
-
 [ -e "${HOME}/.zsh_aliases" ] && source "${HOME}/.zsh_aliases"
+#source ~/.antigen/antigen.zsh
 
-antigen theme pure
-antigen apply
+#[ -e "${HOME}/.zshrc_local" ] && source "${HOME}/.zshrc_local"
+
+#antigen use oh-my-zsh
+
+#antigen bundles<<EOBUNDLES
+  #git
+  #heroku
+  #bundler
+  #npm
+  #node
+  #rbenv
+  #command-not-found
+  #history
+  #tmux
+  #lein
+  #zsh-users/zsh-completions src
+  #zsh-users/zsh-syntax-highlighting
+  #zsh-users/zsh-history-substring-search
+  #robertzk/send.zsh
+#EOBUNDLES
+
+#[ -e "${HOME}/.zsh_aliases" ] && source "${HOME}/.zsh_aliases"
+
+#antigen theme pure
+#antigen apply
 

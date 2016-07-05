@@ -46,7 +46,3 @@ alias reload-tmux='tmux source-file ~/.tmux.conf'
 alias venueey-staging='ssh -i ~/.ssh/venueey.pem ubuntu@ec2-52-74-20-216.ap-southeast-1.compute.amazonaws.com'
 alias venueey-production='ssh ubuntu@ec2-54-169-92-86.ap-southeast-1.compute.amazonaws.com'
 
-function t()
-{
-  tmux new-session -s $1
-}

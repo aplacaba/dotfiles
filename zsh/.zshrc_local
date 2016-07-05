@@ -1,4 +1,8 @@
 # functions
+function t()
+{
+  tmux new-session -s $1
+}
 t2c () {
   echo $1 | xclip -sel clip
 }
@@ -23,12 +27,12 @@ export NVM_DIR="/home/alacaba/.nvm"
 
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 
-nvm use 5.0.0
-ruby -v
-
 eval "$(rbenv init -)"
 export PATH="$HOME/.exenv/bin:$PATH"
 test -s "$HOME/.exenv/bin/exenv" && eval "$(exenv init -)"
+
+#nvm use 5.0.0
+#ruby -v
 
 stty stop ''
 #fortune -ae | cowsay -f koala -n
