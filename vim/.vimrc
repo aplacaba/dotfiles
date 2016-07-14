@@ -1,53 +1,49 @@
-" set ethe runtime path to include Vundle and initialize set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" Vundle
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Plugins
 
 " Rice
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'gorodinskiy/vim-coloresque'
-Plugin 'altercation/vim-colors-solarized'
+Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'flazz/vim-colorschemes'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'altercation/vim-colors-solarized'
 
 " Utils
-Plugin 'amirh/HTML-AutoCloseTag'
-Plugin 'othree/html5.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-endwise'
-Plugin 'spf13/vim-autoclose'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'mileszs/ack.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-scripts/BufOnly.vim'
-Plugin 'freitass/todo.txt-vim'
+Plug 'amirh/HTML-AutoCloseTag'
+Plug 'othree/html5.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-endwise'
+Plug 'spf13/vim-autoclose'
+Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-surround'
+Plug 'vim-scripts/BufOnly.vim'
+Plug 'freitass/todo.txt-vim'
 
 " Syntax
-Plugin 'tpope/vim-rails'
-Plugin 'pangloss/vim-javascript'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'elzr/vim-json'
-Plugin 'fatih/vim-go'
-Plugin 'slim-template/vim-slim'
-Plugin 'paranoida/vim-airlineish'
-Plugin 'leafgarland/typescript-vim'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'mxw/vim-jsx'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'rust-lang/rust.vim'
+Plug 'tpope/vim-rails'
+Plug 'pangloss/vim-javascript'
+Plug 'kchmck/vim-coffee-script'
+Plug 'elzr/vim-json'
+Plug 'fatih/vim-go'
+Plug 'slim-template/vim-slim'
+Plug 'paranoida/vim-airlineish'
+Plug 'leafgarland/typescript-vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'mxw/vim-jsx'
+Plug 'elixir-lang/vim-elixir'
+Plug 'rust-lang/rust.vim'
 
-call vundle#end()
+call plug#end()
+
 filetype plugin indent on
 
 
