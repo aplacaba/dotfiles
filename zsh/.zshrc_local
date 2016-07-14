@@ -34,7 +34,7 @@ test -s "$HOME/.exenv/bin/exenv" && eval "$(exenv init -)"
 #nvm use 5.0.0
 #ruby -v
 
-stty stop ''
+stty -ixon
 #fortune -ae | cowsay -f koala -n
 
 
