@@ -26,6 +26,7 @@ alias rebit2='ssh ubuntu@ec2-54-255-154-58.ap-southeast-1.compute.amazonaws.com'
 alias rebit-staging='ssh ubuntu@http://ec2-54-255-175-65.ap-southeast-1.compute.amazonaws.com:3000'
 alias vts='ssh root@139.162.35.204'
 alias vts-staging='ssh root@139.162.50.137'
+alias em-production='ssh root@45.79.154.118'
 
 # project shortcuts
 alias @sci='cd ~/Workspace/@sci'
@@ -41,8 +42,4 @@ alias ta='tmux attach-session -t'
 alias tl='tmux list-sessions'
 alias tx='tmux kill-session -t'
 alias reload-tmux='tmux source-file ~/.tmux.conf'
-
-# dev aliases
-alias venueey-staging='ssh -i ~/.ssh/venueey.pem ubuntu@ec2-52-74-20-216.ap-southeast-1.compute.amazonaws.com'
-alias venueey-production='ssh ubuntu@ec2-54-169-92-86.ap-southeast-1.compute.amazonaws.com'
 
