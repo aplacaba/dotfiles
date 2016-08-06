@@ -63,6 +63,7 @@ function! AirlineInit()
 endfunction
 
 let g:airline_theme='raven'
+"let g:airline_theme='sol'
 
 syntax on
 syntax enable

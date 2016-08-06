@@ -6,7 +6,7 @@ Xft.hinting:    true
 Xft.autohint:   true
 Xft.hintstyle:  hintslight
 URxvt*letterSpace: -1
-URxvt*font: xft:consolas:regular:pixelsize=16
+URxvt*font: xft:consolas:regular:pixelsize=14
 !URxvt*letterSpace: -2.5
 !URxvt*font: xft:Liberation Mono for Powerline:regular:pixelsize=15
 
@@ -24,7 +24,7 @@ URxvt*matcher.button  : 1
 
 ! Look up for more colors:
 ! http://xcolors.net
-URxvt*foreground: white
+URxvt*foreground: gray
 URxvt*background: #090300
 !black
 !urxvt*depth: 30

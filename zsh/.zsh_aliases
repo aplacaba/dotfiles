@@ -43,3 +43,4 @@ alias tl='tmux list-sessions'
 alias tx='tmux kill-session -t'
 alias reload-tmux='tmux source-file ~/.tmux.conf'
 
+alias UPHOLD_TOKEN=d205281eae9523abf77d22a480283f78ba396bdb
