@@ -62,6 +62,31 @@ function! AirlineInit()
   let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks'])
 endfunction
 
+let g:airline_powerline_fonts = 1
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
 let g:airline_theme='raven'
 "let g:airline_theme='sol'
 
@@ -124,8 +149,9 @@ endif
 nnoremap <C-X>     <Esc>:bd!<CR>
 nnoremap <C-L>     <Esc>:bn<CR>
 nnoremap <C-H>     <Esc>:bp<CR>
-nnoremap <C-s>     <Esc>:w<CR>
+nnoremap <C-S>     <Esc>:w<CR>
 nnoremap <C-t>     <Esc>:NERDTreeToggle<CR>
+vmap <C-s> <esc>:w<CR>gv
 
 xmap ga <Plug>(EasyAlign)
 
@@ -182,18 +208,19 @@ let g:typescript_compiler_options = '-sourcemap'
 let g:indent_guides_auto_colors = 0
 let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
-let g:airline_powerline_fonts = 1
 
 set guioptions-=m
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
 set background=dark
+set linespace=2
 
 set t_Co=256
 set noerrorbells visualbell t_vb=
 colo hybrid
-set guifont=Inconsolata\ for\ Powerline\ Regular\ 12
+"set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
+set guifont=Consolas\ 11
 
 colo hybrid
 
@@ -208,4 +235,4 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 
 nmap <C-Q> "+gP
-nmap <C-C> "+y
+"nmap <C-C> "+y
