@@ -1,18 +1,28 @@
 # functions
-function t()
+t()
 {
   tmux new-session -s $1
 }
-t2c () {
+t2c ()
+{
   echo $1 | xclip -sel clip
 }
 
-r_migrate () {
+r_migrate ()
+{
   be rake db:migrate RAILS_ENV=$1
 }
 
-r_rollback () {
+r_rollback ()
+{
   be rake db:rollback RAILS_ENV=$1
+}
+
+genpasswd()
+{
+  local l=$1
+    [ "$l" == "" ] && l=20
+    tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
 
 # vars
@@ -37,4 +47,25 @@ test -s "$HOME/.exenv/bin/exenv" && eval "$(exenv init -)"
 stty -ixon
 #fortune -ae | cowsay -f koala -n
 
+alias dm=docker-machine
 
+# stop and remove container
+drm ()
+{
+  docker stop $1 && docker rm $1
+}
+
+dm-env()
+{
+  eval $(dm env $2 $1)
+}
+
+docker-clean()
+{
+  docker rm `docker ps --no-trunc -aq`
+}
+
+docker-remove-untagged()
+{
+  docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
+}
