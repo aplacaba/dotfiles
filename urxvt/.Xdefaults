@@ -60,3 +60,4 @@ urxvt*visualBell:  false
 *color7:  #efefef
 *color15: #efefef
 
+Emacs.font: Consolas-12
