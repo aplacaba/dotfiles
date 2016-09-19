@@ -235,4 +235,5 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 
 nmap <C-Q> "+gP
-"nmap <C-C> "+y
+nnoremap y "+y
+vnoremap y "+y
