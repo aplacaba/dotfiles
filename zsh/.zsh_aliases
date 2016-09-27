@@ -50,10 +50,12 @@ alias UPHOLD_TOKEN=d205281eae9523abf77d22a480283f78ba396bdb
 # swarm
 alias node0='ssh -i ~/.ssh/sci-alty.pem ubuntu@52.77.101.240'
 alias node1='ssh -i ~/.ssh/sci-alty.pem ubuntu@52.74.202.29'
-alias consul0='ssh -i ~/.ssh/sci-alty.pem ubuntu@ec2-54-169-44-73.ap-southeast-1.compute.amazonaws.com'
+alias node2='ssh -i ~/.ssh/sci-alty.pem ubuntu@ec2-54-169-44-73.ap-southeast-1.compute.amazonaws.com'
 
 alias consul-tunnel="ssh -L 3100:127.0.0.1:8500 ubuntu@52.77.101.240 -N"
 alias rabbitmq-tunnel="ssh -L 3200:127.0.0.1:15672 ubuntu@52.77.101.240 -N"
 alias vis-tunnel="ssh -L 3300:127.0.0.1:8080 ubuntu@52.77.101.240 -N"
 
 alias em-main='ssh root@188.166.218.252'
+
+export VAGRANT_DEFAULT_PROVIDER=virtualbox

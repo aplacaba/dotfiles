@@ -6,14 +6,14 @@ Xft.rgba:       none
 !Xft.autohint:   true
 !Xft.hintstyle:  hintslight
 URxvt*letterSpace: -1
-URxvt*font: xft:consolas:regular:pixelsize=14
+URxvt*font: xft:consolas:regular:pixelsize=12
 !URxvt*letterSpace: -2.5
 !URxvt*font: xft:Liberation Mono for Powerline:regular:pixelsize=15
 
 ! misc
 URxvt*cursorBlink: true
 URxvt*scrollBar: false
-URxvt*keysym.Shift-Control-V: perl:clipboard:paste
+!URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 URxvt*iso14755: False
 URxvt*iconFile: /usr/share/icons/Numix-Circle/scalable/apps/xterm-color.svg
 
@@ -61,3 +61,5 @@ urxvt*visualBell:  false
 *color15: #efefef
 
 Emacs.font: Consolas-12
+Urxvt.termName: rxvt-unicode
+
