@@ -41,6 +41,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'mxw/vim-jsx'
 Plug 'elixir-lang/vim-elixir'
 Plug 'rust-lang/rust.vim'
+Plug 'digitaltoad/vim-pug'
 
 call plug#end()
 
@@ -150,7 +151,7 @@ nnoremap <C-X>     <Esc>:bd!<CR>
 nnoremap <C-L>     <Esc>:bn<CR>
 nnoremap <C-H>     <Esc>:bp<CR>
 nnoremap <C-S>     <Esc>:w<CR>
-nnoremap <C-t>     <Esc>:NERDTreeToggle<CR>
+nnoremap <C-d>     <Esc>:NERDTreeToggle<CR>
 vmap <C-s> <esc>:w<CR>gv
 
 xmap ga <Plug>(EasyAlign)
@@ -194,6 +195,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.py,*.pyc                 set filetype=python
   autocmd BufRead,BufNewFile *.ex,*.exs,*.eex           set filetype=elixir
   autocmd BufRead,BufNewFile *.rs,*.toml                set filetype=rust
+  autocmd BufRead,BufNewFile *.pug                      set filetype=pug
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
@@ -220,7 +222,7 @@ set t_Co=256
 set noerrorbells visualbell t_vb=
 colo hybrid
 "set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
-set guifont=Consolas\ 10
+set guifont=Consolas\ 13
 
 colo hybrid
 
