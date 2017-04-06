@@ -42,6 +42,7 @@ Plug 'mxw/vim-jsx'
 Plug 'elixir-lang/vim-elixir'
 Plug 'rust-lang/rust.vim'
 Plug 'digitaltoad/vim-pug'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -62,6 +63,8 @@ function! AirlineInit()
   let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
   let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks'])
 endfunction
+
+let g:user_emmet_install_global = 0
 
 "let g:airline_powerline_fonts = 1
 
@@ -222,7 +225,7 @@ set t_Co=256
 set noerrorbells visualbell t_vb=
 colo hybrid
 "set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
-set guifont=Consolas\ 13
+set guifont=Consolas\ Bold\ 13
 
 colo hybrid
 

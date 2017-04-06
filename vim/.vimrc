@@ -42,6 +42,8 @@ Plug 'mxw/vim-jsx'
 Plug 'elixir-lang/vim-elixir'
 Plug 'rust-lang/rust.vim'
 Plug 'digitaltoad/vim-pug'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'mattn/emmet-vim'
 
 call plug#end()
 
@@ -65,6 +67,9 @@ endfunction
 
 let g:airline_theme='raven'
 "let g:airline_theme='sol'
+
+"emett
+let g:user_emmet_install_global = 0
 
 syntax on
 syntax enable
@@ -171,6 +176,8 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.rs,*.toml                set filetype=rust
   autocmd BufRead,BufNewFile *.pug                      set filetype=pug
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
+  autocmd FileType html,css EmmetInstall
+
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
   autocmd VimEnter * call AirlineInit()
@@ -195,3 +202,4 @@ hi LineNr ctermfg=red
 hi NonText ctermfg=magenta
 hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
+
