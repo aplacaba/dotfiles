@@ -6,7 +6,7 @@ Xft.rgba:       none
 !Xft.autohint:   true
 !Xft.hintstyle:  hintslight
 URxvt*letterSpace: -1
-URxvt*font: xft:consolas:bold:pixelsize=16
+URxvt*font: xft:consolas:bold:pixelsize=14
 !URxvt*letterSpace: -2.5
 !URxvt*font: xft:Liberation Mono for Powerline:regular:pixelsize=15
 

@@ -225,7 +225,7 @@ set t_Co=256
 set noerrorbells visualbell t_vb=
 colo hybrid
 "set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
-set guifont=Consolas\ Bold\ 13
+set guifont=Consolas\ Bold\ 11
 
 colo hybrid
 
