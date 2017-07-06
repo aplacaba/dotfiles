@@ -21,14 +21,16 @@ alias unmount-desktop='sudo umount ~/muh\ desktop'
 alias copy-tbpass='cat ~/.tbpass.txt | xclip -sel clip'
 alias @sci='cd ~/Workspace/@sci'
 alias @saunders='cd ~/Workspace/@saunders'
-alias rebit1='ssh ubuntu@54.255.148.124'
-alias rebit2='ssh ubuntu@ec2-54-255-154-58.ap-southeast-1.compute.amazonaws.com'
+alias rebit1='ssh -i ~/.ssh/sci-alty.pem ubuntu@52.77.231.121'
+alias rebit2='ssh -i ~/.ssh/sci-alty.pem ubuntu@ec2-54-169-71-169.ap-southeast-1.compute.amazonaws.com'
+#alias rebit1='ssh -i ~/.ssh/sci-alty.pem  ubuntu@54.254.99.63'
+#alias rebit2='ssh -i ~/.ssh/sci-alty.pem ubuntu@54.255.179.113'
 alias rebit-staging='ssh ubuntu@http://ec2-54-255-175-65.ap-southeast-1.compute.amazonaws.com:3000'
 alias vts='ssh root@139.162.35.204'
 alias vts-staging='ssh root@139.162.50.137'
 alias em-production='ssh deployer@128.199.81.203'
 alias switcher-value='gsettings set org.gnome.shell.app-switcher current-workspace-only true'
-alias multichain-connect='ssh -i ~/.ssh/sci-alty.pem ubuntu@52.221.201.160'
+alias chain-connect='ssh -i ~/.ssh/sci-alty.pem ubuntu@52.77.241.228'
 
 # project shortcuts
 alias @sci='cd ~/Workspace/@sci'
@@ -62,5 +64,7 @@ alias xcopy='xclip -sel clip'
 alias activate='source ./bin/activate'
 alias venv='virtualenv'
 alias tcopy='tmux show-buffer | xcopy'
+alias vim=vimx
+alias vi=vimx
 
 export VAGRANT_DEFAULT_PROVIDER=virtualbox

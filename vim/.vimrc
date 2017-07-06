@@ -44,6 +44,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'mattn/emmet-vim'
+Plug 'tomlion/vim-solidity'
 
 call plug#end()
 
@@ -114,6 +115,7 @@ set mousehide
 set background=dark
 set t_Co=16
 set noerrorbells visualbell t_vb=
+set clipboard=unnamedplus
 
 if has('statusline')
   set laststatus=2
@@ -132,6 +134,7 @@ nnoremap <C-L>     <Esc>:bn<CR>
 nnoremap <C-H>     <Esc>:bp<CR>
 nnoremap <C-s>     <Esc>:w<CR>
 nnoremap <C-d>     <Esc>:NERDTreeToggle<CR>
+nnoremap <C-y>     <Esc>:w !xclip -sel c<CR>
 
 xmap ga <Plug>(EasyAlign)
 
@@ -165,16 +168,17 @@ if has("autocmd")
   autocmd BufWritePre * :%s/\s\+$//e
   augroup end
 
-  autocmd BufNewFile,BufRead *.html,*.erb               set filetype=html.eruby
-  autocmd BufNewFile,BufRead *.html.twig                set filetype=html.twig
-  autocmd BufNewFile,BufRead *.slim                     set filetype=slim
-  autocmd BufNewFile,BufRead *.coffee                   set filetype=coffee
+  autocmd BufRead,BufNewFile *.html,*.erb               set filetype=html.eruby
+  autocmd BufRead,BufNewFile *.html.twig                set filetype=html.twig
+  autocmd BufRead,BufNewFile *.slim                     set filetype=slim
+  autocmd BufRead,BufNewFile *.coffee                   set filetype=coffee
   autocmd BufRead,BufNewFile *.go                       set filetype=go
   autocmd BufRead,BufNewFile *.ts                       set filetype=typescript
   autocmd BufRead,BufNewFile *.py,*.pyc                 set filetype=python
   autocmd BufRead,BufNewFile *.ex,*.exs,*.eex           set filetype=elixir
   autocmd BufRead,BufNewFile *.rs,*.toml                set filetype=rust
   autocmd BufRead,BufNewFile *.pug                      set filetype=pug
+  autocmd BufRead,BufNewFile *.sol                      set filetype=solidity
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
   autocmd FileType html,css EmmetInstall
 
@@ -203,3 +207,4 @@ hi NonText ctermfg=magenta
 hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 
+nmap <C-Q> "+gP

@@ -43,6 +43,7 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'rust-lang/rust.vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'mattn/emmet-vim'
+Plug 'tomlion/vim-solidity'
 
 call plug#end()
 
@@ -199,6 +200,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.ex,*.exs,*.eex           set filetype=elixir
   autocmd BufRead,BufNewFile *.rs,*.toml                set filetype=rust
   autocmd BufRead,BufNewFile *.pug                      set filetype=pug
+  autocmd BufRead,BufNewFile *.sol                      set filetype=solidity
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
