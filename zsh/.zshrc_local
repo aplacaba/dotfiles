@@ -26,6 +26,7 @@ genpasswd()
 }
 
 # vars
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
 export EDITOR='vim'
 export GOPATH="$HOME/go"
 export PATH="$HOME/.rbenv/bin:$PATH"

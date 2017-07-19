@@ -5,41 +5,29 @@ Xft.rgba:       none
 !Xft.hinting:    true
 !Xft.autohint:   true
 !Xft.hintstyle:  hintslight
+
 URxvt*letterSpace: -1
 URxvt*font: xft:consolas:bold:pixelsize=14
-!URxvt*letterSpace: -2.5
-!URxvt*font: xft:Liberation Mono for Powerline:regular:pixelsize=15
-
-! misc
 URxvt*cursorBlink: true
 URxvt*scrollBar: false
-!URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 URxvt*iso14755: False
 URxvt*iconFile: /usr/share/icons/Numix-Circle/scalable/apps/xterm-color.svg
+Urxvt.termName: rxvt-unicode
+!URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 
 ! perl exts
 URxvt*perl-ext-common : default,clipboard,matcher,remote-clipboard
 URxvt*url-launcher    : xdg-open
 URxvt*matcher.button  : 1
 
-! Look up for more colors:
-! http://xcolors.net
 URxvt*foreground: gray
 URxvt*background: #1D1F21
-!#1D1F21
-!090300
-!black
-!urxvt*depth: 32
 !urxvt*background: rgba:0000/0000/0200/c800
 urxvt*visualBell:  false
 
-!URxvt*transparent: true
-!URxvt*shading: 30
-
-Emacs.font: Consolas-12
-Urxvt.termName: rxvt-unicode
-
-! DEFAULT
+! COLORS based on tlh
+! Look up for more colors:
+! http://xcolors.net
 
 !black
 *color0:  #251f1f
@@ -67,67 +55,3 @@ Urxvt.termName: rxvt-unicode
 !white
 *color7:  #efefef
 *color15: #efefef
-
-! tlh
-
-!*background:    #101010
-!*foreground:    #66FF66
-
-!!black
-!*color0:        #1c1c1c
-!*color8:        #4d4d4d
-!!red
-!*color1:        #D81860
-!*color9:        #F00060
-!!green
-!*color2:        #60FF60
-!*color10:       #70FF70
-!!yellow
-!*color3:        #f9fd75
-!*color11:       #f9fd80
-!!blue
-!*color4:        #4695c8
-!*color12:       #5a9dc8
-!!magenta
-!*color5:  #e32c57
-!*color13: #e32c57
-!!*color5:        #a78edb
-!!*color13:       #b29fdb
-!!cyan
-!*color6:        #43afce
-!*color14:       #69b8ce
-!!white
-!*color7:        #f3ebe2
-!*color15:       #eeeeee
-
-!kuro
-!*color0:#2a1d17
-!*color8:#4f362b
-
-!!aka
-!*color1:#da1657
-!*color9:#da4375
-
-!!midori
-!*color2:#3ea250
-!*color10:#6cb87a
-
-!!kiiro
-!*color3:#e3d33d
-!*color11:#e3da84
-
-!!ao
-!*color4:#3ea290
-!*color12:#8ca8a3
-
-!!momoiro
-!*color5:#ff850d
-!*color13:#ffa64f
-
-!!mizuiro
-!*color6:#8c16da
-!*color14:#a167c7
-
-!!shiro
-!*color7:#e9e9e9
-!*color15:#fdfdfd

@@ -50,7 +50,6 @@ call plug#end()
 
 filetype plugin indent on
 
-
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
   let g:airline#extensions#tabline#left_sep = ''
