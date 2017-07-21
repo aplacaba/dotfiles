@@ -1,0 +1,8 @@
+[user]
+	name = alacaba
+	email = alacaba@gmx.com
+[push]
+	default = simple
+[color]
+	ui = auto
+
