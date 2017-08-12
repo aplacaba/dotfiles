@@ -223,11 +223,12 @@ set guioptions-=L
 set background=dark
 set linespace=2
 
-set t_Co=256
+"set t_Co=256
 set noerrorbells visualbell t_vb=
 colo hybrid
 "set guifont=Inconsolata\ for\ Powerline\ Regular\ 13
-set guifont=Consolas\ Bold\ 11
+"set guifont=Consolas\ Bold\ 11
+set guifont=Consolas\ 11
 
 colo hybrid
 

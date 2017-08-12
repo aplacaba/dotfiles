@@ -2,12 +2,10 @@
 Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       none
-!Xft.hinting:    true
-!Xft.autohint:   true
-!Xft.hintstyle:  hintslight
 
-URxvt*letterSpace: -1
-URxvt*font: xft:consolas:bold:pixelsize=14
+URxvt*letterSpace: -1.5
+URxvt*lineSpace: -1.5
+URxvt*font: xft:consolas:pixelsize=14
 URxvt*cursorBlink: true
 URxvt*scrollBar: false
 URxvt*iso14755: False

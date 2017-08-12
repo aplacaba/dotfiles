@@ -189,6 +189,7 @@ endif
 
 highlight LineNr ctermfg=black
 
+set t_Co=256
 let g:tmuxline_preset = 'nightly_fox'
 let g:typescript_compiler_options = '-sourcemap'
 let g:indent_guides_auto_colors = 0
@@ -207,3 +208,4 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 
 nmap <C-Q> "+gP
+colo hybrid
