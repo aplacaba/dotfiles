@@ -3,20 +3,6 @@ t()
 {
   tmux new-session -s $1
 }
-t2c ()
-{
-  echo $1 | xclip -sel clip
-}
-
-r_migrate ()
-{
-  be rake db:migrate RAILS_ENV=$1
-}
-
-r_rollback ()
-{
-  be rake db:rollback RAILS_ENV=$1
-}
 
 genpasswd()
 {
@@ -25,32 +11,6 @@ genpasswd()
     tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
 
-# vars
-export VAGRANT_DEFAULT_PROVIDER=virtualbox
-export EDITOR='vim'
-export GOPATH="$HOME/go"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
-export KERN_DIR=/usr/src/kernels/`uname -r`
-export PATH="/usr/local/heroku/bin:$PATH"
-export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}"'
-export NVM_DIR="/home/alacaba/.nvm"
-
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-eval "$(rbenv init -)"
-export PATH="$HOME/.exenv/bin:$PATH"
-test -s "$HOME/.exenv/bin/exenv" && eval "$(exenv init -)"
-
-#nvm use 5.0.0
-#ruby -v
-
-stty -ixon
-#fortune -ae | cowsay -f koala -n
-
-alias dm=docker-machine
-
-# stop and remove container
 drm ()
 {
   docker stop $1 && docker rm $1
@@ -70,3 +30,22 @@ docker-remove-untagged()
 {
   docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
 }
+
+stty -ixon
+
+# vars
+export VAGRANT_DEFAULT_PROVIDER=virtualbox
+export EDITOR='vim'
+export GOPATH="$HOME/go"
+export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+export KERN_DIR=/usr/src/kernels/`uname -r`
+export PATH="/usr/local/heroku/bin:$PATH"
+export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}"'
+export NVM_DIR="$HOME/.nvm"
+export WORKON_HOME="$HOME/Envs"
+
+eval "$(rbenv init -)" # ruby
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+source $HOME/.local/bin/virtualenvwrapper.sh #python
+
