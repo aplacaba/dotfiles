@@ -1,15 +1,10 @@
 ! Fonts
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       none
-
 URxvt*letterSpace: -1.5
 URxvt*lineSpace: -1.5
 URxvt*font: xft:consolas:pixelsize=14
 URxvt*cursorBlink: true
 URxvt*scrollBar: false
 URxvt*iso14755: False
-URxvt*iconFile: /usr/share/icons/Numix-Circle/scalable/apps/xterm-color.svg
 Urxvt.termName: rxvt-unicode
 !URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 
