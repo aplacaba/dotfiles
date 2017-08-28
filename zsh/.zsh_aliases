@@ -5,6 +5,7 @@ alias tcopy='tmux show-buffer | xcopy'
 alias vim=vimx
 alias vi=vimx
 alias z=zeus
+alias py=python
 
 # ethereum
 alias local_geth='geth --fast --rpc --rpcapi web3,eth,personal --cache=512 --testnet console'
