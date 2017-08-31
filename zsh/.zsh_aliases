@@ -18,7 +18,7 @@ alias @archives='cd $HOME/Workspace/@archives'
 alias @code='cd $HOME/Code'
 alias rebit1='ssh -i ~/.ssh/sci-alty.pem ubuntu@52.77.231.121'
 alias rebit2='ssh -i ~/.ssh/sci-alty.pem ubuntu@ec2-54-169-71-169.ap-southeast-1.compute.amazonaws.com'
-alias alon='ssh ubuntu@ec2-52-77-210-111.ap-southeast-1.compute.amazonaws.com'
+alias alon='ssh ubuntu@54.254.169.220'
 
 # Tmux Aliases
 alias ta='tmux attach-session -t'
