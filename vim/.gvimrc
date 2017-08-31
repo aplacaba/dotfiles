@@ -50,50 +50,9 @@ call plug#end()
 filetype plugin indent on
 
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-  let g:airline#extensions#tabline#left_sep = ''
-  let g:airline#extensions#tabline#left_alt_sep = ''
-endif
-
 let mapleader="\<Tab>"
-let g:airline#extensions#tabline#enabled=1
-"let g:airline#extensions#bufferline#enabled=1
-
-function! AirlineInit()
-  let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
-  let g:airline_section_b = airline#section#create_left(['ffenc', 'hunks'])
-endfunction
 
 let g:user_emmet_install_global = 0
-
-"let g:airline_powerline_fonts = 1
-
-" unicode symbols
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-"let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch = ''
-"let g:airline_symbols.readonly = ''
-"let g:airline_symbols.linenr = ''
-
-let g:airline_theme='raven'
-"let g:airline_theme='sol'
 
 syntax on
 syntax enable
@@ -204,11 +163,9 @@ if has("autocmd")
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
-  autocmd VimEnter * call AirlineInit()
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
-"highlight LineNr ctermfg=black
 
 let g:tmuxline_preset = 'nightly_fox'
 let g:typescript_compiler_options = '-sourcemap'
@@ -223,7 +180,6 @@ set guioptions-=L
 set background=dark
 set linespace=2
 
-
 colo hybrid
 
 hi clear SignColumn
@@ -235,6 +191,11 @@ hi LineNr ctermfg=red
 hi NonText ctermfg=magenta
 hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
+hi TabLineFill ctermfg=black guifg=#000000
+hi TabLineSel cterm=bold term=bold ctermfg=yellow
+hi TabLine cterm=bold term=bold ctermfg=black
+
+hi BufTabLineFill guibg=#000000
 
 nmap <C-Q> "+gP
 nnoremap y "+y

@@ -47,6 +47,16 @@ filetype plugin indent on
 
 let mapleader="\<Tab>"
 
+if has('statusline')
+  set laststatus=2
+  set statusline=%<%f\ " Filename
+  set statusline+=%w%h%m%r " Options
+  set statusline+=%{fugitive#statusline()} " Git Hotness
+  set statusline+=\ [%{&ff}/%Y] " Filetype
+  set statusline+=\ [%{getcwd()}] " Current dir
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav inf
+endif
+
 syntax on
 syntax enable
 set nocompatible
@@ -168,8 +178,11 @@ hi LineNr ctermfg=red
 hi NonText ctermfg=magenta
 hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
+hi TabLineFill ctermfg=black
+hi TabLineSel cterm=bold term=bold ctermfg=yellow
+hi TabLine cterm=bold term=bold ctermfg=black
+hi StatusLine ctermfg=black
+hi StatusLineNC ctermfg=DarkGrey
 
 set t_Co=16
-set statusline=0
 set ls=0
-
