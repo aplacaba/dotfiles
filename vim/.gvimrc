@@ -164,8 +164,9 @@ if has("autocmd")
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
   autocmd GUIEnter * set visualbell t_vb=
+  autocmd Colorscheme hybrid :hi TabLine guibg=White guifg=#1c1c1c
+  autocmd Colorscheme hybrid :hi TabLineSel guibg=LightGrey guifg=Black
 endif
-
 
 let g:tmuxline_preset = 'nightly_fox'
 let g:typescript_compiler_options = '-sourcemap'
@@ -182,8 +183,6 @@ set guioptions-=L
 set background=dark
 set linespace=2
 
-colo hybrid
-
 hi clear SignColumn
 hi GitGutterAdd ctermfg=green
 hi GitGutterChange ctermfg=yellow
@@ -193,19 +192,12 @@ hi LineNr ctermfg=red
 hi NonText ctermfg=magenta
 hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
-hi TabLineFill ctermfg=black guifg=#000000
-hi TabLineSel cterm=bold term=bold ctermfg=yellow
-hi TabLine cterm=bold term=bold ctermfg=black
-
-hi BufTabLineFill guibg=#000000
+hi BufTabLineFill guibg=#ffffff
 
 nmap <C-Q> "+gP
 nnoremap y "+y
 vnoremap y "+y
 
-"set t_Co=256
-"let g:hybrid_use_Xresources = 1
-"let g:hybrid_reduced_contrast = 1
 colo hybrid
 set guifont=Consolas\ 11
 set laststatus=0
