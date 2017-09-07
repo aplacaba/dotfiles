@@ -170,6 +170,7 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let NERDTreeIgnore = ['\.pyc$', '\.png$']
 
 hi clear SignColumn
 hi GitGutterAdd ctermfg=green
