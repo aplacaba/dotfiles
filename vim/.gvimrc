@@ -44,6 +44,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'digitaltoad/vim-pug'
 Plug 'mattn/emmet-vim'
 Plug 'tomlion/vim-solidity'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -141,6 +142,9 @@ nnoremap Y y$
 vnoremap < <gv
 vnoremap > >gv
 vnoremap . :normal .<CR>
+nmap <C-Q> "+gP
+nnoremap y "+y
+vnoremap y "+y
 map <Leader> <Plugin>(easymotion-prefix)
 
 if has("autocmd")
@@ -175,6 +179,7 @@ let g:gitgutter_realtime = 0
 let g:gitgutter_eager = 0
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_use_caching = 0
 
 set guioptions-=m
 set guioptions-=T
@@ -194,10 +199,6 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 hi BufTabLineFill guibg=#ffffff
 
-nmap <C-Q> "+gP
-nnoremap y "+y
-vnoremap y "+y
-
 colo hybrid
-set guifont=Consolas\ 11
+set guifont=Consolas\ Bold\ 10
 set laststatus=0

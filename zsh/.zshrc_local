@@ -23,12 +23,24 @@ dm-env()
 
 docker-clean()
 {
-  docker rm `docker ps --no-trunc -aq`
+  docker rm $(docker ps -a -q)
+  docker rmi $(docker images -f "dangling=true" -q)
 }
 
 docker-remove-untagged()
 {
   docker rmi $(docker images | grep "^<none>" | awk "{print $3}")
+}
+
+load-native-script()
+{
+  if [ -f /home/alacaba/.tnsrc ]; then
+      source /home/alacaba/.tnsrc
+  fi
+}
+
+@(){
+  echo $1
 }
 
 stty -ixon
@@ -44,6 +56,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}"'
 export NVM_DIR="$HOME/.nvm"
 export WORKON_HOME="$HOME/Envs"
+export ZSH_THEME="sobole"
+
 
 eval "$(rbenv init -)" # ruby
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

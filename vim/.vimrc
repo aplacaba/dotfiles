@@ -39,6 +39,8 @@ Plug 'digitaltoad/vim-pug'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'mattn/emmet-vim'
 Plug 'tomlion/vim-solidity'
+Plug 'mxw/vim-jsx'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -162,6 +164,8 @@ if has("autocmd")
   autocmd GUIEnter * set visualbell t_vb=
 endif
 
+"let g:ycm_server_python_interpreter = '/usr/bin/python3'
+
 highlight LineNr ctermfg=black
 
 let g:typescript_compiler_options = '-sourcemap'
@@ -182,7 +186,7 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 hi TabLineFill ctermfg=black
 hi TabLineSel cterm=bold term=bold ctermfg=yellow
-hi TabLine cterm=bold term=bold ctermfg=black
+hi TabLine cterm=bold term=bold ctermfg=gray
 hi StatusLine ctermfg=black
 hi StatusLineNC ctermfg=DarkGrey
 

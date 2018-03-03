@@ -1,7 +1,7 @@
 ! Fonts
-URxvt*letterSpace: -1.9
+URxvt*letterSpace: -2
 URxvt*lineSpace: -2
-URxvt*font: xft:consolas:pixelsize=14
+URxvt*font: xft:consolas:bold:pixelsize=13
 URxvt*cursorBlink: true
 URxvt*scrollBar: false
 URxvt*iso14755: False
@@ -15,14 +15,16 @@ URxvt*matcher.button  : 1
 urxvt*visualBell:  false
 
 ! Transparency
-!urxvt*background: rgba:0000/0000/0200/c800
+urxvt*background: rgba:0000/0000/0200/c800
+URxvt.depth: 32!
 
 ! COLORS based on tlh
 ! Look up for more colors:
 ! http://xcolors.net
 
-*foreground: gray
+*foreground: #B6B6B6
 *background: #1D1F21
+
 !black
 *color0:  #251f1f
 *color8:  #5e5e5e
