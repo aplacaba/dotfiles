@@ -32,7 +32,6 @@ Plug 'fatih/vim-go'
 Plug 'slim-template/vim-slim'
 Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'mxw/vim-jsx'
 Plug 'elixir-lang/vim-elixir'
 Plug 'rust-lang/rust.vim'
 Plug 'digitaltoad/vim-pug'
@@ -41,13 +40,22 @@ Plug 'mattn/emmet-vim'
 Plug 'tomlion/vim-solidity'
 Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
+Plug 'w0rp/ale'
 
 call plug#end()
-
 
 filetype plugin indent on
 
 let mapleader="\<Tab>"
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue,*.jsx'
+let g:typescript_compiler_options = '-sourcemap'
+let g:indent_guides_auto_colors = 0
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let NERDTreeIgnore = ['\.pyc$', '\.png$']
+let b:ale_fixers = ['prettier', 'eslint']
 
 if has('statusline')
   set laststatus=2
@@ -102,6 +110,8 @@ set mousehide
 set background=dark
 set noerrorbells visualbell t_vb=
 set clipboard=unnamedplus
+set t_Co=16
+set ls=0
 
 " Mappings
 
@@ -156,26 +166,18 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.rs,*.toml                set filetype=rust
   autocmd BufRead,BufNewFile *.pug                      set filetype=pug
   autocmd BufRead,BufNewFile *.sol                      set filetype=solidity
+  "autocmd BufRead,BufNewFile *.vue                      set filetype=vue.html.javascript.css
+  "autocmd BufRead,BufNewFile *.js,*.jsx                 set filetype=jsx.javascript
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
   autocmd FileType html,css EmmetInstall
 
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
   autocmd GUIEnter * set visualbell t_vb=
+  autocmd FileType vue syntax sync fromstart
 endif
 
-"let g:ycm_server_python_interpreter = '/usr/bin/python3'
-
-highlight LineNr ctermfg=black
-
-let g:typescript_compiler_options = '-sourcemap'
-let g:indent_guides_auto_colors = 0
-let g:gitgutter_realtime = 0
-let g:gitgutter_eager = 0
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-let NERDTreeIgnore = ['\.pyc$', '\.png$']
-
+hi LineNr ctermfg=black
 hi clear SignColumn
 hi GitGutterAdd ctermfg=green
 hi GitGutterChange ctermfg=yellow
@@ -185,11 +187,16 @@ hi LineNr ctermfg=red
 hi NonText ctermfg=magenta
 hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
-hi TabLineFill ctermfg=black
-hi TabLineSel cterm=bold term=bold ctermfg=yellow
-hi TabLine cterm=bold term=bold ctermfg=gray
+
 hi StatusLine ctermfg=black
 hi StatusLineNC ctermfg=DarkGrey
+hi OverLength ctermbg=red ctermfg=white guibg=#592929
 
-set t_Co=16
-set ls=0
+"tabline
+hi TabLineFill cterm=bold term=bold
+hi TabLine cterm=bold term=bold ctermfg=gray ctermbg=NONE
+hi TabLineSel cterm=bold term=bold ctermfg=yellow
+hi BufTabLineActive cterm=bold term=bold ctermfg=DarkGrey
+
+match OverLength /\%81v.\+/
+
