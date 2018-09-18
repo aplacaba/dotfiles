@@ -3,16 +3,10 @@ call plug#begin('~/.vim/plugged')
 " Plugins
 
 " Rice
-Plug 'bling/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'ap/vim-buftabline'
 Plug 'airblade/vim-gitgutter'
 Plug 'flazz/vim-colorschemes'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'gorodinskiy/vim-coloresque'
-Plug 'altercation/vim-colors-solarized'
-
-" Utils
-Plug 'amirh/HTML-AutoCloseTag'
 Plug 'othree/html5.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'kien/ctrlp.vim'
@@ -27,6 +21,7 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'freitass/todo.txt-vim'
+Plug 'alvan/vim-closetag'
 
 " Syntax
 Plug 'tpope/vim-rails'
@@ -35,25 +30,43 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'slim-template/vim-slim'
-Plug 'paranoida/vim-airlineish'
 Plug 'leafgarland/typescript-vim'
 Plug 'junegunn/vim-easy-align'
-Plug 'mxw/vim-jsx'
 Plug 'elixir-lang/vim-elixir'
 Plug 'rust-lang/rust.vim'
 Plug 'digitaltoad/vim-pug'
+Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'mattn/emmet-vim'
 Plug 'tomlion/vim-solidity'
+Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
+Plug 'w0rp/ale'
 
 call plug#end()
 
 filetype plugin indent on
 
-
 let mapleader="\<Tab>"
-
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue,*.jsx,*.erb'
+let g:typescript_compiler_options = '-sourcemap'
+let g:indent_guides_auto_colors = 0
+let g:gitgutter_realtime = 0
+let g:gitgutter_eager = 0
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let NERDTreeIgnore = ['\.pyc$', '\.png$']
+let b:ale_fixers = ['prettier', 'eslint']
 let g:user_emmet_install_global = 0
+
+if has('statusline')
+  set laststatus=2
+  set statusline=%<%f\ " Filename
+  set statusline+=%w%h%m%r " Options
+  set statusline+=%{fugitive#statusline()} " Git Hotness
+  set statusline+=\ [%{&ff}/%Y] " Filetype
+  set statusline+=\ [%{getcwd()}] " Current dir
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav inf
+endif
 
 syntax on
 syntax enable
@@ -98,16 +111,14 @@ set mousehide
 set background=dark
 set noerrorbells visualbell t_vb=
 set noerrorbells visualbell t_vb=
-
-if has('statusline')
-  set laststatus=2
-  set statusline=%<%f\ " Filename
-  set statusline+=%w%h%m%r " Options
-  set statusline+=%{fugitive#statusline()} " Git Hotness
-  set statusline+=\ [%{&ff}/%Y] " Filetype
-  set statusline+=\ [%{getcwd()}] " Current dir
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav inf
-endif
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
+set background=dark
+set linespace=2
+set guifont=Consolas\ Bold\ 10
+set laststatus=0
 
 " Mappings
 
@@ -149,8 +160,8 @@ map <Leader> <Plugin>(easymotion-prefix)
 
 if has("autocmd")
   augroup inivisible_chars
-  au!
-  autocmd BufWritePre * :%s/\s\+$//e
+    au!
+    autocmd BufWritePre * :%s/\s\+$//e
   augroup end
 
   autocmd BufNewFile,BufRead *.html,*.erb               set filetype=html.eruby
@@ -164,6 +175,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.rs,*.toml                set filetype=rust
   autocmd BufRead,BufNewFile *.pug                      set filetype=pug
   autocmd BufRead,BufNewFile *.sol                      set filetype=solidity
+
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
   autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=red   ctermbg=3
   autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
@@ -182,12 +194,6 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 let g:ctrlp_use_caching = 0
 let NERDTreeIgnore = ['\.pyc$', '\.png$']
 
-set guioptions-=m
-set guioptions-=T
-set guioptions-=r
-set guioptions-=L
-set background=dark
-set linespace=2
 
 hi clear SignColumn
 hi GitGutterAdd ctermfg=green
@@ -201,5 +207,3 @@ hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 hi BufTabLineFill guibg=#ffffff
 
 colo hybrid
-set guifont=Consolas\ Bold\ 10
-set laststatus=0

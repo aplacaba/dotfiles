@@ -1,7 +1,7 @@
 ! Fonts
 URxvt*letterSpace: -2
 URxvt*lineSpace: -2
-URxvt*font: xft:consolas:regular:pixelsize=13
+URxvt*font: xft:consolas:bold:pixelsize=12
 URxvt*cursorBlink: true
 URxvt*scrollBar: false
 URxvt*iso14755: False

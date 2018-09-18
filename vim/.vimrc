@@ -42,12 +42,13 @@ Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
 Plug 'w0rp/ale'
 
+
 call plug#end()
 
 filetype plugin indent on
 
 let mapleader="\<Tab>"
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue,*.jsx'
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.vue,*.jsx,*.erb'
 let g:typescript_compiler_options = '-sourcemap'
 let g:indent_guides_auto_colors = 0
 let g:gitgutter_realtime = 0
@@ -56,6 +57,11 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let NERDTreeIgnore = ['\.pyc$', '\.png$']
 let b:ale_fixers = ['prettier', 'eslint']
+let g:user_emmet_settings = {
+  \  'javascript.jsx' : {
+    \      'extends' : 'jsx',
+    \  },
+  \}
 
 if has('statusline')
   set laststatus=2
