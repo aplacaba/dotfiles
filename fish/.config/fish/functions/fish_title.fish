@@ -1,0 +1,1 @@
+/home/alacaba/.config/fisherman/pure/fish_title.fish

@@ -1,7 +1,7 @@
 DOTFILES := $(shell pwd)
 
-all: zsh tmux urxvt vim git
-.PHONY: zsh tmux urxvt vim git
+all: tmux urxvt vim git fish
+.PHONY: tmux urxvt vim git fish
 
 shell:
 	stow zsh
@@ -17,3 +17,6 @@ git:
 
 vim:
 	stow vim
+
+fish:
+	stow fish

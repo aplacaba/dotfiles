@@ -1,0 +1,1 @@
+/home/alacaba/.config/fisherman/bass/functions/bass.fish
