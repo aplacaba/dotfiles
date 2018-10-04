@@ -1,21 +1,22 @@
 ! Fonts
-URxvt*letterSpace: -2
-URxvt*lineSpace: -2
-URxvt*font: xft:consolas:bold:pixelsize=12
-URxvt*cursorBlink: true
-URxvt*scrollBar: false
-URxvt*iso14755: False
-Urxvt.termName: rxvt-unicode
+URxvt.letterSpace: -2
+URxvt.lineSpace: -2
+URxvt.font: xft:consolas:bold:pixelsize=12
+URxvt.cursorBlink: true
+URxvt.scrollBar: false
+URxvt.iso14755: False
+URxvt.termName: rxvt-unicode
 !URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 
 ! perl exts
-URxvt*perl-ext-common : default,clipboard,matcher,remote-clipboard
-URxvt*url-launcher    : xdg-open
-URxvt*matcher.button  : 1
-urxvt*visualBell:  false
+URxvt.perl-ext-common : default,clipboard,matcher,remote-clipboard,fullscreen
+URxvt.url-launcher    : xdg-open
+URxvt.matcher.button  : 1
+URxvt.visualBell:  false
+URxvt.keysym.F11: perl:fullscreen:switch
 
 ! Transparency
-urxvt*background: rgba:0000/0000/0200/c800
+URxvt.background: rgba:0000/0000/0200/c800
 URxvt.depth: 32!
 
 ! COLORS based on tlh
