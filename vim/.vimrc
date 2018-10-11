@@ -56,12 +56,21 @@ let g:gitgutter_eager = 0
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let NERDTreeIgnore = ['\.pyc$', '\.png$']
-let b:ale_fixers = ['prettier', 'eslint']
+let b:ale_linters = {
+\  'rust': ['rls','cargo','rustc'],
+\  'javascript': ['eslint'],
+\}
+let b:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint', 'prettier'],
+\   'rust': ['rustfmt'],
+\}
+let g:ale_completion_enabled = 1
 let g:user_emmet_settings = {
-  \  'javascript.jsx' : {
-    \      'extends' : 'jsx',
-    \  },
-  \}
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
 
 if has('statusline')
   set laststatus=2
