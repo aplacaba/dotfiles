@@ -1,4 +1,5 @@
 abbr be 'bundle exec'
-abbr z 'zeus'
 abbr vim 'vimx'
 abbr preview 'fzf --preview \'bat --color "always" {}\''
+abbr xcopy 'xclip -sel clip'
+abbr tcopy 'tmux-show-buffer | xclip -sel clip'
