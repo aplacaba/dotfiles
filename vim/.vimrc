@@ -210,8 +210,8 @@ hi OverLength ctermbg=red ctermfg=white guibg=#592929
 "tabline
 hi TabLineFill cterm=bold term=bold
 hi TabLine cterm=bold term=bold ctermfg=gray ctermbg=NONE
-hi TabLineSel cterm=bold term=bold ctermfg=yellow
-hi BufTabLineActive cterm=bold term=bold ctermfg=DarkGrey
+hi TabLineSel cterm=bold term=bold ctermfg=yellow ctermbg=DarkGrey
+hi BufTabLineActive cterm=bold term=bold ctermfg=yellow
 
 match OverLength /\%81v.\+/
 
