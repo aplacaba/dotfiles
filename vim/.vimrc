@@ -22,6 +22,7 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'alvan/vim-closetag'
+Plug 'tpope/vim-tbone'
 
 " Syntax
 Plug 'tpope/vim-rails'
@@ -41,7 +42,6 @@ Plug 'tomlion/vim-solidity'
 Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
 Plug 'w0rp/ale'
-
 
 call plug#end()
 
@@ -71,6 +71,8 @@ let g:user_emmet_settings = {
 \      'extends' : 'jsx',
 \  },
 \}
+
+let g:ale_set_highlights = 0
 
 if has('statusline')
   set laststatus=2

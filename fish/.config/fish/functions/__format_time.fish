@@ -1,1 +1,0 @@
-/home/alacaba/.config/fisherman/pure/__format_time.fish

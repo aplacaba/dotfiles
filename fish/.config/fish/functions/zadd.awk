@@ -1,1 +1,0 @@
-/home/alacaba/.config/fisherman/z/functions/zadd.awk
