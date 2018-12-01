@@ -42,6 +42,8 @@ Plug 'tomlion/vim-solidity'
 Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
 Plug 'w0rp/ale'
+Plug 'racer-rust/vim-racer'
+Plug 'nvie/vim-flake8', { 'for': 'python' }
 
 call plug#end()
 
@@ -214,6 +216,14 @@ hi TabLineFill cterm=bold term=bold
 hi TabLine cterm=bold term=bold ctermfg=gray ctermbg=NONE
 hi TabLineSel cterm=bold term=bold ctermfg=yellow ctermbg=DarkGrey
 hi BufTabLineActive cterm=bold term=bold ctermfg=yellow
+
+"rust
+let g:racer_cmd = "/home/alacaba/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+let g:flake8_cmd="/home/alacaba/.local/bin/flake8"
+au FileType rust nmap <leader>rx <Plug>(rust-doc)
+au FileType rust nmap <leader>rd <Plug>(rust-def)
+au FileType rust nmap <leader>rs <Plug>(rust-def-split)
 
 match OverLength /\%81v.\+/
 

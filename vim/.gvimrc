@@ -117,7 +117,7 @@ set guioptions-=r
 set guioptions-=L
 set background=dark
 set linespace=2
-set guifont=Consolas\ Bold\ 10
+set guifont=Fira\ Code\ Retina\ 9.5
 set laststatus=0
 
 " Mappings
@@ -206,4 +206,5 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 hi BufTabLineFill guibg=#ffffff
 
-colo hybrid
+"colo hybrid
+colo nnkd

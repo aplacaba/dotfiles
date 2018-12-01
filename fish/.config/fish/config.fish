@@ -4,3 +4,5 @@ set PATH $HOME/.cargo/bin $PATH
 rbenv rehash >/dev/null ^&1
 eval (python -m virtualfish)
 set fish_greeting
+
+set pure_symbol_prompt "->"
