@@ -5,4 +5,4 @@ rbenv rehash >/dev/null ^&1
 eval (python -m virtualfish)
 set fish_greeting
 
-set pure_symbol_prompt "->"
+set pure_symbol_prompt "λ"
