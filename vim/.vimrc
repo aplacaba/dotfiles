@@ -227,3 +227,12 @@ au FileType rust nmap <leader>rs <Plug>(rust-def-split)
 
 match OverLength /\%81v.\+/
 
+
+let g:racer_cmd = "/home/user/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+
+
+au FileType rust nmap rd <Plug>(rust-def)
+au FileType rust nmap rs <Plug>(rust-def-split)
+au FileType rust nmap rx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>rd <Plug>(rust-doc)
