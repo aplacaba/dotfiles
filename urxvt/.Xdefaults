@@ -1,12 +1,7 @@
 ! Fonts
 URxvt.letterSpace: -2
-URxvt.lineSpace: -2
-!URxvt.font: xft:consolas:regular:pixelsize=13
-!URxvt.boldFont: xft:consolas:bold:pixelsize=13
-
-URxvt.font: xft:liberation mono:regular:pixelsize=13
-URxvt.boldFont: xft:liberation mono:bold:pixelsize=13
-!URxvt.boldFont: xft:consolas:bold:pixelsize=13
+URxvt.lineSpace: -1
+URxvt.font: xft:fira code:retina:pixelsize=13
 
 URxvt.cursorBlink: true
 URxvt.scrollBar: false

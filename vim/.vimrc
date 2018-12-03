@@ -42,6 +42,7 @@ Plug 'tomlion/vim-solidity'
 Plug 'mxw/vim-jsx'
 Plug 'posva/vim-vue'
 Plug 'w0rp/ale'
+Plug 'racer-rust/vim-racer'
 
 call plug#end()
 
@@ -217,3 +218,12 @@ hi BufTabLineActive cterm=bold term=bold ctermfg=yellow
 
 match OverLength /\%81v.\+/
 
+
+let g:racer_cmd = "/home/user/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+
+
+au FileType rust nmap rd <Plug>(rust-def)
+au FileType rust nmap rs <Plug>(rust-def-split)
+au FileType rust nmap rx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>rd <Plug>(rust-doc)
