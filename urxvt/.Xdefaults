@@ -1,7 +1,8 @@
 ! Fonts
-URxvt.letterSpace: -2
+URxvt.letterSpace: -1
 URxvt.lineSpace: -1
 URxvt.font: xft:fira code:retina:pixelsize=13
+URxvt.boldFont: xft:fira code:retina:pixelsize=13
 
 URxvt.cursorBlink: true
 URxvt.scrollBar: false

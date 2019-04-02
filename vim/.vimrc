@@ -58,15 +58,16 @@ let g:gitgutter_eager = 0
 let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let NERDTreeIgnore = ['\.pyc$', '\.png$']
-let b:ale_linters = {
-\  'rust': ['rls','cargo','rustc'],
-\  'javascript': ['eslint'],
-\}
-let b:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint', 'prettier'],
-\   'rust': ['rustfmt'],
-\}
+
+" Ale linters
+let g:ale_linters = {}
+let g:ale_fixers = {'*': ['remove_trailing_lines', 'trim_whitespace']}
+let g:ale_fixers.rust = ['rustfmt']
+let g:ale_fixers.javascript = ['eslint', 'prettier']
+let g:ale_linters.rust = ['rls', 'crago', 'rustc']
+let g:ale_linters.javascript = ['eslint']
+let g:ale_linters.elixir = ['elixir_ls']
+let g:ale_elixir_elixir_ls_release = '/home/alacaba/Downloads/elixir-ls/rel'
 let g:ale_completion_enabled = 1
 let g:user_emmet_settings = {
 \  'javascript.jsx' : {
