@@ -117,7 +117,7 @@ set guioptions-=r
 set guioptions-=L
 set background=dark
 set linespace=2
-set guifont=Fira\ Code\ Retina\ 9.5
+set guifont=Fira\ Code\ Retina\ 9
 set laststatus=0
 
 " Mappings
@@ -193,7 +193,7 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_use_caching = 0
 let NERDTreeIgnore = ['\.pyc$', '\.png$']
-
+let g:gtk_nocache=[0x00000000, 0xfc00ffff, 0xf8000001, 0x78000001]
 
 hi clear SignColumn
 hi GitGutterAdd ctermfg=green
@@ -206,5 +206,5 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 hi BufTabLineFill guibg=#ffffff
 
-"colo hybrid
-colo nnkd
+colo hybrid
+"colo nnkd
