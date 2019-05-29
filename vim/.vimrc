@@ -175,7 +175,7 @@ if has("autocmd")
     autocmd BufWritePre * :%s/\s\+$//e
   augroup end
 
-  autocmd BufRead,BufNewFile *.html,*.erb               set filetype=html.eruby
+  autocmd BufRead,BufNewFile *.html,*.erb,*.leex        set filetype=html.eruby
   autocmd BufRead,BufNewFile *.html.twig                set filetype=html.twig
   autocmd BufRead,BufNewFile *.slim                     set filetype=slim
   autocmd BufRead,BufNewFile *.coffee                   set filetype=coffee
