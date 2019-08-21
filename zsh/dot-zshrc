@@ -6,6 +6,11 @@ fi
 autoload -Uz compinit && compinit
 source ~/.zplug/init.zsh
 
+NVM_LAZY_LOAD=true
+PURE_PROMPT_SYMBOL=λ
+PURE_GIT_UP_ARROW=▲
+PURE_GIT_DOWN_ARROW=▼
+
 zplug zplug/zplug
 zplug zsh-users/zsh-completions
 zplug zsh-users/zsh-syntax-highlighting
@@ -27,7 +32,6 @@ if ! zplug check --verbose; then
 fi
 
 bindkey -e
-
 
 zplug load
 
