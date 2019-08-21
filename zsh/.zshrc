@@ -1,6 +1,6 @@
 if [[ ! -d ~/.zplug ]]; then
-    git clone https://github.com/zplug/zplug ~/.zplug
-    source ~/.zplug/init.zsh && zplug update --self
+  git clone https://github.com/zplug/zplug ~/.zplug
+  source ~/.zplug/init.zsh && zplug update --self
 fi
 
 autoload -U compinit && compinit
@@ -14,6 +14,7 @@ zplug zsh-users/zsh-autosuggestions
 zplug mafredri/zsh-async, from:github
 zplug caarlos0/zsh-pg
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug lukechilds/zsh-nvm
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
@@ -27,7 +28,7 @@ fi
 
 bindkey -e
 
+
 zplug load
 
-[ -e "${HOME}/.zshrc_local" ] && source "${HOME}/.zshrc_local"
-[ -e "${HOME}/.zsh_aliases" ] && source "${HOME}/.zsh_aliases"
+[ -e "${HOME}/.profile" ] && source "${HOME}/.profile"

@@ -206,5 +206,7 @@ hi CursorLine term=bold cterm=bold guibg=Grey40
 hi VertSplit ctermfg=red ctermbg=NONE cterm=NONE
 hi BufTabLineFill guibg=#ffffff
 
-colo hybrid
+colo gruvbox
+let g:gruvbox_contrast_dark = 'soft'
+
 "colo nnkd
