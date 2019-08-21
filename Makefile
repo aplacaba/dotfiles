@@ -1,25 +1,25 @@
 DOTFILES := $(shell pwd)
 
-all: tmux urxvt vim git fish zsh
-.PHONY: tmux urxvt vim git fish zsh
+all: tmux urxvt vim git zsh fish
+.PHONY: tmux urxvt vim git zsh fish
 
 shell:
-	stow zsh
+	stow --dotfiles zsh
 
 tmux:
-	stow tmux
+	stow --dotfiles tmux
 
 urxvt:
-	stow urxvt
+	stow --dotfiles urxvt
 
 git:
-	stow git
+	stow --dotfiles git
 
 vim:
-	stow vim
+	stow --dotfiles vim
+
+zsh:
+	stow --dotfiles zsh
 
 fish:
 	stow fish
-
-zsh:
-	stow zsh
