@@ -3,7 +3,7 @@ if [[ ! -d ~/.zplug ]]; then
   source ~/.zplug/init.zsh && zplug update --self
 fi
 
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 source ~/.zplug/init.zsh
 
 zplug zplug/zplug
@@ -31,4 +31,4 @@ bindkey -e
 
 zplug load
 
-[ -e "${HOME}/.profile" ] && source "${HOME}/.profile"
+[ -e "${HOME}/.zprofile" ] && source "${HOME}/.zprofile"
