@@ -8,6 +8,7 @@ alias gd='git diff'
 alias gb='git branch'
 alias gs='git status'
 alias gg='git grep --break --heading -n'
+alias gclean='git clean -fd'
 
 # tmux
 alias t='tmux new-session -s'
@@ -24,13 +25,17 @@ alias tcopy='tmux show-buffer | xcopy'
 
 typeset -U path
 
-path=($home/.rbenv/bin
-      $home/.rbenv/plugins/ruby-build/bin
-      $home/alacaba/.cargo/bin
-      $home/.local/bin
+path=(${HOME}/.rbenv/bin
+      ${HOME}/.rbenv/plugins/ruby-build/bin
+      ${HOME}/.cargo/bin
+      ${HOME}/.local/bin
       $path)
 
 export PATH
 
-stty -ixon
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
 
+stty -ixon
