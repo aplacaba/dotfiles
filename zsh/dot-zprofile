@@ -39,3 +39,4 @@ rbenv() {
 }
 
 stty -ixon
+

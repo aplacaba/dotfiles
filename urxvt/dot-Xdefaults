@@ -1,15 +1,15 @@
 ! Fonts
 URxvt.letterSpace: -1
-URxvt.lineSpace: 1
+URxvt.lineSpace: -1
 
 Xft*dpi:               96
 Xft*antialias:         true
 Xft*rgba:              rgb
 Xft*lcdfilter:         lcddefault
-URxvt.font:            xft:inconsolata:pixelsize=13, xft:dejavu sans mono:pixelsize=13
-URxvt.boldFont:        xft:inconsolata:pixelsize=13, xft:dejavu sans mono:pixelsize=13
-URxvt.italicFont:      xft:inconsolata:pixelsize=13, xft:dejavu sans mono:pixelsize=13
-URxvt.bolditalicFont:  xft:inconsolata:pixelsize=13, xft:dejavu sans mono:pixelsize=13
+URxvt.font:            xft:consolas:pixelsize=13
+URxvt.boldFont:        xft:consolas:pixelsize=13
+URxvt.italicFont:      xft:consolas:pixelsize=13
+URxvt.bolditalicFont:  xft:consolas:pixelsize=13
 
 URxvt.cursorBlink:     true
 URxvt.scrollBar:       false
