@@ -12,7 +12,7 @@ fi;
 source ~/.zplug/init.zsh
 
 NVM_LAZY_LOAD=true
-PURE_PROMPT_SYMBOL='»'
+PURE_PROMPT_SYMBOL='λ'
 PURE_GIT_DOWN_ARROW='↓'
 PURE_GIT_UP_ARROW='↑'
 

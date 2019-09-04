@@ -1,0 +1,7 @@
+/* move to ~/.config/gtk-3.0/ */
+
+@define-color gvim #1D1F21;
+
+window#vim-main-window {
+  background-color: @gvim;
+}
