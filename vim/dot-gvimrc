@@ -119,6 +119,7 @@ set background=dark
 set linespace=2
 set guifont=Consolas\ 9
 set laststatus=0
+set nornu
 
 " Mappings
 

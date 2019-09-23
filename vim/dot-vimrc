@@ -132,6 +132,7 @@ set noerrorbells visualbell t_vb=
 set clipboard=unnamedplus
 set t_Co=16
 set ls=0
+set nornu
 
 " Mappings
 
@@ -231,7 +232,6 @@ match OverLength /\%81v.\+/
 
 let g:racer_cmd = "/home/user/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
-
 
 au FileType rust nmap rd <Plug>(rust-def)
 au FileType rust nmap rs <Plug>(rust-def-split)
