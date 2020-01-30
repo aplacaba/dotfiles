@@ -1,6 +1,6 @@
 ! Fonts
-URxvt.letterSpace: -1
-URxvt.lineSpace: -1
+URxvt.letterSpace: -2
+URxvt.lineSpace: -2
 
 Xft*dpi:               96
 Xft*antialias:         true
@@ -64,7 +64,9 @@ URxvt.keysym.F11:      perl:fullscreen:switch
 
 
 ! hard contrast: *background: #1d2021
-*background: #282828
+! *background: #282828
+*background: [90]#282828
+*depth: 32!
 ! soft contrast: *background: #32302f
 *foreground: #ebdbb2
 ! Black + DarkGrey

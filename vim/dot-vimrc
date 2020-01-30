@@ -44,6 +44,7 @@ Plug 'posva/vim-vue'
 Plug 'w0rp/ale'
 Plug 'racer-rust/vim-racer'
 Plug 'nvie/vim-flake8', { 'for': 'python' }
+Plug 'ElmCast/elm-vim'
 
 call plug#end()
 

@@ -24,7 +24,6 @@ zplug zsh-users/zsh-autosuggestions
 zplug mafredri/zsh-async, from:github
 zplug caarlos0/zsh-pg
 zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
-zplug lukechilds/zsh-nvm
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then

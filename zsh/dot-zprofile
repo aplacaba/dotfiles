@@ -1,3 +1,5 @@
+
+
 # git
 alias g='git'
 alias ga='git add'
@@ -9,6 +11,8 @@ alias gb='git branch'
 alias gs='git status'
 alias gg='git grep --break --heading -n'
 alias gclean='git clean -fd'
+alias nuget='mono /usr/local/bin/nuget.exe'
+alias gotop='snap run gotop-cjbassi'
 
 # tmux
 alias t='tmux new-session -s'
@@ -25,18 +29,14 @@ alias tcopy='tmux show-buffer | xcopy'
 
 typeset -U path
 
-path=(${HOME}/.rbenv/bin
-      ${HOME}/.rbenv/plugins/ruby-build/bin
-      ${HOME}/.cargo/bin
+path=(${HOME}/.cargo/bin
       ${HOME}/.local/bin
       $path)
 
 export PATH
 
-rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
-}
-
 stty -ixon
 
+autoload -Uz compinit && compinit
+. ${HOME}/.asdf/asdf.sh
+. ${HOME}/.asdf/completions/asdf.bash
