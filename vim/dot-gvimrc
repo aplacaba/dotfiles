@@ -136,7 +136,7 @@ set guioptions-=r
 set guioptions-=L
 set background=dark
 set linespace=2
-set guifont=Consolas\ 9
+set guifont=Dejavu\ Sans\ Mono\ Book\ 9
 set laststatus=0
 set nornu
 
