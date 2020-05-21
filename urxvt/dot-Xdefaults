@@ -1,19 +1,19 @@
 ! Fonts
-URxvt.letterSpace: -2
-URxvt.lineSpace: -2
+URxvt.letterSpace: -1
+URxvt.lineSpace: 0
 
 Xft*dpi:               96
 Xft*antialias:         true
 Xft*rgba:              rgb
 Xft*lcdfilter:         lcddefault
-!URxvt.font:            xft:consolas:size=10
-!URxvt.boldFont:        xft:consolas:size=10
-!URxvt.italicFont:      xft:consolas:size=10
-!URxvt.bolditalicFont:  xft:consolas:size=10
-URxvt.font:            xft:DejaVu Sans Mono:style=Book:pixelsize=13
-URxvt.boldFont:        xft:DejaVu Sans Mono:style=Book:pixelsize=13
-URxvt.italicFont:      xft:DejaVu Sans Mono:style=Book:pixelsize=13
-URxvt.bolditalicFont:  xft:DejaVu Sans Mono:style=Book:pixelsize=13
+!URxvt.font:            xft:Ligconsolata:size=10
+!URxvt.boldFont:        xft:Ligconsolata:size=10
+!URxvt.italicFont:      xft:Ligconsolata:size=10
+!URxvt.bolditalicFont:  xft:Ligconsolata:size=10
+URxvt.font:            xft:DejaVu Sans Mono:book:pixelsize=12
+URxvt.boldFont:        xft:DejaVu Sans Mono:book:pixelsize=12
+URxvt.italicFont:      xft:DejaVu Sans Mono:book:pixelsize=12
+URxvt.bolditalicFont:  xft:DejaVu Sans Mono:book:pixelsize=12
 
 URxvt.cursorBlink:     true
 URxvt.scrollBar:       false
@@ -22,127 +22,64 @@ URxvt.termName:        rxvt-unicode
 !URxvt*keysym.Shift-Control-V: perl:clipboard:paste
 
 ! perl exts
-URxvt.perl-ext-common: default,clipboard,matcher,remote-clipboard,fullscreen
+:qURxvt.perl-ext-common: default,clipboard,matcher,remote-clipboard,fullscreen
 URxvt.url-launcher:    xdg-open
 URxvt.matcher.button:  1
 URxvt.visualBell:      false
 URxvt.keysym.F11:      perl:fullscreen:switch
 
-! Transparency
-!URxvt.background: rgba:0000/0000/0200/c800
-!URxvt.background:      [90]#000000
-!URxvt.depth:           32!
-!URxvt.background: #1d1f21
+! Base16 Gruvbox
+! Scheme: Gordon Chiam (https://github.com/gchiam)
 
-! COLORS based on tlh
-! Look up for more colors:
-! http://xcolors.net
+! URxvt*tintColor:                      color
+! URxvt*fadeColor:                      color
 
-!*foreground:           #B6B6B6
-!*background: #1D1F21
+URxvt*background:                     #282828
+URxvt*foreground:                     #d5c4a1
+URxvt*cursorColor:                    #d5c4a1
 
-!black
-!*color0:               #251f1f
-!*color8:               #5e5e5e
-!!red
-!*color1:               #eb4509
-!*color9:               #eb4509
-!!green
-!*color2:               #60FF60
-!*color10:              #70FF70
-!!yellow
-!*color3:               #ffac18
-!*color11:              #ffac18
-!!blue
-!*color4:               #46aede
-!*color12:              #46aede
-!!magenta
-!*color5:               #e32c57
-!*color13:              #e32c57
-!!cyan
-!*color6:               #d6dbac
-!*color14:              #d6dbac
-!!white
-!*color7:               #efefef
-!*color15:              #efefef
+! URxvt*colorBD:                        color
+! URxvt*colorIT:                        color
+! URxvt*colorUL:                        color
+! URxvt*colorRV:                        color
+! URxvt*underlineColor:                 color
+URxvt*scrollColor:                    #d5c4a1
+! URxvt*troughColor:                    color
+URxvt*highlightColor:                 #7c6f54
+URxvt*highlightTextColor:             #bdae93
+! URxvt*cursorColor2:                   color
+! URxvt*pointerColor:                   color
+! URxvt*pointerColor2:                  color
+! URxvt*borderColor:                    color
+! URxvt*tab-bg:                         colour
+! URxvt*tab-fg:                         colour
+! URxvt*tabbar-bg:                      colour
+! URxvt*tabbar-fg:                      colour
 
+URxvt*color0:                         #282828
+URxvt*color1:                         #cc241d
+URxvt*color2:                         #98971a
+URxvt*color3:                         #d79921
+URxvt*color4:                         #458588
+URxvt*color5:                         #b16286
+URxvt*color6:                         #689d6a
+URxvt*color7:                         #d5c4a1
+URxvt*color8:                         #ebdbb2
+URxvt*color9:                         #cc241d
+URxvt*color10:                        #98971a
+URxvt*color11:                        #d79921
+URxvt*color12:                        #458588
+URxvt*color13:                        #b16286
+URxvt*color14:                        #689d6a
+URxvt*color15:                        #fbf1c7
 
-! hard contrast: *background: #1d2021
-! *background: #282828
-*background: [90]#282828
-*depth: 32!
-! soft contrast: *background: #32302f
-*foreground: #ebdbb2
-! Black + DarkGrey
-*color0:  #282828
-*color8:  #928374
-! DarkRed + Red
-*color1:  #cc241d
-*color9:  #fb4934
-! DarkGreen + Green
-*color2:  #98971a
-*color10: #b8bb26
-! DarkYellow + Yellow
-*color3:  #d79921
-*color11: #fabd2f
-! DarkBlue + Blue
-*color4:  #458588
-*color12: #83a598
-! DarkMagenta + Magenta
-*color5:  #b16286
-*color13: #d3869b
-! DarkCyan + Cyan
-*color6:  #689d6a
-*color14: #8ec07c
-! LightGrey + White
-*color7:  #a89984
-*color15: #ebdbb2
-
-URxvt.color24:  #076678
-URxvt.color66:  #427b58
-URxvt.color88:  #9d0006
-URxvt.color96:  #8f3f71
-URxvt.color100: #79740e
-URxvt.color108: #8ec07c
-URxvt.color109: #83a598
-URxvt.color130: #af3a03
-URxvt.color136: #b57614
-URxvt.color142: #b8bb26
-URxvt.color167: #fb4934
-URxvt.color175: #d3869b
-URxvt.color208: #fe8019
-URxvt.color214: #fabd2f
-URxvt.color223: #ebdbb2
-URxvt.color228: #f2e5bc
-URxvt.color229: #fbf1c7
-URxvt.color230: #f9f5d7
-URxvt.color234: #1d2021
-URxvt.color235: #282828
-URxvt.color236: #32302f
-URxvt.color237: #3c3836
-URxvt.color239: #504945
-URxvt.color241: #665c54
-URxvt.color243: #7c6f64
-URxvt.color244: #928374
-URxvt.color245: #928374
-URxvt.color246: #a89984
-URxvt.color248: #bdae93
-URxvt.color250: #d5c4a1
+! 256 color space
+URxvt*color16:                        #d65d0e
+URxvt*color17:                        #a89984
+URxvt*color18:                        #504945
+URxvt*color19:                        #7c6f54
+URxvt*color20:                        #bdae93
+URxvt*color21:                        #ebdbb2
 
 
-rofi.color-enabled: true
-rofi.font:Fantasque\ Sans\ Mono 20
-!                  bg       border   separator
-rofi.color-window: argb:EE282828, #242424, #282828
-
-!                  bg       fg       bg-alt   hl-bg    hl-fg
-rofi.color-normal: argb:00282828, #458588, argb:00282828, #458588, #282828
-rofi.color-active: argb:00282828, #fabd2f, argb:00282828, #fabd2f, #282828
-rofi.color-urgent: argb:00282828, #cc241d, argb:00282828, #cc241d, #282828
-
-xterm.borderWidth: 0
-xterm.termName: xterm-256-color
-!
-! URxvt.perl-ext-common: font-size
-!
-! Xcursor.size: 32
+emacs.font: DejaVu Sans Mono-12:book
