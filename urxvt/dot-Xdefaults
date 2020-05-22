@@ -10,10 +10,10 @@ Xft*lcdfilter:         lcddefault
 !URxvt.boldFont:        xft:Ligconsolata:size=10
 !URxvt.italicFont:      xft:Ligconsolata:size=10
 !URxvt.bolditalicFont:  xft:Ligconsolata:size=10
-URxvt.font:            xft:DejaVu Sans Mono:book:pixelsize=12
-URxvt.boldFont:        xft:DejaVu Sans Mono:book:pixelsize=12
-URxvt.italicFont:      xft:DejaVu Sans Mono:book:pixelsize=12
-URxvt.bolditalicFont:  xft:DejaVu Sans Mono:book:pixelsize=12
+URxvt.font:            xft:DejaVu Sans Mono:pixelsize=12
+URxvt.boldFont:        xft:DejaVu Sans Mono:pixelsize=12
+URxvt.italicFont:      xft:DejaVu Sans Mono:pixelsize=12
+URxvt.bolditalicFont:  xft:DejaVu Sans Mono:pixelsize=12
 
 URxvt.cursorBlink:     true
 URxvt.scrollBar:       false
@@ -82,4 +82,4 @@ URxvt*color20:                        #bdae93
 URxvt*color21:                        #ebdbb2
 
 
-emacs.font: DejaVu Sans Mono-12:book
+emacs.font: DejaVu Sans Mono-12

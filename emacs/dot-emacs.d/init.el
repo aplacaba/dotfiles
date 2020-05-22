@@ -178,9 +178,10 @@
   (set-face-background 'indent-guide-face "dimgray")) 
      
 ;; fsharp
-(require 'eglot-fsharp)
 (use-package fsharp-mode
   :ensure t
+  :init
+  (require 'eglot-fsharp)
   :config
   (add-hook 'fsharp-mode-hook 'indent-guide-mode)
   (add-hook 'fsharp-mode-hook #'smartparens-mode))
@@ -264,6 +265,12 @@
   :ensure t)
 
 
+(use-package modus-vivendi-theme
+  :ensure t)
+
+(use-package modus-operandi-theme
+  :ensure t)
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -277,8 +284,17 @@
   (hl-line-mode -1))
 
 (when (display-graphic-p)
-  (load-theme 'base16-gruvbox-dark-medium t)
+;;  (load-theme 'base16-gruvbox-dark-pale t)
   (global-hl-line-mode +1))
+
+;; Light for the day
+(load-theme 'modus-operandi t t)
+(run-at-time "05:00" (* 60 60 24) (lambda () (enable-theme 'modus-operandi)))
+
+;; Dark for the night
+(load-theme 'modus-vivendi t t)
+(run-at-time "18:00" (* 60 60 24) (lambda () (enable-theme 'modus-vivendi)))
+
 
 ;; editor config
 (progn
@@ -286,7 +302,7 @@
   (smartparens-global-mode +1)
   (file-extensions)
   ;; (add-to-list 'default-frame-alist '(font . "Fira Code Retina-9")) 
-  (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-9:book"))
+  (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-9"))
   (projectile-mode +1)
   (helm-projectile-on)
   (setup-eglot-lsp)
@@ -294,7 +310,6 @@
   (global-set-key (kbd "C-c C-p") #'helm-projectile-find-file)
   (global-set-key (kbd "C-c s") 'helm-projectile-rg)
   (define-key global-map [remap list-buffers] 'helm-mini))
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -302,10 +317,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (rg po-mode highlight-indent-guides smartparens-config web-mode use-package smartparens rust-mode ruby-end neotree markdown-mode magit json-mode js2-mode helm-rg helm-projectile gruvbox-theme fsharp-mode flycheck evil emmet-mode elixir-mode company color-theme-sanityinc-tomorrow base16-theme avy)))
- '(web-mode-code-indent-offset 2 t)
- '(web-mode-css-indent-offset 2 t)
- '(web-mode-markup-indent-offset 2 t))
+    (helm-projectile rust-mode web-mode elixir-mode ruby-end fsharp-mode use-package smartparens projectile neotree markdown-mode magit indent-guide flycheck emmet-mode eglot company base16-theme avy))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
