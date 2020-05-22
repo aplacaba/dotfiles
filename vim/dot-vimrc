@@ -15,7 +15,6 @@ Plug 'spf13/vim-autoclose'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Lokaltog/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
@@ -168,7 +167,6 @@ nnoremap Y y$
 vnoremap < <gv
 vnoremap > >gv
 vnoremap . :normal .<CR>
-map <Leader> <Plugin>(easymotion-prefix)
 nmap <C-Q> "+gP
 
 if has("autocmd")
@@ -188,6 +186,7 @@ if has("autocmd")
   autocmd BufRead,BufNewFile *.rs,*.toml                set filetype=rust
   autocmd BufRead,BufNewFile *.pug                      set filetype=pug
   autocmd BufRead,BufNewFile *.sol                      set filetype=solidity
+  autocmd BufRead,BufNewFile *.fs,*.fsx,*.fsi           set filetype=fsharp
   "autocmd BufRead,BufNewFile *.vue                      set filetype=vue.html.javascript.css
   "autocmd BufRead,BufNewFile *.js,*.jsx                 set filetype=jsx.javascript
   autocmd FileType *.go autocmd BufWritePre <buffer> Fmt
@@ -238,3 +237,5 @@ au FileType rust nmap rd <Plug>(rust-def)
 au FileType rust nmap rs <Plug>(rust-def-split)
 au FileType rust nmap rx <Plug>(rust-def-vertical)
 au FileType rust nmap <leader>rd <Plug>(rust-doc)
+
+com! FormatJSON %!python -m json.tool

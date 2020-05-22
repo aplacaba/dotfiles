@@ -15,7 +15,6 @@ Plug 'spf13/vim-autoclose'
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Lokaltog/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-surround'
@@ -136,7 +135,8 @@ set guioptions-=r
 set guioptions-=L
 set background=dark
 set linespace=2
-set guifont=Dejavu\ Sans\ Mono\ Book\ 9
+"set guifont=Liberation\ Mono\ 10
+set guifont=Fira\ Code\ Retina\ 9
 set laststatus=0
 set nornu
 
@@ -176,7 +176,6 @@ vnoremap . :normal .<CR>
 nmap <C-Q> "+gP
 nnoremap y "+y
 vnoremap y "+y
-map <Leader> <Plugin>(easymotion-prefix)
 
 if has("autocmd")
   augroup inivisible_chars
