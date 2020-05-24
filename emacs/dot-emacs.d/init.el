@@ -89,6 +89,7 @@
 (global-set-key (kbd "C-x C-n") nil)
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
+(global-set-key (kbd "C-#") 'global-display-line-numbers-mode)
 
 
 ;; themes
@@ -140,8 +141,7 @@
 (use-package neotree
   :ensure t
   :config
-  (global-set-key [f8] 'neotree-toggle))
-
+  (global-set-key [f8] 'neotree-toggle)) 
 
 (use-package avy
   :ensure t
@@ -176,7 +176,7 @@
   :ensure t
   :config
   (set-face-background 'indent-guide-face "dimgray")) 
-     
+
 ;; fsharp
 (use-package fsharp-mode
   :ensure t
@@ -235,9 +235,7 @@
   :ensure t
   :commands elixir-mode
   :config
-  (add-hook 'elixir-mode-hook 'company-mode)
-  (add-hook 'elixir-mode-hook #'smartparens-mode))
-  ;;  (add-hook 'elixir-mode-hook 'auto-activate-ruby-end-mode-for-elixir-mode))
+  (add-hook 'elixir-mode-hook 'company-mode))
 
 
 ;; web-mode
@@ -271,6 +269,7 @@
 (use-package modus-operandi-theme
   :ensure t)
 
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -295,6 +294,7 @@
 (load-theme 'modus-vivendi t t)
 (run-at-time "18:00" (* 60 60 24) (lambda () (enable-theme 'modus-vivendi)))
 
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; editor config
 (progn
@@ -303,6 +303,7 @@
   (file-extensions)
   ;; (add-to-list 'default-frame-alist '(font . "Fira Code Retina-9")) 
   (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-9"))
+  
   (projectile-mode +1)
   (helm-projectile-on)
   (setup-eglot-lsp)
@@ -310,17 +311,4 @@
   (global-set-key (kbd "C-c C-p") #'helm-projectile-find-file)
   (global-set-key (kbd "C-c s") 'helm-projectile-rg)
   (define-key global-map [remap list-buffers] 'helm-mini))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (helm-projectile rust-mode web-mode elixir-mode ruby-end fsharp-mode use-package smartparens projectile neotree markdown-mode magit indent-guide flycheck emmet-mode eglot company base16-theme avy))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
