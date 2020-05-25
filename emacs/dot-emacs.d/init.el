@@ -109,8 +109,8 @@
   :hook
   (web-mode . eglot-ensure)
   (elixir-mode . eglot-ensure)
-  (rust-mode . eglot-ensure)
-  (fsharp-mode . eglot-ensure))
+  (rust-mode . eglot-ensure))
+
 
 ;; magit
 (use-package magit
@@ -183,6 +183,7 @@
   :init
   (require 'eglot-fsharp)
   :config
+  (setq inferior-fsharp-program "dotent fsi")
   (add-hook 'fsharp-mode-hook 'indent-guide-mode)
   (add-hook 'fsharp-mode-hook #'smartparens-mode))
 
@@ -269,7 +270,6 @@
 (use-package modus-operandi-theme
   :ensure t)
 
-
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -296,13 +296,14 @@
 
 (add-hook 'after-init-hook 'global-company-mode)
 
+
 ;; editor config
 (progn
   ;; (global-display-line-numbers-mode)
   (smartparens-global-mode +1)
   (file-extensions)
   ;; (add-to-list 'default-frame-alist '(font . "Fira Code Retina-9")) 
-  (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-9"))
+  (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10"))
   
   (projectile-mode +1)
   (helm-projectile-on)
@@ -311,4 +312,3 @@
   (global-set-key (kbd "C-c C-p") #'helm-projectile-find-file)
   (global-set-key (kbd "C-c s") 'helm-projectile-rg)
   (define-key global-map [remap list-buffers] 'helm-mini))
-
