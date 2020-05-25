@@ -308,35 +308,3 @@
 (file-extensions)
 (setup-eglot-lsp)
 (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10"))
-
-
-;; editor config
-;;(progn
-  ;; (global-display-line-numbers-mode)
-  ;;(smartparens-global-mode +1)
-
-  ;; (add-to-list 'default-frame-alist '(font . "Fira Code Retina-9")) 
-
-  
-  ;;(projectile-mode +1)
-  ;;(helm-projectile-on)
-
-  
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (helm-rg web-mode use-package smartparens rust-mode ruby-end pdf-tools neotree modus-vivendi-theme modus-operandi-theme markdown-mode magit indent-guide helm-projectile fsharp-mode flycheck emmet-mode elixir-mode cycle-themes company base16-theme avy)))
- '(web-mode-code-indent-offset 2 t)
- '(web-mode-css-indent-offset 2 t)
- '(web-mode-markup-indent-offset 2 t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
