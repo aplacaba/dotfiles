@@ -90,10 +90,6 @@
 (global-set-key (kbd "C-#") 'global-display-line-numbers-mode)
 
 
-;; themes
-(use-package base16-theme
-  :ensure t)
-
 
 (use-package smartparens
   :ensure t
@@ -141,7 +137,7 @@
 (use-package neotree
   :ensure t
   :config
-  (global-set-key [f8] 'neotree-toggle)) 
+  (global-set-key [f8] 'neotree-toggle))
 
 
 (use-package avy
@@ -176,7 +172,7 @@
 (use-package indent-guide
   :ensure t
   :config
-  (set-face-background 'indent-guide-face "dimgray")) 
+  (set-face-background 'indent-guide-face "dimgray"))
 
 ;; fsharp
 (use-package fsharp-mode
@@ -263,7 +259,7 @@
   :ensure t
   :config
   (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-c C-p") #'helm-projectile-find-file)
+  (global-set-key (kbd "C-c C-p") 'helm-projectile-find-file)
   (global-set-key (kbd "C-c s") 'helm-projectile-rg)
   :init
   (projectile-mode +1)
@@ -288,13 +284,6 @@
 (global-set-key (kbd "M-<down>") 'move-line-down)
 (global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
 
-(unless (display-graphic-p)
-  (hl-line-mode -1))
-
-(when (display-graphic-p)
-;;  (load-theme 'base16-gruvbox-dark-pale t)
-  (global-hl-line-mode +1))
-
 ;; Light for the day
 (load-theme 'modus-operandi t t)
 (run-at-time "05:00" (* 60 60 24) (lambda () (enable-theme 'modus-operandi)))
@@ -308,3 +297,6 @@
 (file-extensions)
 (setup-eglot-lsp)
 (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10"))
+
+(provide 'init)
+;;; init.el ends here
