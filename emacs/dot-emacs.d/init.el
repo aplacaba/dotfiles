@@ -74,8 +74,6 @@
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-stop-list 2)
-
-;; (setq-default mode-line-format nil)     
 (setq custom-safe-themes t)
 (setq inhibit-startup-screen t)
 (setq frame-title-format
@@ -99,6 +97,8 @@
 
 (use-package smartparens
   :ensure t
+  :config
+  (smartparens-global-mode 1)
   :init
   (require 'smartparens-config))
 
@@ -143,6 +143,7 @@
   :config
   (global-set-key [f8] 'neotree-toggle)) 
 
+
 (use-package avy
   :ensure t
   :config
@@ -186,10 +187,6 @@
   (setq inferior-fsharp-program "dotent fsi")
   (add-hook 'fsharp-mode-hook 'indent-guide-mode)
   (add-hook 'fsharp-mode-hook #'smartparens-mode))
-
-;; ruby
-(use-package ruby-end
-  :ensure t)
 
 
 (use-package company
@@ -260,13 +257,25 @@
   (setq rust-format-on-save t)
   (add-hook 'rust-mode-hook #'smartparens-mode))
 
+
+;; helm and projectile
 (use-package helm-projectile
+  :ensure t
+  :config
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (global-set-key (kbd "C-c C-p") #'helm-projectile-find-file)
+  (global-set-key (kbd "C-c s") 'helm-projectile-rg)
+  :init
+  (projectile-mode +1)
+  (helm-projectile-on))
+
+
+(use-package helm-rg
   :ensure t)
 
-
+;; modus themes
 (use-package modus-vivendi-theme
   :ensure t)
-
 (use-package modus-operandi-theme
   :ensure t)
 
@@ -295,20 +304,39 @@
 (run-at-time "18:00" (* 60 60 24) (lambda () (enable-theme 'modus-vivendi)))
 
 (add-hook 'after-init-hook 'global-company-mode)
+(define-key global-map [remap list-buffers] 'helm-mini)
+(file-extensions)
+(setup-eglot-lsp)
+(add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10"))
 
 
 ;; editor config
-(progn
+;;(progn
   ;; (global-display-line-numbers-mode)
-  (smartparens-global-mode +1)
-  (file-extensions)
+  ;;(smartparens-global-mode +1)
+
   ;; (add-to-list 'default-frame-alist '(font . "Fira Code Retina-9")) 
-  (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-10"))
+
   
-  (projectile-mode +1)
-  (helm-projectile-on)
-  (setup-eglot-lsp)
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-c C-p") #'helm-projectile-find-file)
-  (global-set-key (kbd "C-c s") 'helm-projectile-rg)
-  (define-key global-map [remap list-buffers] 'helm-mini))
+  ;;(projectile-mode +1)
+  ;;(helm-projectile-on)
+
+  
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (helm-rg web-mode use-package smartparens rust-mode ruby-end pdf-tools neotree modus-vivendi-theme modus-operandi-theme markdown-mode magit indent-guide helm-projectile fsharp-mode flycheck emmet-mode elixir-mode cycle-themes company base16-theme avy)))
+ '(web-mode-code-indent-offset 2 t)
+ '(web-mode-css-indent-offset 2 t)
+ '(web-mode-markup-indent-offset 2 t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
