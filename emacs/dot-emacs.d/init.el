@@ -83,12 +83,12 @@
 (setq tab-always-indent 'complete)
 
 (fset 'yes-or-no-p 'y-or-n-p)
-(setq initial-scratch-message ";; Happy Hacking")
+(setq initial-scratch-message nil)
+(setq initial-buffer-choice "~/Workspace")
 (global-set-key (kbd "C-x C-n") nil)
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 (global-set-key (kbd "C-#") 'global-display-line-numbers-mode)
-
 
 
 (use-package smartparens
@@ -280,6 +280,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+;; Custom bindings
 (global-set-key (kbd "M-<up>") 'move-line-up)
 (global-set-key (kbd "M-<down>") 'move-line-down)
 (global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
