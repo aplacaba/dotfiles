@@ -253,6 +253,10 @@
   (setq rust-format-on-save t)
   (add-hook 'rust-mode-hook #'smartparens-mode))
 
+;; json-mode
+(use-package json-mode
+  :ensure t)
+
 
 ;; helm and projectile
 (use-package helm-projectile
@@ -284,6 +288,12 @@
   (setq elfeed-feeds
         '(("http://news.ycombinator.com/rss" HN)
           ("https://protesilaos.com/codelog.xml" prot))))
+
+(use-package ace-window
+  :ensure t
+  :config
+  (global-set-key (kbd "C-x o") 'ace-window))
+
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -318,7 +328,10 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (elfeed web-mode use-package smartparens rust-mode ruby-end pdf-tools neotree modus-vivendi-theme modus-operandi-theme markdown-mode magit indent-guide helm-rg helm-projectile fsharp-mode flycheck emmet-mode elixir-mode cycle-themes company base16-theme avy))))
+    (ace-window json-mode elfeed web-mode use-package smartparens rust-mode ruby-end pdf-tools neotree modus-vivendi-theme modus-operandi-theme markdown-mode magit indent-guide helm-rg helm-projectile fsharp-mode flycheck emmet-mode elixir-mode cycle-themes company base16-theme avy)))
+ '(web-mode-code-indent-offset 2 t)
+ '(web-mode-css-indent-offset 2 t)
+ '(web-mode-markup-indent-offset 2 t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
