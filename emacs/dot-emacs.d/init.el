@@ -157,7 +157,10 @@
 
 ;; org mode
 (use-package org
-  :ensure t)
+  :ensure t
+  :config
+  (setq org-todo-keywords
+        '((sequence "TODO" "DONE"))))
 
 
 ;; markdown
