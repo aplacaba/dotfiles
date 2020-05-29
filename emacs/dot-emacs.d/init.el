@@ -54,11 +54,6 @@
   (add-to-list 'eglot-server-programs
                `(rust-mode . ("rls"))))
 
-(defun auto-activate-ruby-end-mode-for-elixir-mode ()
-  (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
-       "\\(?:^\\|\\s-+\\)\\(?:do\\)")
-  (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
-  (ruby-end-mode +1))
 
 (defun move-line-up ()
   (interactive)
@@ -85,6 +80,8 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq initial-scratch-message nil)
 (setq initial-buffer-choice "~/Workspace")
+(setq explicit-shell-file-name "/usr/bin/zsh") 
+
 (global-set-key (kbd "C-x C-n") nil)
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
@@ -295,7 +292,7 @@
 (use-package ace-window
   :ensure t
   :config
-  (global-set-key (kbd "C-x o") 'ace-window))
+  (global-set-key (kbd "M-o") 'ace-window))
 
 
 (prefer-coding-system 'utf-8)
@@ -321,6 +318,7 @@
 (file-extensions)
 (setup-eglot-lsp)
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
+(display-time-mode 1)
 
 (provide 'init)
 ;;; init.el ends here
