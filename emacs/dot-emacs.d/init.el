@@ -245,13 +245,21 @@
   (web-mode-css-indent-offset 2)
   (web-mode-code-indent-offset 2))
 
+(use-package racer
+  :ensure t
+  :config
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+  (add-hook 'racer-mode-hook #'company-mode))
 
 ;; rust-mode
 (use-package rust-mode
   :ensure t
   :config
   (setq rust-format-on-save t)
-  (add-hook 'rust-mode-hook #'smartparens-mode))
+  (setq rust-racer-rust-src-path "~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src")
+  (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+  (add-hook 'rust-mode-hook #'smartparens-mode)
+  (add-hook 'rust-mode-hook #'racer-mode))
 
 ;; json-mode
 (use-package json-mode
@@ -311,7 +319,7 @@
 
 ;; Dark for the night
 (load-theme 'modus-vivendi t t)
-(run-at-time "18:00" (* 60 60 24) (lambda () (enable-theme 'modus-vivendi)))
+(run-at-time "17:00" (* 60 60 24) (lambda () (enable-theme 'modus-vivendi)))
 
 (add-hook 'after-init-hook 'global-company-mode)
 (define-key global-map [remap list-buffers] 'helm-mini)
