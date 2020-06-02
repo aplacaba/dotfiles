@@ -131,12 +131,6 @@
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
 
-(use-package neotree
-  :ensure t
-  :config
-  (global-set-key [f8] 'neotree-toggle))
-
-
 (use-package avy
   :ensure t
   :config
