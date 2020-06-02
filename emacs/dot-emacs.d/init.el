@@ -144,14 +144,6 @@
   (global-set-key (kbd "C-c c-j") 'avy-resume))
 
 
-(use-package projectile
-  :ensure t
-  :config
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
-
-
 ;; org mode
 (use-package org
   :ensure t
@@ -216,12 +208,6 @@
   (global-set-key (kbd "C-c c-j") 'avy-resume))
 
 
-(use-package projectile
-  :ensure t
-  :config
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 
 ;; elixir
@@ -245,11 +231,13 @@
   (web-mode-css-indent-offset 2)
   (web-mode-code-indent-offset 2))
 
+
 (use-package racer
   :ensure t
   :config
   (add-hook 'racer-mode-hook #'eldoc-mode)
   (add-hook 'racer-mode-hook #'company-mode))
+
 
 ;; rust-mode
 (use-package rust-mode
@@ -266,6 +254,11 @@
   :ensure t)
 
 
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode +1))
+
 ;; helm and projectile
 (use-package helm-projectile
   :ensure t
@@ -274,7 +267,6 @@
   (global-set-key (kbd "C-c C-p") 'helm-projectile-find-file)
   (global-set-key (kbd "C-c s") 'helm-projectile-rg)
   :init
-  (projectile-mode +1)
   (helm-projectile-on))
 
 
