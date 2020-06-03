@@ -80,7 +80,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq initial-scratch-message nil)
 (setq initial-buffer-choice "~/Workspace")
-(setq explicit-shell-file-name "/usr/bin/zsh") 
+(setq explicit-shell-file-name "/usr/bin/zsh")
 
 (global-set-key (kbd "C-x C-n") nil)
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
@@ -203,7 +203,6 @@
 
 
 
-
 ;; elixir
 (use-package elixir-mode
   :ensure t
@@ -309,12 +308,15 @@
 
 (add-hook 'after-init-hook 'global-company-mode)
 (define-key global-map [remap list-buffers] 'helm-mini)
-(file-extensions)
-(setup-eglot-lsp)
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
 (display-time-mode 1)
+(file-extensions)
+(setup-eglot-lsp)
+(setq split-width-threshold 0)
+(setq split-height-threshold nil)
 
 (provide 'init)
+
 ;;; init.el ends here
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
