@@ -287,6 +287,12 @@
   :config
   (global-set-key (kbd "M-o") 'ace-window))
 
+;; tmux like on emacs
+(use-package perspeen
+  :ensure t
+  :init
+  :config
+  (perspeen-mode))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
