@@ -250,14 +250,14 @@
 (use-package projectile
   :ensure t
   :config
-  (projectile-mode +1))
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 ;; helm and projectile
 (use-package helm-projectile
   :ensure t
   :config
   (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-c C-p") 'helm-projectile-find-file)
   (global-set-key (kbd "C-c s") 'helm-projectile-rg)
   :init
   (helm-projectile-on))
@@ -318,8 +318,7 @@
 (display-time-mode 1)
 (file-extensions)
 (setup-eglot-lsp)
-(setq split-width-threshold 0)
-(setq split-height-threshold nil)
+
 
 (provide 'init)
 
