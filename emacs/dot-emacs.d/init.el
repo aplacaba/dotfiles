@@ -86,6 +86,7 @@
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 (global-set-key (kbd "C-#") 'global-display-line-numbers-mode)
+(global-set-key (kbd "C-t") nil)
 
 
 (use-package smartparens
