@@ -143,7 +143,7 @@
   :ensure t
   :config
   (setq org-todo-keywords
-        '((sequence "TODO" "DONE"))))
+        '((sequence "TODO" "IN PROGRESS" "DONE"))))
 
 
 ;; markdown
