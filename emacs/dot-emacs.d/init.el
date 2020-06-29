@@ -305,14 +305,7 @@
 (global-set-key (kbd "M-<down>") 'move-line-down)
 (global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
 
-;; Light for the day
-(load-theme 'modus-operandi t t)
-(run-at-time "05:00" (* 60 60 24) (lambda () (enable-theme 'modus-operandi)))
-
-;; Dark for the night
-(load-theme 'modus-vivendi t t)
-(run-at-time "17:00" (* 60 60 24) (lambda () (enable-theme 'modus-vivendi)))
-
+(load-theme 'modus-vivendi t)
 (add-hook 'after-init-hook 'global-company-mode)
 (define-key global-map [remap list-buffers] 'helm-mini)
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
