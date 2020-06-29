@@ -288,13 +288,6 @@
   :config
   (global-set-key (kbd "M-o") 'ace-window))
 
-;; tmux like on emacs
-(use-package perspeen
-  :ensure t
-  :init
-  :config
-  (perspeen-mode))
-
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -309,7 +302,6 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (define-key global-map [remap list-buffers] 'helm-mini)
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
-(display-time-mode 1)
 (file-extensions)
 (setup-eglot-lsp)
 
