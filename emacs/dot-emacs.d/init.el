@@ -79,7 +79,6 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq initial-scratch-message nil)
-(setq initial-buffer-choice "~/Workspace")
 (setq explicit-shell-file-name "/usr/bin/zsh")
 
 (global-set-key (kbd "C-x C-n") nil)
