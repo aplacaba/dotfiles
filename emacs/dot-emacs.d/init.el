@@ -66,20 +66,56 @@
   (transpose-lines 1)
   (forward-line -1))
 
+(defun kill-all-buffers ()
+  "Close all buffers."
+  (interactive)
+  ;; (maybe-unset-buffer-modified)
+  (save-some-buffers)
+  (let ((kill-buffer-query-functions '()))
+    (mapc 'kill-buffer (buffer-list))))
 
+;; (setq-default indent-tabs-mode nil)
+;; (setq-default tab-stop-list 2)
+
+;; (setq inhibit-startup-screen t)
+
+(setq
+   ;; No need to see GNU agitprop.
+   inhibit-startup-screen t
+   ;; No need to remind me what a scratch buffer is.
+   initial-scratch-message nil
+   ;; Double-spaces after periods is morally wrong.
+   sentence-end-double-space nil
+   ;; Never ding at me, ever.
+   ring-bell-function 'ignore
+   ;; Prompts should go in the minibuffer, not in a GUI.
+   use-dialog-box nil
+   ;; Fix undo in commands affecting the mark.
+   mark-even-if-inactive nil
+   ;; Let C-k delete the whole line.
+   kill-whole-line t
+   ;; search should be case-sensitive by default
+   case-fold-search nil
+   )
+
+;; Never mix tabs and spaces. Never use tabs, period.
+;; We need the setq-default here because this becomes
+;; a buffer-local variable when set.
 (setq-default indent-tabs-mode nil)
-(setq-default tab-stop-list 2)
-(setq custom-safe-themes t)
-(setq inhibit-startup-screen t)
+
+(defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
+
+(set-fill-column 110)
+
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
 (setq tab-always-indent 'complete)
+(setq custom-safe-themes t)
 
-(fset 'yes-or-no-p 'y-or-n-p)
-(setq initial-scratch-message nil)
-(setq explicit-shell-file-name "/usr/bin/zsh")
+;; (fset 'yes-or-no-p 'y-or-n-p)
+;; (setq explicit-shell-file-name "/usr/bin/zsh")
 
 (global-set-key (kbd "C-x C-n") nil)
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
@@ -262,7 +298,6 @@
   :init
   (helm-projectile-on))
 
-
 (use-package helm-rg
   :ensure t)
 
@@ -271,7 +306,6 @@
   :ensure t)
 (use-package modus-operandi-theme
   :ensure t)
-
 
 ;; elfeed
 (use-package elfeed
@@ -287,6 +321,10 @@
   :config
   (global-set-key (kbd "M-o") 'ace-window))
 
+(use-package vterm
+  :ensure t)
+
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -299,7 +337,7 @@
 
 (load-theme 'modus-vivendi t)
 (add-hook 'after-init-hook 'global-company-mode)
-(define-key global-map [remap list-buffers] 'helm-mini)
+(define-key global-map [remap list-buffers] 'ibuffer)
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
 (file-extensions)
 (setup-eglot-lsp)
@@ -318,7 +356,9 @@
     (ace-window json-mode elfeed web-mode use-package smartparens rust-mode ruby-end pdf-tools neotree modus-vivendi-theme modus-operandi-theme markdown-mode magit indent-guide helm-rg helm-projectile fsharp-mode flycheck emmet-mode elixir-mode cycle-themes company base16-theme avy)))
  '(web-mode-code-indent-offset 2 t)
  '(web-mode-css-indent-offset 2 t)
- '(web-mode-markup-indent-offset 2 t))
+ '(web-mode-markup-indent-offset 2 t)
+ '(which-key-enable-extended-define-key t t)
+ '(which-key-setup-side-window-bottom nil t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
