@@ -11,11 +11,6 @@ else
 fi;
 source ~/.zplug/init.zsh
 
-NVM_LAZY_LOAD=true
-PURE_PROMPT_SYMBOL='λ'
-PURE_GIT_DOWN_ARROW='↓'
-PURE_GIT_UP_ARROW='↑'
-
 zplug zplug/zplug
 zplug zsh-users/zsh-completions
 zplug zsh-users/zsh-syntax-highlighting
@@ -23,10 +18,11 @@ zplug zsh-users/zsh-history-substring-search
 zplug zsh-users/zsh-autosuggestions
 zplug mafredri/zsh-async, from:github
 zplug caarlos0/zsh-pg
-# zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug themes/lambda, from:oh-my-zsh
+
 
 # minimal prompt
-PROMPT='(%m) :: %2~ %B»%b '
+# PROMPT='(%m) :: %2~ %B»%b '
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
