@@ -75,10 +75,6 @@
   (let ((kill-buffer-query-functions '()))
     (mapc 'kill-buffer (buffer-list))))
 
-;; (setq-default indent-tabs-mode nil)
-;; (setq-default tab-stop-list 2)
-
-;; (setq inhibit-startup-screen t)
 
 (setq
    ;; No need to see GNU agitprop.
@@ -233,7 +229,6 @@
   (global-set-key (kbd "C-c c-j") 'avy-resume))
 
 
-
 ;; elixir
 (use-package elixir-mode
   :ensure t
@@ -299,6 +294,7 @@
 ;; modus themes
 (use-package modus-vivendi-theme
   :ensure t)
+
 (use-package modus-operandi-theme
   :ensure t)
 
@@ -333,29 +329,9 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (define-key global-map [remap list-buffers] 'ibuffer)
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 (file-extensions)
 (setup-eglot-lsp)
 
 
 (provide 'init)
-
-;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ace-window json-mode elfeed web-mode use-package smartparens rust-mode ruby-end pdf-tools neotree modus-vivendi-theme modus-operandi-theme markdown-mode magit indent-guide helm-rg helm-projectile fsharp-mode flycheck emmet-mode elixir-mode cycle-themes company base16-theme avy)))
- '(web-mode-code-indent-offset 2 t)
- '(web-mode-css-indent-offset 2 t)
- '(web-mode-markup-indent-offset 2 t)
- '(which-key-enable-extended-define-key t t)
- '(which-key-setup-side-window-bottom nil t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
