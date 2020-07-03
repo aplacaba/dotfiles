@@ -333,7 +333,6 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (define-key global-map [remap list-buffers] 'ibuffer)
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
-(add-to-list 'ibuffer-never-show-predicates "^\\*")
 (file-extensions)
 (setup-eglot-lsp)
 

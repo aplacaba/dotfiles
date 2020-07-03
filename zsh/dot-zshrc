@@ -18,7 +18,7 @@ zplug zsh-users/zsh-history-substring-search
 zplug zsh-users/zsh-autosuggestions
 zplug mafredri/zsh-async, from:github
 zplug caarlos0/zsh-pg
-zplug themes/lambda, from:oh-my-zsh
+zplug dracula/zsh, as:theme
 
 
 # minimal prompt
