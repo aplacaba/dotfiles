@@ -1,0 +1,14 @@
+* Dotfiles
+
+** Dependencies 
+- git 
+- zsh 
+- zplug
+- emacs v2.6
+- stow v2.3
+
+** Installation
+#+BEGIN_SRC 
+$ git clone https://github.com/aplacaba/dotfiles
+$ cd dotfiles && make
+#+END_SRC
