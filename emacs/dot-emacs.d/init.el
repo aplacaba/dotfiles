@@ -9,6 +9,7 @@
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tooltip-mode) (tooltip-mode -1))
 
 (require 'package)
 
@@ -147,8 +148,7 @@
 (use-package magit
   :ensure t
   :bind
-  (("C-x g" . magit-status)))
-
+  (("C-M-g" . magit-status)))
 
 ;; company
 (use-package company
@@ -341,6 +341,7 @@
   ("C-c f" . crux-recentf-find-file)
   ("C-a" . crux-move-beginning-of-line))
 
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -356,9 +357,10 @@
 (define-key global-map [remap list-buffers] 'ibuffer)
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'ibuffer-never-show-predicates "^\\*helm")
 (file-extensions)
 (setup-eglot-lsp)
 
 
 (provide 'init)
-
+;;; init.el ends here
