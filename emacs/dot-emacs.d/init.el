@@ -99,7 +99,7 @@
    indent-tab-modes nil)
 
 
-(defalias 'yes-or-non-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
+(defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
 (set-fill-column 110)
 
