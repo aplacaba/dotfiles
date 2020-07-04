@@ -329,7 +329,9 @@
 (use-package doom-modeline
   :ensure t
   :init
-  (doom-modeline-mode 1))
+  (doom-modeline-mode 1)
+  :config
+  (setq doom-modeline-icon t))
 
 (use-package crux
   :ensure t
