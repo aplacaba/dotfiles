@@ -93,14 +93,13 @@
    kill-whole-line t
    ;; search should be case-sensitive by default
    case-fold-search nil
-   )
 
-;; Never mix tabs and spaces. Never use tabs, period.
-;; We need the setq-default here because this becomes
-;; a buffer-local variable when set.
-(setq-default indent-tabs-mode nil)
+   custom-safe-themes t
+   tab-always-indent 'complete
+   indent-tab-modes nil)
 
-(defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
+
+(defalias 'yes-or-non-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
 (set-fill-column 110)
 
@@ -110,6 +109,12 @@
                  "%b"))))
 (setq tab-always-indent 'complete)
 (setq custom-safe-themes t)
+
+;; backup location
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ;; (fset 'yes-or-no-p 'y-or-n-p)
 ;; (setq explicit-shell-file-name "/usr/bin/zsh")
@@ -326,6 +331,14 @@
   :init
   (doom-modeline-mode 1))
 
+(use-package crux
+  :ensure t
+  :bind
+  ("C-k" . crux-smart-kill-line)
+  ("C-c n" . crux-cleanup-buffer-or-region)
+  ("C-c f" . crux-recentf-find-file)
+  ("C-a" . crux-move-beginning-of-line))
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -346,3 +359,4 @@
 
 
 (provide 'init)
+
