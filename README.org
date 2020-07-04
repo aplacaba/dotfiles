@@ -4,8 +4,10 @@
 - git 
 - zsh 
 - zplug
+- tmux 
 - emacs v2.6
 - stow v2.3
+- rxvt-unicode
 
 ** Installation
 #+BEGIN_SRC 
