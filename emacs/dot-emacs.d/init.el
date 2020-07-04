@@ -313,7 +313,18 @@
   (global-set-key (kbd "M-o") 'ace-window))
 
 (use-package vterm
+  :ensure t
+  :config
+  (setq vterm-max-scrollback 1000)
+  (setq vterm-kill-buffer-on-exit t))
+
+(use-package all-the-icons
   :ensure t)
+
+(use-package doom-modeline
+  :ensure t
+  :init
+  (doom-modeline-mode 1))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
