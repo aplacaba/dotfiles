@@ -1,4 +1,3 @@
-
 ;;; package --- .emacs
 ;;; Commentary:
 ;;; Code:
@@ -147,6 +146,8 @@
 ;; magit
 (use-package magit
   :ensure t
+  :config
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   :bind
   (("C-M-g" . magit-status)))
 
