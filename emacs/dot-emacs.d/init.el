@@ -341,6 +341,11 @@
   ("C-c f" . crux-recentf-find-file)
   ("C-a" . crux-move-beginning-of-line))
 
+(use-package which-key
+  :ensure t
+  :init
+  (which-key-mode)
+  (which-key-setup-side-window-right))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -357,7 +362,17 @@
 (define-key global-map [remap list-buffers] 'ibuffer)
 (add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(defun dired-mode-buffers-p (buf)
+  "Non-nil if buffer BUF is in `dired-mode'."
+  (with-current-buffer buf
+    (derived-mode-p 'dired-mode)))
 (add-to-list 'ibuffer-never-show-predicates "^\\*helm")
+(add-to-list 'ibuffer-never-show-predicates "^\\magit-process")
+(add-to-list 'ibuffer-never-show-predicates "^\\magit")
+(add-to-list 'ibuffer-never-show-predicates "^\\*")
+(add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
+
+
 (file-extensions)
 (setup-eglot-lsp)
 
