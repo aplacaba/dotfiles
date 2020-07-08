@@ -379,7 +379,7 @@
 
 (file-extensions)
 (setup-eglot-lsp)
-
+(toggle-frame-fullscreen)
 
 (provide 'init)
 ;;; init.el ends here
