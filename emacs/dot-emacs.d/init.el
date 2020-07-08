@@ -146,6 +146,7 @@
 ;; magit
 (use-package magit
   :ensure t
+  :defer t
   :config
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   :bind
@@ -165,16 +166,16 @@
 (use-package flycheck
   :ensure t
   :init
-  (global-flycheck-mode)
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode))
+  (global-flycheck-mode))
+  
 
 
 (use-package avy
   :ensure t
   :config
   (global-set-key (kbd "M-g e") 'avy-goto-word-0)
-  (global-set-key (kbd "C-c c-j") 'avy-resume))
+  (global-set-key (kbd "C-c C-j") 'avy-resume)
+  (global-set-key (kbd "C-:") 'avy-goto-char))
 
 
 ;; org mode
@@ -361,7 +362,6 @@
 (load-theme 'modus-vivendi t)
 (add-hook 'after-init-hook 'global-company-mode)
 (define-key global-map [remap list-buffers] 'ibuffer)
-(add-to-list 'default-frame-alist '(font . "JetBrains Mono-10"))
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (defun dired-mode-buffers-p (buf)
   "Non-nil if buffer BUF is in `dired-mode'."
@@ -372,7 +372,7 @@
 (add-to-list 'ibuffer-never-show-predicates "^\\magit")
 (add-to-list 'ibuffer-never-show-predicates "^\\*")
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
-
+(global-auto-revert-mode 1)
 
 (file-extensions)
 (setup-eglot-lsp)
