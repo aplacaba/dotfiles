@@ -349,6 +349,9 @@
   (which-key-mode)
   (which-key-setup-side-window-right))
 
+(use-package all-the-icons
+  :ensure t)
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
