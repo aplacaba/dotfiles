@@ -377,6 +377,7 @@
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
 (global-auto-revert-mode 1)
 
+(set-frame-font "Dejavu Sans Mono-10")
 (file-extensions)
 (setup-eglot-lsp)
 (toggle-frame-fullscreen)
