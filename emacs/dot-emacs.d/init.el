@@ -243,6 +243,8 @@
   :config
   (add-hook 'elixir-mode-hook 'company-mode))
 
+(use-package cider
+  :ensure t)
 
 ;; web-mode
 (use-package web-mode
