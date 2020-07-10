@@ -351,6 +351,9 @@
   (which-key-mode)
   (which-key-setup-side-window-right))
 
+(use-package all-the-icons
+  :ensure t)
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -376,9 +379,10 @@
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
 (global-auto-revert-mode 1)
 
+(set-frame-font "Dejavu Sans Mono-10")
 (file-extensions)
 (setup-eglot-lsp)
-
+(toggle-frame-fullscreen)
 
 (provide 'init)
 ;;; init.el ends here

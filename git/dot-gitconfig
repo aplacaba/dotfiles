@@ -6,5 +6,5 @@
 [color]
 	ui = auto
 [core]
-	editor = emacs -nw 
+	editor = vim
 	excludesfile = /home/tovarisch/.global_gitignore
