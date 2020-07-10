@@ -6,10 +6,10 @@ Xft*dpi:               96
 Xft*antialias:         true
 Xft*rgba:              rgb
 Xft*lcdfilter:         lcddefault
-URxvt.font:            xft:JetBrains Mono:pixelsize=13
-URxvt.boldFont:        xft:JetBrains Mono:pixelsize=13
-URxvt.italicFont:      xft:JetBrains Mono:pixelsize=13
-URxvt.bolditalicFont:  xft:JetBrains Mono:pixelsize=13
+URxvt.font:            xft:Dejavu Sans Mono:pixelsize=13
+URxvt.boldFont:        xft:Dejavu Sans Mono:pixelsize=13
+URxvt.italicFont:      xft:Dejavu Sans Mono:pixelsize=13
+URxvt.bolditalicFont:  xft:Dejavu Sans Mono:pixelsize=13
 
 URxvt.cursorBlink:     true
 URxvt.scrollBar:       false
@@ -61,5 +61,5 @@ URxvt*color13: #f78fe7
 URxvt*color6: #00d3d0
 URxvt*color14: #4ae8fc
 
-emacs.font: JetBrains Mono-13
+emacs.font: Dejavu Sans Mono-13
 
