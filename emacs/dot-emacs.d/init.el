@@ -314,7 +314,8 @@
   (global-set-key (kbd "C-x w") 'elfeed)
   (setq elfeed-feeds
         '(("http://news.ycombinator.com/rss" HN)
-          ("https://protesilaos.com/codelog.xml" prot))))
+          ("https://protesilaos.com/codelog.xml" prot)
+	  ("https://manila.craigslist.org/search/sof?format=rss" CL))))
 
 (use-package ace-window
   :ensure t
@@ -377,7 +378,7 @@
 (add-to-list 'ibuffer-never-show-predicates "^\\magit")
 (add-to-list 'ibuffer-never-show-predicates "^\\*")
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
-(global-auto-revert-mode 1)
+(global-auto-revert-mode -1)
 
 (set-frame-font "Dejavu Sans Mono-10")
 (file-extensions)
