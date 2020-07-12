@@ -17,12 +17,8 @@ zplug zsh-users/zsh-syntax-highlighting
 zplug zsh-users/zsh-history-substring-search
 zplug zsh-users/zsh-autosuggestions
 zplug mafredri/zsh-async, from:github
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 zplug caarlos0/zsh-pg
-zplug dracula/zsh, as:theme
-
-
-# minimal prompt
-# PROMPT='(%m) :: %2~ %B»%b '
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
