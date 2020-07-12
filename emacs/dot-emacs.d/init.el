@@ -55,27 +55,6 @@
   (add-to-list 'eglot-server-programs
                `(rust-mode . ("rls"))))
 
-
-(defun move-line-up ()
-  (interactive)
-  (transpose-lines 1)
-  (forward-line -2))
-
-(defun move-line-down ()
-  (interactive)
-  (forward-line 1)
-  (transpose-lines 1)
-  (forward-line -1))
-
-(defun kill-all-buffers ()
-  "Close all buffers."
-  (interactive)
-  ;; (maybe-unset-buffer-modified)
-  (save-some-buffers)
-  (let ((kill-buffer-query-functions '()))
-    (mapc 'kill-buffer (buffer-list))))
-
-
 (setq
    ;; No need to see GNU agitprop.
    inhibit-startup-screen t
@@ -98,10 +77,9 @@
    tab-always-indent 'complete
    indent-tab-modes nil)
 
-
 (defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
-(set-fill-column 110)
+(set-fill-column 120)
 
 (setq frame-title-format
       '((:eval (if (buffer-file-name)
@@ -125,14 +103,13 @@
 (global-set-key (kbd "C-#") 'global-display-line-numbers-mode)
 (global-set-key (kbd "C-t") nil)
 
-
+;; smartparens
 (use-package smartparens
   :ensure t
   :config
   (smartparens-global-mode 1)
   :init
   (require 'smartparens-config))
-
 
 ;; eglot
 (use-package eglot
@@ -141,7 +118,6 @@
   (web-mode . eglot-ensure)
   (elixir-mode . eglot-ensure)
   (rust-mode . eglot-ensure))
-
 
 ;; magit
 (use-package magit
@@ -168,8 +144,7 @@
   :init
   (global-flycheck-mode))
   
-
-
+;; avy
 (use-package avy
   :ensure t
   :config
@@ -185,20 +160,13 @@
   (setq org-todo-keywords
         '((sequence "TODO" "IN PROGRESS" "DONE"))))
 
-
 ;; markdown
 (use-package markdown-mode
   :ensure t)
 
-
-;; emmet for web / html
+;; emmet 
 (use-package emmet-mode
   :ensure t)
-
-(use-package indent-guide
-  :ensure t
-  :config
-  (set-face-background 'indent-guide-face "dimgray"))
 
 ;; fsharp
 (use-package fsharp-mode
@@ -210,7 +178,7 @@
   (add-hook 'fsharp-mode-hook 'indent-guide-mode)
   (add-hook 'fsharp-mode-hook #'smartparens-mode))
 
-
+;; company
 (use-package company
   :ensure t
   :config
@@ -218,7 +186,6 @@
   (setq company-tooltip-limit 10)
   (setq company-tooltip-flip-when-above t)
   (global-company-mode))
-
 
 ;; flycheck global
 (use-package flycheck
@@ -228,14 +195,6 @@
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
-
-(use-package avy
-  :ensure t
-  :config
-  (global-set-key (kbd "M-g e") 'avy-goto-word-0)
-  (global-set-key (kbd "C-c c-j") 'avy-resume))
-
-
 ;; elixir
 (use-package elixir-mode
   :ensure t
@@ -243,6 +202,7 @@
   :config
   (add-hook 'elixir-mode-hook 'company-mode))
 
+;; clojure
 (use-package cider
   :ensure t)
 
@@ -259,13 +219,12 @@
   (web-mode-css-indent-offset 2)
   (web-mode-code-indent-offset 2))
 
-
+;; rust
 (use-package racer
   :ensure t
   :config
   (add-hook 'racer-mode-hook #'eldoc-mode)
   (add-hook 'racer-mode-hook #'company-mode))
-
 
 ;; rust-mode
 (use-package rust-mode
@@ -281,7 +240,7 @@
 (use-package json-mode
   :ensure t)
 
-
+;; projectile
 (use-package projectile
   :ensure t
   :config
@@ -297,13 +256,15 @@
   :init
   (helm-projectile-on))
 
+;; helm
 (use-package helm-rg
   :ensure t)
 
-;; modus themes
+;; modus dark themes
 (use-package modus-vivendi-theme
   :ensure t)
 
+;; modus light theme
 (use-package modus-operandi-theme
   :ensure t)
 
@@ -317,27 +278,20 @@
           ("https://protesilaos.com/codelog.xml" prot)
 	  ("https://manila.craigslist.org/search/sof?format=rss" CL))))
 
+;; window jump
 (use-package ace-window
   :ensure t
   :config
   (global-set-key (kbd "M-o") 'ace-window))
 
+;; terminal
 (use-package vterm
   :ensure t
   :config
   (setq vterm-max-scrollback 1000)
   (setq vterm-kill-buffer-on-exit t))
 
-(use-package all-the-icons
-  :ensure t)
-
-(use-package doom-modeline
-  :ensure t
-  :init
-  (doom-modeline-mode 1)
-  :config
-  (setq doom-modeline-icon t))
-
+;; sane defaults
 (use-package crux
   :ensure t
   :bind
@@ -346,14 +300,12 @@
   ("C-c f" . crux-recentf-find-file)
   ("C-a" . crux-move-beginning-of-line))
 
+;; guide for key combinations
 (use-package which-key
   :ensure t
   :init
   (which-key-mode)
   (which-key-setup-side-window-right))
-
-(use-package all-the-icons
-  :ensure t)
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -383,7 +335,6 @@
 (set-frame-font "Dejavu Sans Mono-10")
 (file-extensions)
 (setup-eglot-lsp)
-(toggle-frame-fullscreen)
 
 (provide 'init)
 ;;; init.el ends here
