@@ -49,7 +49,7 @@
 
 (defun setup-eglot-lsp ()
   (add-to-list 'eglot-server-programs
-               `(web-mode . ("javascript-typescript-stdio")))
+               `(web-mode . ("~/.asdf/shims/javascript-typescript-langserver")))
   (add-to-list 'eglot-server-programs
                `(elixir-mode . ("~/Code/elixir/elixir-ls/release/language_server.sh")))
   (add-to-list 'eglot-server-programs
@@ -282,7 +282,7 @@
 (use-package ace-window
   :ensure t
   :config
-  (global-set-key (kbd "M-o") 'ace-window))
+  (global-set-key (kbd "C-x o") 'ace-window))
 
 ;; terminal
 (use-package vterm
@@ -313,9 +313,9 @@
 (set-keyboard-coding-system 'utf-8)
 
 ;; Custom bindings
-(global-set-key (kbd "M-<up>") 'move-line-up)
-(global-set-key (kbd "M-<down>") 'move-line-down)
 (global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
+(global-set-key (kbd "M-o") 'other-window)
+
 
 (load-theme 'modus-vivendi t)
 (add-hook 'after-init-hook 'global-company-mode)
