@@ -307,6 +307,27 @@
   (which-key-mode)
   (which-key-setup-side-window-right))
 
+;; perspective
+(use-package perspective
+  :ensure t
+  :custom
+  (persp-mode-prefix-key (kbd "C-x z"))
+  :config
+  (global-set-key (kbd "s-z") 'persp-next)
+  (persp-mode))
+
+(use-package ibuffer-projectile
+  :ensure t)
+
+(use-package ibuffer
+  :config
+  (add-hook 'ibuffer-hook
+    (lambda ()
+      (ibuffer-projectile-set-filter-groups)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+        (ibuffer-do-sort-by-alphabetic)))))
+  
+  
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -338,3 +359,21 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ibuffer-projectile perspective workgroups2 which-key web-mode vterm use-package smartparens racer perspeen neotree modus-vivendi-theme modus-operandi-theme markdown-mode magit json-mode indent-guide helm-rg helm-projectile fsharp-mode flycheck exwm emmet-mode elixir-mode elfeed doom-modeline crux company cider ace-window)))
+ '(persp-mode-prefix-key "z")
+ '(web-mode-code-indent-offset 2 t)
+ '(web-mode-css-indent-offset 2 t)
+ '(web-mode-markup-indent-offset 2 t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
