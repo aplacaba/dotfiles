@@ -315,6 +315,7 @@
 ;; Custom bindings
 (global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
 (global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-x <f2>") 'rename-buffer)
 
 
 (load-theme 'modus-vivendi t)
