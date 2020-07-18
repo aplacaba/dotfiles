@@ -307,6 +307,27 @@
   (which-key-mode)
   (which-key-setup-side-window-right))
 
+;; perspective
+(use-package perspective
+  :ensure t
+  :custom
+  (persp-mode-prefix-key (kbd "C-x z"))
+  :config
+  (global-set-key (kbd "s-z") 'persp-next)
+  (persp-mode))
+
+(use-package ibuffer-projectile
+  :ensure t)
+
+(use-package ibuffer
+  :config
+  (add-hook 'ibuffer-hook
+    (lambda ()
+      (ibuffer-projectile-set-filter-groups)
+      (unless (eq ibuffer-sorting-mode 'alphabetic)
+        (ibuffer-do-sort-by-alphabetic)))))
+  
+  
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -339,3 +360,4 @@
 
 (provide 'init)
 ;;; init.el ends here
+
