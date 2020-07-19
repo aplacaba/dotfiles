@@ -8,3 +8,11 @@
 [core]
 	editor = vim
 	excludesfile = /home/tovarisch/.global_gitignore
+[alias]
+	st = status
+	co = checkout
+	ci = commit -v
+	br = branch
+	rb = rebase
+	rbi = rebase -i
+	gr = grep --break --heading -n
