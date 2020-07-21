@@ -79,9 +79,13 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
-(require 'exwm)
-(require 'exwm-config)
-(exwm-config-default)
+(defun my/x220-laptop-p ()
+    (string= (system-name) "aemacs"))
+  
+(when my/x220-laptop-p
+  (require 'exwm)
+  (require 'exwm-config)
+  (exwm-config-default))  
 
 (set-fill-column 120)
 
