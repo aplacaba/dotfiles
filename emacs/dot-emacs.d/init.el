@@ -73,35 +73,32 @@
    ;; search should be case-sensitive by default
    case-fold-search nil
 
+   column-number-mode t
+
    custom-safe-themes t
    tab-always-indent 'complete
+   custom-safe-themes t
+
+   backup-directory-alist `((".*" . ,temporary-file-directory))
+   auto-save-file-name-transforms`((".*" ,temporary-file-directory t))
+   frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b")))
+   
    indent-tab-modes nil)
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
-
-(set-fill-column 120)
-
-(setq frame-title-format
-      '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name))
-                 "%b"))))
-(setq tab-always-indent 'complete)
-(setq custom-safe-themes t)
-
-;; backup location
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-
-;; (fset 'yes-or-no-p 'y-or-n-p)
-;; (setq explicit-shell-file-name "/usr/bin/zsh")
 
 (global-set-key (kbd "C-x C-n") nil)
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 (global-set-key (kbd "C-#") 'global-display-line-numbers-mode)
 (global-set-key (kbd "C-t") nil)
+(global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-x <f2>") 'rename-buffer)
+(define-key global-map [remap list-buffers] 'bs-show)
 
 ;; smartparens
 (use-package smartparens
@@ -247,18 +244,6 @@
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
-;; helm and projectile
-(use-package helm-projectile
-  :ensure t
-  :config
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (global-set-key (kbd "C-c s") 'helm-projectile-rg)
-  :init
-  (helm-projectile-on))
-
-;; helm
-(use-package helm-rg
-  :ensure t)
 
 ;; modus dark themes
 (use-package modus-vivendi-theme
@@ -266,6 +251,9 @@
 
 ;; modus light theme
 (use-package modus-operandi-theme
+  :ensure t)
+
+(use-package ripgrep
   :ensure t)
 
 ;; elfeed
@@ -288,7 +276,7 @@
 (use-package vterm
   :ensure t
   :config
-  (setq vterm-max-scrollback 1000)
+  (setq vterm-max-scrollback 10000)
   (setq vterm-kill-buffer-on-exit t))
 
 ;; sane defaults
@@ -298,7 +286,7 @@
   ("C-k" . crux-smart-kill-line)
   ("C-c n" . crux-cleanup-buffer-or-region)
   ("C-c f" . crux-recentf-find-file)
-  ("C-a" . crux-move-beginning-of-line))
+  ("C-a" . crux-move-beginning-of-line)) 
 
 ;; guide for key combinations
 (use-package which-key
@@ -327,22 +315,9 @@
       (unless (eq ibuffer-sorting-mode 'alphabetic)
         (ibuffer-do-sort-by-alphabetic)))))
   
-  
-(prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-
 ;; Custom bindings
-(global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
-(global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-x <f2>") 'rename-buffer)
 
-
-(load-theme 'modus-vivendi t)
 (add-hook 'after-init-hook 'global-company-mode)
-(define-key global-map [remap list-buffers] 'ibuffer)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
 (defun dired-mode-buffers-p (buf)
   "Non-nil if buffer BUF is in `dired-mode'."
   (with-current-buffer buf
@@ -352,12 +327,35 @@
 (add-to-list 'ibuffer-never-show-predicates "^\\magit")
 (add-to-list 'ibuffer-never-show-predicates "^\\*")
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
-(global-auto-revert-mode -1)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(set-frame-font "Dejavu Sans Mono-10")
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(global-auto-revert-mode -1)
+(load-theme 'modus-vivendi t)
+(set-frame-font "Dejavu Sans Mono:Book-10")
+(set-fill-column 120)
 (file-extensions)
 (setup-eglot-lsp)
 
 (provide 'init)
 ;;; init.el ends here
-
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (ibuffer-projectile perspective which-key web-mode vterm use-package smartparens ruby-end racer pdf-tools neotree modus-vivendi-theme modus-operandi-theme markdown-mode magit json-mode indent-guide helm-rg helm-projectile fsharp-mode flycheck emmet-mode elixir-mode elfeed doom-modeline cycle-themes crux company cider base16-theme ace-window)))
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-markup-indent-offset 2))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
