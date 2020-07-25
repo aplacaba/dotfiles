@@ -79,13 +79,17 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
-(defun my/x220-laptop-p ()
-    (string= (system-name) "aemacs"))
-  
-(when my/x220-laptop-p
-  (require 'exwm)
-  (require 'exwm-config)
-  (exwm-config-default))  
+;; (defun my/x220-laptop-p ()
+;;   (string= (system-name) "aemacs"))
+
+;; (when my/x220-laptop-p
+;;   (require 'exwm)
+;;   (require 'exwm-config)
+;;   (exwm-config-default))
+
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)
 
 (set-fill-column 120)
 
@@ -334,8 +338,7 @@
       (ibuffer-projectile-set-filter-groups)
       (unless (eq ibuffer-sorting-mode 'alphabetic)
         (ibuffer-do-sort-by-alphabetic)))))
-  
-  
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -346,26 +349,27 @@
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-x <f2>") 'rename-buffer)
 
-
 (load-theme 'modus-vivendi t)
 (add-hook 'after-init-hook 'global-company-mode)
-(define-key global-map [remap list-buffers] 'ibuffer)
+(define-key global-map [remap list-buffers] 'bs-show)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 (defun dired-mode-buffers-p (buf)
   "Non-nil if buffer BUF is in `dired-mode'."
   (with-current-buffer buf
     (derived-mode-p 'dired-mode)))
+
 (add-to-list 'ibuffer-never-show-predicates "^\\*helm")
+(add-to-list 'ibuffer-never-show-predicates "^\\*elfeed-log")
 (add-to-list 'ibuffer-never-show-predicates "^\\magit-process")
 (add-to-list 'ibuffer-never-show-predicates "^\\magit")
 (add-to-list 'ibuffer-never-show-predicates "^\\*")
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
 (global-auto-revert-mode -1)
 
-(set-frame-font "Dejavu Sans Mono-10")
+(set-frame-font "Dejavu Sans Mono-9")
 (file-extensions)
 (setup-eglot-lsp)
 
 (provide 'init)
 ;;; init.el ends here
-
