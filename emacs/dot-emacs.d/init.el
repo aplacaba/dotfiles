@@ -335,10 +335,13 @@
 (set-keyboard-coding-system 'utf-8)
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
-(set-frame-font "Dejavu Sans Mono:Book-10")
+(add-to-list 'default-frame-alist
+             '(font . "DejaVu Sans Mono-10:book"))
+
 (set-fill-column 120)
 (file-extensions)
 (setup-eglot-lsp)
+(ido-mode)
 
 (provide 'init)
 ;;; init.el ends here
