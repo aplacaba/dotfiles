@@ -257,7 +257,7 @@
 
 ;; projectile
 (use-package projectile
-  :ensure t
+   :ensure t
   :config
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
@@ -354,6 +354,8 @@
 (global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-x <f2>") 'rename-buffer)
+(global-set-key (kbd "s-l")
+		(lambda () (interactive (start-process "" nil "slock"))))
 
 (load-theme 'modus-vivendi t)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -374,7 +376,7 @@
 (global-auto-revert-mode -1)
 
 (add-to-list 'default-frame-alist
-             '(font . "DejaVu Sans Mono-9"))
+             '(font . "DejaVu Sans Mono-9:book"))
 
 (file-extensions)
 (setup-eglot-lsp)
