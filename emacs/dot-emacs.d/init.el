@@ -75,6 +75,9 @@
 
    custom-safe-themes t
    tab-always-indent 'complete
+   display-time-24hr-format t
+   display-time-format "%H:%M - %d %B %Y"
+   
    indent-tab-modes nil)
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
@@ -338,6 +341,9 @@
       (ibuffer-projectile-set-filter-groups)
       (unless (eq ibuffer-sorting-mode 'alphabetic)
         (ibuffer-do-sort-by-alphabetic)))))
+ 
+(use-package pdf-tools
+  :ensure t)
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -367,7 +373,9 @@
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
 (global-auto-revert-mode -1)
 
-(set-frame-font "Dejavu Sans Mono-9")
+(add-to-list 'default-frame-alist
+             '(font . "DejaVu Sans Mono-9"))
+
 (file-extensions)
 (setup-eglot-lsp)
 
