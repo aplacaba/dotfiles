@@ -81,6 +81,7 @@
 
    backup-directory-alist `((".*" . ,temporary-file-directory))
    auto-save-file-name-transforms`((".*" ,temporary-file-directory t))
+   
    frame-title-format
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
@@ -241,11 +242,16 @@
   :ensure t)
 
 (use-package counsel
-  :ensure t)
+  :ensure t
+  :config
+  (setq counsel-find-file-ignore-regexp "\\.elc\\'")
+  (setq counsel-find-file-ignore-regexp "\\.pyc\\'")
+  (setq counsel-find-file-ignore-regexp "\\.*~\\'"))
 
 (use-package ivy
   :ensure t
   :config
+  (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
   (global-set-key "\C-s" 'swiper)
   (global-set-key (kbd "C-c C-r") 'ivy-resume)
   (global-set-key (kbd "<f6>") 'ivy-resume)
@@ -259,7 +265,7 @@
   (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
   (global-set-key (kbd "C-c g") 'counsel-git)
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
-  (global-set-key (kbd "C-c k") 'counsel-ag)
+  (global-set-key (kbd "C-c s") 'counsel-rg)
   (global-set-key (kbd "C-x l") 'counsel-locate)
   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
@@ -282,7 +288,8 @@
   :ensure t)
 
 (use-package ripgrep
-  :ensure t)
+  :ensure t
+  :defer)
 
 ;; elfeed
 (use-package elfeed
@@ -332,6 +339,19 @@
   (global-set-key (kbd "s-z") 'persp-next)
   (persp-mode))
 
+;; diminish
+(use-package diminish
+  :ensure t
+  :commands diminish
+  :init
+  (diminish 'flycheck)
+  (diminish 'flymake)
+  (diminish 'company)
+  (diminish 'eldoc-mode)
+  (diminish 'projectile-mode)
+  (diminish 'sp-mode)
+  (diminish 'wk-mode))
+
 (use-package ibuffer-projectile
   :ensure t
   :defer)
@@ -343,7 +363,19 @@
       (ibuffer-projectile-set-filter-groups)
       (unless (eq ibuffer-sorting-mode 'alphabetic)
         (ibuffer-do-sort-by-alphabetic)))))
-  
+
+(use-package    feebleline
+  :ensure       t
+  :config       (setq feebleline-msg-functions
+                      '((feebleline-line-number         :post "" :fmt "%5s")
+                        (feebleline-column-number       :pre ":" :fmt "%-2s")
+                        (feebleline-file-directory      :face feebleline-dir-face :post "")
+                        (feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
+                        (feebleline-file-modified-star  :face font-lock-warning-face :post "")
+                        (feebleline-git-branch          :face feebleline-git-face :pre " : ")
+                        (feebleline-project-name        :align right)))
+                (feebleline-mode 1))
+
 ;; Custom bindings
 
 (add-hook 'after-init-hook 'global-company-mode)
