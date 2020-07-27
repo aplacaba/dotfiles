@@ -77,17 +77,20 @@
 
    custom-safe-themes t
    tab-always-indent 'complete
-   custom-safe-themes t
 
-   backup-directory-alist `((".*" . ,temporary-file-directory))
-   auto-save-file-name-transforms`((".*" ,temporary-file-directory t))
-   
-   frame-title-format
-      '((:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name))
-                 "%b")))
+   display-time-24hr-format t
+   display-time-format "%H:%M - %d %B %Y"
    
    indent-tab-modes nil)
+
+(defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
+
+
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)
+
+(set-fill-column 120)
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
@@ -272,7 +275,7 @@
 
 ;; projectile
 (use-package projectile
-  :ensure t
+   :ensure t
   :config
   (setq projectile-completion-system 'ivy)
   (projectile-mode +1)
@@ -376,14 +379,33 @@
                         (feebleline-project-name        :align right)))
                 (feebleline-mode 1))
 
+ 
+(use-package pdf-tools
+  :ensure t)
+
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
 ;; Custom bindings
+(global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-x <f2>") 'rename-buffer)
+(global-set-key (kbd "s-l")
+		(lambda () (interactive (start-process "" nil "slock"))))
 
 (add-hook 'after-init-hook 'global-company-mode)
+(define-key global-map [remap list-buffers] 'bs-show)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 (defun dired-mode-buffers-p (buf)
   "Non-nil if buffer BUF is in `dired-mode'."
   (with-current-buffer buf
     (derived-mode-p 'dired-mode)))
+
 (add-to-list 'ibuffer-never-show-predicates "^\\*helm")
+(add-to-list 'ibuffer-never-show-predicates "^\\*elfeed-log")
 (add-to-list 'ibuffer-never-show-predicates "^\\magit-process")
 (add-to-list 'ibuffer-never-show-predicates "^\\magit")
 (add-to-list 'ibuffer-never-show-predicates "^\\*")
@@ -399,28 +421,9 @@
 (add-to-list 'default-frame-alist
              '(font . "DejaVu Sans Mono-10:book"))
 
-(set-fill-column 120)
 (file-extensions)
 (setup-eglot-lsp)
 (ido-mode)
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (ripgrep ibuffer-projectile perspective which-key web-mode vterm use-package smartparens ruby-end racer pdf-tools neotree modus-vivendi-theme modus-operandi-theme markdown-mode magit json-mode indent-guide helm-rg helm-projectile fsharp-mode flycheck emmet-mode elixir-mode elfeed doom-modeline cycle-themes crux company cider base16-theme ace-window)))
- '(persp-mode-prefix-key "z")
- '(web-mode-code-indent-offset 2 t)
- '(web-mode-css-indent-offset 2 t)
- '(web-mode-markup-indent-offset 2 t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
