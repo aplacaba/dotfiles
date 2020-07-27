@@ -57,3 +57,4 @@ sudo grubby --args="ro quiet splash mitigations=off usbcore.usbfs_memory_mb=1000
 
 autoload -Uz compinit && compinit
 . ${HOME}/.asdf/asdf.sh
+if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then exec startx; fi

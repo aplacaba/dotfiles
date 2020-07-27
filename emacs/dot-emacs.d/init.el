@@ -419,7 +419,7 @@
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
 (add-to-list 'default-frame-alist
-             '(font . "DejaVu Sans Mono-10:book"))
+             '(font . "DejaVu Sans Mono-9"))
 
 (file-extensions)
 (setup-eglot-lsp)
