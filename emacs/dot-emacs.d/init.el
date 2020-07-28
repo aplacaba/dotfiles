@@ -22,6 +22,8 @@
 (defvar my-packages
   '(use-package))
 
+(defun my/x220-laptop-p ()
+  (equal (system-name) "aemacs"))
 
 (defun my-packages-installed-p ()
   (cl-loop for p in my-packages
@@ -55,6 +57,11 @@
   (add-to-list 'eglot-server-programs
                `(rust-mode . ("rls"))))
 
+(when (my/x220-laptop-p)
+      (require 'exwm)
+      (require 'exwm-config)
+      (exwm-config-default))
+
 (setq
    ;; No need to see GNU agitprop.
    inhibit-startup-screen t
@@ -85,14 +92,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
-
-(require 'exwm)
-(require 'exwm-config)
-(exwm-config-default)
-
 (set-fill-column 120)
-
-(defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
 (global-set-key (kbd "C-x C-n") nil)
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
