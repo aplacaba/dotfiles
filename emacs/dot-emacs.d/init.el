@@ -367,6 +367,10 @@
       (unless (eq ibuffer-sorting-mode 'alphabetic)
         (ibuffer-do-sort-by-alphabetic)))))
 
+(defun remaining-battery ()
+  (concat "| Batt: " (shell-command-to-string "/bin/cat /sys/class/power_supply/BAT0/capacity 2>/dev/null")))
+
+
 (use-package    feebleline
   :ensure       t
   :config       (setq feebleline-msg-functions
@@ -376,7 +380,9 @@
                         (feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
                         (feebleline-file-modified-star  :face font-lock-warning-face :post "")
                         (feebleline-git-branch          :face feebleline-git-face :pre " : ")
-                        (feebleline-project-name        :align right)))
+			(feebleline-project-name        :align right)
+			(remaining-battery              :align right)))
+			
                 (feebleline-mode 1))
 
  
