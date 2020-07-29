@@ -23,7 +23,8 @@
   '(use-package))
 
 (defun my/x220-laptop-p ()
-  (equal (system-name) "aemacs"))
+  (or (equal (system-name) "aemacs")
+      (equal (system-name) "aplacaba")))
 
 (defun my-packages-installed-p ()
   (cl-loop for p in my-packages
@@ -242,10 +243,12 @@
   :ensure t)
 
 (use-package swiper
-  :ensure t)
+  :ensure t
+  :defer)
 
 (use-package counsel
   :ensure t
+  :defer
   :config
   (setq counsel-find-file-ignore-regexp "\\.elc\\'")
   (setq counsel-find-file-ignore-regexp "\\.pyc\\'")
@@ -410,7 +413,6 @@
   (with-current-buffer buf
     (derived-mode-p 'dired-mode)))
 
-(add-to-list 'ibuffer-never-show-predicates "^\\*helm")
 (add-to-list 'ibuffer-never-show-predicates "^\\*elfeed-log")
 (add-to-list 'ibuffer-never-show-predicates "^\\magit-process")
 (add-to-list 'ibuffer-never-show-predicates "^\\magit")
@@ -425,7 +427,7 @@
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
 (add-to-list 'default-frame-alist
-             '(font . "DejaVu Sans Mono-9"))
+             '(font . "DejaVu Sans Mono-10"))
 
 (file-extensions)
 (setup-eglot-lsp)
