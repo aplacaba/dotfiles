@@ -61,7 +61,15 @@
 (when (my/x220-laptop-p)
       (require 'exwm)
       (require 'exwm-config)
-      (exwm-config-default))
+      (exwm-config-default)
+      (require 'exwm-randr)
+      (setq exwm-randr-workspace-output-plist '(0 "VGA1"))
+      (add-hook 'exwm-randr-screen-change-hook
+          (lambda ()
+            (start-process-shell-command
+             "xrandr" nil "xrandr --output VGA1 --left-of LVDS1 --auto")))
+      (exwm-randr-enable))
+      
 
 (setq
    ;; No need to see GNU agitprop.
@@ -88,8 +96,13 @@
 
    display-time-24hr-format t
    display-time-format "%H:%M - %d %B %Y"
-   
+
    indent-tab-modes nil)
+
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
@@ -336,15 +349,6 @@
   (which-key-mode)
   (which-key-setup-side-window-right))
 
-;; perspective
-(use-package perspective
-  :ensure t
-  :custom
-  (persp-mode-prefix-key (kbd "C-x z"))
-  :config
-  (global-set-key (kbd "s-z") 'persp-next)
-  (persp-mode))
-
 ;; diminish
 (use-package diminish
   :ensure t
@@ -370,26 +374,10 @@
       (unless (eq ibuffer-sorting-mode 'alphabetic)
         (ibuffer-do-sort-by-alphabetic)))))
 
-(defun remaining-battery ()
-  (concat "| Batt: " (shell-command-to-string "/bin/cat /sys/class/power_supply/BAT0/capacity 2>/dev/null")))
-
-
-(use-package    feebleline
-  :ensure       t
-  :config       (setq feebleline-msg-functions
-                      '((feebleline-line-number         :post "" :fmt "%5s")
-                        (feebleline-column-number       :pre ":" :fmt "%-2s")
-                        (feebleline-file-directory      :face feebleline-dir-face :post "")
-                        (feebleline-file-or-buffer-name :face font-lock-keyword-face :post "")
-                        (feebleline-file-modified-star  :face font-lock-warning-face :post "")
-                        (feebleline-git-branch          :face feebleline-git-face :pre " : ")
-			(feebleline-project-name        :align right)
-			(remaining-battery              :align right)))
-			
-                (feebleline-mode 1))
-
- 
 (use-package pdf-tools
+  :ensure t)
+
+(use-package ws-butler
   :ensure t)
 
 (prefer-coding-system 'utf-8)
@@ -432,6 +420,7 @@
 (file-extensions)
 (setup-eglot-lsp)
 (ido-mode)
+(ws-butler-mode)
 
 (provide 'init)
 ;;; init.el ends here
