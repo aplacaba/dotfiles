@@ -73,8 +73,10 @@
       (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
                 (lambda () (interactive) (shell-command "amixer set Master 5%+")))
       (exwm-input-set-key (kbd "<XF86AudioMute>")
-                (lambda () (interactive) (shell-command "amixer set Master 1+ toggle")))
-      (exwm-randr-enable))
+			  (lambda () (interactive) (shell-command "amixer set Master 1+ toggle")))
+      (exwm-randr-enable)
+      (display-time-mode t)
+      (display-battery-mode t))
 
 (setq
    ;; No need to see GNU agitprop.
@@ -104,6 +106,8 @@
 
    indent-tab-modes nil)
 
+
+;; backups directory
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
