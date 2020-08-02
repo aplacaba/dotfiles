@@ -68,8 +68,13 @@
           (lambda ()
             (start-process-shell-command
              "xrandr" nil "xrandr --output VGA1 --left-of LVDS1 --auto")))
+      (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
+                (lambda () (interactive) (shell-command "amixer set Master 5%-")))
+      (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
+                (lambda () (interactive) (shell-command "amixer set Master 5%+")))
+      (exwm-input-set-key (kbd "<XF86AudioMute>")
+                (lambda () (interactive) (shell-command "amixer set Master 1+ toggle")))
       (exwm-randr-enable))
-      
 
 (setq
    ;; No need to see GNU agitprop.
