@@ -136,12 +136,12 @@
   (require 'smartparens-config))
 
 ;; eglot
-(use-package eglot
-  :ensure t
-  :hook
-  (web-mode . eglot-ensure)
-  (elixir-mode . eglot-ensure)
-  (rust-mode . eglot-ensure))
+;; (use-package eglot
+;;   :ensure t
+;;   :hook
+;;   (web-mode . eglot-ensure)
+;;   (elixir-mode . eglot-ensure)
+;;   (rust-mode . eglot-ensure))
 
 ;; magit
 (use-package magit
@@ -195,8 +195,6 @@
 ;; fsharp
 (use-package fsharp-mode
   :ensure t
-  :init
-  (require 'eglot-fsharp)
   :config
   (setq inferior-fsharp-program "dotent fsi")
   (add-hook 'fsharp-mode-hook 'indent-guide-mode)
@@ -389,6 +387,68 @@
 (use-package ws-butler
   :ensure t)
 
+;; lsp-mode
+(setq lsp-keymap-prefix "C-c l")
+
+(use-package lsp-mode
+  :defer t
+  :ensure t
+  :commands lsp
+  :diminish lsp-mode
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+	 (elixir-mode . lsp-deferred)
+	 (python-mode . lsp-deferred)
+	 (web-mode . lsp-deferred)
+	 (clojure-mode . lsp-deferred)
+	 (clojurec-mode . lsp-deferred)
+	 (clojurescript-mode . lsp-deferred)
+	 ;; if you want which-key integration
+	 (lsp-mode . lsp-enable-which-key-integration))
+  :init
+  (add-to-list 'exec-path "~/language-servers/elixir-ls/release/")
+  (add-to-list 'exec-path "javascript-typescript-langserver")
+  :config
+  (setenv "PATH" (concat
+		  "/usr/local/bin" path-separator
+		  (getenv "PATH")))
+  (dolist (m '(clojure-mode
+               clojurec-mode
+               clojurescript-mode
+               clojurex-mode))
+    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
+
+(defvar lsp-elixir--config-options (make-hash-table))
+  (add-hook 'lsp-after-initialize-hook
+            (lambda ()
+              (lsp--set-configuration `(:elixirLS, lsp-elixir--config-options))))
+
+(use-package lsp-ivy
+  :defer t
+  :ensure t
+  :commands lsp-ivy-workspace-symbol)
+
+(use-package lsp-ui
+  :defer t
+  :ensure t
+  :config
+  (setq
+   lsp-ui-sideline-enable nil
+   lsp-ui-doc-enable nil
+   lsp-eldoc-hook nil))
+
+;; optionally if you want to use debugger
+(use-package dap-mode
+  :defer t
+  :ensure t)
+
+(use-package company-lsp
+  :defer t
+  :ensure t
+  :commands company-lsp)
+
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -427,7 +487,7 @@
              '(font . "DejaVu Sans Mono-10"))
 
 (file-extensions)
-(setup-eglot-lsp)
+;;(setup-eglot-lsp)
 (ido-mode)
 (ws-butler-mode)
 
