@@ -1,0 +1,9 @@
+/* Install tree style tabs and move this to: 
+.mozilla/firefox/<profile.default-release>/chrome */
+#TabsToolbar {
+  visibility: collapse;
+}
+
+#sidebar-header {
+  visibility: collapse !important;
+} 
