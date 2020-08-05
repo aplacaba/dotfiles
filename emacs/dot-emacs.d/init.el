@@ -50,14 +50,6 @@
     (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.org?\\'" . org-mode)))
 
-(defun setup-eglot-lsp ()
-  (add-to-list 'eglot-server-programs
-               `(web-mode . ("~/.asdf/shims/javascript-typescript-langserver")))
-  (add-to-list 'eglot-server-programs
-               `(elixir-mode . ("~/Code/elixir/elixir-ls/release/language_server.sh")))
-  (add-to-list 'eglot-server-programs
-               `(rust-mode . ("rls"))))
-
 (when (my/x220-laptop-p)
       (require 'exwm)
       (require 'exwm-config)
@@ -134,14 +126,6 @@
   (smartparens-global-mode 1)
   :init
   (require 'smartparens-config))
-
-;; eglot
-;; (use-package eglot
-;;   :ensure t
-;;   :hook
-;;   (web-mode . eglot-ensure)
-;;   (elixir-mode . eglot-ensure)
-;;   (rust-mode . eglot-ensure))
 
 ;; magit
 (use-package magit
@@ -399,6 +383,7 @@
 	 (elixir-mode . lsp-deferred)
 	 (python-mode . lsp-deferred)
 	 (web-mode . lsp-deferred)
+	 (ruby-mode . lsp-deferred)
 	 (clojure-mode . lsp-deferred)
 	 (clojurec-mode . lsp-deferred)
 	 (clojurescript-mode . lsp-deferred)
@@ -487,9 +472,9 @@
              '(font . "DejaVu Sans Mono-10"))
 
 (file-extensions)
-;;(setup-eglot-lsp)
-(ido-mode)
-(ws-butler-mode)
+(ido-mode 1)
+(ws-butler-mode 1)
+(display-time-mode 1)
 
 (provide 'init)
 ;;; init.el ends here
