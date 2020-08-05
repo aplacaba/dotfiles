@@ -324,6 +324,21 @@
   (setq vterm-max-scrollback 10000)
   (setq vterm-kill-buffer-on-exit t))
 
+(use-package vterm-toggle
+  :ensure t
+  :config
+  (global-set-key (kbd "s-<tab>") 'vterm-toggle)
+  (global-set-key (kbd "C-M-t") 'vterm-toggle-cd)
+
+  ;; you can cd to the directory where your previous buffer file exists
+  ;; after you have toggle to the vterm buffer with `vterm-toggle'.
+  (define-key vterm-mode-map [(control return)]   #'vterm-toggle-insert-cd)
+
+					;Switch to next vterm buffer
+  (define-key vterm-mode-map (kbd "s-n")   'vterm-toggle-forward)
+					;Switch to previous vterm buffer
+  (define-key vterm-mode-map (kbd "s-p")   'vterm-toggle-backward))
+
 ;; sane defaults
 (use-package crux
   :ensure t
@@ -478,3 +493,17 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (vterm-toggle ws-butler which-key web-mode vterm use-package smartparens ripgrep racer perspective pdf-tools paredit modus-vivendi-theme modus-operandi-theme magit lsp-ui lsp-ivy json-mode ibuffer-projectile helm-rg helm-projectile fsharp-mode flycheck feebleline exwm emmet-mode elixir-mode elfeed diminish dap-mode crux counsel company-lsp cider buffer-flip all-the-icons))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
