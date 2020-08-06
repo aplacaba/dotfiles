@@ -95,9 +95,11 @@
 
    display-time-24hr-format t
    display-time-format "%H:%M - %d %B %Y"
+   custom-file "~/.emacs.d/custom.el"
 
    indent-tab-modes nil)
 
+(load-file custom-file)
 
 ;; backups directory
 (setq backup-directory-alist
@@ -493,17 +495,4 @@
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (vterm-toggle ws-butler which-key web-mode vterm use-package smartparens ripgrep racer perspective pdf-tools paredit modus-vivendi-theme modus-operandi-theme magit lsp-ui lsp-ivy json-mode ibuffer-projectile helm-rg helm-projectile fsharp-mode flycheck feebleline exwm emmet-mode elixir-mode elfeed diminish dap-mode crux counsel company-lsp cider buffer-flip all-the-icons))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
