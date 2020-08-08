@@ -47,8 +47,8 @@
     (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.org?\\'" . org-mode)))
+    (add-to-list 'auto-mode-alist '("\\.org?\\'" . org-mode))
+    (add-to-list 'interpreter-mode-alist '("node" . js2-mode)))
 
 (when (my/x220-laptop-p)
       (require 'exwm)
@@ -213,6 +213,13 @@
 ;; clojure
 (use-package cider
   :ensure t)
+
+;; js2-mode
+
+(use-package js2-mode
+  :ensure t
+  :config
+  (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 
 ;; web-mode
 (use-package web-mode
@@ -399,7 +406,7 @@
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 	 (elixir-mode . lsp-deferred)
 	 (python-mode . lsp-deferred)
-	 (web-mode . lsp-deferred)
+	 (js2-mode . lsp-deferred)
 	 (ruby-mode . lsp-deferred)
 	 (clojure-mode . lsp-deferred)
 	 (clojurec-mode . lsp-deferred)
@@ -495,4 +502,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-
