@@ -24,7 +24,8 @@
 
 (defun my/x220-laptop-p ()
   (or (equal (system-name) "aemacs")
-      (equal (system-name) "aplacaba")))
+      (equal (system-name) "aplacaba")
+      (equal (system-name) "thinkpad")))
 
 (defun my-packages-installed-p ()
   (cl-loop for p in my-packages
@@ -50,16 +51,33 @@
     (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.org?\\'" . org-mode)))
 
+(defun exwm-change-screen-hook ()
+  (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
+        default-output)
+    (with-temp-buffer
+      (call-process "xrandr" nil t nil)
+      (goto-char (point-min))
+      (re-search-forward xrandr-output-regexp nil 'noerror)
+      (setq default-output (match-string 1))
+      (forward-line)
+      (if (not (re-search-forward xrandr-output-regexp nil 'noerror))
+          (call-process "xrandr" nil nil nil "--output" default-output "--auto")
+        (call-process
+         "xrandr" nil nil nil
+         "--output" (match-string 1) "--primary" "--auto"
+         "--output" default-output "--off")
+        (setq exwm-randr-workspace-output-plist (list 0 (match-string 1)))))))
+
 (when (my/x220-laptop-p)
       (require 'exwm)
       (require 'exwm-config)
       (exwm-config-default)
       (require 'exwm-randr)
       (setq exwm-randr-workspace-output-plist '(0 "VGA1"))
-      (add-hook 'exwm-randr-screen-change-hook
-          (lambda ()
-            (start-process-shell-command
-             "xrandr" nil "xrandr --output VGA1 --left-of LVDS1 --auto")))
+      (add-hook 'exwm-randr-screen-change-hook #'exwm-change-screen-hook)
+          ;; (lambda ()
+          ;;   (start-process-shell-command
+          ;;    "xrandr" nil "xrandr --output VGA1 --left-of LVDS1 --auto")))
       (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
                 (lambda () (interactive) (shell-command "amixer set Master 5%-")))
       (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
@@ -117,6 +135,7 @@
 (global-set-key (kbd "C-#") 'global-display-line-numbers-mode)
 (global-set-key (kbd "C-t") nil)
 (global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
+(global-set-key (kbd "C-x <tab>") 'other-window)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-x <f2>") 'rename-buffer)
 (define-key global-map [remap list-buffers] 'bs-show)
@@ -395,11 +414,11 @@
   :defer t
   :ensure t
   :commands lsp
-  :diminish lsp-mode
+  :diminish lsp-moadde
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 	 (elixir-mode . lsp-deferred)
 	 (python-mode . lsp-deferred)
-	 (web-mode . lsp-deferred)
+	 (js2-mode . lsp-deferred)
 	 (ruby-mode . lsp-deferred)
 	 (clojure-mode . lsp-deferred)
 	 (clojurec-mode . lsp-deferred)
@@ -439,9 +458,9 @@
    lsp-eldoc-hook nil))
 
 ;; optionally if you want to use debugger
-(use-package dap-mode
-  :defer t
-  :ensure t)
+;; (use-package dap-mode
+;;   :defer t
+;;   :ensure t)
 
 (use-package company-lsp
   :defer t
@@ -449,7 +468,6 @@
   :commands company-lsp)
 
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
