@@ -48,25 +48,29 @@
     (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.org?\\'" . org-mode)))
+    (add-to-list 'auto-mode-alist '("\\.org?\\'" . org-mode))
+    (add-to-list 'interpreter-mode-alist '("node" . js2-mode)))
 
 (defun exwm-change-screen-hook ()
-  (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
-        default-output)
-    (with-temp-buffer
-      (call-process "xrandr" nil t nil)
-      (goto-char (point-min))
-      (re-search-forward xrandr-output-regexp nil 'noerror)
-      (setq default-output (match-string 1))
-      (forward-line)
-      (if (not (re-search-forward xrandr-output-regexp nil 'noerror))
-          (call-process "xrandr" nil nil nil "--output" default-output "--auto")
-        (call-process
-         "xrandr" nil nil nil
-         "--output" (match-string 1) "--primary" "--auto"
-         "--output" default-output "--off")
-        (setq exwm-randr-workspace-output-plist (list 0 (match-string 1)))))))
+  (cond ((equal (system-name) "aemacs")
+	 (start-process-shell-command
+	  "xrandr" nil "xrandr --output VGA1 --left-of LVDS1 --auto"))
+	(t 
+	 (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
+	       default-output)
+	   (with-temp-buffer
+	     (call-process "xrandr" nil t nil)
+	     (goto-char (point-min))
+	     (re-search-forward xrandr-output-regexp nil 'noerror)
+	     (setq default-output (match-string 1))
+	     (forward-line)
+	     (if (not (re-search-forward xrandr-output-regexp nil 'noerror))
+		 (call-process "xrandr" nil nil nil "--output" default-output "--auto")
+	       (call-process
+		"xrandr" nil nil nil
+		"--output" (match-string 1) "--primary" "--auto"
+		"--output" default-output "--off")
+	       (setq exwm-randr-workspace-output-plist (list 0 (match-string 1)))))))))
 
 (when (my/x220-laptop-p)
       (require 'exwm)
@@ -232,6 +236,13 @@
 ;; clojure
 (use-package cider
   :ensure t)
+
+;; js2-mode
+
+(use-package js2-mode
+  :ensure t
+  :config
+  (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2))))
 
 ;; web-mode
 (use-package web-mode
@@ -513,4 +524,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-
