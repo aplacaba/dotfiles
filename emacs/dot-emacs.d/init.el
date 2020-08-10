@@ -49,8 +49,11 @@
     (add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.org?\\'" . org-mode))
+    (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
     (add-to-list 'interpreter-mode-alist '("node" . js2-mode)))
 
+
+;; EXWM input switch
 (defun exwm-change-screen-hook ()
   (cond ((equal (system-name) "aemacs")
 	 (start-process-shell-command
@@ -79,9 +82,6 @@
       (require 'exwm-randr)
       (setq exwm-randr-workspace-output-plist '(0 "VGA1"))
       (add-hook 'exwm-randr-screen-change-hook #'exwm-change-screen-hook)
-          ;; (lambda ()
-          ;;   (start-process-shell-command
-          ;;    "xrandr" nil "xrandr --output VGA1 --left-of LVDS1 --auto")))
       (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
                 (lambda () (interactive) (shell-command "amixer set Master 5%-")))
       (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>")
@@ -343,11 +343,14 @@
           ("https://protesilaos.com/codelog.xml" prot)
 	  ("https://manila.craigslist.org/search/sof?format=rss" CL))))
 
-;; window jump
-(use-package ace-window
+
+(use-package switch-window
   :ensure t
   :config
-  (global-set-key (kbd "C-x o") 'ace-window))
+  (setq switch-window-shortcut-style 'qwerty)
+  (setq switch-window-input-style 'minibuffer)
+  (global-set-key (kbd "C-x o") 'switch-window))
+  
 
 ;; terminal
 (use-package vterm
@@ -438,8 +441,7 @@
 	 (lsp-mode . lsp-enable-which-key-integration))
   :init
   (add-to-list 'exec-path "~/language-servers/elixir-ls/release/")
-  (add-to-list 'exec-path "javascript-typescript-langserver")
-  :config
+  (add-to-list 'exec-path "~/.asdf/shims/")
   (setenv "PATH" (concat
 		  "/usr/local/bin" path-separator
 		  (getenv "PATH")))
