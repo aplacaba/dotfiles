@@ -232,6 +232,11 @@
 (use-package cider
   :ensure t)
 
+(use-package clojure-mode
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook 'cider-mode))
+
 ;; js2-mode
 
 (use-package js2-mode
@@ -429,22 +434,11 @@
 	 (python-mode . lsp-deferred)
 	 (js2-mode . lsp-deferred)
 	 (ruby-mode . lsp-deferred)
-	 (clojure-mode . lsp-deferred)
-	 (clojurec-mode . lsp-deferred)
-	 (clojurescript-mode . lsp-deferred)
 	 ;; if you want which-key integration
 	 (lsp-mode . lsp-enable-which-key-integration))
   :init
   (add-to-list 'exec-path "~/language-servers/elixir-ls/release/")
-  (add-to-list 'exec-path "~/.asdf/shims/")
-  (setenv "PATH" (concat
-		  "/usr/local/bin" path-separator
-		  (getenv "PATH")))
-  (dolist (m '(clojure-mode
-               clojurec-mode
-               clojurescript-mode
-               clojurex-mode))
-    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
+  (add-to-list 'exec-path "~/.asdf/shims/"))
 
 (defvar lsp-elixir--config-options (make-hash-table))
   (add-hook 'lsp-after-initialize-hook
@@ -513,7 +507,7 @@
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
 (add-to-list 'default-frame-alist
-             '(font . "DejaVu Sans Mono-10"))
+             '(font . "DejaVu Sans Mono-9"))
 
 (file-extensions)
 (ido-mode 1)
