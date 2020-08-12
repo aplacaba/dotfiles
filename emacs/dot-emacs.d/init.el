@@ -142,6 +142,10 @@
 (global-set-key (kbd "C-x <tab>") 'other-window)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-x <f2>") 'rename-buffer)
+(global-set-key [f9] 'delete-other-windows)
+(global-set-key [C-f9] 'delete-window)
+(global-set-key (kbd "<f7>") 'winner-undo)
+(global-set-key (kbd "C-<f7>") 'winner-redo)
 (define-key global-map [remap list-buffers] 'bs-show)
 
 ;; smartparens
