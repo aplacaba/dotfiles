@@ -416,7 +416,14 @@
         (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package pdf-tools
-  :ensure t)
+  :ensure t
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page)
+  ;; automatically annotate highlights
+  (setq pdf-annot-activate-created-annotations t)
+  ;; use normal isearch
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
 
 (use-package ws-butler
   :ensure t)
