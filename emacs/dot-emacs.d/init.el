@@ -209,15 +209,6 @@
   (add-hook 'fsharp-mode-hook 'indent-guide-mode)
   (add-hook 'fsharp-mode-hook #'smartparens-mode))
 
-;; company
-(use-package company
-  :ensure t
-  :config
-  (setq company-idle-delay 0.5)
-  (setq company-tooltip-limit 10)
-  (setq company-tooltip-flip-when-above t)
-  (global-company-mode))
-
 ;; flycheck global
 (use-package flycheck
   :ensure t
