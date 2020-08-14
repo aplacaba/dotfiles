@@ -194,8 +194,23 @@
 (use-package org
   :ensure t
   :config
+  (setq org-babel-clojure-backend 'cider)
   (setq org-todo-keywords
         '((sequence "TODO" "IN PROGRESS" "DONE"))))
+
+(use-package org-tempo)
+(use-package ob-clojure)
+(use-package ob-elixir
+  :ensure t)
+
+(org-babel-do-load-languages
+   'org-babel-load-languages
+   '((scheme . t)
+     (python . t)
+     (ruby . t)
+     (js . t)
+     (elixir . t)
+     (emacs-lisp . t)))
 
 ;; markdown
 (use-package markdown-mode
@@ -338,7 +353,7 @@
   :ensure t
   :config
   (global-set-key (kbd "C-x w") 'elfeed)
-  (setq elfeed-feeds
+   (setq elfeed-feeds
         '(("http://news.ycombinator.com/rss" HN)
           ("https://protesilaos.com/codelog.xml" prot)
 	  ("https://manila.craigslist.org/search/sof?format=rss" CL))))
