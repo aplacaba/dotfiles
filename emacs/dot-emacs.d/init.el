@@ -139,7 +139,8 @@
 (global-set-key (kbd "C-#") 'global-display-line-numbers-mode)
 (global-set-key (kbd "C-t") nil)
 (global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
-(global-set-key (kbd "C-x <tab>") 'other-window)
+(global-set-key (kbd "C-x <tab>") 'windmove-right)
+(global-set-key (kbd "C-x <backtab>") 'windmove-left)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-x <f2>") 'rename-buffer)
 (global-set-key [f9] 'delete-other-windows)
@@ -195,7 +196,7 @@
   :ensure t
   :config
   (setq org-todo-keywords
-        '((sequence "TODO" "IN PROGRESS" "DONE"))))
+        '((sequence "NEXT" "TODO" "DONE"))))
 
 ;; markdown
 (use-package markdown-mode
