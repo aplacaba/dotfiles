@@ -195,8 +195,23 @@
 (use-package org
   :ensure t
   :config
+  (setq org-babel-clojure-backend 'cider)
   (setq org-todo-keywords
         '((sequence "NEXT" "TODO" "DONE"))))
+
+(use-package org-tempo)
+(use-package ob-clojure)
+(use-package ob-elixir
+  :ensure t)
+
+(org-babel-do-load-languages
+   'org-babel-load-languages
+   '((scheme . t)
+     (python . t)
+     (ruby . t)
+     (js . t)
+     (elixir . t)
+     (emacs-lisp . t)))
 
 ;; markdown
 (use-package markdown-mode
@@ -232,6 +247,11 @@
 ;; clojure
 (use-package cider
   :ensure t)
+
+(use-package clojure-mode
+  :ensure t
+  :config
+  (add-hook 'clojure-mode-hook 'cider-mode))
 
 ;; js2-mode
 
@@ -334,7 +354,7 @@
   :ensure t
   :config
   (global-set-key (kbd "C-x w") 'elfeed)
-  (setq elfeed-feeds
+   (setq elfeed-feeds
         '(("http://news.ycombinator.com/rss" HN)
           ("https://protesilaos.com/codelog.xml" prot)
 	  ("https://manila.craigslist.org/search/sof?format=rss" CL))))
@@ -412,7 +432,14 @@
         (ibuffer-do-sort-by-alphabetic)))))
 
 (use-package pdf-tools
-  :ensure t)
+  :ensure t
+  :config
+  (pdf-tools-install)
+  (setq-default pdf-view-display-size 'fit-page)
+  ;; automatically annotate highlights
+  (setq pdf-annot-activate-created-annotations t)
+  ;; use normal isearch
+  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward))
 
 (use-package ws-butler
   :ensure t)
@@ -430,22 +457,11 @@
 	 (python-mode . lsp-deferred)
 	 (js2-mode . lsp-deferred)
 	 (ruby-mode . lsp-deferred)
-	 (clojure-mode . lsp-deferred)
-	 (clojurec-mode . lsp-deferred)
-	 (clojurescript-mode . lsp-deferred)
 	 ;; if you want which-key integration
 	 (lsp-mode . lsp-enable-which-key-integration))
   :init
   (add-to-list 'exec-path "~/language-servers/elixir-ls/release/")
-  (add-to-list 'exec-path "~/.asdf/shims/")
-  (setenv "PATH" (concat
-		  "/usr/local/bin" path-separator
-		  (getenv "PATH")))
-  (dolist (m '(clojure-mode
-               clojurec-mode
-               clojurescript-mode
-               clojurex-mode))
-    (add-to-list 'lsp-language-id-configuration `(,m . "clojure"))))
+  (add-to-list 'exec-path "~/.asdf/shims/"))
 
 (defvar lsp-elixir--config-options (make-hash-table))
   (add-hook 'lsp-after-initialize-hook
