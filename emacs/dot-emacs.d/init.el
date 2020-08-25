@@ -507,8 +507,8 @@
 		(lambda () (interactive (start-process "" nil "slock"))))
 
 (add-hook 'after-init-hook 'global-company-mode)
-;;(define-key global-map [remap list-buffers] 'bs-show)
-(define-key global-map [remap list-buffers] 'ibuffer)
+(define-key global-map [remap list-buffers] 'bs-show)
+;;(define-key global-map [remap list-buffers] 'ibuffer)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (defun dired-mode-buffers-p (buf)
