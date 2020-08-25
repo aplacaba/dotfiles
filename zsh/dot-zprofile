@@ -52,8 +52,12 @@ vterm_printf(){
 
 # update kernel cmdline parameters every kernel update
 kernel_yolo() {
-sudo grubby --args="ro quiet splash mitigations=off usbcore.usbfs_memory_mb=1000" --update-kernel /boot/vmlinuz-`uname -r`
-}    
+    sudo grubby --args="ro quiet splash mitigations=off usbcore.usbfs_memory_mb=1000" --update-kernel /boot/vmlinuz-`uname -r`
+}
+
+ctrl-center-fix () {
+    gsettings set org.gnome.ControlCenter last-panel ''
+}
 
 autoload -Uz compinit && compinit
 . ${HOME}/.asdf/asdf.sh

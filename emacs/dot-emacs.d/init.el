@@ -113,13 +113,15 @@
    column-number-mode t
 
    custom-safe-themes t
-   tab-always-indent 'complete
+   ;; tab-always-indent 'complete
 
    display-time-24hr-format t
    display-time-format "%H:%M - %d %B %Y"
-   custom-file "~/.emacs.d/custom.el"
+   custom-file "~/.emacs.d/custom.el")
 
-   indent-tab-modes nil)
+
+(setq-default indent-tab-modes nil)
+(setq-default tab-always-indent 'complete)
 
 (load-file custom-file)
 
