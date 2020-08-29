@@ -532,7 +532,7 @@
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
 (add-to-list 'default-frame-alist
-             '(font . "DejaVu Sans Mono-10"))
+             '(font . "M+ 2m-9")) 
 
 (file-extensions)
 (ido-mode 1)
