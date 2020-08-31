@@ -198,8 +198,33 @@
   :ensure t
   :config
   (setq org-babel-clojure-backend 'cider)
+  (setq org-agenda-files '("~/gtd/gtd.org"
+			   "~/gtd/inbox.org"
+			   "~/gtd/tickler.org"))
+  (setq org-agenda-custom-commands
+      '(("h" "Agenda and Home-related tasks"
+         ((agenda "")
+          (tags-todo "@study")
+          (tags "study")))
+	("p" "Agenda and Home-related tasks"
+         ((agenda "")
+          (tags-todo "@personal")
+          (tags "@books")))
+        ("o" "Agenda and Office-related tasks"
+         ((agenda "")
+          (tags-todo "@work")
+          (tags '("@office" "@lft"))))))
+  (setq org-capture-templates '(("t" "Todo [inbox]" entry
+                               (file+headline "~/gtd/inbox.org" "Tasks")
+                               "* TODO %i%?")
+                              ("T" "Tickler" entry
+                               (file+headline "~/gtd/tickler.org" "Tickler")
+                               "* %i%? \n %U")))
+  (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c a") 'org-agenda)
+  (global-set-key (kbd "C-c c") 'org-capture)
   (setq org-todo-keywords
-        '((sequence "NEXT" "TODO" "DONE"))))
+        '((sequence "NEXT" "BLOCKED" "TODO" "DONE"))))
 
 (use-package org-tempo)
 (use-package ob-clojure)
@@ -541,3 +566,4 @@
 
 (provide 'init)
 ;;; init.el ends here
+
