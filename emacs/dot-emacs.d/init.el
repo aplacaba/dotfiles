@@ -78,8 +78,9 @@
 (when (my/x220-laptop-p)
       (require 'exwm)
       (require 'exwm-config)
-      (exwm-config-default)
+      ;;(exwm-config-default)
       (require 'exwm-randr)
+      (setq exwm-workspace-number 9)
       (setq exwm-randr-workspace-output-plist '(0 "VGA1"))
       (add-hook 'exwm-randr-screen-change-hook #'exwm-change-screen-hook)
       (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
@@ -202,18 +203,15 @@
 			   "~/gtd/inbox.org"
 			   "~/gtd/tickler.org"))
   (setq org-agenda-custom-commands
-      '(("h" "Agenda and Home-related tasks"
-         ((agenda "")
-          (tags-todo "@study")
-          (tags "study")))
-	("p" "Agenda and Home-related tasks"
+      '(
+	("p" "Agenda and Personal-related tasks"
          ((agenda "")
           (tags-todo "@personal")
           (tags "@books")))
         ("o" "Agenda and Office-related tasks"
          ((agenda "")
           (tags-todo "@work")
-          (tags '("@office" "@lft"))))))
+          (tags "@projects")))))
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                (file+headline "~/gtd/inbox.org" "Tasks")
                                "* TODO %i%?")
@@ -564,6 +562,9 @@
 (ws-butler-mode 1)
 (display-time-mode 1)
 
+;; display work agendas
+
+(org-agenda "a" "o")
 (provide 'init)
 ;;; init.el ends here
 
