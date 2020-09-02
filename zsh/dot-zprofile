@@ -19,6 +19,8 @@ alias t='tmux new-session -s'
 alias ta='tmux attach-session -t'
 alias tl='tmux list-sessions'
 alias tx='tmux kill-session -t'
+alias lft1='ssh lft@10.20.25.129'
+alias lft2='ssh lft@192.168.1.107'
 
 # ruby
 alias be='bundle exec'

@@ -519,6 +519,16 @@
   :ensure t
   :commands company-lsp)
 
+(use-package whitespace
+  :ensure t
+  :bind
+  ("C-c e c" . whitespace-cleanup)
+  :hook ((prog-mode conf-mode) . whitespace-mode)
+  :config
+  (setq whitespace-action '(auto-cleanup))
+  (setq whitespace-style '(face trailing empty lines-tail))
+  :delight)
+
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 (prefer-coding-system 'utf-8)
