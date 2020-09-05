@@ -78,7 +78,7 @@
 (when (my/x220-laptop-p)
       (require 'exwm)
       (require 'exwm-config)
-      ;;(exwm-config-default)
+      (exwm-config-default)
       (require 'exwm-randr)
       (setq exwm-workspace-number 9)
       (setq exwm-randr-workspace-output-plist '(0 "VGA1"))
