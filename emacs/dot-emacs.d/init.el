@@ -121,8 +121,9 @@
    custom-file "~/.emacs.d/custom.el")
 
 
-(setq-default indent-tab-modes nil)
-(setq-default tab-always-indent 'complete)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+;;(setq-default tab-always-indent 'complete)
 
 (load-file custom-file)
 
@@ -555,7 +556,7 @@
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
 (add-to-list 'default-frame-alist
-             '(font . "M+ 2m-9")) 
+             '(font . "M+ 2m-10")) 
 
 (file-extensions)
 (ido-mode 1)
