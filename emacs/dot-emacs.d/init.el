@@ -268,7 +268,9 @@
   :ensure t
   :commands elixir-mode
   :config
-  (add-hook 'elixir-mode-hook 'company-mode))
+  (add-hook 'elixir-mode-hook 'company-mode)
+  (add-hook 'elixir-mode-hook
+            (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
 
 ;; clojure
 (use-package cider
