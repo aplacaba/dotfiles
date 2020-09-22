@@ -80,6 +80,7 @@
       (require 'exwm-config)
       (exwm-config-default)
       (require 'exwm-randr)
+      (setq exwm-workspace-number 9)
       (setq exwm-randr-workspace-output-plist '(0 "VGA1"))
       (add-hook 'exwm-randr-screen-change-hook #'exwm-change-screen-hook)
       (exwm-input-set-key (kbd "<XF86AudioLowerVolume>")
@@ -120,8 +121,9 @@
    custom-file "~/.emacs.d/custom.el")
 
 
-(setq-default indent-tab-modes nil)
-(setq-default tab-always-indent 'complete)
+(setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
+;;(setq-default tab-always-indent 'complete)
 
 (load-file custom-file)
 
@@ -202,18 +204,15 @@
 			   "~/gtd/inbox.org"
 			   "~/gtd/tickler.org"))
   (setq org-agenda-custom-commands
-      '(("h" "Agenda and Home-related tasks"
-         ((agenda "")
-          (tags-todo "@study")
-          (tags "study")))
-	("p" "Agenda and Home-related tasks"
+      '(
+	("p" "Agenda and Personal-related tasks"
          ((agenda "")
           (tags-todo "@personal")
           (tags "@books")))
         ("o" "Agenda and Office-related tasks"
          ((agenda "")
           (tags-todo "@work")
-          (tags '("@office" "@lft"))))))
+          (tags "@projects")))))
   (setq org-capture-templates '(("t" "Todo [inbox]" entry
                                (file+headline "~/gtd/inbox.org" "Tasks")
                                "* TODO %i%?")
@@ -269,7 +268,9 @@
   :ensure t
   :commands elixir-mode
   :config
-  (add-hook 'elixir-mode-hook 'company-mode))
+  (add-hook 'elixir-mode-hook 'company-mode)
+  (add-hook 'elixir-mode-hook
+            (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
 
 ;; clojure
 (use-package cider
@@ -567,13 +568,16 @@
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
 (add-to-list 'default-frame-alist
-             '(font . "M+ 2m-9")) 
+             '(font . "M+ 2m-10")) 
 
 (file-extensions)
 (ido-mode 1)
 (ws-butler-mode 1)
 (display-time-mode 1)
 
+;; display work agendas
+
+(org-agenda "a" "o")
 (provide 'init)
 ;;; init.el ends here
 
