@@ -137,6 +137,8 @@
 
 (set-fill-column 120)
 
+;; bindings
+
 (global-set-key (kbd "C-x C-n") nil)
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
@@ -151,7 +153,8 @@
 (global-set-key [C-f9] 'delete-window)
 (global-set-key (kbd "<f7>") 'winner-undo)
 (global-set-key (kbd "C-<f7>") 'winner-redo)
-(define-key global-map [remap list-buffers] 'bs-show)
+(global-set-key (kbd "C-x b") 'counsel-switch-buffer)
+(define-key global-map [remap list-buffers] 'ibuffer)
 
 ;; smartparens
 (use-package smartparens
