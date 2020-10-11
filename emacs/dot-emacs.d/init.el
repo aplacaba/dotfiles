@@ -523,6 +523,14 @@
   :ensure t
   :commands company-lsp)
 
+(use-package moody
+  :ensure t
+  :custom
+  (x-underline-at-descent-line t)
+  :config
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
+
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 (prefer-coding-system 'utf-8)
@@ -538,8 +546,6 @@
 		(lambda () (interactive (start-process "" nil "slock"))))
 
 (add-hook 'after-init-hook 'global-company-mode)
-(define-key global-map [remap list-buffers] 'bs-show)
-;;(define-key global-map [remap list-buffers] 'ibuffer)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (defun dired-mode-buffers-p (buf)
