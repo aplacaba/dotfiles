@@ -527,6 +527,7 @@
   :ensure t
   :custom
   (x-underline-at-descent-line t)
+  (moody-mode-line-height 18)
   :config
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
