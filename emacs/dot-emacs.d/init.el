@@ -442,13 +442,15 @@
   :ensure t
   :commands diminish
   :init
-  (diminish 'flycheck)
+  (diminish 'smartparens-mode)
+  (diminish 'auto-revert-mode)
+  (diminish 'company-mode)
+  (diminish 'flycheck-mode)
   (diminish 'flymake)
-  (diminish 'company)
   (diminish 'eldoc-mode)
   (diminish 'projectile-mode)
   (diminish 'sp-mode)
-  (diminish 'wk-mode))
+  (diminish 'which-key-mode))
 
 (use-package ibuffer-projectile
   :ensure t
