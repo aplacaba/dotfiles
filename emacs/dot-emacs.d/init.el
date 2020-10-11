@@ -89,9 +89,7 @@
                 (lambda () (interactive) (shell-command "amixer set Master 5%+")))
       (exwm-input-set-key (kbd "<XF86AudioMute>")
 			  (lambda () (interactive) (shell-command "amixer set Master 1+ toggle")))
-      (exwm-randr-enable)
-      (display-time-mode t)
-      (display-battery-mode t))
+      (exwm-randr-enable))
 
 (setq
    ;; No need to see GNU agitprop.
@@ -266,14 +264,24 @@
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+
 ;; elixir
+
+(setq elixir-format-arguments (list "--dot-formatter" "~/.formatter.exs"))
+
 (use-package elixir-mode
   :ensure t
   :commands elixir-mode
   :config
   (add-hook 'elixir-mode-hook 'company-mode)
-  (add-hook 'elixir-mode-hook
-            (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
+  (add-hook 'elixir-format-hook
+            (lambda ()
+              (if (projectile-project-p)
+                  (setq elixir-format-arguments
+                        (list "--dot-formatter"
+                              (concat (locate-dominating-file buffer-file-name ".formatter.exs") ".formatter.exs")))
+                (setq elixir-format-arguments nil)))))
+  
 
 ;; clojure
 (use-package cider
@@ -456,6 +464,13 @@
   :ensure t
   :defer)
 
+(use-package fancy-battery
+  :ensure t
+  :config
+  (setq fancy-battery-show-percentage t)
+  :hook
+  (after-init . fancy-battery-mode))
+
 (use-package ibuffer
   :config
   (add-hook 'ibuffer-hook
@@ -575,11 +590,9 @@
 (file-extensions)
 (ido-mode 1)
 (ws-butler-mode 1)
-(display-time-mode 1)
 
 ;; display work agendas
 
 (org-agenda "a" "o")
 (provide 'init)
 ;;; init.el ends here
-
