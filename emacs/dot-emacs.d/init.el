@@ -58,7 +58,7 @@
   (cond ((equal (system-name) "aemacs")
 	 (start-process-shell-command
 	  "xrandr" nil "xrandr --output VGA1 --left-of LVDS1 --auto"))
-	(t 
+	(t
 	 (let ((xrandr-output-regexp "\n\\([^ ]+\\) connected ")
 	       default-output)
 	   (with-temp-buffer
@@ -89,9 +89,7 @@
                 (lambda () (interactive) (shell-command "amixer set Master 5%+")))
       (exwm-input-set-key (kbd "<XF86AudioMute>")
 			  (lambda () (interactive) (shell-command "amixer set Master 1+ toggle")))
-      (exwm-randr-enable)
-      (display-time-mode t)
-      (display-battery-mode t))
+      (exwm-randr-enable))
 
 (setq
    ;; No need to see GNU agitprop.
@@ -137,6 +135,8 @@
 
 (set-fill-column 120)
 
+;; bindings
+
 (global-set-key (kbd "C-x C-n") nil)
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
@@ -151,7 +151,8 @@
 (global-set-key [C-f9] 'delete-window)
 (global-set-key (kbd "<f7>") 'winner-undo)
 (global-set-key (kbd "C-<f7>") 'winner-redo)
-(define-key global-map [remap list-buffers] 'bs-show)
+(global-set-key (kbd "C-x b") 'counsel-switch-buffer)
+(define-key global-map [remap list-buffers] 'ibuffer)
 
 ;; smartparens
 (use-package smartparens
@@ -185,7 +186,7 @@
   :ensure t
   :init
   (global-flycheck-mode))
-  
+
 ;; avy
 (use-package avy
   :ensure t
@@ -243,7 +244,7 @@
 (use-package markdown-mode
   :ensure t)
 
-;; emmet 
+;; emmet
 (use-package emmet-mode
   :ensure t)
 
@@ -263,14 +264,24 @@
   :config
   (add-hook 'after-init-hook #'global-flycheck-mode))
 
+
 ;; elixir
+
+(setq elixir-format-arguments (list "--dot-formatter" "~/.formatter.exs"))
+
 (use-package elixir-mode
   :ensure t
   :commands elixir-mode
   :config
   (add-hook 'elixir-mode-hook 'company-mode)
-  (add-hook 'elixir-mode-hook
-            (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
+  (add-hook 'elixir-format-hook
+            (lambda ()
+              (if (projectile-project-p)
+                  (setq elixir-format-arguments
+                        (list "--dot-formatter"
+                              (concat (locate-dominating-file buffer-file-name ".formatter.exs") ".formatter.exs")))
+                (setq elixir-format-arguments nil)))))
+
 
 ;; clojure
 (use-package cider
@@ -394,7 +405,7 @@
   (setq switch-window-shortcut-style 'qwerty)
   (setq switch-window-input-style 'minibuffer)
   (global-set-key (kbd "C-x o") 'switch-window))
-  
+
 
 ;; terminal
 (use-package vterm
@@ -425,7 +436,7 @@
   ("C-k" . crux-smart-kill-line)
   ("C-c n" . crux-cleanup-buffer-or-region)
   ("C-c f" . crux-recentf-find-file)
-  ("C-a" . crux-move-beginning-of-line)) 
+  ("C-a" . crux-move-beginning-of-line))
 
 ;; guide for key combinations
 (use-package which-key
@@ -439,17 +450,26 @@
   :ensure t
   :commands diminish
   :init
-  (diminish 'flycheck)
+  (diminish 'smartparens-mode)
+  (diminish 'auto-revert-mode)
+  (diminish 'company-mode)
+  (diminish 'flycheck-mode)
   (diminish 'flymake)
-  (diminish 'company)
   (diminish 'eldoc-mode)
   (diminish 'projectile-mode)
   (diminish 'sp-mode)
-  (diminish 'wk-mode))
+  (diminish 'which-key-mode))
 
 (use-package ibuffer-projectile
   :ensure t
   :defer)
+
+(use-package fancy-battery
+  :ensure t
+  :config
+  (setq fancy-battery-show-percentage t)
+  :hook
+  (after-init . fancy-battery-mode))
 
 (use-package ibuffer
   :config
@@ -530,6 +550,15 @@
   (setq whitespace-style '(face trailing empty lines-tail))
   :delight)
 
+(use-package moody
+  :ensure t
+  :custom
+  (x-underline-at-descent-line t)
+  (moody-mode-line-height 18)
+  :config
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
+
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 (prefer-coding-system 'utf-8)
@@ -545,8 +574,6 @@
 		(lambda () (interactive (start-process "" nil "slock"))))
 
 (add-hook 'after-init-hook 'global-company-mode)
-(define-key global-map [remap list-buffers] 'bs-show)
-;;(define-key global-map [remap list-buffers] 'ibuffer)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (defun dired-mode-buffers-p (buf)
@@ -568,16 +595,14 @@
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
 (add-to-list 'default-frame-alist
-             '(font . "M+ 2m-10")) 
+             '(font . "M+ 2m-10"))
 
 (file-extensions)
 (ido-mode 1)
 (ws-butler-mode 1)
-(display-time-mode 1)
 
 ;; display work agendas
 
 (org-agenda "a" "o")
 (provide 'init)
 ;;; init.el ends here
-

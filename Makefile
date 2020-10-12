@@ -19,3 +19,6 @@ zsh:
 emacs:
 	stow --dotfiles emacs
 
+exformater:
+	stow --dotfiles exformatter
+
