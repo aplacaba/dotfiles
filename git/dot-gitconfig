@@ -16,3 +16,5 @@
 	rb = rebase
 	rbi = rebase -i
 	gr = grep --break --heading -n
+[pull]
+	rebase = false
