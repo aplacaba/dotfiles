@@ -24,8 +24,8 @@
 
 (defun my/x220-laptop-p ()
   (or (equal (system-name) "aemacs")
-      (equal (system-name) "aplacaba")
-      (equal (system-name) "thinkpad")))
+      (equal (system-name) "aplacaba")))
+      
 
 (defun my-packages-installed-p ()
   (cl-loop for p in my-packages
