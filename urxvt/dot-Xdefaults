@@ -61,5 +61,6 @@ URxvt*color13: #f78fe7
 URxvt*color6: #00d3d0
 URxvt*color14: #4ae8fc
 
-emacs.font: Dejavu Sans Mono:Book-10
+! emacs.font: Dejavu Sans Mono:Book-10
+emacs.font: M+ 2m-10
 
