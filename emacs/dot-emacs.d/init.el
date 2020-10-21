@@ -25,7 +25,7 @@
 (defun my/x220-laptop-p ()
   (or (equal (system-name) "aemacs")
       (equal (system-name) "aplacaba")))
-      
+
 
 (defun my-packages-installed-p ()
   (cl-loop for p in my-packages
@@ -458,6 +458,7 @@
   (diminish 'eldoc-mode)
   (diminish 'projectile-mode)
   (diminish 'sp-mode)
+  (diminish 'whitespace-mode)
   (diminish 'which-key-mode))
 
 (use-package ibuffer-projectile
@@ -499,7 +500,7 @@
   :defer t
   :ensure t
   :commands lsp
-  :diminish lsp-moadde
+  :diminish lsp-mode
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
 	 (elixir-mode . lsp-deferred)
 	 (python-mode . lsp-deferred)
@@ -593,7 +594,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (global-auto-revert-mode -1)
-(load-theme 'modus-vivendi t)
+(load-theme 'modus-operandi t)
 (add-to-list 'default-frame-alist
              '(font . "M+ 2m-10"))
 
