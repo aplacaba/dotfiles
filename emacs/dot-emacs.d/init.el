@@ -329,6 +329,13 @@
   (add-hook 'rust-mode-hook #'smartparens-mode)
   (add-hook 'rust-mode-hook #'racer-mode))
 
+;; robe for ruby / rails
+(use-package robe
+  :ensure t
+  :config
+  (add-hook 'ruby-mode-hook #'robe-mode))
+
+
 ;; json-mode
 (use-package json-mode
   :ensure t)
@@ -574,9 +581,6 @@
 (global-set-key (kbd "s-l")
 		(lambda () (interactive (start-process "" nil "slock"))))
 
-(add-hook 'after-init-hook 'global-company-mode)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
 (defun dired-mode-buffers-p (buf)
   "Non-nil if buffer BUF is in `dired-mode'."
   (with-current-buffer buf
@@ -587,7 +591,9 @@
 (add-to-list 'ibuffer-never-show-predicates "^\\magit")
 (add-to-list 'ibuffer-never-show-predicates "^\\*")
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-hook 'after-init-hook 'global-company-mode)
+
+;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
