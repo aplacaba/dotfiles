@@ -48,6 +48,7 @@
     (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
+    (add-to-list 'auto-mode-alist '("\\.erb?\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.org?\\'" . org-mode))
     (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
     (add-to-list 'interpreter-mode-alist '("node" . js2-mode)))
