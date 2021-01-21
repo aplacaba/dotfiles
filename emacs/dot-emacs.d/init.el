@@ -1,4 +1,5 @@
 ;;; package --- .emacs
+
 ;;; Commentary:
 ;;; Code:
 
@@ -336,6 +337,11 @@
   :config
   (add-hook 'ruby-mode-hook #'robe-mode))
 
+(use-package rubocop
+  :ensure t
+  :config
+  (add-hook 'ruby-mode-hook #'rubocop-mode))
+
 
 ;; json-mode
 (use-package json-mode
@@ -602,8 +608,12 @@
 (set-keyboard-coding-system 'utf-8)
 (global-auto-revert-mode -1)
 (load-theme 'modus-operandi t)
+;; (add-to-list 'default-frame-alist
+;;              '(font . "M+ 2m-10"))
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Mononoki-11"))
 (add-to-list 'default-frame-alist
-             '(font . "M+ 2m-10"))
+             '(font . "Iosevka Term-11"))
 
 (file-extensions)
 (ido-mode 1)
