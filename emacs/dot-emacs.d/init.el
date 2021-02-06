@@ -574,6 +574,9 @@
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode))
 
+(use-package jenkinsfile-mode
+  :ensure t)
+
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 (prefer-coding-system 'utf-8)
@@ -600,7 +603,7 @@
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
 (add-hook 'after-init-hook 'global-company-mode)
 
-;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -613,7 +616,7 @@
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Mononoki-11"))
 (add-to-list 'default-frame-alist
-             '(font . "Iosevka Term-11"))
+             '(font . "Iosevka Term Medium-10"))
 
 (file-extensions)
 (ido-mode 1)
@@ -621,6 +624,6 @@
 
 ;; display work agendas
 
-(org-agenda "a" "o")
+;;(org-agenda "a" "o")
 (provide 'init)
 ;;; init.el ends here
