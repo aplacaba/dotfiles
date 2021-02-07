@@ -8,6 +8,7 @@
 - emacs v2.6
 - stow v2.3
 - rxvt-unicode
+- libvterm
 
 ** Installation
 #+BEGIN_SRC 
