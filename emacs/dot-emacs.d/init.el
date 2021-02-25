@@ -1,7 +1,5 @@
 ;;; package --- .emacs
-
-;;; Commentary:
-;;; Code:
+;;; Commentary: My emacs configuration file
 
 ;; My emacs configuration file
 ;; alacaba@fastmail.com
@@ -10,7 +8,6 @@
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (if (fboundp 'tooltip-mode) (tooltip-mode -1))
-
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
@@ -135,7 +132,7 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p) ; Accept 'y' in lieu of 'yes'.
 
-(set-fill-column 120)
+(setq-default fill-column 120)
 
 ;; bindings
 
@@ -227,6 +224,8 @@
   (global-set-key (kbd "C-c c") 'org-capture)
   (setq org-todo-keywords
         '((sequence "NEXT" "BLOCKED" "TODO" "DONE"))))
+
+(add-hook 'org-mode-hook #'auto-fill-mode)
 
 (use-package org-tempo)
 (use-package ob-clojure)
@@ -337,10 +336,10 @@
   :config
   (add-hook 'ruby-mode-hook #'robe-mode))
 
-(use-package rubocop
-  :ensure t
-  :config
-  (add-hook 'ruby-mode-hook #'rubocop-mode))
+;; (use-package rubocop
+;;   :ensure t
+;;   :config
+;;   (add-hook 'ruby-mode-hook #'rubocop-mode))
 
 
 ;; json-mode
@@ -473,7 +472,8 @@
   (diminish 'projectile-mode)
   (diminish 'sp-mode)
   (diminish 'whitespace-mode)
-  (diminish 'which-key-mode))
+  (diminish 'which-key-mode)
+  (diminish 'ws-butler))
 
 (use-package ibuffer-projectile
   :ensure t
@@ -507,53 +507,12 @@
 (use-package ws-butler
   :ensure t)
 
-;; lsp-mode
-(setq lsp-keymap-prefix "C-c l")
+;; eglot
 
-(use-package lsp-mode
-  :defer t
-  :ensure t
-  :commands lsp
-  :diminish lsp-mode
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-	 (elixir-mode . lsp-deferred)
-	 (python-mode . lsp-deferred)
-	 (js2-mode . lsp-deferred)
-	 (ruby-mode . lsp-deferred)
-	 ;; if you want which-key integration
-	 (lsp-mode . lsp-enable-which-key-integration))
-  :init
-  (add-to-list 'exec-path "~/language-servers/elixir-ls/release/")
-  (add-to-list 'exec-path "~/.asdf/shims/"))
-
-(defvar lsp-elixir--config-options (make-hash-table))
-  (add-hook 'lsp-after-initialize-hook
-            (lambda ()
-              (lsp--set-configuration `(:elixirLS, lsp-elixir--config-options))))
-
-(use-package lsp-ivy
-  :defer t
-  :ensure t
-  :commands lsp-ivy-workspace-symbol)
-
-(use-package lsp-ui
-  :defer t
+(use-package eglot
   :ensure t
   :config
-  (setq
-   lsp-ui-sideline-enable nil
-   lsp-ui-doc-enable nil
-   lsp-eldoc-hook nil))
-
-;; optionally if you want to use debugger
-;; (use-package dap-mode
-;;   :defer t
-;;   :ensure t)
-
-(use-package company-lsp
-  :defer t
-  :ensure t
-  :commands company-lsp)
+  (add-hook 'prog-mode-hook 'eglot-ensure))
 
 (use-package whitespace
   :ensure t
@@ -565,14 +524,14 @@
   (setq whitespace-style '(face trailing empty lines-tail))
   :delight)
 
-(use-package moody
-  :ensure t
-  :custom
-  (x-underline-at-descent-line t)
-  (moody-mode-line-height 18)
-  :config
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode))
+;; (use-package moody
+;;   :ensure t
+;;   :custom
+;;   (x-underline-at-descent-line t)
+;;   (moody-mode-line-height 18)
+;;   :config
+;;   (moody-replace-mode-line-buffer-identification)
+;;   (moody-replace-vc-mode))
 
 (use-package jenkinsfile-mode
   :ensure t)
@@ -615,12 +574,20 @@
 ;;              '(font . "M+ 2m-10"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Mononoki-11"))
+;; (add-to-list 'default-frame-alist
+;;              '(font . "Iosevka Term Medium-11"))
 (add-to-list 'default-frame-alist
-             '(font . "Iosevka Term Medium-10"))
+              '(font . "Hack-9"))
+
 
 (file-extensions)
 (ido-mode 1)
 (ws-butler-mode 1)
+
+;; (setq geiser-mit-binary "/usr/bin/scheme")
+;; (setq geiser-active-implementations '(mit))
+;;(setq scheme-program-name  "/usr/bin/scheme")
+(setq geiser-guile-binary "/usr/bin/guile2.2")
 
 ;; display work agendas
 
