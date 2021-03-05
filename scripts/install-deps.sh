@@ -4,7 +4,7 @@ sudo dnf update -y
 
 # ruby deps
 echo "Installing deps"
-sudo dnf install -y gcc make bzip2 openssl-devel libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel make automake autoconf gcc gcc-c++ ImageMagick libpng-devel zlib-devel poppler-glib-devel libvterm
+sudo dnf install -y gcc make bzip2 openssl-devel libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel make automake autoconf gcc gcc-c++ ImageMagick libpng-devel zlib-devel poppler-glib-devel libvterm ripgrep
 
 # postgres, redis
 echo "Installing postgres, redis, erlang"
@@ -13,6 +13,9 @@ sudo dnf install -y postgresql postgresql-devel redis curl git erlang clojure er
 echo "Hack fonts"
 sudo dnf copr enable zawertun/hack-fonts
 sudo dnf install hack-fonts -f
+
+echo "Enable services"
+sudo systemctl enable redis postgresql
 
 # Setting asdf
 echo "Setting up asdf"

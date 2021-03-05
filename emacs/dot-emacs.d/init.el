@@ -388,7 +388,6 @@
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
-
 ;; modus dark themes
 (use-package modus-vivendi-theme
   :ensure t)
@@ -569,15 +568,17 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (global-auto-revert-mode -1)
-(load-theme 'modus-operandi t)
+(load-theme 'modus-vivendi t)
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "M+ 2m-10"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Mononoki-11"))
 ;; (add-to-list 'default-frame-alist
 ;;              '(font . "Iosevka Term Medium-11"))
+;; (add-to-list 'default-frame-alist
+;;               '(font . "Hack-9"))
 (add-to-list 'default-frame-alist
-              '(font . "Hack-9"))
+               '(font . "Dejavue Sans Mono Book-9"))
 
 
 (file-extensions)
