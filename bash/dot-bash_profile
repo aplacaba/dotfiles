@@ -1,0 +1,25 @@
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+#  aliases
+## git
+alias g='git'
+alias gc='git commit -v'
+alias gs='git status'
+
+## ruby
+alias be='bundle exec'
+
+## utils
+alias xcopy='xclip -sel clip'
+
+# end aliases
+
+# User specific environment and startup programs
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash

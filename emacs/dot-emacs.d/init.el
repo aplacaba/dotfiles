@@ -578,7 +578,7 @@
 ;; (add-to-list 'default-frame-alist
 ;;               '(font . "Hack-9"))
 (add-to-list 'default-frame-alist
-               '(font . "Dejavue Sans Mono Book-9"))
+               '(font . "DejaVu Sans Mono-9"))
 
 
 (file-extensions)
