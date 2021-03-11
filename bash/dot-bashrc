@@ -11,6 +11,11 @@ then
     PATH="$HOME/.local/bin:$HOME/bin:$PATH"
 fi
 
+# bash_profile
+if [ -f ~/.bash_profile ]; then
+	. ~/.bash_profile
+fi
+
 _GREEN=$(tput setaf 2)
 _BLUE=$(tput setaf 4)
 _RED=$(tput setaf 1)
