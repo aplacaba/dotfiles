@@ -16,13 +16,6 @@ if [ -f ~/.bash_profile ]; then
 	. ~/.bash_profile
 fi
 
-_GREEN=$(tput setaf 2)
-_BLUE=$(tput setaf 4)
-_RED=$(tput setaf 1)
-_RESET=$(tput sgr0)
-_BOLD=$(tput bold)
-export PS1="${_BOLD}${_GREEN}\h ${_BLUE}(\w)${_GREEN} ${_BOLD}λ ${_RESET}"
-
 export PATH
 # Uncomment the following line if you don't like systemctl's auto-paging feature:
 # export SYSTEMD_PAGER=

@@ -14,6 +14,18 @@ alias xcopy='xclip -sel clip'
 
 # end aliases
 
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+_GREEN=$(tput setaf 2)
+_BLUE=$(tput setaf 4)
+_RED=$(tput setaf 1)
+_RESET=$(tput sgr0)
+_BOLD=$(tput bold)
+
+export PS1="\w ${_BOLD}${_RED}\$(parse_git_branch) ${_GREEN}λ ${_RESET}"
+
 # User specific environment and startup programs
 
 . $HOME/.asdf/asdf.sh
