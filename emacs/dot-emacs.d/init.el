@@ -569,16 +569,8 @@
 (set-keyboard-coding-system 'utf-8)
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
-;; (add-to-list 'default-frame-alist
-;;              '(font . "M+ 2m-10"))
-;; (add-to-list 'default-frame-alist
-;;              '(font . "Mononoki-11"))
-;; (add-to-list 'default-frame-alist
-;;              '(font . "Iosevka Term Medium-11"))
-;; (add-to-list 'default-frame-alist
-;;               '(font . "Hack-9"))
 (add-to-list 'default-frame-alist
-               '(font . "DejaVu Sans Mono-9"))
+               '(font . "DejaVu Sans Mono-10:antialias=true:hinting=false"))
 
 
 (file-extensions)
