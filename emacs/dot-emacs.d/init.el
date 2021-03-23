@@ -145,7 +145,7 @@
 (global-set-key (kbd "C-x <tab>") 'windmove-right)
 (global-set-key (kbd "C-x <backtab>") 'windmove-left)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-x <f2>") 'rename-buffer)
+(global-set-key (kbd "s-r") 'rename-buffer)
 (global-set-key [f9] 'delete-other-windows)
 (global-set-key [C-f9] 'delete-window)
 (global-set-key (kbd "<f7>") 'winner-undo)
@@ -389,11 +389,7 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
 ;; modus dark themes
-(use-package modus-vivendi-theme
-  :ensure t)
-
-;; modus light theme
-(use-package modus-operandi-theme
+(use-package modus-themes
   :ensure t)
 
 (use-package ripgrep
@@ -423,7 +419,7 @@
 (use-package vterm
   :ensure t
   :config
-  (setq vterm-max-scrollback 10000)
+  (setq vterm-max-scrollback 10000))
   (setq vterm-kill-buffer-on-exit t))
 
 (use-package vterm-toggle
@@ -569,16 +565,8 @@
 (set-keyboard-coding-system 'utf-8)
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
-;; (add-to-list 'default-frame-alist
-;;              '(font . "M+ 2m-10"))
-;; (add-to-list 'default-frame-alist
-;;              '(font . "Mononoki-11"))
-;; (add-to-list 'default-frame-alist
-;;              '(font . "Iosevka Term Medium-11"))
-;; (add-to-list 'default-frame-alist
-;;               '(font . "Hack-9"))
 (add-to-list 'default-frame-alist
-               '(font . "DejaVu Sans Mono-9"))
+               '(font . "DejaVu Sans Mono-13:antialias=true:hinting=false"))
 
 
 (file-extensions)
