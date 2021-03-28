@@ -1,8 +1,9 @@
-;;; package --- .emacs
-;;; Commentary: My emacs configuration file
-
-;; My emacs configuration file
+;;; package --- emacs
+;;; Commentary:
+;; My Emacs configuration file
 ;; alacaba@fastmail.com
+
+;;; Code:
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -523,19 +524,8 @@
   (setq whitespace-style '(face trailing empty lines-tail))
   :delight)
 
-;; (use-package moody
-;;   :ensure t
-;;   :custom
-;;   (x-underline-at-descent-line t)
-;;   (moody-mode-line-height 18)
-;;   :config
-;;   (moody-replace-mode-line-buffer-identification)
-;;   (moody-replace-vc-mode))
-
 (use-package jenkinsfile-mode
   :ensure t)
-
-;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -561,7 +551,7 @@
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
 (add-hook 'after-init-hook 'global-company-mode)
 
-;; (add-to-list 'default-frame-alist '(fullscreen . maximized))
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -570,7 +560,7 @@
 (global-auto-revert-mode -1)
 (load-theme 'modus-vivendi t)
 (add-to-list 'default-frame-alist
-               '(font . "DejaVu Sans Mono-10:antialias=true:hinting=false"))
+               '(font . "DejaVu Sans Mono-9:antialias=true:hinting=false"))
 
 
 (file-extensions)
@@ -586,4 +576,5 @@
 
 ;;(org-agenda "a" "o")
 (provide 'init)
+
 ;;; init.el ends here
