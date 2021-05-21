@@ -5,7 +5,7 @@
 alias g='git'
 alias gc='git commit -v'
 alias gs='git status'
-alias ls='ls -ll'
+alias ls='ls -ll --color=auto'
 
 ## ruby
 alias be='bundle exec'
@@ -25,7 +25,7 @@ _RED=$(tput setaf 1)
 _RESET=$(tput sgr0)
 _BOLD=$(tput bold)
 
-export PS1="${_BLUE}\$PWD ${_BOLD}${_GREEN}\$(parse_git_branch) ${_GREEN}\nλ ${_RESET}"
+export PS1="${_BLUE}\w ${_BOLD}${_GREEN}\$(parse_git_branch) ${_GREEN}\nλ ${_RESET}"
 
 # User specific environment and startup programs
 

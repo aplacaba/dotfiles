@@ -121,6 +121,13 @@
 
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
+;; Minimize garbage collection during startup
+(setq gc-cons-threshold most-positive-fixnum)
+
+;; Lower threshold back to 8 MiB (default is 800kB)
+(add-hook 'emacs-startup-hook
+          (lambda ()
+            (setq gc-cons-threshold (expt 2 23))))
 ;;(setq-default tab-always-indent 'complete)
 
 (load-file custom-file)
@@ -146,7 +153,6 @@
 (global-set-key (kbd "C-x <tab>") 'windmove-right)
 (global-set-key (kbd "C-x <backtab>") 'windmove-left)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-x <f2>") 'rename-buffer)
 (global-set-key [f9] 'delete-other-windows)
 (global-set-key [C-f9] 'delete-window)
 (global-set-key (kbd "<f7>") 'winner-undo)
@@ -169,7 +175,8 @@
   :config
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   :bind
-  (("C-M-g" . magit-status)))
+  (("C-M-g" . magit-status))
+  (("C-x g" . magit-status)))
 
 ;; company
 (use-package company
@@ -527,6 +534,11 @@
 (use-package jenkinsfile-mode
   :ensure t)
 
+(use-package rainbow-delimiters
+  :ensure t
+  :hook
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -535,7 +547,7 @@
 ;; Custom bindings
 (global-set-key (kbd "C-x #") 'global-display-line-numbers-mode)
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-x <f2>") 'rename-buffer)
+(global-set-key (kbd "s-r") 'rename-buffer)
 (global-set-key (kbd "s-l")
 		(lambda () (interactive (start-process "" nil "slock"))))
 
@@ -551,30 +563,25 @@
 (add-to-list 'ibuffer-never-show-predicates #'dired-mode-buffers-p)
 (add-hook 'after-init-hook 'global-company-mode)
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+;;(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (global-auto-revert-mode -1)
-(load-theme 'modus-vivendi t)
-(add-to-list 'default-frame-alist
-               '(font . "DejaVu Sans Mono-9:antialias=true:hinting=false"))
-
-
+(load-theme 'modus-operandi t)
 (file-extensions)
 (ido-mode 1)
 (ws-butler-mode 1)
 
-;; (setq geiser-mit-binary "/usr/bin/scheme")
-;; (setq geiser-active-implementations '(mit))
-;;(setq scheme-program-name  "/usr/bin/scheme")
+;;(set-face-attribute 'default nil :font "DejaVu Sans Mono-10")
+;;(set-frame-font "Dejavu Sans Mono-9" nil t)
+
+(set-face-attribute 'default nil  :height 90)
+
 (setq geiser-guile-binary "/usr/bin/guile2.2")
+(setq geiser-default-implementation 'guile)
 
-;; display work agendas
-
-;;(org-agenda "a" "o")
 (provide 'init)
-
 ;;; init.el ends here
