@@ -396,12 +396,8 @@
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
 
-;; modus dark themes
-(use-package modus-vivendi-theme
-  :ensure t)
-
-;; modus light theme
-(use-package modus-operandi-theme
+;; modus themes
+(use-package modus-themes
   :ensure t)
 
 (use-package ripgrep
@@ -570,7 +566,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (global-auto-revert-mode -1)
-(load-theme 'modus-operandi t)
+(load-theme 'modus-vivendi t)
 (file-extensions)
 (ido-mode 1)
 (ws-butler-mode 1)
