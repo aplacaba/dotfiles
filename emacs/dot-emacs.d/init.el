@@ -344,12 +344,6 @@
   :config
   (add-hook 'ruby-mode-hook #'robe-mode))
 
-;; (use-package rubocop
-;;   :ensure t
-;;   :config
-;;   (add-hook 'ruby-mode-hook #'rubocop-mode))
-
-
 ;; json-mode
 (use-package json-mode
   :ensure t)
@@ -412,8 +406,7 @@
    (setq elfeed-feeds
         '(("http://news.ycombinator.com/rss" HN)
           ("https://protesilaos.com/codelog.xml" prot)
-	  ("https://manila.craigslist.org/search/sof?format=rss" CL))))
-
+	      ("https://manila.craigslist.org/search/sof?format=rss" CL))))
 
 (use-package switch-window
   :ensure t
@@ -533,7 +526,7 @@
 (use-package rainbow-delimiters
   :ensure t
   :hook
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  ((prog-mode) . (rainbow-delimiters-mode)))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -566,7 +559,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (global-auto-revert-mode -1)
-(load-theme 'modus-vivendi t)
+(load-theme 'modus-vivendi)
 (file-extensions)
 (ido-mode 1)
 (ws-butler-mode 1)
@@ -578,6 +571,9 @@
 
 (setq geiser-guile-binary "/usr/bin/guile2.2")
 (setq geiser-default-implementation 'guile)
+
+(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
+(add-to-list 'default-frame-alist '(alpha . (85 . 50)))
 
 (provide 'init)
 ;;; init.el ends here
