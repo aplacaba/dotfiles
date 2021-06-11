@@ -572,8 +572,8 @@
 (setq geiser-guile-binary "/usr/bin/guile2.2")
 (setq geiser-default-implementation 'guile)
 
-(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
-(add-to-list 'default-frame-alist '(alpha . (85 . 50)))
+(set-frame-parameter (selected-frame) 'alpha '(90 . 80))
+(add-to-list 'default-frame-alist '(alpha . (90 . 80)))
 
 (provide 'init)
 ;;; init.el ends here
