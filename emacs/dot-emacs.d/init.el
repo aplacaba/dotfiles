@@ -30,11 +30,11 @@
  custom-safe-themes t
  kill-whole-line t
  case-fold-search nil
- global-hl-line-mode 1
  ring-bell-function 'ignore
  fill-column 120
  ;; no lock files
  create-lockfiles nil
+ auto-save-default nil
  custom-file "~/.emacs.d/custom.el"
  initial-major-mode 'org-mode)
 
@@ -135,7 +135,6 @@
 ;; custom keybindings
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "s-r") 'rename-buffer)
-(global-set-key (kbd "C-x b") 'ibuffer)
 (global-set-key (kbd "C-x b") 'counsel-switch-buffer)
 (define-key global-map [remap list-buffers] 'ibuffer)
 
@@ -194,7 +193,11 @@
   :commands web-mode
   :hook
   (web-mode . emmet-mode)
-  (web-mode . company-mode))
+  (web-mode . company-mode)
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-code-indent-offset 2))
 
 
 (use-package js2-mode
@@ -211,6 +214,10 @@
   (interactive)
   (tide-setup)
   (flycheck-mode +1)
+  (tide-hl-identifier-mode +1)
+  (setq web-mode-enable-auto-quoting nil)
+  (setq web-mode-attr-value-indent-offset 2)
+  (setq typescript-indent-level 2)
   (setq flycheck-check-syntax-automatically '(save mode enabled))
   (tide-hl-identifier-mode +1)
   (company-mode +1))
@@ -323,6 +330,9 @@
 (set-keyboard-coding-system 'utf-8)
 (electric-pair-mode +1)
 (projectile-mode +1)
+(global-auto-revert-mode -1)
+(global-hl-line-mode +1)
+
 
 (provide 'init)
 ;;; init.el ends here
