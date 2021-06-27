@@ -24,7 +24,7 @@
 (when (eq system-type 'darwin)
   (set-face-attribute 'default nil
                       :height 100
-                      :font "Iosevka Term Extended-13:weight=bold")
+                      :font "Iosevka Term Extended-12:weight=bold")
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
   (exec-path-from-shell-initialize))
@@ -215,6 +215,15 @@
 
 (use-package tide
   :ensure t
+  :config
+  (setq tide-format-options
+	'(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t
+	  :placeOpenBraceOnNewLineForFunctions nil
+	  :indentSize 2
+	  :tabSize 2
+	  :insertSpaceBeforeFunctionParenthesis t
+	  :insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces t))
+  
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
