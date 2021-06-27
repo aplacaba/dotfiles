@@ -1,1 +1,9 @@
 vim/.vim/*
+
+emacs/dot-emacs.d/elpa
+emacs/dot-emacs.d/session.*
+emacs/dot-emacs.d/tramp
+emacs/dot-emacs.d/url
+emacs/dot-emacs.d/recentf
+emacs/dot-emacs.d/transient
+emacs/dot-emacs.d/custom.el
