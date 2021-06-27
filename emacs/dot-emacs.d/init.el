@@ -324,6 +324,7 @@
 (global-set-key (kbd "C-c t") #'my/toggle-window-transparency)
 
 ;;; modes
+(setq-default cursor-type 'bar)
 
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
