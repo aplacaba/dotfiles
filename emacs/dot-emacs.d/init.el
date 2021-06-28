@@ -30,7 +30,7 @@
   (exec-path-from-shell-initialize))
 
 
-(when (eq system-type 'linux)
+(when (eq system-type 'gnu/linux)
     (set-face-attribute 'default nil
 			:height 100
 			:font "Iosevka Term Extended-10:weight=bold"))
