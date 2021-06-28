@@ -22,18 +22,21 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (when (eq system-type 'darwin)
+  ;; iosevka's emac performance sucks
   (set-face-attribute 'default nil
                       :height 100
-                      :font "Iosevka Term Extended-12:weight=bold")
+                      :font "Monaco-11")
+  (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
+  (setq scroll-conservatively 101)
   (exec-path-from-shell-initialize))
 
 
-(when (eq system-type 'linux)
-    (set-face-attribute 'default nil
-			:height 100
-			:font "Iosevka Term Extended-10:weight=bold"))
+(when (eq system-type 'gnu/linux)
+  (set-face-attribute 'default nil
+		      :height 100
+		      :font "Iosevka Term Extended-10:weight=bold"))
 
 (setq
  inhibit-startup-screen t
@@ -45,6 +48,7 @@
  ;; no lock files
  create-lockfiles nil
  auto-save-default nil
+ make-backup-files nil
  custom-file "~/.emacs.d/custom.el"
  initial-major-mode 'org-mode)
 
@@ -189,7 +193,8 @@
   :config
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   :bind
-  (("C-M-g" . magit-status)))
+  (("C-M-g" . magit-status)
+   ("C-x g" . magit-status)))
 
 ;; javascript / typescript
 
