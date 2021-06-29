@@ -40,7 +40,6 @@
 		      :font "Dejavu Sans Mono-9:weight=bold"))
 
 (setq
- inhibit-startup-screen t
  custom-safe-themes t
  kill-whole-line t
  case-fold-search nil
@@ -51,8 +50,8 @@
  auto-save-default nil
  make-backup-files nil
  case-fold-search nil
- custom-file "~/.emacs.d/custom.el"
- initial-major-mode 'org-mode)
+ initial-major-mode 'org-mode
+ custom-file "~/.emacs.d/custom.el")
 
 (use-package which-key
   :ensure t
@@ -138,6 +137,22 @@
   (diminish 'projectile-mode)
   (diminish 'which-key-mode))
 
+(use-package all-the-icons
+  :ensure t)
+
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
+
+(defun my-doom-modeline--font-height ()
+  "Calculate the actual char height of the mode-line."
+  (+ (frame-char-height) 2))
+
+(advice-add #'doom-modeline--font-height :override #'my-doom-modeline--font-height)
+
+(setq doom-modeline-height 20)
+(setq doom-modeline-icon (display-graphic-p))
+
 ;; themes
 
 (use-package modus-themes
@@ -152,6 +167,7 @@
 
 
 ;; custom keybindings
+(global-set-key (kbd "C-x C-n") nil)
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "s-r") 'rename-buffer)
 (global-set-key (kbd "C-x b") 'counsel-switch-buffer)
@@ -218,7 +234,6 @@
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
   (web-mode-code-indent-offset 2))
-
 
 (use-package js2-mode
   :ensure t)
