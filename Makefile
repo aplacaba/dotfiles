@@ -1,13 +1,13 @@
 DOTFILES := $(shell pwd)
 
-all: git bash emacs
-.PHONY: git bash emacs
+all: git zsh emacs
+.PHONY: git zsh emacs
 
 git:
 	stow --dotfiles git
 
-bash:
-	stow --dotfiles bash
+zsh:
+	stow --dotfiles zsh
 
 emacs:
 	stow --dotfiles emacs

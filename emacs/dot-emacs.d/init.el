@@ -34,9 +34,10 @@
 
 
 (when (eq system-type 'gnu/linux)
+  (set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
 		      :height 100
-		      :font "Iosevka Term Extended-10:weight=bold"))
+		      :font "Dejavu Sans Mono-9:weight=bold"))
 
 (setq
  inhibit-startup-screen t
