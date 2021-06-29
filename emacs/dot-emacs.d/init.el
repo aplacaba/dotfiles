@@ -50,6 +50,7 @@
  create-lockfiles nil
  auto-save-default nil
  make-backup-files nil
+ case-fold-search nil
  custom-file "~/.emacs.d/custom.el"
  initial-major-mode 'org-mode)
 
@@ -106,6 +107,9 @@
 
 (use-package ibuffer
   :config
+  (add-to-list 'ibuffer-never-show-predicates "^\\*elfeed-log")
+  (add-to-list 'ibuffer-never-show-predicates "^\\magit-process")
+  (add-to-list 'ibuffer-never-show-predicates "^\\magit")
   (add-hook 'ibuffer-hook
     (lambda ()
       (ibuffer-projectile-set-filter-groups)
