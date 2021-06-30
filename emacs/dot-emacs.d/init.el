@@ -378,6 +378,7 @@
 (projectile-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
+(ido-mode +1)
 
 (provide 'init)
 ;;; init.el ends here
