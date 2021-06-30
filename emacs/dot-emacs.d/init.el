@@ -37,7 +37,7 @@
   (set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
 		      :height 100
-		      :font "Dejavu Sans Mono-9:weight=bold"))
+		      :font "Iosevka Term Extended-10"))
 
 (setq
  custom-safe-themes t
@@ -168,6 +168,9 @@
 
 ;; custom keybindings
 (global-set-key (kbd "C-x C-n") nil)
+;; split and go to buffer
+(global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
+(global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "s-r") 'rename-buffer)
 (global-set-key (kbd "C-x b") 'counsel-switch-buffer)
