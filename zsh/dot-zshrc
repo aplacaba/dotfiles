@@ -27,5 +27,9 @@ PURE_PROMPT_SYMBOL=λ
 
 alias g='git'
 alias gc='git commit'
+alias gs='git status'
+alias ls='ls -la'
 
-### End of Zinit's installer chunk
+alias xcopy='xclip -sel clip'
+
+. $HOME/.asdf/asdf.sh

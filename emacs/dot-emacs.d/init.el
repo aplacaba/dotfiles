@@ -346,13 +346,15 @@
             (tags-todo "@work")
             (tags "@projects")))))
   (setq org-capture-templates
-        '(("t" "Todo [inbox]" entry (file+headline "~/gtd/indbox.org" "Tasks")
+        '(("t" "Todo [inbox]" entry
+	   (file+headline "~/gtd/indbox.org" "Tasks")
            "* TODO %i%")
-          ("T" "Tickler" entry) (file+headline "~/gtd/tickler.org" "Tickler")
-          "* %i% \n %U"))
-  (global-set-key (kbd "C-c l") 'org-stork-link)
+          ("T" "Tickler" entry
+	   (file+headline "~/gtd/tickler.org" "Tickler")
+           "* %i% \n %U")))
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
+  (global-set-key (kbd "C-c l") 'org-store-link)
   (setq org-todo-keywords '((sequence "TODO" "DOING" "DONE"))))
 
 ;; functions
