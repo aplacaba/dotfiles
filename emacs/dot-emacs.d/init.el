@@ -37,7 +37,7 @@
   (set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
 		      :height 110
-		      :font "JetBrains Mono Light-9"))
+		      :font "JetBrains Mono-9"))
 
 (setq-default line-spacing 0.2)
 
@@ -307,13 +307,27 @@
   :hook
   (ruby-mode . 'robe-mode))
 
+;; dockerfile
+(use-package dockerfile-mode
+  :ensure t)
+
 ;; scheme
 
 
 ;; elixir
 
+(use-package ruby-end
+  :ensure t)
+
 (use-package elixir-mode
   :ensure t)
+
+(add-to-list 'elixir-mode-hook
+             (defun auto-activate-ruby-end-mode-for-elixir-mode ()
+               (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
+                    "\\(?:^\\|\\s-+\\)\\(?:do\\)")
+               (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
+               (ruby-end-mode +1)))
 
 ;; vterm
 (use-package vterm
