@@ -29,6 +29,7 @@ alias g='git'
 alias gc='git commit'
 alias gs='git status'
 alias ls='ls -la'
+alias docker-clear-images='docker rmi $(docker images --filter "dangling=true" -q --no-trunc)'
 
 alias xcopy='xclip -sel clip'
 

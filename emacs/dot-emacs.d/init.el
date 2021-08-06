@@ -25,7 +25,7 @@
   ;; iosevka's emac performance sucks
   (set-face-attribute 'default nil
                       :height 100
-                      :font "Monaco-11")
+		      :font "CamingoCode-14")
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
@@ -38,7 +38,6 @@
   (set-face-attribute 'default nil
                       :height 110
                       :font "CamingoCode-10"))
-                      ;;:font "JetBrains Mono-9"))
 
 (setq-default line-spacing 0.2)
 (setq-default indent-tabs-mode nil)
