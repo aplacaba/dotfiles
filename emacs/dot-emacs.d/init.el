@@ -36,10 +36,12 @@
 (when (eq system-type 'gnu/linux)
   (set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
-		      :height 110
-		      :font "JetBrains Mono-9"))
+                      :height 110
+                      :font "CamingoCode-10"))
+                      ;;:font "JetBrains Mono-9"))
 
 (setq-default line-spacing 0.2)
+(setq-default indent-tabs-mode nil)
 
 (setq
  custom-safe-themes t
@@ -53,6 +55,7 @@
  make-backup-files nil
  case-fold-search nil
  initial-major-mode 'org-mode
+
  custom-file "~/.emacs.d/custom.el")
 
 (use-package which-key
@@ -322,12 +325,32 @@
 (use-package elixir-mode
   :ensure t)
 
+(defvar my/home (getenv "HOME"))
+
+(use-package mix
+  :ensure t
+  :config
+  (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
+  (add-hook 'elixir-mode-hook 'mix-minor-mode))
+
+(setq flycheck-elixir-credo-strict t)
+
 (add-to-list 'elixir-mode-hook
              (defun auto-activate-ruby-end-mode-for-elixir-mode ()
                (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
                     "\\(?:^\\|\\s-+\\)\\(?:do\\)")
                (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
                (ruby-end-mode +1)))
+
+(add-hook 'elixir-mode-hook 'flycheck-mode)
+(add-hook 'elixir-mode-hook
+          (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
+(add-hook 'elixir-format-hook (lambda ()
+                                 (if (projectile-project-p)
+                                      (setq elixir-format-arguments
+                                            (list "--dot-formatter"
+                                                  (concat (locate-dominating-file buffer-file-name ".formatter.exs") ".formatter.exs")))
+                                   (setq elixir-format-arguments nil))))
 
 ;; vterm
 (use-package vterm
@@ -373,6 +396,11 @@
   (global-set-key (kbd "C-c l") 'org-store-link)
   (setq org-todo-keywords '((sequence "TODO" "DOING" "DONE"))))
 
+;; ws-butler
+
+(use-package ws-butler
+  :ensure t)
+
 ;; functions
 
 (defun my/toggle-window-transparency ()
@@ -399,6 +427,7 @@
 (projectile-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
+(ws-butler-global-mode +1)
 (ido-mode +1)
 
 (provide 'init)
