@@ -22,15 +22,13 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (when (eq system-type 'darwin)
-  ;; iosevka's emac performance sucks
   (set-face-attribute 'default nil
                       :height 100
 		      :font "CamingoCode-14")
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
-  (setq scroll-conservatively 101)
-  (exec-path-from-shell-initialize))
+  (setq scroll-conservatively 101))
 
 
 (when (eq system-type 'gnu/linux)
@@ -56,6 +54,9 @@
  initial-major-mode 'org-mode
 
  custom-file "~/.emacs.d/custom.el")
+
+(use-package exec-path-from-shell
+  :ensure t)
 
 (use-package which-key
   :ensure t
@@ -428,6 +429,7 @@
 (global-hl-line-mode +1)
 (ws-butler-global-mode +1)
 (ido-mode +1)
+(exec-path-from-shell-initialize)
 
 (provide 'init)
 ;;; init.el ends here
