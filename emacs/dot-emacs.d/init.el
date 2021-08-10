@@ -362,7 +362,7 @@
 (use-package vterm-toggle
   :ensure t
   :config
-  (global-set-key (kbd "s-<tab>") 'vterm-toggle)
+  (global-set-key (kbd "s-t") 'vterm-toggle)
   (global-set-key (kbd "C-M-t") 'vterm-toggle-cd)
   (define-key vterm-mode-map [(control return)]   #'vterm-toggle-insert-cd)
   (define-key vterm-mode-map (kbd "s-n")   'vterm-toggle-forward)
@@ -372,6 +372,8 @@
 (use-package org
   :ensure t
   :config
+  (add-hook 'org-mode-hook (lambda ()
+                             (org-bullets-mode 1)))
   (setq org-agenda-files '("~/gtd/gtd.org"
                            "~/gtd/inbox.org"
                            "~/gtd/tickler.org"))
@@ -386,7 +388,7 @@
             (tags "@projects")))))
   (setq org-capture-templates
         '(("t" "Todo [inbox]" entry
-	   (file+headline "~/gtd/indbox.org" "Tasks")
+	   (file+headline "~/gtd/inbox.org" "Tasks")
            "* TODO %i%")
           ("T" "Tickler" entry
 	   (file+headline "~/gtd/tickler.org" "Tickler")
@@ -394,7 +396,10 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
-  (setq org-todo-keywords '((sequence "TODO" "DOING" "DONE"))))
+  (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE"))))
+
+(use-package org-bullets
+  :ensure t)
 
 ;; ws-butler
 
