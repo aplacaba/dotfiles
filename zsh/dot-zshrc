@@ -29,8 +29,16 @@ alias g='git'
 alias gc='git commit'
 alias gs='git status'
 alias ls='ls -la'
-alias docker-clear-images='docker rmi $(docker images --filter "dangling=true" -q --no-trunc)'
-
 alias xcopy='xclip -sel clip'
+
+# clear all images
+function docker-clear-images () {
+    docker rmi docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+}
+
+# connect to prism instances
+function prism-connect () {
+    ssh -i ~/.ssh/prism.pem ec2-user@$1
+}
 
 . $HOME/.asdf/asdf.sh
