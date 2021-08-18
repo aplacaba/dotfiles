@@ -34,10 +34,10 @@
 (when (eq system-type 'gnu/linux)
   (set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
-                      :height 110
+                      :height 100
                       :font "CamingoCode-10"))
 
-(setq-default line-spacing 0.2)
+;;(setq-default line-spacing 0.2)
 (setq-default indent-tabs-mode nil)
 
 (setq
@@ -145,6 +145,8 @@
 (use-package all-the-icons
   :ensure t)
 
+
+;; modeline
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode))
