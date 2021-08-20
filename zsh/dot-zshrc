@@ -21,7 +21,8 @@ zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 
 # env vars
-PURE_PROMPT_SYMBOL=λ
+export PURE_PROMPT_SYMBOL=λ
+export OPENSSL_CONF=/etc/ssl
 
 # aliases
 
