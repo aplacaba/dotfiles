@@ -1,4 +1,3 @@
-
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
@@ -11,19 +10,20 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
+zinit load starship/starship
 
-zinit light-mode for \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
-
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
+# A glance at the new for-syntax – load all of the above
+# plugins with a single command. For more information see:
+# https://zdharma.github.io/zinit/wiki/For-Syntax/
+zinit for \
+    light-mode  zsh-users/zsh-autosuggestions \
+    light-mode  zdharma/fast-syntax-highlighting \
+    zdharma/history-search-multi-word
 
 # env vars
-export PURE_PROMPT_SYMBOL=λ
 export OPENSSL_CONF=/etc/ssl
-
+export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
 # aliases
 
 alias g='git'
@@ -42,4 +42,11 @@ function prism-connect () {
     ssh -i ~/.ssh/prism.pem ec2-user@$1
 }
 
+function ec2-list () {
+    aws ec2 describe-instances \
+        --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name}" \
+        --output table
+}
+
+# asdf
 . $HOME/.asdf/asdf.sh

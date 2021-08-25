@@ -35,9 +35,9 @@
   (set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
                       :height 100
-                      :font "CamingoCode-10"))
+                      :font "JetBrains Mono-10"))
 
-;;(setq-default line-spacing 0.2)
+(setq-default line-spacing 0.2)
 (setq-default indent-tabs-mode nil)
 
 (setq
@@ -54,6 +54,9 @@
  initial-major-mode 'org-mode
 
  custom-file "~/.emacs.d/custom.el")
+
+(add-hook 'before-save-hook
+          'delete-trailing-whitespace)
 
 (use-package exec-path-from-shell
   :ensure t)
@@ -160,6 +163,9 @@
 (setq doom-modeline-height 20)
 (setq doom-modeline-icon (display-graphic-p))
 
+(use-package yaml-mode
+  :ensure t)
+
 ;; themes
 
 (use-package modus-themes
@@ -179,7 +185,7 @@
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 (global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "s-r") 'rename-buffer)
+(global-set-key (kbd "C-c r") 'rename-buffer)
 (global-set-key (kbd "C-x b") 'counsel-switch-buffer)
 (define-key global-map [remap list-buffers] 'ibuffer)
 
