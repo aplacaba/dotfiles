@@ -13,31 +13,22 @@ autoload -Uz _zinit
 zinit ice from"gh-r" as"command" atload'eval "$(starship init zsh)"'
 zinit load starship/starship
 
-# A glance at the new for-syntax – load all of the above
-# plugins with a single command. For more information see:
-# https://zdharma.github.io/zinit/wiki/For-Syntax/
 zinit for \
     light-mode  zsh-users/zsh-autosuggestions \
     light-mode  zdharma/fast-syntax-highlighting \
     zdharma/history-search-multi-word
 
-# env vars
-export OPENSSL_CONF=/etc/ssl
-export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
-# aliases
+# Aliases
 
 alias g='git'
-alias gc='git commit'
-alias gs='git status'
 alias ls='ls -la'
 alias xcopy='xclip -sel clip'
 
-# clear all images
+# Functions
 function docker-clear-images () {
     docker rmi docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 }
 
-# connect to prism instances
 function prism-connect () {
     ssh -i ~/.ssh/prism.pem ec2-user@$1
 }
@@ -48,5 +39,23 @@ function ec2-list () {
         --output table
 }
 
-# asdf
+# Load plugins
 . $HOME/.asdf/asdf.sh
+. $HOME/.cargo/env
+
+# WSL specific commands
+if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
+    docker start mysql redis postgres &> /dev/null
+
+    export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
+
+    if ! pgrep wsld >> /dev/null 2>&1 ; then
+        nohup wsld > /dev/null < /dev/null 2>&1 &
+        disown
+
+        # sleep until $DISPLAY is up
+        while ! xset q > /dev/null 2>&1 ; do
+            sleep 0.3
+        done
+    fi
+fi

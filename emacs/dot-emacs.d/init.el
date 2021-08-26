@@ -35,7 +35,7 @@
   (set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
                       :height 100
-                      :font "JetBrains Mono-10"))
+                      :font "JetBrainsMono-9"))
 
 (setq-default line-spacing 0.2)
 (setq-default indent-tabs-mode nil)
@@ -188,6 +188,7 @@
 (global-set-key (kbd "C-c r") 'rename-buffer)
 (global-set-key (kbd "C-x b") 'counsel-switch-buffer)
 (define-key global-map [remap list-buffers] 'ibuffer)
+(global-set-key (kbd "C-c m m") 'modus-themes-toggle)
 
 ;;; Programming
 
@@ -264,7 +265,7 @@
 	  :tabSize 2
 	  :insertSpaceBeforeFunctionParenthesis t
 	  :insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces t))
-  
+
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
@@ -376,12 +377,16 @@
   (define-key vterm-mode-map (kbd "s-n")   'vterm-toggle-forward)
   (define-key vterm-mode-map (kbd "s-p")   'vterm-toggle-backward))
 
+
+(require 'org-tempo)
+
 ;; org
 (use-package org
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda ()
                              (org-bullets-mode 1)))
+
   (setq org-agenda-files '("~/gtd/gtd.org"
                            "~/gtd/inbox.org"
                            "~/gtd/tickler.org"))
