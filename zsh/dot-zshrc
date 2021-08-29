@@ -21,7 +21,7 @@ zinit for \
 # Aliases
 
 alias g='git'
-alias ls='ls -la'
+alias ls='ls --color=auto -l'
 alias xcopy='xclip -sel clip'
 
 # Functions
