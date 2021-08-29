@@ -371,6 +371,7 @@
 (use-package vterm-toggle
   :ensure t
   :config
+  (add-hook 'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil)))
   (global-set-key (kbd "s-t") 'vterm-toggle)
   (global-set-key (kbd "C-M-t") 'vterm-toggle-cd)
   (define-key vterm-mode-map [(control return)]   #'vterm-toggle-insert-cd)
