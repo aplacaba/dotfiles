@@ -35,9 +35,9 @@
   (set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
                       :height 100
-                      :font "JetBrainsMono-9"))
+                      :font "Meslo LG M-9"))
 
-(setq-default line-spacing 0.2)
+(setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
 
 (setq
@@ -448,6 +448,7 @@
 (global-hl-line-mode +1)
 (ws-butler-global-mode +1)
 (ido-mode +1)
+(default-text-scale-mode +1)
 (exec-path-from-shell-initialize)
 
 (provide 'init)
