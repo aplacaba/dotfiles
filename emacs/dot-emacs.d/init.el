@@ -32,7 +32,7 @@
 
 
 (when (eq system-type 'gnu/linux)
-  (set-frame-parameter nil 'alpha '(85 . 85))
+  ;;(set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
                       :height 100
                       :font "Meslo LG M-9"))

@@ -31,3 +31,4 @@ export PS1="${_BLUE}\w ${_BOLD}${_GREEN}\$(parse_git_branch) ${_GREEN}\nλ ${_RE
 
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+. "$HOME/.cargo/env"
