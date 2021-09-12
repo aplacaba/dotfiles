@@ -45,8 +45,6 @@ function ec2-list () {
 
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
-    docker start mysql redis postgres &> /dev/null
-
     export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
 
     if ! pgrep wsld >> /dev/null 2>&1 ; then

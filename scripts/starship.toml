@@ -1,0 +1,17 @@
+[ruby]
+format = "via [ruby ($version)]($style) "
+
+[aws]
+symbol = "aws "
+
+[elixir]
+symbol = "elixir "
+
+[nodejs]
+symbol = "node "
+
+[git_branch]
+format = "on [$branch]($style) "
+
+[package]
+format = "is [$version]($style) "
