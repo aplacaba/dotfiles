@@ -189,6 +189,7 @@
 (global-set-key (kbd "C-x b") 'counsel-switch-buffer)
 (define-key global-map [remap list-buffers] 'ibuffer)
 (global-set-key (kbd "C-c m m") 'modus-themes-toggle)
+(global-set-key (kbd "C-x C-n") 'find-file)
 
 ;;; Programming
 
@@ -305,7 +306,7 @@
 ;; clojure
 
 (use-package cider
-  :ensure t)
+ :ensure t)
 
 (use-package clojure-mode
   :ensure t
@@ -411,6 +412,11 @@
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
   (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE"))))
+
+(use-package org-journal
+  :ensure t
+  :config
+  (setq org-journal-dir "~/journal"))
 
 (use-package org-bullets
   :ensure t)
