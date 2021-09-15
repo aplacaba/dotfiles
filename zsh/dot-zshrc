@@ -21,7 +21,7 @@ zinit for \
 # Aliases
 
 alias g='git'
-alias ls='ls --color=auto -l'
+alias ls='exa -l'
 alias xcopy='xclip -sel clip'
 
 # Functions
@@ -57,3 +57,5 @@ if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
         done
     fi
 fi
+
+export PATH="/usr/local/bin:$PATH"

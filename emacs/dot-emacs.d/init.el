@@ -24,7 +24,7 @@
 (when (eq system-type 'darwin)
   (set-face-attribute 'default nil
                       :height 100
-		      :font "CamingoCode-14")
+                      :font "Meslo LG M-12")
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
@@ -32,7 +32,6 @@
 
 
 (when (eq system-type 'gnu/linux)
-  ;;(set-frame-parameter nil 'alpha '(85 . 85))
   (set-face-attribute 'default nil
                       :height 100
                       :font "Meslo LG M-9"))
