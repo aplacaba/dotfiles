@@ -115,16 +115,7 @@
   :config
   (add-to-list 'ibuffer-never-show-predicates "^\\*elfeed-log")
   (add-to-list 'ibuffer-never-show-predicates "^\\magit-process")
-  (add-to-list 'ibuffer-never-show-predicates "^\\magit")
-  (add-hook 'ibuffer-hook
-    (lambda ()
-      (ibuffer-projectile-set-filter-groups)
-      (unless (eq ibuffer-sorting-mode 'alphabetic)
-        (ibuffer-do-sort-by-alphabetic)))))
-
-(use-package ibuffer-projectile
-  :ensure t
-  :defer)
+  (add-to-list 'ibuffer-never-show-predicates "^\\magit"))
 
 (use-package switch-window
   :ensure t
