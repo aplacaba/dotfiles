@@ -410,7 +410,14 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
-  (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE"))))
+
+  (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
+  (org-babel-do-load-languages
+   'org-babel-load-languages '((C . t)
+                               (ruby . t)
+                               (python . t)
+                               (elixir . t)
+                               (js . t))))
 
 (use-package org-journal
   :ensure t
@@ -453,7 +460,6 @@
 (global-hl-line-mode +1)
 (ws-butler-global-mode +1)
 (ido-mode +1)
-(default-text-scale-mode +1)
 (exec-path-from-shell-initialize)
 
 (provide 'init)
