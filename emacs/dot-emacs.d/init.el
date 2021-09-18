@@ -135,24 +135,6 @@
   (diminish 'projectile-mode)
   (diminish 'which-key-mode))
 
-(use-package all-the-icons
-  :ensure t)
-
-
-;; modeline
-(use-package doom-modeline
-  :ensure t
-  :hook (after-init . doom-modeline-mode))
-
-(defun my-doom-modeline--font-height ()
-  "Calculate the actual char height of the mode-line."
-  (+ (frame-char-height) 2))
-
-(advice-add #'doom-modeline--font-height :override #'my-doom-modeline--font-height)
-
-(setq doom-modeline-height 20)
-(setq doom-modeline-icon (display-graphic-p))
-
 (use-package yaml-mode
   :ensure t)
 
@@ -168,9 +150,9 @@
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
-
 ;; custom keybindings
 (global-set-key (kbd "C-x C-n") nil)
+
 ;; split and go to buffer
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
