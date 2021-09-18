@@ -372,6 +372,9 @@
 
 (require 'org-tempo)
 
+(use-package ob-elixir
+  :ensure t)
+
 ;; org
 (use-package org
   :ensure t
