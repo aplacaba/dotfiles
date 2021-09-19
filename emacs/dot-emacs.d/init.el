@@ -30,13 +30,12 @@
   (setq mac-command-modifier 'meta)
   (setq scroll-conservatively 101))
 
-
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
                       :height 100
-                      :font "Meslo LG M-9"))
+                      :font "Iosevka Comfy Book-11"))
 
-(setq-default line-spacing 0)
+(setq-default line-spacing 0.1)
 (setq-default indent-tabs-mode nil)
 
 (setq
