@@ -364,9 +364,9 @@
   (add-hook 'org-mode-hook (lambda ()
                              (org-bullets-mode 1)))
 
-  (setq org-agenda-files '("~/gtd/gtd.org"
-                           "~/gtd/inbox.org"
-                           "~/gtd/tickler.org"))
+  (setq org-agenda-files '("~/org/gtd/gtd.org"
+                           "~/org/gtd/inbox.org"
+                           "~/org/gtd/tickler.org"))
   (setq org-agenda-custom-commands
         '(("p" "Agenda and Personal tasks"
            ((agenda "")
@@ -378,10 +378,10 @@
             (tags "@projects")))))
   (setq org-capture-templates
         '(("t" "Todo [inbox]" entry
-	   (file+headline "~/gtd/inbox.org" "Tasks")
+	   (file+headline "~/org/gtd/inbox.org" "Tasks")
            "* TODO %i%")
           ("T" "Tickler" entry
-	   (file+headline "~/gtd/tickler.org" "Tickler")
+	   (file+headline "~/org/gtd/tickler.org" "Tickler")
            "* %i% \n %U")))
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
@@ -398,7 +398,7 @@
 (use-package org-journal
   :ensure t
   :config
-  (setq org-journal-dir "~/journal"))
+  (setq org-journal-dir "~/org/journal"))
 
 (use-package org-bullets
   :ensure t)
