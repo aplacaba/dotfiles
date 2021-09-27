@@ -24,7 +24,7 @@
 (when (eq system-type 'darwin)
   (set-face-attribute 'default nil
                       :height 100
-                      :font "Meslo LG M-12")
+                      :font "Iosevka Comfy Book-13")
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
