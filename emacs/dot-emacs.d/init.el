@@ -200,8 +200,8 @@
 (use-package magit
   :ensure t
   :defer t
-  :config
-  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+  ;;:config
+  ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   :bind
   (("C-M-g" . magit-status)
    ("C-x g" . magit-status)))
@@ -436,6 +436,7 @@
 (ws-butler-global-mode +1)
 (ido-mode +1)
 (exec-path-from-shell-initialize)
+(display-time-mode +1)
 
 (provide 'init)
 ;;; init.el ends here
