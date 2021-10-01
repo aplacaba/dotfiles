@@ -33,9 +33,9 @@
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
                       :height 100
-                      :font "Iosevka Comfy Book-11"))
+                      :font "Iosevka Comfy Book-10"))
 
-(setq-default line-spacing 0.1)
+;; (setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
 
 (setq
