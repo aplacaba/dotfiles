@@ -33,9 +33,9 @@
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
                       :height 100
-                      :font "Iosevka Comfy Book-11"))
+                      :font "Iosevka Comfy Book-10"))
 
-(setq-default line-spacing 0.1)
+;;(setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
 
 (setq
@@ -422,6 +422,30 @@
           '(85 . 85) '(100 . 100)))))
 
 (global-set-key (kbd "C-c t") #'my/toggle-window-transparency)
+
+;; https://github.com/tumashu/ivy-posframe
+;; makes minibuffer appear at center top
+;; looking at the minibuffer using ultrawide screen is
+;; so bad for eye focus, this module helps remedy that issue.
+(use-package ivy-posframe
+  :ensure t
+  :config
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))))
+
+(ivy-posframe-mode 1)
+
+(use-package feebleline
+  :ensure t
+  :config
+  (feebleline-project-name )
+  (feebleline-mode 1))
+
+;; display at `ivy-posframe-style'
+;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
+;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
+;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-bottom-left)))
+;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-bottom-left)))
+;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
 
 ;;; modes
 (setq-default cursor-type 'box)
