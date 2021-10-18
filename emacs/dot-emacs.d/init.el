@@ -23,8 +23,9 @@
 
 (when (eq system-type 'darwin)
   (set-face-attribute 'default nil
-                      :height 100
-                      :font "Iosevka Comfy Book-13")
+                      :height 120
+                      :weight 'regular
+                      :font "Dejavu Sans Mono Book")
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
@@ -32,10 +33,11 @@
 
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
-                      :height 100
-                      :font "Iosevka Comfy Book-10"))
+                      :family "Dejavu Sans Mono Book"
+                      :weight 'regular
+                      :height 90))
 
-;;(setq-default line-spacing 0)
+(setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
 
 (setq
@@ -48,7 +50,7 @@
  create-lockfiles nil
  auto-save-default nil
  make-backup-files nil
- case-fold-search nil
+ case-fold-search  nil
  initial-major-mode 'org-mode
 
  custom-file "~/.emacs.d/custom.el")
@@ -288,23 +290,25 @@
 
 (use-package robe
   :ensure t
-  :hook
-  (ruby-mode . 'robe-mode))
+  :config
+  (add-hook 'ruby-mode-hook 'robe-mode)
+  (ruby-end-mode +1))
 
 ;; dockerfile
 (use-package dockerfile-mode
   :ensure t)
 
 ;; scheme
-
-
 ;; elixir
 
 (use-package ruby-end
   :ensure t)
 
+
 (use-package elixir-mode
-  :ensure t)
+  :ensure t
+  :config
+  (setq flycheck-elixir-credo-strict t))
 
 (defvar my/home (getenv "HOME"))
 
@@ -312,6 +316,7 @@
   :ensure t
   :config
   (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
+  (setq compilation-scroll-output t)
   (add-hook 'elixir-mode-hook 'mix-minor-mode))
 
 (setq flycheck-elixir-credo-strict t)
@@ -407,21 +412,10 @@
 (use-package ws-butler
   :ensure t)
 
-;; functions
-
-(defun my/toggle-window-transparency ()
-  "Toggle window transparency."
-  (interactive)
-  (let ((alpha (frame-parameter nil 'alpha)))
-    (set-frame-parameter
-     nil 'alpha
-     (if (eql (cond ((numberp alpha) alpha)
-                     ((numberp (cdr alpha)) (cdr alpha))
-                     ((numberp (cadr alpha)) (cadr alpha)))
-               100)
-          '(85 . 85) '(100 . 100)))))
-
-(global-set-key (kbd "C-c t") #'my/toggle-window-transparency)
+(global-set-key (kbd "C-c w b") #'windmove-left)
+(global-set-key (kbd "C-c w f") #'windmove-right)
+(global-set-key (kbd "C-c w n") #'windmove-down)
+(global-set-key (kbd "C-c w p") #'windmove-up)
 
 ;; https://github.com/tumashu/ivy-posframe
 ;; makes minibuffer appear at center top
@@ -430,25 +424,13 @@
 (use-package ivy-posframe
   :ensure t
   :config
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center))))
-
-(ivy-posframe-mode 1)
-
-(use-package feebleline
-  :ensure t
-  :config
-  (feebleline-project-name )
-  (feebleline-mode 1))
-
-;; display at `ivy-posframe-style'
-;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-center)))
-;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-center)))
-;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-bottom-left)))
-;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-window-bottom-left)))
-;; (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+  (ivy-posframe-mode +1))
 
 ;;; modes
 (setq-default cursor-type 'box)
+
+(setenv "PAGER" "cat")
 
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
