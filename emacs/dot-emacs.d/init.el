@@ -412,6 +412,8 @@
 (use-package ws-butler
   :ensure t)
 
+(use-package all-the-icons)
+
 (global-set-key (kbd "C-c w b") #'windmove-left)
 (global-set-key (kbd "C-c w f") #'windmove-right)
 (global-set-key (kbd "C-c w n") #'windmove-down)

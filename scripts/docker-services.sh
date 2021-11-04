@@ -6,7 +6,7 @@ docker run --name redis --restart always -p 6379:6379 -d redis
 
 # postgres
 docker volume create pgdata
-docker run --name postgres -e POSTGRES_PASSWORD=password --restart always -d -p 5432:5432 -v pgdata:/var/lib/postgresql/data postgres:12.8
+docker run --name postgres -e POSTGRES_PASSWORD=password --restart always -d -p 5432:5432 -v pgdata:/var/lib/postgresql/data postgres:13.4
 
 # mysql
 docker volume create mysqldata
