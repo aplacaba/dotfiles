@@ -441,7 +441,7 @@
 (global-hl-line-mode +1)
 (ws-butler-global-mode +1)
 (ido-mode +1)
-(exec-path-from-shell-initialize)
+;;(exec-path-from-shell-initialize)
 (display-time-mode +1)
 
 (provide 'init)

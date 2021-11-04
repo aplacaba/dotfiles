@@ -1,7 +1,7 @@
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.zinit/bin" && \
         print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
         print -P "%F{160}▓▒░ The clone has failed.%f%b"
 fi
@@ -15,8 +15,8 @@ zinit load starship/starship
 
 zinit for \
     light-mode  zsh-users/zsh-autosuggestions \
-    light-mode  zdharma/fast-syntax-highlighting \
-    zdharma/history-search-multi-word
+    light-mode  zdharma-continuum/fast-syntax-highlighting \
+                zdharma-continuum/history-search-multi-word
 
 # Aliases
 
@@ -43,6 +43,8 @@ function ec2-list () {
 . $HOME/.asdf/asdf.sh
 . $HOME/.cargo/env
 
+export PATH="/usr/local/bin:$HOME/.cargo/bin:$PATH"
+
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
     export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
@@ -57,5 +59,3 @@ if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
         done
     fi
 fi
-
-export PATH="/usr/local/bin:$PATH"
