@@ -48,6 +48,7 @@ export PATH="/usr/local/bin:$HOME/.cargo/bin:$PATH"
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
     export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
+    export LIBGL_ALWAYS_INDIRECT=1
 
     if ! pgrep wsld >> /dev/null 2>&1 ; then
         nohup wsld > /dev/null < /dev/null 2>&1 &
