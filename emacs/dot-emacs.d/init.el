@@ -268,6 +268,7 @@
 (add-to-list 'auto-mode-alist '("\\.erb?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\dot-zshrc?\\'" . sh-mode))
 
 (add-hook 'js2-mode-hook #'setup-tide-mode)
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
