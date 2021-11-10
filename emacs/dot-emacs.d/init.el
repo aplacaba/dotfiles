@@ -367,7 +367,8 @@
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda ()
-                             (org-bullets-mode 1)))
+                             (org-bullets-mode 1)
+                             (org-indent-mode)))
 
   (setq org-agenda-files '("~/org/gtd/gtd.org"
                            "~/org/gtd/inbox.org"
