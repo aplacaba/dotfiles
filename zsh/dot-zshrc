@@ -41,9 +41,9 @@ function ec2-list () {
 
 # Load plugins
 . $HOME/.asdf/asdf.sh
-. $HOME/.cargo/env
+# . $HOME/.cargo/env
 
-export PATH="/usr/local/bin:$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:/usr/local/bin"
 
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then

@@ -35,7 +35,7 @@
   (set-face-attribute 'default nil
                       :family "Dejavu Sans Mono Book"
                       :weight 'regular
-                      :height 90))
+                      :height 110))
 
 (setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
@@ -425,11 +425,11 @@
 ;; makes minibuffer appear at center top
 ;; looking at the minibuffer using ultrawide screen is
 ;; so bad for eye focus, this module helps remedy that issue.
-(use-package ivy-posframe
-  :ensure t
-  :config
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-  (ivy-posframe-mode +1))
+;; (use-package ivy-posframe
+;;   :ensure t
+;;   :config
+;;   (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
+;;   (ivy-posframe-mode +1))
 
 ;;; modes
 (setq-default cursor-type 'box)
