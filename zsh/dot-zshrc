@@ -43,10 +43,11 @@ function ec2-list () {
 . $HOME/.asdf/asdf.sh
 . $HOME/.cargo/env
 
-export PATH="/usr/local/bin:$HOME/.cargo/bin:$PATH"
 
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
+    alias update!='sudo apt update && sudo apt upgrade'
+    export PATH=$PATH:/usr/local/lib/docker/cli-plugins/
     export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
     export LIBGL_ALWAYS_INDIRECT=1
 
@@ -60,3 +61,4 @@ if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
         done
     fi
 fi
+export PATH="/usr/local/bin:$HOME/.cargo/bin:$PATH"

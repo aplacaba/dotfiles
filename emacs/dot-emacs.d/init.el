@@ -52,8 +52,11 @@
  make-backup-files nil
  case-fold-search  nil
  initial-major-mode 'org-mode
+ display-time-default-load-average nil
 
  custom-file "~/.emacs.d/custom.el")
+
+(setq display-time-format "%H:%M:%S %a,%d %b %Y")
 
 (add-hook 'before-save-hook
           'delete-trailing-whitespace)
@@ -153,6 +156,7 @@
 
 ;; custom keybindings
 (global-set-key (kbd "C-x C-n") nil)
+(global-set-key (kbd "C-o") nil)
 
 ;; split and go to buffer
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
@@ -416,22 +420,20 @@
 
 (use-package all-the-icons)
 
+;; https://emacs.stackexchange.com/questions/39210/copy-paste-from-windows-clipboard-in-wsl-terminal
+;; wsl-copy
+(defun wsl-copy (start end)
+  (interactive "r")
+  (shell-command-on-region start end "clip.exe")
+  (deactivate-mark))
+
 (global-set-key (kbd "C-c w b") #'windmove-left)
 (global-set-key (kbd "C-c w f") #'windmove-right)
 (global-set-key (kbd "C-c w n") #'windmove-down)
 (global-set-key (kbd "C-c w p") #'windmove-up)
+(global-set-key (kbd "C-c C-c") #'wsl-copy)
 
-;; https://github.com/tumashu/ivy-posframe
-;; makes minibuffer appear at center top
-;; looking at the minibuffer using ultrawide screen is
-;; so bad for eye focus, this module helps remedy that issue.
-(use-package ivy-posframe
-  :ensure t
-  :config
-  (setq ivy-posframe-display-functions-alist '((t . ivy-posframe-display-at-frame-top-center)))
-  (ivy-posframe-mode +1))
-
-;;; modes
+;; modes
 (setq-default cursor-type 'box)
 
 (setenv "PAGER" "cat")
@@ -445,7 +447,7 @@
 (global-hl-line-mode +1)
 (ws-butler-global-mode +1)
 (ido-mode +1)
-;;(exec-path-from-shell-initialize)
+(exec-path-from-shell-initialize)
 (display-time-mode +1)
 
 (provide 'init)
