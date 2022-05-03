@@ -53,6 +53,7 @@
  case-fold-search  nil
  initial-major-mode 'org-mode
  display-time-default-load-average nil
+ column-number-mode t
 
  custom-file "~/.emacs.d/custom.el")
 
