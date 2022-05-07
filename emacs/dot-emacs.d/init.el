@@ -29,7 +29,9 @@
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
-  (setq scroll-conservatively 101))
+  (setq scroll-conservatively 101)
+  (setq warning-minimum-level :emergency)
+  (setq comp-async-report-warnings-errors nil))
 
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
@@ -39,6 +41,7 @@
 
 (setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
+
 
 (setq
  custom-safe-themes t
