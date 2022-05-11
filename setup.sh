@@ -51,8 +51,7 @@ if [[ $os == *"microsoft"* ]]; then
 fi
 
 
-# for wsl ensure docker for windows is up and runnin
-g
+# for wsl ensure docker for windows is up and running
 echo "Setting up services"
 POSTGRES_VERSION=14
 MYSQL_LEGACY=5.7
@@ -96,5 +95,22 @@ bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-ke
 asdf install ruby $RUBY_VERSION
 asdf install nodejs $NODE_VERSION
 asdf install elixir $EX_VERSION
+
+# 3rd party software
+read -p "Install 3rd party software from flathub (y/n)? " answer
+case ${answer:0:1} in
+    y|Y )
+        echo "Installing 3rd party libraries"
+        flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+        flatpak install flathub com.discordapp.Discord
+        flatpak install flathub com.spotify.Client
+        flatpak install flathub us.zoom.Zoom
+        flatpak install flathub org.telegram.desktop
+    ;;
+    * )
+    ;;
+esac
+
+
 
 echo "Setup complete please restart your computer"
