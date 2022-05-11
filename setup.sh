@@ -12,7 +12,7 @@ if [[ $os == *"fedora"* ]]; then
      git-core patch make bzip2 libyaml-devel libffi-devel readline readline-devel zlib zlib-devel \
      gdbm gdbm-devel ncurses-devel automake cmake autoconf gcc gcc-c++ ImageMagick libpng libpng-devel \
      bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure erlang docker libtool \
-     openssl1.1 openssl1.1-devel xclip xsel zsh exa util-linux-user inotify-tools stow emacs
+     openssl1.1 openssl1.1-devel xclip xsel zsh exa util-linux-user inotify-tools stow emacs xset
 
     echo "setup docker"
     sudo systemctl start docker
@@ -47,7 +47,7 @@ if [[ $os == *"microsoft"* ]]; then
     sudo apt update -y && sudo apt upgrage -y
     sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential \
          libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev ripgrep make cmake \
-         libpng libpng-dev libtool libtool-bin exa xsel xclip libvterm libvterm-dev zsh emacs stow
+         libpng libpng-dev libtool libtool-bin exa xsel xclip libvterm libvterm-dev zsh emacs stow xset
 fi
 
 
@@ -100,7 +100,7 @@ asdf install elixir $EX_VERSION
 read -p "Install 3rd party software from flathub (y/n)? " answer
 case ${answer:0:1} in
     y|Y )
-        echo "Installing 3rd party libraries"
+        echo "Installing 3rd party software"
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         flatpak install -y flathub com.discordapp.Discord
         flatpak install -y flathub com.spotify.Client
@@ -111,7 +111,5 @@ case ${answer:0:1} in
     * )
     ;;
 esac
-
-
 
 echo "Setup complete please restart your computer"
