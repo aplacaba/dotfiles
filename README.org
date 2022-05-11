@@ -1,17 +1,27 @@
 * Dotfiles
 
-** Dependencies 
-- git 
-- zsh 
-- zplug
-- tmux 
-- emacs v2.6
-- stow v2.3
-- rxvt-unicode
-- libvterm
+My dotfiles configuration that contains scripts to easily setup a workstation for fedora or wsl.
 
-** Installation
-#+BEGIN_SRC 
-$ git clone https://github.com/aplacaba/dotfiles
-$ cd dotfiles && make
-#+END_SRC
+** Contents
++ Dependency installation
++ Dockerized services setup
++ Emacs config
++ Git config
++ Ruby, Elixir and Nodejs setup
+** Installation (Fedora 36 beta)
+*** Prerequisites
+The install script is tested for fedora 36 beta. Might not work for other versions, use at your own risk.
+
+*** Install
+To install go to dotfiles directory and run the install script `setup.sh`
+
+#+begin_src bash
+  $ cd ~/dotfiles
+  $ sh setup.sh
+#+end_src
+*** Scripts
+
+** Installation (WSL - Ubuntu 20.04)
+*** Prerequisites
+*** Install
+*** Scripts
