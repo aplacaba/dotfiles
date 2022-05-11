@@ -102,10 +102,11 @@ case ${answer:0:1} in
     y|Y )
         echo "Installing 3rd party libraries"
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-        flatpak install flathub com.discordapp.Discord
-        flatpak install flathub com.spotify.Client
-        flatpak install flathub us.zoom.Zoom
-        flatpak install flathub org.telegram.desktop
+        flatpak install -y flathub com.discordapp.Discord
+        flatpak install -y flathub com.spotify.Client
+        flatpak install -y flathub us.zoom.Zoom
+        flatpak install -y flathub org.telegram.desktop
+        flatpak install -y flathub com.slack.Slack
     ;;
     * )
     ;;
