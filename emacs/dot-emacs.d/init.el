@@ -35,10 +35,10 @@
 
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
+                      ;;:family "Noto Sans Mono"
                       :family "Dejavu Sans Mono Book"
                       :weight 'regular
-                      :height 110))
-
+                      :height 100))
 (setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
 
@@ -81,6 +81,10 @@
   (setq projectile-switch-project-action #'projectile-dired)
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
+(use-package jenkinsfile-mode
+  :ensure t
+  :defer)
 
 (use-package ripgrep
   :ensure t
@@ -423,8 +427,6 @@
 (use-package ws-butler
   :ensure t)
 
-(use-package all-the-icons)
-
 ;; https://emacs.stackexchange.com/questions/39210/copy-paste-from-windows-clipboard-in-wsl-terminal
 ;; wsl-copy
 (defun wsl-copy (start end)
@@ -436,9 +438,10 @@
 (global-set-key (kbd "C-c w f") #'windmove-right)
 (global-set-key (kbd "C-c w n") #'windmove-down)
 (global-set-key (kbd "C-c w p") #'windmove-up)
-(global-set-key (kbd "C-c C-c") #'wsl-copy)
-
+(global-set-key (kbd "C-c y") #'wsl-copy)
+(setq native-comp-async-report-warnings-errors nil)
 (setq-default cursor-type 'box)
+(pixel-scroll-precision-mode)
 
 (setenv "PAGER" "cat")
 

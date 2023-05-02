@@ -64,6 +64,7 @@ sudo docker run -d \
      -v pgdata:/var/lib/postgresql/data \
      -e POSTGRES_USER=postgres \
      -e POSTGRES_PASSWORD=password \
+     -p 5432:5432 \
      postgres:$POSTGRES_VERSION
 
 sudo docker volume create mysql_data
@@ -74,9 +75,10 @@ sudo docker run -d \
      -e MYSQL_ROOT_PASSWORD=secret \
      -e MYSQL_USER=admin \
      -e MYSQL_PASSWORD=admin \
+     -p 3307:3306 \
      mysql:$MYSQL_LEGACY
 
-sudo docker run -d --restart always redis:$REDIS_VERSION
+sudo docker run -d --name redis --restart always redis:$REDIS_VERSION
 
 echo "Setting up asdf"
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
