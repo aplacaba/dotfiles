@@ -85,7 +85,6 @@ docker run -d \
        -p 6379:6379 \
        redis:$REDIS_VERSION
 
-
 echo "Setting up asdf"
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
 . $HOME/.asdf/asdf.sh
