@@ -35,11 +35,11 @@
 
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
-                      :family "Dejavu Sans Mono Book"
+                      :family "Dejavu Sans Mono"
                       :weight 'regular
                       :height 110))
 
-(setq-default line-spacing 0)
+(setq-default line-spacing 1)
 (setq-default indent-tabs-mode nil)
 
 

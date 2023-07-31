@@ -53,33 +53,41 @@ fi
 
 # for wsl ensure docker for windows is up and running
 echo "Setting up services"
-POSTGRES_VERSION=14
+POSTGRES_VERSION=15.3
 MYSQL_LEGACY=5.7
 REDIS_VERSION=6.2
 
-sudo docker volume create pgdata
-sudo docker run -d \
+docker volume create pgdata
+docker run -d \
      --name postgresql \
      --restart always \
      -v pgdata:/var/lib/postgresql/data \
      -e POSTGRES_USER=postgres \
      -e POSTGRES_PASSWORD=password \
+     -p 5432:5432 \
      postgres:$POSTGRES_VERSION
 
-sudo docker volume create mysql_data
-sudo docker run -d \
+
+docker volume create mysql_data
+docker run -d \
      --name mysql-legacy \
      --restart always \
      -v mysql_data:/var/lib/mysql \
      -e MYSQL_ROOT_PASSWORD=secret \
      -e MYSQL_USER=admin \
      -e MYSQL_PASSWORD=admin \
+     -p 3306:3307 \
      mysql:$MYSQL_LEGACY
 
-sudo docker run -d --restart always redis:$REDIS_VERSION
+docker run -d \
+       --name redis \
+       --restart always \
+       -p 6379:6379 \
+       redis:$REDIS_VERSION
+
 
 echo "Setting up asdf"
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
 . $HOME/.asdf/asdf.sh
 
 RUBY_VERSION=2.6.9
