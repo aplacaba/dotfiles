@@ -35,11 +35,12 @@
 
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
+                      ;;:family "Noto Sans Mono"
                       :family "Dejavu Sans Mono"
                       :weight 'regular
-                      :height 110))
+                      :height 85))
 
-(setq-default line-spacing 1)
+(setq-default line-spacing 2)
 (setq-default indent-tabs-mode nil)
 
 
@@ -439,6 +440,8 @@
 (global-set-key (kbd "C-c w n") #'windmove-down)
 (global-set-key (kbd "C-c w p") #'windmove-up)
 (global-set-key (kbd "C-c y") #'wsl-copy)
+(global-set-key (kbd "C-t") nil)
+(define-key key-translation-map [?\C-t] [?\C-x])
 (setq native-comp-async-report-warnings-errors nil)
 (setq-default cursor-type 'box)
 (pixel-scroll-precision-mode)
