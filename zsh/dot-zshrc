@@ -27,7 +27,7 @@ alias xcopy='xclip -sel clip'
 
 # Functions
 function docker-clear-images () {
-    docker rmi docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+    docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 }
 
 function prism-connect () {
