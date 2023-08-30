@@ -12,7 +12,7 @@ if [[ $os == *"fedora"* ]]; then
      git-core patch make bzip2 libyaml-devel libffi-devel readline readline-devel zlib zlib-devel \
      gdbm gdbm-devel ncurses-devel automake cmake autoconf gcc gcc-c++ ImageMagick libpng libpng-devel \
      bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure erlang docker libtool \
-     openssl1.1 openssl1.1-devel xclip xsel zsh exa util-linux-user inotify-tools stow emacs xset
+     openssl1.1 openssl1.1-devel xclip xsel zsh exa util-linux-user inotify-tools stow emacs xset libtree-sitter libtree-sitter-devel
 
     echo "setup docker"
     sudo systemctl start docker
@@ -47,7 +47,7 @@ if [[ $os == *"microsoft"* ]]; then
     sudo apt update -y && sudo apt upgrage -y
     sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential \
          libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev ripgrep make cmake \
-         libpng libpng-dev libtool libtool-bin exa xsel xclip libvterm libvterm-dev zsh emacs stow xset
+         libpng libpng-dev libtool libtool-bin exa xsel xclip libvterm libvterm-dev zsh emacs stow xset libtree-sitter-dev
 fi
 
 
@@ -79,12 +79,12 @@ sudo docker run -d \
 sudo docker run -d --restart always redis:$REDIS_VERSION
 
 echo "Setting up asdf"
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.9.0
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
 . $HOME/.asdf/asdf.sh
 
-RUBY_VERSION=2.6.9
-NODE_VERSION=16.14.2
-EX_VERSION=1.13.4
+RUBY_VERSION=3.2.2
+NODE_VERSION=18.17.1
+EX_VERSION=1.14.2
 
 # ruby, node, elixir
 asdf plugin-add ruby   https://github.com/asdf-vm/asdf-ruby.git
