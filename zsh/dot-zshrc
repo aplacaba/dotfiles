@@ -1,3 +1,4 @@
+
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
@@ -26,7 +27,7 @@ alias xcopy='xclip -sel clip'
 
 # Functions
 function docker-clear-images () {
-    docker rmi docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+    docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 }
 
 function prism-connect () {
@@ -39,25 +40,29 @@ function ec2-list () {
         --output table
 }
 
+function jenkins-connect () {
+    ssh -i ~/.ssh/prism.pem ec2-user@3.1.236.123
+}
+
 # Load plugins
 . $HOME/.asdf/asdf.sh
 export PATH="$PATH:/usr/local/bin"
 
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
-    alias update!='sudo apt update && sudo apt upgrade'
+    alias update!='sudo apt update && sudo apt upgrade -y'
     export PATH=$PATH:/usr/local/lib/docker/cli-plugins/
     export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
     export LIBGL_ALWAYS_INDIRECT=1
-    export PATH="/usr/local/bin:$HOME/.cargo/bin:$PATH"
+    export PATH="$HOME/.cargo/bin:$HOME/anaconda3/bin:$PATH"
 
-    if ! pgrep wsld >> /dev/null 2>&1 ; then
-        nohup wsld > /dev/null < /dev/null 2>&1 &
-        disown
+    # if ! pgrep wsld >> /dev/null 2>&1 ; then
+    #     nohup wsld > /dev/null < /dev/null 2>&1 &
+    #     disown
 
-        # sleep until $DISPLAY is up
-        while ! xset q > /dev/null 2>&1 ; do
-            sleep 0.3
-        done
-    fi
+    #     # sleep until $DISPLAY is up
+    #     while ! xset q > /dev/null 2>&1 ; do
+    #         sleep 0.3
+    #     done
+    # fi
 fi
