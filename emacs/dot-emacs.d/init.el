@@ -76,58 +76,24 @@
   (which-key-setup-side-window-bottom))
 
 (use-package projectile
-   :ensure t
+  :ensure t
   :config
   (setq projectile-completion-system 'ivy)
   (setq projectile-switch-project-action #'projectile-dired)
   (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  :init
+  (projectile-mode))
 
 (use-package ripgrep
   :ensure t
   :defer)
-
-;; (use-package swiper
-;;   :ensure t
-;;   :defer)
-
-;; (use-package counsel
-;;   :ensure t
-;;   :defer
-;;   :config
-;;   (setq counsel-find-file-ignore-regexp "\\.elc\\'")
-;;   (setq counsel-find-file-ignore-regexp "\\.pyc\\'")
-;;   (setq counsel-find-file-ignore-regexp "\\.*~\\'"))
-
-;; (use-package ivy
-;;   :ensure t
-;;   :config
-;;   (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
-;;   (global-set-key "\C-s" 'swiper)
-;;   (global-set-key (kbd "C-c C-r") 'ivy-resume)
-;;   (global-set-key (kbd "<f6>") 'ivy-resume)
-;;   (global-set-key (kbd "M-x") 'counsel-M-x)
-;;   (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-;;   (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-;;   (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-;;   (global-set-key (kbd "<f1> o") 'counsel-describe-symbol)
-;;   (global-set-key (kbd "<f1> l") 'counsel-find-library)
-;;   (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-;;   (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-;;   (global-set-key (kbd "C-c g") 'counsel-git)
-;;   (global-set-key (kbd "C-c j") 'counsel-git-grep)
-;;   (global-set-key (kbd "C-c s") 'counsel-rg)
-;;   (global-set-key (kbd "C-x l") 'counsel-locate)
-;;   (global-set-key (kbd "C-x b") 'counsel-switch-buffer)
-;;   (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-;;   (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
 
 (use-package vertico
   :init
   (vertico-mode))
 
 (use-package consult
-  ;; Replace bindings. Lazily loaded due by `use-package'.
   :ensure t
   :bind
   ("C-x b" . consult-buffer)
@@ -323,8 +289,6 @@
 (use-package ruby-end
   :ensure t)
 
-;; (setq flycheck-elixir-credo-strict t)
-
 ;; vterm
 (use-package vterm
   :ensure t
@@ -493,15 +457,11 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (electric-pair-mode +1)
-(projectile-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
 (ws-butler-global-mode +1)
 (exec-path-from-shell-initialize)
 (display-time-mode +1)
-
-;; (flymake-mode -1)
-;; (global-flycheck-mode -1)
 
 (provide 'init)
 ;;; init.el ends here
