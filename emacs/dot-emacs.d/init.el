@@ -39,10 +39,10 @@
   (set-face-attribute 'default nil
                       :family "Dejavu Sans Mono"
                       :weight 'regular
-                      :height 120))
+                      :height 140))
 
 
-(setq-default line-spacing 0)
+(setq-default line-spacing 2)
 (setq-default indent-tabs-mode nil)
 
 (setq
@@ -93,6 +93,13 @@
   :init
   (vertico-mode))
 
+(defun consult-line-literal ()
+  (interactive)
+  (let ((completion-styles '(substring))
+        (completion-category-defaults nil)
+        (completion-category-overrides nil))
+    (consult-line)))
+
 (use-package consult
   :ensure t
   :bind
@@ -101,9 +108,9 @@
   ("C-c M-x" . consult-mode-command)
   ("C-c h" . consult-history)
   ("C-c k" . consult-kmacro)
-  ("C-c m" . consult-man)
   ("C-c i" . consult-info)
   ("C-s" . consult-isearch-history)
+  ("C-c g" . consult-line-literal)
   :init
 
   ;; Optionally configure the register formatting. This improves the register
@@ -111,6 +118,7 @@
   ;; `consult-register-store' and the Emacs built-ins.
   (setq register-preview-delay 0.5
         register-preview-function #'consult-register-format))
+
 
 (use-package ibuffer
   :config
@@ -294,7 +302,8 @@
   :ensure t
   :config
   (setq vterm-max-scrollback 10000)
-  (setq vterm-kill-buffer-on-exit t))
+  (setq vterm-kill-buffer-on-exit t)
+  (global-set-key (kbd "C-c t") 'vterm-copy-mode))
 
 (use-package vterm-toggle
   :ensure t
@@ -446,6 +455,7 @@
    (elixir-mode . elixir-ts-mode)
    (python-mode . python-ts-mode)))
 
+;; colemak c-t to c-x
 (define-key key-translation-map [?\C-t] [?\C-x])
 
 (setq-default cursor-type 'box)
