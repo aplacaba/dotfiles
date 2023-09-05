@@ -93,6 +93,12 @@
   :init
   (vertico-mode))
 
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
+
 (defun consult-line-literal ()
   (interactive)
   (let ((completion-styles '(substring))
@@ -109,8 +115,7 @@
   ("C-c h" . consult-history)
   ("C-c k" . consult-kmacro)
   ("C-c i" . consult-info)
-  ("C-s" . consult-isearch-history)
-  ("C-c g" . consult-line-literal)
+  ("C-s" . consult-line-literal)
   :init
 
   ;; Optionally configure the register formatting. This improves the register
