@@ -199,14 +199,6 @@
   (global-set-key (kbd "C-c C-j") 'avy-resume)
   (global-set-key (kbd "C-:") 'avy-goto-char))
 
-;; web
-
-(use-package emmet-mode
-  :ensure t)
-
-(use-package markdown-mode
-  :ensure t)
-
 ;; git
 
 (use-package magit
@@ -229,7 +221,6 @@
   :ensure t
   :commands web-mode
   :hook
-  (web-mode . emmet-mode)
   (web-mode . company-mode)
   :custom
   (web-mode-markup-indent-offset 2)
