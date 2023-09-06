@@ -63,8 +63,7 @@
 
  custom-file "~/.emacs.d/custom.el")
 
-(add-hook 'before-save-hook
-          'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (use-package exec-path-from-shell
   :ensure t)
@@ -75,15 +74,15 @@
   (which-key-mode)
   (which-key-setup-side-window-bottom))
 
-(use-package projectile
-  :ensure t
-  :config
-  (setq projectile-completion-system 'ivy)
-  (setq projectile-switch-project-action #'projectile-dired)
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  :init
-  (projectile-mode))
+;; (use-package projectile
+;;   :ensure t
+;;   :config
+;;   (setq projectile-completion-system 'vertico)
+;;   (setq projectile-switch-project-action #'projectile-dired)
+;;   (projectile-mode +1)
+;;   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;;   :init
+;;   (projectile-mode))
 
 (use-package ripgrep
   :ensure t
@@ -100,6 +99,7 @@
   (completion-category-overrides '((file (styles basic partial-completion)))))
 
 (defun consult-line-literal ()
+  "Use this instead of isearch."
   (interactive)
   (let ((completion-styles '(substring))
         (completion-category-defaults nil)
@@ -146,7 +146,7 @@
   (diminish 'company-mode)
   (diminish 'flycheck-mode)
   (diminish 'eldoc-mode)
-  (diminish 'projectile-mode)
+;;  (diminish 'projectile-mode)
   (diminish 'which-key-mode))
 
 ;; themes
@@ -170,9 +170,9 @@
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-c r") 'rename-buffer)
-(define-key global-map [remap list-buffers] 'ibuffer)
 (global-set-key (kbd "C-c m m") 'modus-themes-toggle)
 (global-set-key (kbd "C-x C-n") 'find-file)
+(define-key global-map [remap list-buffers] 'ibuffer)
 
 ;;; Programming
 
@@ -415,9 +415,9 @@
   :config
   (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
   (setq compilation-scroll-output t)
-  (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
+  (add-hook 'elixir-ts-mode-hook 'mix-minor-treesitter))
 
-;; treesitter grammars
+;; mode grammars
 
 (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
