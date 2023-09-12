@@ -124,12 +124,8 @@
   (setq register-preview-delay 0.5
         register-preview-function #'consult-register-format))
 
-
 (use-package ibuffer
-  :config
-  (add-to-list 'ibuffer-never-show-predicates "^\\*elfeed-log")
-  (add-to-list 'ibuffer-never-show-predicates "^\\magit-process")
-  (add-to-list 'ibuffer-never-show-predicates "^\\magit"))
+  :ensure t)
 
 (use-package switch-window
   :ensure t
@@ -379,13 +375,11 @@
 (global-set-key (kbd "C-c y") #'wsl-copy)
 (global-set-key (kbd "C-t") nil)
 
-(use-package
- eglot
+(use-package eglot
  :ensure nil
  :config (add-to-list 'eglot-server-programs '(elixir-ts-mode "language_server.sh")))
 
-(use-package
- elixir-ts-mode
+(use-package elixir-ts-mode
  :hook (elixir-ts-mode . eglot-ensure)
  (elixir-ts-mode
   .
@@ -415,7 +409,7 @@
   :config
   (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
   (setq compilation-scroll-output t)
-  (add-hook 'elixir-ts-mode-hook 'mix-minor-treesitter))
+  (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
 
 ;; mode grammars
 
@@ -453,6 +447,11 @@
 
 ;; colemak c-t to c-x
 (define-key key-translation-map [?\C-t] [?\C-x])
+
+;; commonlisp setup
+(add-to-list 'load-path "~/workspace/slime")
+(require 'slime-autoloads)
+(setq inferior-lisp-program "sbcl")
 
 (setq-default cursor-type 'box)
 (pixel-scroll-precision-mode)
