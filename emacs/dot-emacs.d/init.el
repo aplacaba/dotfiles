@@ -37,7 +37,7 @@
 
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
-                      :family "Dejavu Sans Mono"
+                      :family "JetBrains Mono"
                       :weight 'regular
                       :height 140))
 
@@ -70,7 +70,7 @@
 
 (use-package which-key
   :ensure t
-  :init
+  :config
   (which-key-mode)
   (which-key-setup-side-window-bottom))
 
@@ -429,7 +429,8 @@
      (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
      (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
-     (docker "https://github.com/camdencheek/tree-sitter-dockerfile")
+     (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+     (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
 ;; rerun on list update
@@ -443,13 +444,15 @@
    (json-mode . json-ts-mode)
    (css-mode . css-ts-mode)
    (elixir-mode . elixir-ts-mode)
+   (dockerfile-mode . dockerfile-ts-mode)
+   (ruby-mode . ruby-ts-mode)
    (python-mode . python-ts-mode)))
 
 ;; colemak c-t to c-x
 (define-key key-translation-map [?\C-t] [?\C-x])
 
 ;; commonlisp setup
-(add-to-list 'load-path "~/workspace/slime")
+(add-to-list 'load-path "~/Workspace/slime")
 (require 'slime-autoloads)
 (setq inferior-lisp-program "sbcl")
 
