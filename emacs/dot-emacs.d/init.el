@@ -25,7 +25,7 @@
   (set-face-attribute 'default nil
                       :height 190
                       :weight 'regular
-                      :font "Dejavu Sans Mono")
+                      :font "JetBrains Mono")
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
@@ -74,15 +74,6 @@
   (which-key-mode)
   (which-key-setup-side-window-bottom))
 
-;; (use-package projectile
-;;   :ensure t
-;;   :config
-;;   (setq projectile-completion-system 'vertico)
-;;   (setq projectile-switch-project-action #'projectile-dired)
-;;   (projectile-mode +1)
-;;   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-;;   :init
-;;   (projectile-mode))
 
 (use-package ripgrep
   :ensure t
@@ -347,6 +338,7 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c C-;") 'org-todo)
 
   (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
   (org-babel-do-load-languages
