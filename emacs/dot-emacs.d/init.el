@@ -37,7 +37,7 @@
 
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
-                      :family "Dejavu Sans Mono"
+                      :family "JetBrains Mono"
                       :weight 'regular
                       :height 140))
 
@@ -70,7 +70,7 @@
 
 (use-package which-key
   :ensure t
-  :init
+  :config
   (which-key-mode)
   (which-key-setup-side-window-bottom))
 
@@ -115,12 +115,8 @@
   (setq register-preview-delay 0.5
         register-preview-function #'consult-register-format))
 
-
 (use-package ibuffer
-  :config
-  (add-to-list 'ibuffer-never-show-predicates "^\\*elfeed-log")
-  (add-to-list 'ibuffer-never-show-predicates "^\\magit-process")
-  (add-to-list 'ibuffer-never-show-predicates "^\\magit"))
+  :ensure t)
 
 (use-package switch-window
   :ensure t
@@ -371,13 +367,11 @@
 (global-set-key (kbd "C-c y") #'wsl-copy)
 (global-set-key (kbd "C-t") nil)
 
-(use-package
- eglot
+(use-package eglot
  :ensure nil
  :config (add-to-list 'eglot-server-programs '(elixir-ts-mode "language_server.sh")))
 
-(use-package
- elixir-ts-mode
+(use-package elixir-ts-mode
  :hook (elixir-ts-mode . eglot-ensure)
  (elixir-ts-mode
   .
@@ -407,7 +401,7 @@
   :config
   (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
   (setq compilation-scroll-output t)
-  (add-hook 'elixir-ts-mode-hook 'mix-minor-treesitter))
+  (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
 
 ;; mode grammars
 
@@ -427,7 +421,8 @@
      (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
      (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
      (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
-     (docker "https://github.com/camdencheek/tree-sitter-dockerfile")
+     (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+     (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
 ;; rerun on list update
@@ -441,10 +436,17 @@
    (json-mode . json-ts-mode)
    (css-mode . css-ts-mode)
    (elixir-mode . elixir-ts-mode)
+   (dockerfile-mode . dockerfile-ts-mode)
+   (ruby-mode . ruby-ts-mode)
    (python-mode . python-ts-mode)))
 
 ;; colemak c-t to c-x
 (define-key key-translation-map [?\C-t] [?\C-x])
+
+;; commonlisp setup
+(add-to-list 'load-path "~/Workspace/slime")
+(require 'slime-autoloads)
+(setq inferior-lisp-program "sbcl")
 
 (setq-default cursor-type 'box)
 (pixel-scroll-precision-mode)

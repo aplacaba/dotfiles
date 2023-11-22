@@ -12,7 +12,8 @@ if [[ $os == *"fedora"* ]]; then
      git-core patch make bzip2 libyaml-devel libffi-devel readline readline-devel zlib zlib-devel \
      gdbm gdbm-devel ncurses-devel automake cmake autoconf gcc gcc-c++ ImageMagick libpng libpng-devel \
      bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure erlang docker libtool \
-     openssl1.1 openssl1.1-devel xclip xsel zsh exa util-linux-user inotify-tools stow emacs xset libtree-sitter libtree-sitter-devel
+     openssl1.1 openssl1.1-devel xclip xsel zsh exa util-linux-user inotify-tools stow emacs \
+     xset libtree-sitter libtree-sitter-devel sbcl
 
     echo "setup docker"
     sudo systemctl start docker
@@ -47,7 +48,8 @@ if [[ $os == *"microsoft"* ]]; then
     sudo apt update -y && sudo apt upgrage -y
     sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential \
          libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev ripgrep make cmake \
-         libpng libpng-dev libtool libtool-bin exa xsel xclip libvterm libvterm-dev zsh emacs stow xset libtree-sitter-dev
+         libpng libpng-dev libtool libtool-bin exa xsel xclip libvterm libvterm-dev zsh emacs stow \
+         xset libtree-sitter-dev sbcl
 fi
 
 
