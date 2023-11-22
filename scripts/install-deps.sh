@@ -31,6 +31,7 @@ sudo docker run -d \
      -v pgdata:/var/lib/postgresql/data \
      -e POSTGRES_USER=postgres \
      -e POSTGRES_PASSWORD=password \
+     -p 5432:5432
      postgres:$POSTGRES_VERSION
 
 sudo docker volume create mysql_data

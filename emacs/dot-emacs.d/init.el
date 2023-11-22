@@ -23,26 +23,27 @@
 
 (when (eq system-type 'darwin)
   (set-face-attribute 'default nil
-                      :height 120
+                      :height 190
                       :weight 'regular
-                      :font "Dejavu Sans Mono Book")
+                      :font "JetBrains Mono")
   (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
   (setq mac-option-modifier 'super)
   (setq mac-command-modifier 'meta)
   (setq scroll-conservatively 101)
   (setq warning-minimum-level :emergency)
+  (setq insert-directory-program "gls" dired-use-ls-dired t)
+  (setq dired-listing-switches "-al --group-directories-first")
   (setq comp-async-report-warnings-errors nil))
 
 (when (eq system-type 'gnu/linux)
   (set-face-attribute 'default nil
-                      ;;:family "Noto Sans Mono"
-                      :family "Dejavu Sans Mono"
+                      :family "JetBrains Mono"
                       :weight 'regular
-                      :height 85))
+                      :height 140))
+
 
 (setq-default line-spacing 2)
 (setq-default indent-tabs-mode nil)
-
 
 (setq
  custom-safe-themes t
@@ -57,79 +58,65 @@
  case-fold-search  nil
  initial-major-mode 'org-mode
  display-time-default-load-average nil
+ display-time-format "%H:%M:%S %a,%d %b %Y"
  column-number-mode t
 
  custom-file "~/.emacs.d/custom.el")
 
-(setq display-time-format "%H:%M:%S %a,%d %b %Y")
-
-(add-hook 'before-save-hook
-          'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (use-package exec-path-from-shell
   :ensure t)
 
 (use-package which-key
   :ensure t
-  :init
+  :config
   (which-key-mode)
   (which-key-setup-side-window-bottom))
 
-(use-package projectile
-   :ensure t
-  :config
-  (setq projectile-completion-system 'ivy)
-  (setq projectile-switch-project-action #'projectile-dired)
-  (projectile-mode +1)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
-
-(use-package jenkinsfile-mode
-  :ensure t
-  :defer)
 
 (use-package ripgrep
   :ensure t
   :defer)
 
-(use-package swiper
-  :ensure t
-  :defer)
+(use-package vertico
+  :init
+  (vertico-mode))
 
-(use-package counsel
+(use-package orderless
   :ensure t
-  :defer
-  :config
-  (setq counsel-find-file-ignore-regexp "\\.elc\\'")
-  (setq counsel-find-file-ignore-regexp "\\.pyc\\'")
-  (setq counsel-find-file-ignore-regexp "\\.*~\\'"))
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(use-package ivy
+(defun consult-line-literal ()
+  "Use this instead of isearch."
+  (interactive)
+  (let ((completion-styles '(substring))
+        (completion-category-defaults nil)
+        (completion-category-overrides nil))
+    (consult-line)))
+
+(use-package consult
   :ensure t
-  :config
-  (setq ivy-ignore-buffers '("\\` " "\\`\\*"))
-  (global-set-key "\C-s" 'swiper)
-  (global-set-key (kbd "C-c C-r") 'ivy-resume)
-  (global-set-key (kbd "<f6>") 'ivy-resume)
-  (global-set-key (kbd "M-x") 'counsel-M-x)
-  (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-  (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-  (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-  (global-set-key (kbd "<f1> o") 'counsel-describe-symbol)
-  (global-set-key (kbd "<f1> l") 'counsel-find-library)
-  (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-  (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-  (global-set-key (kbd "C-c g") 'counsel-git)
-  (global-set-key (kbd "C-c j") 'counsel-git-grep)
-  (global-set-key (kbd "C-c s") 'counsel-rg)
-  (global-set-key (kbd "C-x l") 'counsel-locate)
-  (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-  (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+  :bind
+  ("C-x b" . consult-buffer)
+  ("C-c s" . consult-ripgrep)
+  ("C-c M-x" . consult-mode-command)
+  ("C-c h" . consult-history)
+  ("C-c k" . consult-kmacro)
+  ("C-c i" . consult-info)
+  ("C-s" . consult-line-literal)
+  :init
+
+  ;; Optionally configure the register formatting. This improves the register
+  ;; preview for `consult-register', `consult-register-load',
+  ;; `consult-register-store' and the Emacs built-ins.
+  (setq register-preview-delay 0.5
+        register-preview-function #'consult-register-format))
 
 (use-package ibuffer
-  :config
-  (add-to-list 'ibuffer-never-show-predicates "^\\*elfeed-log")
-  (add-to-list 'ibuffer-never-show-predicates "^\\magit-process")
-  (add-to-list 'ibuffer-never-show-predicates "^\\magit"))
+  :ensure t)
 
 (use-package switch-window
   :ensure t
@@ -146,16 +133,13 @@
   (diminish 'company-mode)
   (diminish 'flycheck-mode)
   (diminish 'eldoc-mode)
-  (diminish 'projectile-mode)
+;;  (diminish 'projectile-mode)
   (diminish 'which-key-mode))
-
-(use-package yaml-mode
-  :ensure t)
 
 ;; themes
 
 (use-package modus-themes
-  :ensure t
+  :ensure nil
   :config
   (load-theme 'modus-vivendi))
 
@@ -173,10 +157,9 @@
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
 (global-set-key (kbd "M-o") 'other-window)
 (global-set-key (kbd "C-c r") 'rename-buffer)
-(global-set-key (kbd "C-x b") 'counsel-switch-buffer)
-(define-key global-map [remap list-buffers] 'ibuffer)
 (global-set-key (kbd "C-c m m") 'modus-themes-toggle)
 (global-set-key (kbd "C-x C-n") 'find-file)
+(define-key global-map [remap list-buffers] 'ibuffer)
 
 ;;; Programming
 
@@ -203,14 +186,6 @@
   (global-set-key (kbd "C-c C-j") 'avy-resume)
   (global-set-key (kbd "C-:") 'avy-goto-char))
 
-;; web
-
-(use-package emmet-mode
-  :ensure t)
-
-(use-package markdown-mode
-  :ensure t)
-
 ;; git
 
 (use-package magit
@@ -233,7 +208,6 @@
   :ensure t
   :commands web-mode
   :hook
-  (web-mode . emmet-mode)
   (web-mode . company-mode)
   :custom
   (web-mode-markup-indent-offset 2)
@@ -301,64 +275,18 @@
   :hook
   (clojure-mode . cider-mode))
 
-;; ruby
-
-(use-package robe
-  :ensure t
-  :config
-  (add-hook 'ruby-mode-hook 'robe-mode)
-  (ruby-end-mode +1))
-
-;; dockerfile
-(use-package dockerfile-mode
-  :ensure t)
-
-;; scheme
 ;; elixir
 
 (use-package ruby-end
   :ensure t)
-
-
-(use-package elixir-mode
-  :ensure t
-  :config
-  (setq flycheck-elixir-credo-strict t))
-
-(defvar my/home (getenv "HOME"))
-
-(use-package mix
-  :ensure t
-  :config
-  (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
-  (setq compilation-scroll-output t)
-  (add-hook 'elixir-mode-hook 'mix-minor-mode))
-
-(setq flycheck-elixir-credo-strict t)
-
-(add-to-list 'elixir-mode-hook
-             (defun auto-activate-ruby-end-mode-for-elixir-mode ()
-               (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
-                    "\\(?:^\\|\\s-+\\)\\(?:do\\)")
-               (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
-               (ruby-end-mode +1)))
-
-(add-hook 'elixir-mode-hook 'flycheck-mode)
-(add-hook 'elixir-mode-hook
-          (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
-(add-hook 'elixir-format-hook (lambda ()
-                                 (if (projectile-project-p)
-                                      (setq elixir-format-arguments
-                                            (list "--dot-formatter"
-                                                  (concat (locate-dominating-file buffer-file-name ".formatter.exs") ".formatter.exs")))
-                                   (setq elixir-format-arguments nil))))
 
 ;; vterm
 (use-package vterm
   :ensure t
   :config
   (setq vterm-max-scrollback 10000)
-  (setq vterm-kill-buffer-on-exit t))
+  (setq vterm-kill-buffer-on-exit t)
+  (global-set-key (kbd "C-c t") 'vterm-copy-mode))
 
 (use-package vterm-toggle
   :ensure t
@@ -406,6 +334,7 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
+  (global-set-key (kbd "C-c C-;") 'org-todo)
 
   (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
   (org-babel-do-load-languages
@@ -435,14 +364,90 @@
   (shell-command-on-region start end "clip.exe")
   (deactivate-mark))
 
-(global-set-key (kbd "C-c w b") #'windmove-left)
-(global-set-key (kbd "C-c w f") #'windmove-right)
-(global-set-key (kbd "C-c w n") #'windmove-down)
-(global-set-key (kbd "C-c w p") #'windmove-up)
 (global-set-key (kbd "C-c y") #'wsl-copy)
 (global-set-key (kbd "C-t") nil)
+
+(use-package eglot
+ :ensure nil
+ :config (add-to-list 'eglot-server-programs '(elixir-ts-mode "language_server.sh")))
+
+(use-package elixir-ts-mode
+ :hook (elixir-ts-mode . eglot-ensure)
+ (elixir-ts-mode
+  .
+  (lambda ()
+    (push '(">=" . ?\u2265) prettify-symbols-alist)
+    (push '("<=" . ?\u2264) prettify-symbols-alist)
+    (push '("!=" . ?\u2260) prettify-symbols-alist)
+    (push '("==" . ?\u2A75) prettify-symbols-alist)
+    (push '("=~" . ?\u2245) prettify-symbols-alist)
+    (push '("<-" . ?\u2190) prettify-symbols-alist)
+    (push '("->" . ?\u2192) prettify-symbols-alist)
+    (push '("<-" . ?\u2190) prettify-symbols-alist)
+    (push '("|>" . ?\u25B7) prettify-symbols-alist)))
+ (before-save . eglot-format))
+
+(add-to-list 'elixir-ts-mode-hook
+             (defun auto-activate-ruby-end-mode-for-elixir-mode ()
+               (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
+                    "\\(?:^\\|\\s-+\\)\\(?:do\\)")
+               (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
+               (ruby-end-mode +1)))
+
+(defvar my/home (getenv "HOME"))
+
+(use-package mix
+  :ensure t
+  :config
+  (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
+  (setq compilation-scroll-output t)
+  (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
+
+;; mode grammars
+
+(setq treesit-language-source-alist
+   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (cmake "https://github.com/uyha/tree-sitter-cmake")
+     (css "https://github.com/tree-sitter/tree-sitter-css")
+     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+     (go "https://github.com/tree-sitter/tree-sitter-go")
+     (html "https://github.com/tree-sitter/tree-sitter-html")
+     (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+     (json "https://github.com/tree-sitter/tree-sitter-json")
+     (make "https://github.com/alemuller/tree-sitter-make")
+     (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (toml "https://github.com/tree-sitter/tree-sitter-toml")
+     (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+     (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+     (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
+     (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+     (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
+     (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+
+;; rerun on list update
+;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
+
+(setq major-mode-remap-alist
+ '((yaml-mode . yaml-ts-mode)
+   (bash-mode . bash-ts-mode)
+   (js2-mode . js-ts-mode)
+   (typescript-mode . typescript-ts-mode)
+   (json-mode . json-ts-mode)
+   (css-mode . css-ts-mode)
+   (elixir-mode . elixir-ts-mode)
+   (dockerfile-mode . dockerfile-ts-mode)
+   (ruby-mode . ruby-ts-mode)
+   (python-mode . python-ts-mode)))
+
+;; colemak c-t to c-x
 (define-key key-translation-map [?\C-t] [?\C-x])
-(setq native-comp-async-report-warnings-errors nil)
+
+;; commonlisp setup
+(add-to-list 'load-path "~/Workspace/slime")
+(require 'slime-autoloads)
+(setq inferior-lisp-program "sbcl")
+
 (setq-default cursor-type 'box)
 (pixel-scroll-precision-mode)
 
@@ -452,11 +457,9 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (electric-pair-mode +1)
-(projectile-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
 (ws-butler-global-mode +1)
-(ido-mode +1)
 (exec-path-from-shell-initialize)
 (display-time-mode +1)
 
