@@ -141,7 +141,7 @@
 (use-package modus-themes
   :ensure nil
   :config
-  (load-theme 'modus-vivendi))
+  (load-theme 'modus-operandi))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -254,7 +254,7 @@
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.eex?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.heex?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\dot-zshrc?\\'" . sh-mode))
 
@@ -262,6 +262,7 @@
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 (add-hook 'web-mode-hook
           (lambda ()
+            (emmet-mode +1)
             (when (string-equal "tsx" (file-name-extension buffer-file-name))
               (setup-tide-mode))))
 
@@ -372,20 +373,26 @@
  :config (add-to-list 'eglot-server-programs '(elixir-ts-mode "language_server.sh")))
 
 (use-package elixir-ts-mode
- :hook (elixir-ts-mode . eglot-ensure)
- (elixir-ts-mode
-  .
-  (lambda ()
-    (push '(">=" . ?\u2265) prettify-symbols-alist)
-    (push '("<=" . ?\u2264) prettify-symbols-alist)
-    (push '("!=" . ?\u2260) prettify-symbols-alist)
-    (push '("==" . ?\u2A75) prettify-symbols-alist)
-    (push '("=~" . ?\u2245) prettify-symbols-alist)
-    (push '("<-" . ?\u2190) prettify-symbols-alist)
-    (push '("->" . ?\u2192) prettify-symbols-alist)
-    (push '("<-" . ?\u2190) prettify-symbols-alist)
-    (push '("|>" . ?\u25B7) prettify-symbols-alist)))
- (before-save . eglot-format))
+  :hook (elixir-ts-mode . eglot-ensure)
+  (elixir-ts-mode
+   .
+   (lambda ()
+     (push '(">=" . ?\u2265) prettify-symbols-alist)
+     (push '("<=" . ?\u2264) prettify-symbols-alist)
+     (push '("!=" . ?\u2260) prettify-symbols-alist)
+     (push '("==" . ?\u2A75) prettify-symbols-alist)
+     (push '("=~" . ?\u2245) prettify-symbols-alist)
+     (push '("<-" . ?\u2190) prettify-symbols-alist)
+     (push '("->" . ?\u2192) prettify-symbols-alist)
+     (push '("<-" . ?\u2190) prettify-symbols-alist)
+     (push '("|>" . ?\u25B7) prettify-symbols-alist)))
+  (before-save . eglot-format))
+
+(use-package ruby-ts-mode
+  :ensure t
+  :hook
+  (ruby-ts-mode . eglot-ensure)
+  (ruby-ts-mode . ruby-end-mode))
 
 (add-to-list 'elixir-ts-mode-hook
              (defun auto-activate-ruby-end-mode-for-elixir-mode ()
@@ -426,7 +433,7 @@
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
 ;; rerun on list update
-;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
+;;(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
 (setq major-mode-remap-alist
  '((yaml-mode . yaml-ts-mode)
@@ -442,10 +449,9 @@
 
 ;; colemak c-t to c-x
 (define-key key-translation-map [?\C-t] [?\C-x])
-
 ;; commonlisp setup
-(add-to-list 'load-path "~/Workspace/slime")
-(require 'slime-autoloads)
+;;(add-to-list 'load-path "~/Workspace/slime")
+;;(require 'slime-autoloads)
 (setq inferior-lisp-program "sbcl")
 
 (setq-default cursor-type 'box)
