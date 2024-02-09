@@ -49,7 +49,8 @@ if [[ $os == *"microsoft"* ]]; then
     sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential \
          libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev ripgrep make cmake \
          libpng libpng-dev libtool libtool-bin exa xsel xclip libvterm libvterm-dev zsh emacs stow \
-         xset libtree-sitter-dev sbcl
+         xset libtree-sitter-dev sbcl build-essential autoconf m4 libwxgtk3.0-gtk3-dev libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk \
+         libwxgtk-webview3.0-gtk3-dev
 fi
 
 

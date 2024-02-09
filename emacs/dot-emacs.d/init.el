@@ -217,6 +217,9 @@
 (use-package js2-mode
   :ensure t)
 
+(use-package emmet-mode
+  :ensure t)
+
 (use-package tide
   :ensure t
   :config
@@ -310,7 +313,6 @@
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda ()
-                             (org-bullets-mode 1)
                              (org-indent-mode)))
 
   (setq org-agenda-files '("~/org/gtd/gtd.org"
@@ -468,6 +470,19 @@
 (ws-butler-global-mode +1)
 (exec-path-from-shell-initialize)
 (display-time-mode +1)
+
+;; minibook x configs
+(load-theme 'modus-vivendi)
+(setq warning-minimum-level :emergency)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+(unless (display-graphic-p)
+  ;; activate mouse-based scrolling
+  (xterm-mouse-mode 1)
+  (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+  (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
+  (global-unset-key (kbd "C-<down-mouse-1>")))
+
 
 (provide 'init)
 ;;; init.el ends here
