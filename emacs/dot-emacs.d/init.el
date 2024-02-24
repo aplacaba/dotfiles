@@ -21,28 +21,12 @@
 ;; customizations
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(when (eq system-type 'darwin)
-  (set-face-attribute 'default nil
-                      :height 190
-                      :weight 'regular
-                      :font "JetBrains Mono")
-  (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
-  (setq mac-option-modifier 'super)
-  (setq mac-command-modifier 'meta)
-  (setq scroll-conservatively 101)
-  (setq warning-minimum-level :emergency)
-  (setq insert-directory-program "gls" dired-use-ls-dired t)
-  (setq dired-listing-switches "-al --group-directories-first")
-  (setq comp-async-report-warnings-errors nil))
+(set-face-attribute 'default nil
+                    :family "JetBrains Mono"
+                    :weight 'regular
+                    :height 180)
 
-(when (eq system-type 'gnu/linux)
-  (set-face-attribute 'default nil
-                      :family "JetBrains Mono"
-                      :weight 'regular
-                      :height 140))
-
-
-(setq-default line-spacing 2)
+(setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
 
 (setq
@@ -60,7 +44,6 @@
  display-time-default-load-average nil
  display-time-format "%H:%M:%S %a,%d %b %Y"
  column-number-mode t
-
  custom-file "~/.emacs.d/custom.el")
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -83,6 +66,13 @@
   :init
   (vertico-mode))
 
+(use-package corfu
+  :custom
+  (corfu-auto t)
+  (corfu-quit-no-match 'separator)
+  :init
+  (global-corfu-mode))
+
 (use-package orderless
   :ensure t
   :custom
@@ -102,7 +92,6 @@
   :bind
   ("C-x b" . consult-buffer)
   ("C-c s" . consult-ripgrep)
-  ("C-c M-x" . consult-mode-command)
   ("C-c h" . consult-history)
   ("C-c k" . consult-kmacro)
   ("C-c i" . consult-info)
@@ -130,7 +119,6 @@
   :commands diminish
   :init
   (diminish 'auto-revert-mode)
-  (diminish 'company-mode)
   (diminish 'flycheck-mode)
   (diminish 'eldoc-mode)
 ;;  (diminish 'projectile-mode)
@@ -138,10 +126,6 @@
 
 ;; themes
 
-(use-package modus-themes
-  :ensure nil
-  :config
-  (load-theme 'modus-operandi))
 
 (use-package rainbow-delimiters
   :ensure t
@@ -163,14 +147,6 @@
 
 ;;; Programming
 
-(use-package company
-  :ensure t
-  :config
-  (setq company-idle-delay 0.5)
-  (setq company-tooltip-limit 10)
-  :hook
-  (after-init . global-company-mode))
-
 (use-package flycheck
   :ensure t
   :config
@@ -191,12 +167,12 @@
 (use-package magit
   :ensure t
   :defer t
-  ;;:config
-  ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+  :config
+  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   :bind
   (("C-M-g" . magit-status)
    ("C-x g" . magit-status)))
-
+  
 ;; javascript / typescript
 
 (use-package json-mode
@@ -208,7 +184,6 @@
   :ensure t
   :commands web-mode
   :hook
-  (web-mode . company-mode)
   :custom
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
@@ -245,8 +220,7 @@
   (setq web-mode-attr-value-indent-offset 2)
   (setq typescript-indent-level 2)
   (setq flycheck-check-syntax-automatically '(save mode enabled))
-  (tide-hl-identifier-mode +1)
-  (company-mode +1))
+  (tide-hl-identifier-mode +1))
 
 (setq company-tooltip-align-annotations t)
 
@@ -257,7 +231,7 @@
 (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.heex?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.heex?\\'" . heex-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\dot-zshrc?\\'" . sh-mode))
 
@@ -337,7 +311,8 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-c C-;") 'org-todo)
+  (global-set-key (kbd "C-x C-g") 'org-todo)
+  
 
   (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
   (org-babel-do-load-languages
@@ -357,8 +332,8 @@
 
 ;; ws-butler
 
-(use-package ws-butler
-  :ensure t)
+;;(use-package ws-butler
+;;  :ensure t)
 
 ;; https://emacs.stackexchange.com/questions/39210/copy-paste-from-windows-clipboard-in-wsl-terminal
 ;; wsl-copy
@@ -371,8 +346,9 @@
 (global-set-key (kbd "C-t") nil)
 
 (use-package eglot
- :ensure nil
- :config (add-to-list 'eglot-server-programs '(elixir-ts-mode "language_server.sh")))
+  :ensure nil)
+
+(add-to-list 'eglot-server-programs '(elixir-ts-mode "/home/aplacaba/downloads/elixirls/language_server.sh"))
 
 (use-package elixir-ts-mode
   :hook (elixir-ts-mode . eglot-ensure)
@@ -412,6 +388,9 @@
   (setq compilation-scroll-output t)
   (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
 
+(use-package terraform-mode
+  :ensure t)
+
 ;; mode grammars
 
 (setq treesit-language-source-alist
@@ -435,7 +414,7 @@
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
 ;; rerun on list update
-;;(mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
+;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
 (setq major-mode-remap-alist
  '((yaml-mode . yaml-ts-mode)
@@ -460,16 +439,16 @@
 (pixel-scroll-precision-mode)
 
 (setenv "PAGER" "cat")
-
+(setq tab-always-indent 'complete)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (electric-pair-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
-(ws-butler-global-mode +1)
+;;(ws-butler-global-mode +1)
 (exec-path-from-shell-initialize)
-(display-time-mode +1)
+(display-time-mode 0)
 
 ;; minibook x configs
 (load-theme 'modus-vivendi)
@@ -477,12 +456,24 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (unless (display-graphic-p)
+  ;; corfu setup
+  (unless (package-installed-p 'quelpa)
+    (with-temp-buffer
+      (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
+      (eval-buffer)
+      (quelpa-self-upgrade)))
+  
+  (quelpa '(corfu-terminal
+            :fetcher git
+            :url "https://codeberg.org/akib/emacs-corfu-terminal.git"))
+  
+  (corfu-terminal-mode 1)
+  
   ;; activate mouse-based scrolling
   (xterm-mouse-mode 1)
   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
   (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
   (global-unset-key (kbd "C-<down-mouse-1>")))
-
 
 (provide 'init)
 ;;; init.el ends here
