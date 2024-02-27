@@ -286,12 +286,11 @@
 (use-package org
   :ensure t
   :config
-  (add-hook 'org-mode-hook (lambda ()
-                             (org-indent-mode)))
-
+  (setq org-startup-indented t)
   (setq org-agenda-files '("~/org/gtd/gtd.org"
                            "~/org/gtd/inbox.org"
                            "~/org/gtd/tickler.org"))
+  
   (setq org-agenda-custom-commands
         '(("p" "Agenda and Personal tasks"
            ((agenda "")
