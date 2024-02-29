@@ -334,6 +334,14 @@
 ;;(use-package ws-butler
 ;;  :ensure t)
 
+(use-package denote
+  :ensure t
+  :config
+  (setq denote-directory (expand-file-name "~/.notes/"))
+  (setq denote-sort-keywords t)
+  (setq denote-known-keywords '("work" "personal" "finance" "urgent"))
+  (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories))
+
 ;; https://emacs.stackexchange.com/questions/39210/copy-paste-from-windows-clipboard-in-wsl-terminal
 ;; wsl-copy
 (defun wsl-copy (start end)
@@ -348,6 +356,7 @@
   :ensure nil)
 
 (add-to-list 'eglot-server-programs '(elixir-ts-mode "/home/aplacaba/downloads/elixirls/language_server.sh"))
+(add-to-list 'eglot-server-programs '(ruby-ts-mode "solargraph"))
 
 (use-package elixir-ts-mode
   :hook (elixir-ts-mode . eglot-ensure)
