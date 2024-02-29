@@ -355,7 +355,7 @@
 (use-package eglot
   :ensure nil)
 
-(add-to-list 'eglot-server-programs '(elixir-ts-mode "/home/aplacaba/downloads/elixirls/language_server.sh"))
+(add-to-list 'eglot-server-programs '(elixir-ts-mode "language_server.sh"))
 (add-to-list 'eglot-server-programs '(ruby-ts-mode "solargraph"))
 
 (use-package elixir-ts-mode
