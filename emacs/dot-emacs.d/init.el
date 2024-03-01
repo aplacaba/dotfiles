@@ -172,7 +172,7 @@
   :bind
   (("C-M-g" . magit-status)
    ("C-x g" . magit-status)))
-  
+
 ;; javascript / typescript
 
 (use-package json-mode
@@ -290,7 +290,7 @@
   (setq org-agenda-files '("~/org/gtd/gtd.org"
                            "~/org/gtd/inbox.org"
                            "~/org/gtd/tickler.org"))
-  
+
   (setq org-agenda-custom-commands
         '(("p" "Agenda and Personal tasks"
            ((agenda "")
@@ -311,7 +311,7 @@
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-x C-g") 'org-todo)
-  
+
 
   (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
   (org-babel-do-load-languages
@@ -352,14 +352,8 @@
 (global-set-key (kbd "C-c y") #'wsl-copy)
 (global-set-key (kbd "C-t") nil)
 
-(use-package eglot
-  :ensure nil)
-
-(add-to-list 'eglot-server-programs '(elixir-ts-mode "language_server.sh"))
-(add-to-list 'eglot-server-programs '(ruby-ts-mode "solargraph"))
-
 (use-package elixir-ts-mode
-  :hook (elixir-ts-mode . eglot-ensure)
+  :hook
   (elixir-ts-mode
    .
    (lambda ()
@@ -371,13 +365,11 @@
      (push '("<-" . ?\u2190) prettify-symbols-alist)
      (push '("->" . ?\u2192) prettify-symbols-alist)
      (push '("<-" . ?\u2190) prettify-symbols-alist)
-     (push '("|>" . ?\u25B7) prettify-symbols-alist)))
-  (before-save . eglot-format))
+     (push '("|>" . ?\u25B7) prettify-symbols-alist))))
 
 (use-package ruby-ts-mode
   :ensure t
   :hook
-  (ruby-ts-mode . eglot-ensure)
   (ruby-ts-mode . ruby-end-mode))
 
 (add-to-list 'elixir-ts-mode-hook
@@ -463,6 +455,21 @@
 (setq warning-minimum-level :emergency)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+(use-package lsp-mode
+  :ensure t
+  :init
+  (setq lsp-keymap-prefix "C-c C-l")
+  (setq lsp-completion-provider :none)
+  (defun corfu-lsp-setup ()
+    (setq-local completion-styles '(orderless)
+                completion-category-defaults nil))
+  (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
+  :hook
+  (ruby-ts-mode . lsp)
+  (elixir-ts-mode . lsp)
+  :commands
+  lsp)
+
 (unless (display-graphic-p)
   ;; corfu setup
   (unless (package-installed-p 'quelpa)
@@ -470,13 +477,13 @@
       (url-insert-file-contents "https://raw.githubusercontent.com/quelpa/quelpa/master/quelpa.el")
       (eval-buffer)
       (quelpa-self-upgrade)))
-  
+
   (quelpa '(corfu-terminal
             :fetcher git
             :url "https://codeberg.org/akib/emacs-corfu-terminal.git"))
-  
+
   (corfu-terminal-mode 1)
-  
+
   ;; activate mouse-based scrolling
   (xterm-mouse-mode 1)
   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
