@@ -30,20 +30,6 @@ function docker-clear-images () {
     docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 }
 
-function prism-connect () {
-    ssh -i ~/.ssh/prism.pem ec2-user@$1
-}
-
-function ec2-list () {
-    aws ec2 describe-instances \
-        --query "Reservations[*].Instances[*].{PublicIP:PublicIpAddress,Name:Tags[?Key=='Name']|[0].Value,Status:State.Name}" \
-        --output table
-}
-
-function jenkins-connect () {
-    ssh -i ~/.ssh/prism.pem ec2-user@3.1.236.123
-}
-
 # Load plugins
 . $HOME/.asdf/asdf.sh
 export PATH="$PATH:/usr/local/bin"
