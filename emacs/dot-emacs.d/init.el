@@ -18,9 +18,11 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; customizations
+;;;; emacs config
+
 (defalias 'yes-or-no-p 'y-or-n-p)
 
+;;;; fonts and themes
 (set-face-attribute 'default nil
                     :family "JetBrains Mono"
                     :weight 'regular
@@ -28,6 +30,9 @@
 
 (setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
+(load-theme 'modus-vivendi)
+
+;; editor config
 
 (setq
  custom-safe-themes t
@@ -35,7 +40,6 @@
  case-fold-search nil
  ring-bell-function 'ignore
  fill-column 120
- ;; no lock files
  create-lockfiles nil
  auto-save-default nil
  make-backup-files nil
@@ -44,19 +48,69 @@
  display-time-default-load-average nil
  display-time-format "%H:%M:%S %a,%d %b %Y"
  column-number-mode t
+ warning-minimum-level :emergency
+ tab-always-indent 'complete
  custom-file "~/.emacs.d/custom.el")
+
+;; enabled modes and other vars
+;;(require 'slime-autoloads)
+
+(setq inferior-lisp-program "sbcl")
+(setq-default cursor-type 'box)
+(pixel-scroll-precision-mode)
+(setenv "PAGER" "cat")
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(electric-pair-mode +1)
+(global-auto-revert-mode -1)
+(global-hl-line-mode +1)
+(display-time-mode 0)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;;;; hooks
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(use-package exec-path-from-shell
-  :ensure t)
+;;;; keybindings
+
+(global-set-key (kbd "C-x C-n") nil)
+(global-set-key (kbd "C-o") nil)
+(global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
+(global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
+(global-set-key (kbd "M-o") 'other-window)
+(global-set-key (kbd "C-c r") 'rename-buffer)
+(global-set-key (kbd "C-c m m") 'modus-themes-toggle)
+(global-set-key (kbd "C-x C-n") 'find-file)
+(global-set-key (kbd "C-c n n") 'denote)
+(define-key global-map [remap list-buffers] 'ibuffer)
+(define-key key-translation-map [?\C-t] [?\C-x])
+
+
+;;; QoL packages
+
+(use-package vterm
+  :ensure t
+  :config
+  (setq vterm-max-scrollback 10000)
+  (setq vterm-kill-buffer-on-exit t)
+  (global-set-key (kbd "C-c t") 'vterm-copy-mode))
+
+(use-package vterm-toggle
+  :ensure t
+  :config
+  (add-hook 'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil)))
+  (global-set-key (kbd "s-t") 'vterm-toggle)
+  (global-set-key (kbd "C-M-t") 'vterm-toggle-cd)
+  (define-key vterm-mode-map [(control return)]   #'vterm-toggle-insert-cd)
+  (define-key vterm-mode-map (kbd "s-n")   'vterm-toggle-forward)
+  (define-key vterm-mode-map (kbd "s-p")   'vterm-toggle-backward))
 
 (use-package which-key
   :ensure t
   :config
   (which-key-mode)
   (which-key-setup-side-window-bottom))
-
 
 (use-package ripgrep
   :ensure t
@@ -121,39 +175,12 @@
   (diminish 'auto-revert-mode)
   (diminish 'flycheck-mode)
   (diminish 'eldoc-mode)
-;;  (diminish 'projectile-mode)
   (diminish 'which-key-mode))
-
-;; themes
-
 
 (use-package rainbow-delimiters
   :ensure t
   :hook
   (prog-mode . rainbow-delimiters-mode))
-
-;; custom keybindings
-(global-set-key (kbd "C-x C-n") nil)
-(global-set-key (kbd "C-o") nil)
-
-;; split and go to buffer
-(global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
-(global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
-(global-set-key (kbd "M-o") 'other-window)
-(global-set-key (kbd "C-c r") 'rename-buffer)
-(global-set-key (kbd "C-c m m") 'modus-themes-toggle)
-(global-set-key (kbd "C-x C-n") 'find-file)
-(define-key global-map [remap list-buffers] 'ibuffer)
-
-;;; Programming
-
-(use-package flycheck
-  :ensure t
-  :config
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (flycheck-add-mode 'typescript-tslint 'web-mode)
-  :hook
-  (after-init . global-flycheck-mode))
 
 (use-package avy
   :ensure t
@@ -162,7 +189,16 @@
   (global-set-key (kbd "C-c C-j") 'avy-resume)
   (global-set-key (kbd "C-:") 'avy-goto-char))
 
-;; git
+
+;;; Programming dev and modes
+
+(use-package flycheck
+  :ensure t
+  :config
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-add-mode 'typescript-tslint 'web-mode)
+  :hook
+  (after-init . global-flycheck-mode))
 
 (use-package magit
   :ensure t
@@ -195,35 +231,7 @@
 (use-package emmet-mode
   :ensure t)
 
-(use-package tide
-  :ensure t
-  :config
-  (setq tide-format-options
-	'(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t
-	  :placeOpenBraceOnNewLineForFunctions nil
-	  :indentSize 2
-	  :tabSize 2
-	  :insertSpaceBeforeFunctionParenthesis t
-	  :insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces t))
-
-  :after (typescript-mode company flycheck)
-  :hook ((typescript-mode . tide-setup)
-         (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save)))
-
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (tide-hl-identifier-mode +1)
-  (setq web-mode-enable-auto-quoting nil)
-  (setq web-mode-attr-value-indent-offset 2)
-  (setq typescript-indent-level 2)
-  (setq flycheck-check-syntax-automatically '(save mode enabled))
-  (tide-hl-identifier-mode +1))
-
-(setq company-tooltip-align-annotations t)
-
+;; file ext mode support
 (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
@@ -235,13 +243,6 @@
 (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\dot-zshrc?\\'" . sh-mode))
 
-(add-hook 'js2-mode-hook #'setup-tide-mode)
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
-(add-hook 'web-mode-hook
-          (lambda ()
-            (emmet-mode +1)
-            (when (string-equal "tsx" (file-name-extension buffer-file-name))
-              (setup-tide-mode))))
 
 ;; clojure
 
@@ -258,31 +259,57 @@
 (use-package ruby-end
   :ensure t)
 
-;; vterm
-(use-package vterm
+(use-package elixir-ts-mode
+  :ensure t)
+
+(use-package ruby-ts-mode
+  :ensure t
+  :hook
+  (ruby-ts-mode . ruby-end-mode))
+
+(add-to-list 'elixir-ts-mode-hook
+             (defun auto-activate-ruby-end-mode-for-elixir-mode ()
+               (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
+                    "\\(?:^\\|\\s-+\\)\\(?:do\\)")
+               (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
+               (ruby-end-mode +1)))
+
+(use-package mix
   :ensure t
   :config
-  (setq vterm-max-scrollback 10000)
-  (setq vterm-kill-buffer-on-exit t)
-  (global-set-key (kbd "C-c t") 'vterm-copy-mode))
+  (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
+  (setq compilation-scroll-output t)
+  (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
 
-(use-package vterm-toggle
+(use-package terraform-mode
+  :ensure t)
+
+;; language server
+
+(use-package lsp-mode
   :ensure t
-  :config
-  (add-hook 'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil)))
-  (global-set-key (kbd "s-t") 'vterm-toggle)
-  (global-set-key (kbd "C-M-t") 'vterm-toggle-cd)
-  (define-key vterm-mode-map [(control return)]   #'vterm-toggle-insert-cd)
-  (define-key vterm-mode-map (kbd "s-n")   'vterm-toggle-forward)
-  (define-key vterm-mode-map (kbd "s-p")   'vterm-toggle-backward))
+  :init
+  (setq lsp-enable-snippet nil)
+  (setq lsp-keymap-prefix "C-c C-l")
+  (setq lsp-completion-provider :none)
+  (defun corfu-lsp-setup ()
+    (setq-local completion-styles '(orderless)
+                completion-category-defaults nil))
+  (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
+  :hook
+  (ruby-ts-mode . lsp-deferred)
+  (elixir-ts-mode . lsp-deferred)
+  (terraform-mode . lsp-deferred)
+  :commands
+  lsp)
 
+;;;; note taking
 
 (require 'org-tempo)
 
 (use-package ob-elixir
   :ensure t)
 
-;; org
 (use-package org
   :ensure t
   :config
@@ -329,11 +356,6 @@
 (use-package org-bullets
   :ensure t)
 
-;; ws-butler
-
-;;(use-package ws-butler
-;;  :ensure t)
-
 (use-package denote
   :ensure t
   :config
@@ -342,56 +364,18 @@
   (setq denote-known-keywords '("work" "personal" "finance" "urgent"))
   (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories))
 
-;; https://emacs.stackexchange.com/questions/39210/copy-paste-from-windows-clipboard-in-wsl-terminal
-;; wsl-copy
+
+;;; Windows
+;;; https://emacs.stackexchange.com/questions/39210/copy-paste-from-windows-clipboard-in-wsl-terminal
+
 (defun wsl-copy (start end)
   (interactive "r")
   (shell-command-on-region start end "clip.exe")
   (deactivate-mark))
 
 (global-set-key (kbd "C-c y") #'wsl-copy)
-(global-set-key (kbd "C-t") nil)
 
-(use-package elixir-ts-mode
-  :hook
-  (elixir-ts-mode
-   .
-   (lambda ()
-     (push '(">=" . ?\u2265) prettify-symbols-alist)
-     (push '("<=" . ?\u2264) prettify-symbols-alist)
-     (push '("!=" . ?\u2260) prettify-symbols-alist)
-     (push '("==" . ?\u2A75) prettify-symbols-alist)
-     (push '("=~" . ?\u2245) prettify-symbols-alist)
-     (push '("<-" . ?\u2190) prettify-symbols-alist)
-     (push '("->" . ?\u2192) prettify-symbols-alist)
-     (push '("<-" . ?\u2190) prettify-symbols-alist)
-     (push '("|>" . ?\u25B7) prettify-symbols-alist))))
-
-(use-package ruby-ts-mode
-  :ensure t
-  :hook
-  (ruby-ts-mode . ruby-end-mode))
-
-(add-to-list 'elixir-ts-mode-hook
-             (defun auto-activate-ruby-end-mode-for-elixir-mode ()
-               (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
-                    "\\(?:^\\|\\s-+\\)\\(?:do\\)")
-               (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
-               (ruby-end-mode +1)))
-
-(defvar my/home (getenv "HOME"))
-
-(use-package mix
-  :ensure t
-  :config
-  (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
-  (setq compilation-scroll-output t)
-  (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
-
-(use-package terraform-mode
-  :ensure t)
-
-;; mode grammars
+;; tressitter mode grammars
 
 (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -413,7 +397,7 @@
      (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
      (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
 
-;; rerun on list update
+;; uncomment and eval block below on treesitter list update
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
 (setq major-mode-remap-alist
@@ -428,47 +412,8 @@
    (ruby-mode . ruby-ts-mode)
    (python-mode . python-ts-mode)))
 
-;; colemak c-t to c-x
-(define-key key-translation-map [?\C-t] [?\C-x])
-;; commonlisp setup
-;;(add-to-list 'load-path "~/Workspace/slime")
-;;(require 'slime-autoloads)
-(setq inferior-lisp-program "sbcl")
 
-(setq-default cursor-type 'box)
-(pixel-scroll-precision-mode)
-
-(setenv "PAGER" "cat")
-(setq tab-always-indent 'complete)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(electric-pair-mode +1)
-(global-auto-revert-mode -1)
-(global-hl-line-mode +1)
-;;(ws-butler-global-mode +1)
-(exec-path-from-shell-initialize)
-(display-time-mode 0)
-
-;; minibook x configs
-(load-theme 'modus-vivendi)
-(setq warning-minimum-level :emergency)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-(use-package lsp-mode
-  :ensure t
-  :init
-  (setq lsp-keymap-prefix "C-c C-l")
-  (setq lsp-completion-provider :none)
-  (defun corfu-lsp-setup ()
-    (setq-local completion-styles '(orderless)
-                completion-category-defaults nil))
-  (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
-  :hook
-  (ruby-ts-mode . lsp)
-  (elixir-ts-mode . lsp)
-  :commands
-  lsp)
+;; -nw configs and packages
 
 (unless (display-graphic-p)
   ;; corfu setup
