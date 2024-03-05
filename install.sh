@@ -14,7 +14,7 @@ if [[ $os == *"fedora"* ]]; then
          readline-devel  zlib zlib-devel gdbm gdbm-devel ncurses-devel \
          automake cmake autoconf gcc gcc-c++ ImageMagick libpng libpng-devel \
          bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure \
-         erlang docker libtool openssl1.1 openssl1.1-devel xclip xsel zsh exa \
+         erlang libtool openssl1.1 openssl1.1-devel xclip xsel zsh exa \
          util-linux-user inotify-tools stow emacs libtree-sitter libtree-sitter-devel \
          sbcl terraform
 
