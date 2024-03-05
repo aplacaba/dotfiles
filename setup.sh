@@ -4,19 +4,16 @@ os="$(uname -a)"
 
 # For Fedora
 if [[ $os == *"fedora"* ]]; then
-    echo "Found Fedora"
+    echo "Found Fedora. Installing dependencies"
 
     sudo dnf update -y
-
     sudo dnf install -y \
-     git-core patch make bzip2 libyaml-devel libffi-devel readline readline-devel zlib zlib-devel \
-     gdbm gdbm-devel ncurses-devel automake cmake autoconf gcc gcc-c++ ImageMagick libpng libpng-devel \
-     bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure erlang docker libtool \
-     openssl1.1 openssl1.1-devel xclip xsel zsh exa util-linux-user inotify-tools stow emacs \
-     xset libtree-sitter libtree-sitter-devel sbcl
-
-    echo "setup docker"
-    sudo systemctl start docker
+         git-core patch make bzip2 libyaml-devel libffi-devel readline \
+         readline-devel  zlib zlib-devel gdbm gdbm-devel ncurses-devel \
+         automake cmake autoconf gcc gcc-c++ ImageMagick libpng libpng-devel \
+         bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure \
+         erlang docker libtool openssl1.1 openssl1.1-devel xclip xsel zsh exa \
+         util-linux-user inotify-tools stow emacs libtree-sitter libtree-sitter-devel sbcl
 
     # keybindings
     echo "setup keybindings"
@@ -45,20 +42,22 @@ fi
 if [[ $os == *"microsoft"* ]]; then
     echo "Found WSL"
 
-    sudo apt update -y && sudo apt upgrage -y
-    sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential \
-         libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev ripgrep make cmake \
-         libpng libpng-dev libtool libtool-bin exa xsel xclip libvterm libvterm-dev zsh emacs stow \
-         xset libtree-sitter-dev sbcl build-essential autoconf m4 libwxgtk3.0-gtk3-dev libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk \
+    sudo apt update -y && sudo apt upgrade -y
+    sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf \
+         bison build-essential libyaml-dev libreadline-dev libncurses5-dev \
+         libffi-dev libgdbm-dev ripgrep make cmake libpng libpng-dev libtool \
+         libtool-bin exa xsel xclip libvterm libvterm-dev zsh  stow xset \
+         libtree-sitter-dev sbcl build-essential autoconf m4 libwxgtk3.0-gtk3-dev \
+         libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev \
+         libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk \
          libwxgtk-webview3.0-gtk3-dev
 fi
 
 
 # for wsl ensure docker for windows is up and running
 echo "Setting up services"
-POSTGRES_VERSION=15.3
-MYSQL_LEGACY=5.7
-REDIS_VERSION=6.2
+POSTGRES_VERSION="latest"
+REDIS_VERSION="latest"
 
 docker volume create pgdata
 docker run -d \
@@ -66,21 +65,9 @@ docker run -d \
      --restart always \
      -v pgdata:/var/lib/postgresql/data \
      -e POSTGRES_USER=postgres \
-     -e POSTGRES_PASSWORD=password \
+     -e POSTGRES_HOST_AUTH_METHOD=trust \
      -p 5432:5432 \
      postgres:$POSTGRES_VERSION
-
-
-docker volume create mysql_data
-docker run -d \
-     --name mysql-legacy \
-     --restart always \
-     -v mysql_data:/var/lib/mysql \
-     -e MYSQL_ROOT_PASSWORD=secret \
-     -e MYSQL_USER=admin \
-     -e MYSQL_PASSWORD=admin \
-     -p 3306:3307 \
-     mysql:$MYSQL_LEGACY
 
 docker run -d \
        --name redis \
@@ -89,7 +76,7 @@ docker run -d \
        redis:$REDIS_VERSION
 
 echo "Setting up asdf"
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
 . $HOME/.asdf/asdf.sh
 
 RUBY_VERSION=3.2.2
@@ -100,6 +87,7 @@ EX_VERSION=1.14.2
 asdf plugin-add ruby   https://github.com/asdf-vm/asdf-ruby.git
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+
 bash -c '${ASDF_DATA_DIR:=$HOME/.asdf}/plugins/nodejs/bin/import-release-team-keyring'
 
 asdf install ruby $RUBY_VERSION
@@ -113,7 +101,6 @@ case ${answer:0:1} in
         echo "Installing 3rd party software"
         flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
         flatpak install -y flathub com.discordapp.Discord
-        flatpak install -y flathub com.spotify.Client
         flatpak install -y flathub us.zoom.Zoom
         flatpak install -y flathub org.telegram.desktop
         flatpak install -y flathub com.slack.Slack
@@ -121,5 +108,7 @@ case ${answer:0:1} in
     * )
     ;;
 esac
+
+make && make install
 
 echo "Setup complete please restart your computer"

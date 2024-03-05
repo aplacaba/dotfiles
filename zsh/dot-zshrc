@@ -24,6 +24,8 @@ zinit for \
 alias g='git'
 alias ls='exa -l'
 alias xcopy='xclip -sel clip'
+alias emacs="emacs -nw"
+alias pgc="psql -h localhost -U postgres --password"
 
 # Functions
 function docker-clear-images () {
@@ -33,6 +35,7 @@ function docker-clear-images () {
 # Load plugins
 . $HOME/.asdf/asdf.sh
 export PATH="$PATH:/usr/local/bin"
+
 
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then

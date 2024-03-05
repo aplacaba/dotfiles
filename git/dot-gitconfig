@@ -7,7 +7,6 @@
 	ui = auto
 [core]
 	editor = emacs -nw
-	excludesfile = /home/tovarisch/.global_gitignore
 [alias]
 	st = status
 	co = checkout
