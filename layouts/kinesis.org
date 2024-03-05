@@ -4,9 +4,9 @@ c_qwerty file located on =layouts= folder
 
 INSTALLATION:
 
-1 ) Switch to QWERTY mode: progm+F3
-2 ) Create new layout file c_qwerty.txt: progm+F2 c
-3 ) Switch to WIN mode: progm+F6
-4 ) Mount the 'KINESIS KB' Drive: shift+progm+esc then shift+progm+F1
-5 ) Copy c_qwerty.txt to the active folder. This will overwrite the file that is already there.
-6 ) Hit progm+c to switch to colemak
+1. Switch to QWERTY mode: progm+F3.
+2. Create new layout file c_qwerty.txt: progm+F2 c
+3. Switch to WIN mode: progm+F6
+4. Mount the 'KINESIS KB' Drive: shift+progm+esc then shift+progm+F1
+5. Copy c_qwerty.txt to the active folder. This will overwrite the file that is already there.
+6. Hit progm+c to switch to colemak
