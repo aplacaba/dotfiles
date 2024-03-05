@@ -6,6 +6,8 @@ os="$(uname -a)"
 if [[ $os == *"fedora"* ]]; then
     echo "Found Fedora. Installing dependencies"
 
+    sudo dnf install -y dnf-plugins-core
+    sudo dnf config-manager --add-repo https://rpm.releases.hashicorp.com/fedora/hashicorp.repo
     sudo dnf update -y
     sudo dnf install -y \
          git-core patch make bzip2 libyaml-devel libffi-devel readline \
@@ -13,7 +15,8 @@ if [[ $os == *"fedora"* ]]; then
          automake cmake autoconf gcc gcc-c++ ImageMagick libpng libpng-devel \
          bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure \
          erlang docker libtool openssl1.1 openssl1.1-devel xclip xsel zsh exa \
-         util-linux-user inotify-tools stow emacs libtree-sitter libtree-sitter-devel sbcl
+         util-linux-user inotify-tools stow emacs libtree-sitter libtree-sitter-devel \
+         sbcl terraform
 
     # keybindings
     echo "setup keybindings"
@@ -42,6 +45,9 @@ fi
 if [[ $os == *"microsoft"* ]]; then
     echo "Found WSL"
 
+    wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+
     sudo apt update -y && sudo apt upgrade -y
     sudo apt install git curl libssl-dev libreadline-dev zlib1g-dev autoconf \
          bison build-essential libyaml-dev libreadline-dev libncurses5-dev \
@@ -50,9 +56,9 @@ if [[ $os == *"microsoft"* ]]; then
          libtree-sitter-dev sbcl build-essential autoconf m4 libwxgtk3.0-gtk3-dev \
          libwxgtk-webview3.0-gtk3-dev libgl1-mesa-dev libglu1-mesa-dev libpng-dev \
          libssh-dev unixodbc-dev xsltproc fop libxml2-utils libncurses-dev openjdk-11-jdk \
-         libwxgtk-webview3.0-gtk3-dev
-fi
+         libwxgtk-webview3.0-gtk3-dev terraform
 
+fi
 
 # for wsl ensure docker for windows is up and running
 echo "Setting up services"
