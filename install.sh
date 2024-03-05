@@ -64,6 +64,7 @@ fi
 echo "Setting up services"
 POSTGRES_VERSION="latest"
 REDIS_VERSION="latest"
+ASDF_VERSION="0.14.0"
 
 docker volume create pgdata
 docker run -d \
