@@ -39,7 +39,6 @@
  kill-whole-line t
  case-fold-search nil
  ring-bell-function 'ignore
- fill-column 120
  create-lockfiles nil
  auto-save-default nil
  make-backup-files nil
@@ -57,12 +56,13 @@
 
 (setq inferior-lisp-program "sbcl")
 (setq-default cursor-type 'box)
+(setq-default fill-column 120)
+(global-display-fill-column-indicator-mode +1)
 (pixel-scroll-precision-mode)
 (setenv "PAGER" "cat")
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-(display-fill-column-indicator-mode +1)
 (electric-pair-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
