@@ -152,7 +152,7 @@
   :ensure t
   :bind
   ("C-x b" . consult-buffer)
-  ("C-c s" . consult-ripgrep)
+  ("C-c <return>" . consult-ripgrep)
   ("C-c h" . consult-history)
   ("C-c k" . consult-kmacro)
   ("C-c i" . consult-info)
@@ -239,17 +239,30 @@
   :ensure t)
 
 ;; file ext mode support
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.heex?\\'" . heex-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\dot-zshrc?\\'" . sh-mode))
+;; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.erb?\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\.heex?\\'" . heex-ts-mode))
+;; (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
+;; (add-to-list 'auto-mode-alist '("\\dot-zshrc?\\'" . sh-mode))
 
+(setq auto-mode-alist
+      (append
+       '(("\\.tsx\\'" . web-mode)
+         ("\\.jsx\\'" . web-mode)
+         ("\\.html?\\'" . web-mode)
+         ("\\.css?\\'" . web-mode)
+         ("\\.scss?\\'" . web-mode)
+         ("\\.erb?\\'" . web-mode)
+         ("\\.heex\\'" . web-mode)
+         ("\\dot-zshrc?\\'" . sh-mode)
+         ("\\.go\\'" . go-ts-mode)
+         ("\\Dockerfile?\\'" . dockerfile-ts-mode))
+       auto-mode-alist))
 
 ;; clojure
 
