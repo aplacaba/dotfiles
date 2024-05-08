@@ -26,9 +26,9 @@
 (set-face-attribute 'default nil
                     :family "JetBrains Mono"
                     :weight 'regular
-                    :height 180)
+                    :height 150)
 
-(setq-default line-spacing 0)
+(setq-default line-spacing 1)
 (setq-default indent-tabs-mode nil)
 (load-theme 'modus-vivendi)
 
@@ -57,7 +57,6 @@
 (setq inferior-lisp-program "sbcl")
 (setq-default cursor-type 'box)
 (setq-default fill-column 120)
-(global-display-fill-column-indicator-mode +1)
 (pixel-scroll-precision-mode)
 (setenv "PAGER" "cat")
 (set-default-coding-systems 'utf-8)
@@ -139,6 +138,9 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package yaml-mode
+  :ensure t)
 
 (defun consult-line-literal ()
   "Use this instead of isearch."
@@ -408,8 +410,7 @@
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
 (setq major-mode-remap-alist
- '((yaml-mode . yaml-ts-mode)
-   (bash-mode . bash-ts-mode)
+ '((bash-mode . bash-ts-mode)
    (js2-mode . js-ts-mode)
    (typescript-mode . typescript-ts-mode)
    (json-mode . json-ts-mode)
@@ -419,6 +420,14 @@
    (ruby-mode . ruby-ts-mode)
    (python-mode . python-ts-mode)))
 
+;; rice
+
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :ensure t)
 
 ;; -nw configs and packages
 
