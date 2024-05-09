@@ -24,11 +24,11 @@
 
 ;;;; fonts and themes
 (set-face-attribute 'default nil
-                    :family "JetBrains Mono"
+                    :family "DejaVuSansM Nerd Font"
                     :weight 'regular
-                    :height 180)
+                    :height 140)
 
-(setq-default line-spacing 0)
+(setq-default line-spacing 5)
 (setq-default indent-tabs-mode nil)
 (load-theme 'modus-vivendi)
 
@@ -57,7 +57,6 @@
 (setq inferior-lisp-program "sbcl")
 (setq-default cursor-type 'box)
 (setq-default fill-column 120)
-(global-display-fill-column-indicator-mode +1)
 (pixel-scroll-precision-mode)
 (setenv "PAGER" "cat")
 (set-default-coding-systems 'utf-8)
@@ -212,6 +211,7 @@
   :defer t
   :config
   (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+  (setq transient-default-level 7)
   :bind
   (("C-M-g" . magit-status)
    ("C-x g" . magit-status)))
@@ -249,7 +249,7 @@
 (add-to-list 'auto-mode-alist '("\\.heex?\\'" . heex-ts-mode))
 (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\dot-zshrc?\\'" . sh-mode))
-
+(add-to-list 'auto-mode-alist '("\\Dockerfile?\\'" . dockerfile-mode))
 
 ;; clojure
 
@@ -310,6 +310,9 @@
   :commands
   lsp)
 
+(use-package dockerfile-mode
+  :ensure t)
+
 ;;;; note taking
 
 (require 'org-tempo)
@@ -355,6 +358,9 @@
                                (elixir . t)
                                (js . t))))
 
+(use-package yaml-mode
+  :ensure t)
+
 (use-package org-journal
   :ensure t
   :config
@@ -381,8 +387,16 @@
   (deactivate-mark))
 
 (global-set-key (kbd "C-c y") #'wsl-copy)
+(global-set-key (kbd "C-SPC") #'set-mark-command)
 
-;; tressitter mode grammars
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
+;; tressitter mode grammarsq
 
 (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -408,8 +422,7 @@
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
 (setq major-mode-remap-alist
- '((yaml-mode . yaml-ts-mode)
-   (bash-mode . bash-ts-mode)
+ '((bash-mode . bash-ts-mode)
    (js2-mode . js-ts-mode)
    (typescript-mode . typescript-ts-mode)
    (json-mode . json-ts-mode)
@@ -418,7 +431,6 @@
    (dockerfile-mode . dockerfile-ts-mode)
    (ruby-mode . ruby-ts-mode)
    (python-mode . python-ts-mode)))
-
 
 ;; -nw configs and packages
 
@@ -441,6 +453,12 @@
   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
   (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
   (global-unset-key (kbd "C-<down-mouse-1>")))
+
+
+(setq mac-option-key-is-meta nil
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier 'none)
 
 (provide 'init)
 ;;; init.el ends here
