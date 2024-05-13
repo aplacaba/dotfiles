@@ -11,7 +11,7 @@ sh install.sh
 #+end_src
 
 ** Contents
-- Emacs configuration
+- Emacs configuration and wsl launch scripts
 - elixir, ruby, clojure dependencies
 - asdf installation
 - terraform installation
@@ -19,3 +19,7 @@ sh install.sh
 ** Keyboard Layout
 
 Activate kinesis config regardless of OS. Follow instructions on =layouts/kinesis.org=
+
+** WSL
+
+Create emacs shortcut from bat file to launch emacs gui from windows

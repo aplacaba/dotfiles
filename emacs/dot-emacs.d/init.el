@@ -38,7 +38,6 @@
  kill-whole-line t
  case-fold-search nil
  ring-bell-function 'ignore
- fill-column 120
  create-lockfiles nil
  auto-save-default nil
  make-backup-files nil
@@ -56,12 +55,12 @@
 
 (setq inferior-lisp-program "sbcl")
 (setq-default cursor-type 'box)
+(setq-default fill-column 120)
 (pixel-scroll-precision-mode)
 (setenv "PAGER" "cat")
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
-(display-fill-column-indicator-mode +1)
 (electric-pair-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
@@ -138,6 +137,9 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package yaml-mode
+  :ensure t)
 
 (defun consult-line-literal ()
   "Use this instead of isearch."
@@ -410,8 +412,7 @@
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
 (setq major-mode-remap-alist
- '((yaml-mode . yaml-ts-mode)
-   (bash-mode . bash-ts-mode)
+ '((bash-mode . bash-ts-mode)
    (js2-mode . js-ts-mode)
    (typescript-mode . typescript-ts-mode)
    (json-mode . json-ts-mode)
@@ -421,6 +422,14 @@
    (ruby-mode . ruby-ts-mode)
    (python-mode . python-ts-mode)))
 
+;; rice
+
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :ensure t)
 
 (use-package all-the-icons
   :if (display-graphic-p))
