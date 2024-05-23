@@ -1,6 +1,7 @@
 [user]
 	name = aplacaba
 	email = alacaba@fastmail.com
+	signingkey = /Users/allanlacaba/.ssh/id_ed25519.pub
 [push]
 	default = simple
 [color]
@@ -17,3 +18,5 @@
 	gr = grep --break --heading -n
 [pull]
 	rebase = false
+[gpg]
+	format = ssh

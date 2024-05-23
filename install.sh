@@ -15,7 +15,7 @@ if [[ $os == *"fedora"* ]]; then
          automake cmake autoconf gcc gcc-c++ ImageMagick libpng libpng-devel \
          bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure \
          erlang libtool openssl1.1 openssl1.1-devel xclip xsel zsh exa \
-         util-linux-user inotify-tools stow emacs libtree-sitter libtree-sitter-devel \
+         util-linux-user inotify-tools stow libtree-sitter libtree-sitter-devel \
          sbcl terraform
 
     # keybindings
@@ -83,7 +83,7 @@ docker run -d \
        redis:$REDIS_VERSION
 
 echo "Setting up asdf"
-git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.14.0
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v$ASDF_VERSION
 . $HOME/.asdf/asdf.sh
 
 RUBY_VERSION=3.2.2

@@ -22,13 +22,12 @@
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-;;;; fonts and themes
 (set-face-attribute 'default nil
-                    :family "DejaVuSansM Nerd Font"
+                    :family "JetBrains Mono"
                     :weight 'regular
                     :height 140)
 
-(setq-default line-spacing 5)
+(setq-default line-spacing 1)
 (setq-default indent-tabs-mode nil)
 (load-theme 'modus-vivendi)
 
@@ -138,6 +137,9 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
+
+(use-package yaml-mode
+  :ensure t)
 
 (defun consult-line-literal ()
   "Use this instead of isearch."
@@ -250,6 +252,20 @@
 (add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\dot-zshrc?\\'" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\Dockerfile?\\'" . dockerfile-mode))
+
+(setq auto-mode-alist
+      (append
+       '(("\\.tsx\\'" . web-mode)
+         ("\\.jsx\\'" . web-mode)
+         ("\\.html?\\'" . web-mode)
+         ("\\.css?\\'" . web-mode)
+         ("\\.scss?\\'" . web-mode)
+         ("\\.erb?\\'" . web-mode)
+         ("\\.heex\\'" . web-mode)
+         ("\\dot-zshrc?\\'" . sh-mode)
+         ("\\.go\\'" . go-ts-mode)
+         ("\\Dockerfile?\\'" . dockerfile-ts-mode))
+       auto-mode-alist))
 
 ;; clojure
 
@@ -432,7 +448,35 @@
    (ruby-mode . ruby-ts-mode)
    (python-mode . python-ts-mode)))
 
+
+;; rice
+
+(use-package company
+  :bind (:map company-active-map
+         ("C-n" . company-select-next)
+         ("C-p" . company-select-previous))
+  :config
+  (setq company-dabbrev-downcase nil)
+  (setq company-idle-delay 0.3)
+  (global-company-mode t))
+
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package doom-modeline
+  :init (doom-modeline-mode 1)
+  :ensure t)
+
+(use-package all-the-icons
+  :if (display-graphic-p))
+
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
+
 ;; -nw configs and packages
+
+(global-unset-key (kbd "C-<down-mouse-1>"))
 
 (unless (display-graphic-p)
   ;; corfu setup
@@ -451,8 +495,54 @@
   ;; activate mouse-based scrolling
   (xterm-mouse-mode 1)
   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
-  (global-set-key (kbd "<mouse-5>") 'scroll-up-line)
-  (global-unset-key (kbd "C-<down-mouse-1>")))
+  (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
+
+;; devops
+
+;; cfn-lint
+;; Set up a mode for JSON based templates
+
+(define-derived-mode cfn-json-mode js-mode
+    "CFN-JSON"
+    "Simple mode to edit CloudFormation template in JSON format."
+    (setq js-indent-level 2))
+
+(add-to-list 'magic-mode-alist
+             '("\\({\n *\\)? *[\"']AWSTemplateFormatVersion" . cfn-json-mode))
+
+;; Set up a mode for YAML based templates if yaml-mode is installed
+;; Get yaml-mode here https://github.com/yoshiki/yaml-mode
+(when (featurep 'yaml-mode)
+
+  (define-derived-mode cfn-yaml-mode yaml-mode
+    "CFN-YAML"
+    "Simple mode to edit CloudFormation template in YAML format.")
+
+  (add-to-list 'magic-mode-alist
+               '("\\(---\n\\)?AWSTemplateFormatVersion:" . cfn-yaml-mode)))
+
+;; Set up cfn-lint integration if flycheck is installed
+;; Get flycheck here https://www.flycheck.org/
+(when (featurep 'flycheck)
+  (flycheck-define-checker cfn-lint
+    "AWS CloudFormation linter using cfn-lint.
+
+Install cfn-lint first: pip install cfn-lint
+
+See `https://github.com/aws-cloudformation/cfn-python-lint'."
+
+    :command ("cfn-lint" "-f" "parseable" source)
+    :error-patterns ((warning line-start (file-name) ":" line ":" column
+                              ":" (one-or-more digit) ":" (one-or-more digit) ":"
+                              (id "W" (one-or-more digit)) ":" (message) line-end)
+                     (error line-start (file-name) ":" line ":" column
+                            ":" (one-or-more digit) ":" (one-or-more digit) ":"
+                            (id "E" (one-or-more digit)) ":" (message) line-end))
+    :modes (cfn-json-mode cfn-yaml-mode))
+
+  (add-to-list 'flycheck-checkers 'cfn-lint)
+  (add-hook 'cfn-json-mode-hook 'flycheck-mode)
+  (add-hook 'cfn-yaml-mode-hook 'flycheck-mode))
 
 
 (setq mac-option-key-is-meta nil
