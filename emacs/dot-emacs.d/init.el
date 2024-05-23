@@ -23,11 +23,12 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (set-face-attribute 'default nil
-                    :family "DejaVuSansM Nerd Font"
+                    ;;:family "DejaVuSansM Nerd Font"
+                    :family "JetBrains Mono"
                     :weight 'regular
-                    :height 140)
+                    :height 110)
 
-(setq-default line-spacing 5)
+(setq-default line-spacing 1)
 (setq-default indent-tabs-mode nil)
 (load-theme 'modus-vivendi)
 
@@ -211,8 +212,8 @@
 (use-package magit
   :ensure t
   :defer t
-  :config
-  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
+  ;;:config
+  ;;(setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
   :bind
   (("C-M-g" . magit-status)
    ("C-x g" . magit-status)))
@@ -423,6 +424,15 @@
    (python-mode . python-ts-mode)))
 
 ;; rice
+
+(use-package company
+  :bind (:map company-active-map
+         ("C-n" . company-select-next)
+         ("C-p" . company-select-previous))
+  :config
+  (setq company-dabbrev-downcase nil)
+  (setq company-idle-delay 0.3)
+  (global-company-mode t))
 
 (use-package all-the-icons
   :if (display-graphic-p))
