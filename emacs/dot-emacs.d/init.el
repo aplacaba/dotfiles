@@ -23,11 +23,12 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (set-face-attribute 'default nil
-                    :family "JetBrains Mono"
+                    :family "DejaVuSansM Nerd Font"
+                    ;;:family "JetBrains Mono"
                     :weight 'regular
                     :height 140)
 
-(setq-default line-spacing 1)
+(setq-default line-spacing 5)
 (setq-default indent-tabs-mode nil)
 (load-theme 'modus-vivendi)
 
@@ -137,9 +138,6 @@
   :custom
   (completion-styles '(orderless basic))
   (completion-category-overrides '((file (styles basic partial-completion)))))
-
-(use-package yaml-mode
-  :ensure t)
 
 (defun consult-line-literal ()
   "Use this instead of isearch."
@@ -374,7 +372,7 @@
                                (elixir . t)
                                (js . t))))
 
-(use-package yaml-mode
+(use-package yaml-pro
   :ensure t)
 
 (use-package org-journal
@@ -432,7 +430,7 @@
      (elixir "https://github.com/elixir-lang/tree-sitter-elixir")
      (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
      (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
-     (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+     (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml")))
 
 ;; uncomment and eval block below on treesitter list update
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
