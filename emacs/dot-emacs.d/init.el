@@ -203,6 +203,7 @@
   :config
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'typescript-tslint 'web-mode)
+  (flycheck-add-mode 'cfn-lint          'cfn-yaml-mode)
   :hook
   (after-init . global-flycheck-mode))
 
@@ -449,6 +450,8 @@
 
 ;; rice
 
+(fringe-mode 1) ;; shrink vertical borders
+
 (use-package company
   :bind (:map company-active-map
          ("C-n" . company-select-next)
@@ -499,6 +502,11 @@
 
 ;; cfn-lint
 ;; Set up a mode for JSON based templates
+(use-package yaml-mode
+  :ensure t)
+
+(use-package cfn-mode
+  :ensure t)
 
 (define-derived-mode cfn-json-mode js-mode
     "CFN-JSON"
