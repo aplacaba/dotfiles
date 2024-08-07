@@ -1,4 +1,3 @@
-
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
     command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
@@ -24,41 +23,21 @@ zinit for \
 alias g='git'
 alias ls='exa -l'
 alias xcopy='xclip -sel clip'
-alias emacs="emacs -nw"
-alias pgc="psql -h localhost -U postgres --password"
-
-# Functions
-function docker-clear-images () {
-    docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
-}
 
 # Load plugins
-# . $HOME/.asdf/asdf.sh
-# mac
-. $(brew --prefix)/opt/asdf/libexec/asdf.sh
-export PATH="$PATH:/usr/local/bin"
-. $HOME/.cargo/env
+. $HOME/.asdf/asdf.sh
 
+# PATHS
+export PATH="$PATH:/usr/local/bin/:$HOME/.local/bin"
+
+# Mac
+if [ "$(uname)" == "Darwin" ]; then
+    . $(brew --prefix)/opt/asdf/libexec/asdf.sh
+fi
 
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
-    alias update!='sudo apt update && sudo apt upgrade -y'
-    export PATH=$PATH:/usr/local/lib/docker/cli-plugins/
     export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
     export LIBGL_ALWAYS_INDIRECT=1
-    export PATH="$HOME/.cargo/bin:$HOME/anaconda3/bin:$PATH"
-
-    # if ! pgrep wsld >> /dev/null 2>&1 ; then
-    #     nohup wsld > /dev/null < /dev/null 2>&1 &
-    #     disown
-
-    #     # sleep until $DISPLAY is up
-    #     while ! xset q > /dev/null 2>&1 ; do
-    #         sleep 0.3
-    #     done
-    # fi
+    alias podman='podman-remote-static-linux_amd64'
 fi
-
-# Created by `pipx` on 2024-04-17 14:38:36
-export PATH="$PATH:/Users/allanlacaba/.local/bin"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
