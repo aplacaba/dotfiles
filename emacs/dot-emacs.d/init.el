@@ -26,9 +26,9 @@
                     :family "DejaVuSansM Nerd Font"
                     ;;:family "JetBrains Mono"
                     :weight 'regular
-                    :height 140)
+                    :height 110)
 
-(setq-default line-spacing 5)
+(setq-default line-spacing 2)
 (setq-default indent-tabs-mode nil)
 (load-theme 'modus-vivendi)
 
@@ -65,8 +65,8 @@
 (electric-pair-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
+(fringe-mode +1)
 (display-time-mode 0)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;;;; hooks
 
@@ -94,6 +94,11 @@
 
 
 ;;; QoL packages
+
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (exec-path-from-shell-initialize))
 
 (use-package vterm
   :ensure t
@@ -286,6 +291,12 @@
 
 (use-package ruby-ts-mode
   :ensure t
+  :mode "\\.rb\\'"
+  :mode "Rakefile\\'"
+  :mode "Gemfile\\'"
+  :bind (:map ruby-ts-mode-map
+              ("C-c r b" . 'treesit-beginning-of-defun)
+              ("C-c r e" . 'treesit-end-of-defun))
   :hook
   (ruby-ts-mode . ruby-end-mode))
 
@@ -450,8 +461,6 @@
 
 ;; rice
 
-(fringe-mode 1) ;; shrink vertical borders
-
 (use-package company
   :bind (:map company-active-map
          ("C-n" . company-select-next)
@@ -537,7 +546,7 @@ Install cfn-lint first: pip install cfn-lint
 
 See `https://github.com/aws-cloudformation/cfn-python-lint'."
 
-    :command ("cfn-lint" "-f" "parseable" source)
+    :command ("~/.local/bin/cfn-lint" "-f" "parseable" source)
     :error-patterns ((warning line-start (file-name) ":" line ":" column
                               ":" (one-or-more digit) ":" (one-or-more digit) ":"
                               (id "W" (one-or-more digit)) ":" (message) line-end)
@@ -558,3 +567,4 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 
 (provide 'init)
 ;;; init.el ends here
+(put 'magit-clean 'disabled nil)
