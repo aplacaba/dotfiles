@@ -7,11 +7,12 @@ sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/do
 sudo dnf update -y
 sudo dnf install -y \
      git-core patch make bzip2 libyaml-devel libffi-devel readline \
-     readline-devel  zlib zlib-devel gdbm gdbm-devel ncurses-devel \
+     readline-devel zlib zlib-devel gdbm gdbm-devel ncurses-devel \
      automake cmake autoconf gcc gcc-c++ ImageMagick libpng libpng-devel \
      bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure \
-     erlang libtool xclip xsel zsh exa util-linux-user inotify-tools stow libtree-sitter libtree-sitter-devel \
-     sbcl emacs sudo docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+     libtool xclip xsel zsh eza util-linux-user inotify-tools stow \
+     libtree-sitter libtree-sitter-devel sbcl emacs sudo docker-ce docker-ce-cli \
+     containerd.io docker-buildx-plugin docker-compose-plugin awscli python3-pip
 
 echo "Setting up asdf"
 ASDF_VERSION="v0.14.1"
