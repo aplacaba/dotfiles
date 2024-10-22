@@ -23,14 +23,14 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (set-face-attribute 'default nil
-                    :family "DejaVuSansM Nerd Font"
+                    :family "Iosevka Comfy"
                     ;;:family "JetBrains Mono"
                     :weight 'regular
-                    :height 140)
+                    :height 120)
 
-(setq-default line-spacing 5)
+(setq-default line-spacing 2)
 (setq-default indent-tabs-mode nil)
-(load-theme 'modus-vivendi)
+(load-theme 'ef-maris-dark t)
 
 ;; editor config
 
@@ -47,14 +47,21 @@
  display-time-default-load-average nil
  display-time-format "%H:%M:%S %a,%d %b %Y"
  column-number-mode t
- warning-minimum-level :emergency
- tab-always-indent 'complete
+ warning-minimum-level :emergency tab-always-indent 'complete
  custom-file "~/.emacs.d/custom.el")
+
+(fringe-mode 1)
+
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
 
 ;; enabled modes and other vars
 ;;(require 'slime-autoloads)
 
+(load (expand-file-name "~/.quicklisp/slime-helper.el"))
 (setq inferior-lisp-program "sbcl")
+
 (setq-default cursor-type 'box)
 (setq-default fill-column 120)
 (pixel-scroll-precision-mode)
@@ -66,7 +73,6 @@
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
 (display-time-mode 0)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;;;; hooks
 
@@ -227,7 +233,6 @@
 (use-package web-mode
   :ensure t
   :commands web-mode
-  :hook
   :custom
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
@@ -296,16 +301,8 @@
                (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
                (ruby-end-mode +1)))
 
-(use-package mix
-  :ensure t
-  :config
-  (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
-  (setq compilation-scroll-output t)
-  (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
-
 (use-package terraform-mode
-  :ensure t)
-
+  :ensure
 ;; language server
 
 (use-package lsp-mode
@@ -409,9 +406,9 @@
 
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
+  :hook (after-init . doom-modeline-mode))
 
-;; tressitter mode grammarsq
+;; tressitter mode grammars
 
 (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -447,11 +444,6 @@
    (ruby-mode . ruby-ts-mode)
    (python-mode . python-ts-mode)))
 
-
-;; rice
-
-(fringe-mode 1) ;; shrink vertical borders
-
 (use-package company
   :bind (:map company-active-map
          ("C-n" . company-select-next)
@@ -464,16 +456,8 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 
-(use-package doom-modeline
-  :init (doom-modeline-mode 1)
-  :ensure t)
-
 (use-package all-the-icons
   :if (display-graphic-p))
-
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
 
 ;; -nw configs and packages
 
@@ -537,7 +521,7 @@ Install cfn-lint first: pip install cfn-lint
 
 See `https://github.com/aws-cloudformation/cfn-python-lint'."
 
-    :command ("cfn-lint" "-f" "parseable" source)
+    :command ("~/.local/bin/cfn-lint" "-f" "parseable" source)
     :error-patterns ((warning line-start (file-name) ":" line ":" column
                               ":" (one-or-more digit) ":" (one-or-more digit) ":"
                               (id "W" (one-or-more digit)) ":" (message) line-end)
@@ -550,11 +534,10 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
   (add-hook 'cfn-json-mode-hook 'flycheck-mode)
   (add-hook 'cfn-yaml-mode-hook 'flycheck-mode))
 
-
-(setq mac-option-key-is-meta nil
-      mac-command-key-is-meta t
-      mac-command-modifier 'meta
-      mac-option-modifier 'none)
+;; (setq mac-option-key-is-meta nil
+;;       mac-command-key-is-meta t
+;;       mac-command-modifier 'meta
+;;       mac-option-modifier 'none)
 
 (provide 'init)
 ;;; init.el ends here
