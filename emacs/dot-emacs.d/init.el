@@ -553,7 +553,7 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;       mac-command-key-is-meta t
 ;;       mac-command-modifier 'meta
 ;;       mac-option-modifier 'none)
+(put 'magit-clean 'disabled nil)
 
 (provide 'init)
 ;;; init.el ends here
-(put 'magit-clean 'disabled nil)
