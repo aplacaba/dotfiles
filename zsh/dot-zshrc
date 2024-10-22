@@ -31,9 +31,9 @@ alias xcopy='xclip -sel clip'
 export PATH="$PATH:/usr/local/bin/:$HOME/.local/bin"
 
 # Mac
-if [ "$(uname)" == "Darwin" ]; then
-    . $(brew --prefix)/opt/asdf/libexec/asdf.sh
-fi
+# if [ "$(uname)" == "Darwin" ]; then
+#     . $(brew --prefix)/opt/asdf/libexec/asdf.sh
+# fi
 
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then

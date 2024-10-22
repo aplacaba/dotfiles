@@ -26,7 +26,7 @@
                     :family "Iosevka Comfy"
                     ;;:family "JetBrains Mono"
                     :weight 'regular
-                    :height 120)
+                    :height 110)
 
 (setq-default line-spacing 2)
 (setq-default indent-tabs-mode nil)
@@ -72,6 +72,7 @@
 (electric-pair-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode +1)
+(fringe-mode +1)
 (display-time-mode 0)
 
 ;;;; hooks
@@ -100,6 +101,11 @@
 
 
 ;;; QoL packages
+
+(use-package exec-path-from-shell
+  :ensure t
+  :init
+  (exec-path-from-shell-initialize))
 
 (use-package vterm
   :ensure t
@@ -291,6 +297,12 @@
 
 (use-package ruby-ts-mode
   :ensure t
+  :mode "\\.rb\\'"
+  :mode "Rakefile\\'"
+  :mode "Gemfile\\'"
+  :bind (:map ruby-ts-mode-map
+              ("C-c r b" . 'treesit-beginning-of-defun)
+              ("C-c r e" . 'treesit-end-of-defun))
   :hook
   (ruby-ts-mode . ruby-end-mode))
 
@@ -444,6 +456,9 @@
    (ruby-mode . ruby-ts-mode)
    (python-mode . python-ts-mode)))
 
+
+;; rice
+
 (use-package company
   :bind (:map company-active-map
          ("C-n" . company-select-next)
@@ -541,3 +556,4 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 
 (provide 'init)
 ;;; init.el ends here
+(put 'magit-clean 'disabled nil)
