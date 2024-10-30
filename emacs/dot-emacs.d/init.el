@@ -23,14 +23,16 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (set-face-attribute 'default nil
-                    :family "DejaVuSansM Nerd Font"
+                    :family "Iosevka Comfy"
                     ;;:family "JetBrains Mono"
                     :weight 'regular
                     :height 110)
 
 (setq-default line-spacing 2)
 (setq-default indent-tabs-mode nil)
-(load-theme 'modus-vivendi)
+;; (load-theme 'modus-vivendi)
+;;(load-theme 'ef-maris-dark t)
+(load-theme 'ef-light t)
 
 ;; editor config
 
@@ -94,6 +96,9 @@
 
 
 ;;; QoL packages
+
+(use-package ef-themes
+  :ensure t)
 
 (use-package exec-path-from-shell
   :ensure t
