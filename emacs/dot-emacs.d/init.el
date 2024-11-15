@@ -26,11 +26,11 @@
                     :family "Iosevka Comfy"
                     ;;:family "JetBrains Mono"
                     :weight 'regular
-                    :height 110)
+                    :height 130)
 
 (setq-default line-spacing 2)
 (setq-default indent-tabs-mode nil)
-(load-theme 'ef-maris-dark t)
+
 
 ;; editor config
 
@@ -59,8 +59,8 @@
 ;; enabled modes and other vars
 ;;(require 'slime-autoloads)
 
-(load (expand-file-name "~/.quicklisp/slime-helper.el"))
-(setq inferior-lisp-program "sbcl")
+;;(load (expand-file-name "~/.quicklisp/slime-helper.el"))
+;;(setq inferior-lisp-program "sbcl")
 
 (setq-default cursor-type 'box)
 (setq-default fill-column 120)
@@ -350,7 +350,7 @@
   (setq org-startup-indented t)
   (setq org-agenda-files '("~/org/gtd/gtd.org"
                            "~/org/gtd/inbox.org"
-                           "~/org/gtd/tickler.org"))
+                           "~/org/gtd/tickler.org")))
 
   (setq org-agenda-custom-commands
         '(("p" "Agenda and Personal tasks"
@@ -413,12 +413,10 @@
 (global-set-key (kbd "C-c y") #'wsl-copy)
 (global-set-key (kbd "C-SPC") #'set-mark-command)
 
-(use-package all-the-icons
-  :if (display-graphic-p))
-
 (use-package doom-modeline
   :ensure t
-  :hook (after-init . doom-modeline-mode))
+  :hook
+  (after-init . doom-modeline-mode))
 
 ;; tressitter mode grammars
 
@@ -441,7 +439,6 @@
      (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
      (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
      (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml")))
-
 ;; uncomment and eval block below on treesitter list update
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
@@ -459,6 +456,13 @@
 
 ;; rice
 
+(use-package ef-themes
+  :ensure t
+  :init
+  (load-theme 'ef-maris-dark t))
+
+;;(load-theme 'modus-operandi)
+
 (use-package company
   :bind (:map company-active-map
          ("C-n" . company-select-next)
@@ -467,9 +471,6 @@
   (setq company-dabbrev-downcase nil)
   (setq company-idle-delay 0.3)
   (global-company-mode t))
-
-(use-package all-the-icons
-  :if (display-graphic-p))
 
 (use-package all-the-icons
   :if (display-graphic-p))
@@ -556,4 +557,5 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 (put 'magit-clean 'disabled nil)
 
 (provide 'init)
+
 ;;; init.el ends here
