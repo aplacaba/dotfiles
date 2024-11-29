@@ -251,17 +251,6 @@
   :ensure t)
 
 ;; file ext mode support
-(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.scss?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.erb?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.heex?\\'" . heex-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.leex?\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\dot-zshrc?\\'" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\Dockerfile?\\'" . dockerfile-mode))
 
 (setq auto-mode-alist
       (append
@@ -334,8 +323,7 @@
   :commands
   lsp)
 
-(use-package dockerfile-mode
-  :ensure t)
+
 
 ;;;; note taking
 
@@ -372,8 +360,6 @@
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-x C-g") 'org-todo)
-
-
   (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
   (org-babel-do-load-languages
    'org-babel-load-languages '((C . t)
@@ -400,7 +386,6 @@
   (setq denote-sort-keywords t)
   (setq denote-known-keywords '("work" "personal" "finance" "urgent"))
   (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories))
-
 
 ;;; Windows
 ;;; https://emacs.stackexchange.com/questions/39210/copy-paste-from-windows-clipboard-in-wsl-terminal
@@ -439,27 +424,23 @@
      (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
      (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
      (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml")))
+
 ;; uncomment and eval block below on treesitter list update
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
-(setq major-mode-remap-alist
- '((bash-mode . bash-ts-mode)
-   (js2-mode . js-ts-mode)
-   (typescript-mode . typescript-ts-mode)
-   (json-mode . json-ts-mode)
-   (css-mode . css-ts-mode)
-   (elixir-mode . elixir-ts-mode)
-   (dockerfile-mode . dockerfile-ts-mode)
-   (ruby-mode . ruby-ts-mode)
-   (python-mode . python-ts-mode)))
-
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode))
 
 ;; rice
 
 (use-package ef-themes
   :ensure t
   :init
-  (load-theme 'ef-maris-dark t))
+  (load-theme 'ef-night t))
 
 ;;(load-theme 'modus-operandi)
 
@@ -555,6 +536,7 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;       mac-command-modifier 'meta
 ;;       mac-option-modifier 'none)
 (put 'magit-clean 'disabled nil)
+(toggle-frame-maximized)
 
 (provide 'init)
 
