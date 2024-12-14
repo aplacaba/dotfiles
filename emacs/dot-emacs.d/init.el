@@ -24,15 +24,12 @@
 
 (set-face-attribute 'default nil
                     :family "Iosevka Comfy"
-                    ;;:family "JetBrains Mono"
                     :weight 'regular
-                    :height 110)
+                    :height 130)
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
-;; (load-theme 'modus-vivendi)
-;;(load-theme 'ef-maris-dark t)
-(load-theme 'ef-light t)
+(load-theme 'ef-bio t)
 
 ;; editor config
 
@@ -91,6 +88,7 @@
 (global-set-key (kbd "C-c m m") 'modus-themes-toggle)
 (global-set-key (kbd "C-x C-n") 'find-file)
 (global-set-key (kbd "C-c n n") 'denote)
+(global-set-key (kbd "C-c n o") 'denote-open-or-create)
 (define-key global-map [remap list-buffers] 'ibuffer)
 (define-key key-translation-map [?\C-t] [?\C-x])
 
@@ -337,7 +335,6 @@
   :hook
   (ruby-ts-mode . lsp-deferred)
   (elixir-ts-mode . lsp-deferred)
-  (terraform-mode . lsp-deferred)
   :commands
   lsp)
 
@@ -355,19 +352,26 @@
   :ensure t
   :config
   (setq org-startup-indented t)
-  (setq org-agenda-files '("~/org/gtd/gtd.org"
-                           "~/org/gtd/inbox.org"
-                           "~/org/gtd/tickler.org"))
+  ;; (setq org-agenda-files '("~/.notes/20240320T110130--personal-ious-expenses__finance.org"
+  ;;                          "~/.notes/20240422T201516--montani-devops__work.org"
+  ;;                          "~/.notes/20240430T143133--peiso-devops__work.org"))
 
   (setq org-agenda-custom-commands
-        '(("p" "Agenda and Personal tasks"
-           ((agenda "")
-            (tags-todo "@personal")
-            (tags "books")))
-          ("o" "Agenda and office tasks"
-           ((agenda "")
-            (tags-todo "@work")
-            (tags "@projects")))))
+        ;; Peiso
+        '(("p" "Peiso tasks" agenda ""
+
+           ((tags-todo "peiso"
+                  ((org-agenda-files '("~/.notes/20240430T143133--peiso-devops__work.org"))))))
+
+          ;; Valore
+          ("v" "Valore tasks"
+           ((tags-todo "valore"
+                       ((org-agenda-files '(""))))))
+
+          ("t" "Personal tasks"
+            ((tags-todo "personal")))
+          ))
+
   (setq org-capture-templates
         '(("t" "Todo [inbox]" entry
 	   (file+headline "~/org/gtd/inbox.org" "Tasks")
@@ -388,6 +392,11 @@
                                (python . t)
                                (elixir . t)
                                (js . t))))
+
+(use-package org-modern
+  :ensure t)
+
+(with-eval-after-load 'org (global-org-modern-mode))
 
 (use-package yaml-pro
   :ensure t)
@@ -465,6 +474,11 @@
 
 
 ;; rice
+
+(use-package spacious-padding
+  :ensure t
+  :init
+  (spacious-padding-mode))
 
 (use-package company
   :bind (:map company-active-map
@@ -569,6 +583,8 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
       mac-command-key-is-meta t
       mac-command-modifier 'meta
       mac-option-modifier 'none)
+
+(toggle-frame-maximized)
 
 (provide 'init)
 ;;; init.el ends here

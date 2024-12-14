@@ -16,7 +16,15 @@ zinit load starship/starship
 zinit for \
     light-mode  zsh-users/zsh-autosuggestions \
     light-mode  zdharma-continuum/fast-syntax-highlighting \
-                zdharma-continuum/history-search-multi-word
+    zdharma-continuum/history-search-multi-word
+
+setopt appendhistory
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+
+export HISTFILE=~/.zsh_history
+export HISTSIZE=999999999
+export SAVEHIST=$HISTSIZE
 
 # Aliases
 
