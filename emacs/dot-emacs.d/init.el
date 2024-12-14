@@ -24,13 +24,11 @@
 
 (set-face-attribute 'default nil
                     :family "Iosevka Comfy"
-                    ;;:family "JetBrains Mono"
                     :weight 'regular
                     :height 130)
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
-
 
 ;; editor config
 
@@ -96,11 +94,15 @@
 (global-set-key (kbd "C-c m m") 'modus-themes-toggle)
 (global-set-key (kbd "C-x C-n") 'find-file)
 (global-set-key (kbd "C-c n n") 'denote)
+(global-set-key (kbd "C-c n o") 'denote-open-or-create)
 (define-key global-map [remap list-buffers] 'ibuffer)
 (define-key key-translation-map [?\C-t] [?\C-x])
 
 
 ;;; QoL packages
+
+(use-package ef-themes
+  :ensure t)
 
 (use-package exec-path-from-shell
   :ensure t
@@ -319,7 +321,6 @@
   :hook
   (ruby-ts-mode . lsp-deferred)
   (elixir-ts-mode . lsp-deferred)
-  (terraform-mode . lsp-deferred)
   :commands
   lsp)
 
@@ -340,15 +341,7 @@
                            "~/org/gtd/inbox.org"
                            "~/org/gtd/tickler.org")))
 
-  (setq org-agenda-custom-commands
-        '(("p" "Agenda and Personal tasks"
-           ((agenda "")
-            (tags-todo "@personal")
-            (tags "books")))
-          ("o" "Agenda and office tasks"
-           ((agenda "")
-            (tags-todo "@work")
-            (tags "@projects")))))
+  ;;(setq org-agenda-custom-commands
   (setq org-capture-templates
         '(("t" "Todo [inbox]" entry
 	   (file+headline "~/org/gtd/inbox.org" "Tasks")
@@ -367,6 +360,11 @@
                                (python . t)
                                (elixir . t)
                                (js . t))))
+
+(use-package org-modern
+  :ensure t)
+
+(with-eval-after-load 'org (global-org-modern-mode))
 
 (use-package yaml-pro
   :ensure t)
@@ -437,12 +435,15 @@
 
 ;; rice
 
+(use-package spacious-padding
+  :ensure t
+  :init
+  (spacious-padding-mode))
+
 (use-package ef-themes
   :ensure t
   :init
-  (load-theme 'ef-night t))
-
-;;(load-theme 'modus-operandi)
+  (load-theme 'ef-bio t))
 
 (use-package company
   :bind (:map company-active-map
@@ -536,6 +537,8 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;       mac-command-modifier 'meta
 ;;       mac-option-modifier 'none)
 (put 'magit-clean 'disabled nil)
+(toggle-frame-maximized)
+
 (toggle-frame-maximized)
 
 (provide 'init)
