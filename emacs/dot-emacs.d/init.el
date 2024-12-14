@@ -29,7 +29,6 @@
 
 (setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
-(load-theme 'ef-bio t)
 
 ;; editor config
 
@@ -46,14 +45,21 @@
  display-time-default-load-average nil
  display-time-format "%H:%M:%S %a,%d %b %Y"
  column-number-mode t
- warning-minimum-level :emergency
- tab-always-indent 'complete
+ warning-minimum-level :emergency tab-always-indent 'complete
  custom-file "~/.emacs.d/custom.el")
+
+(fringe-mode 1)
+
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode))
 
 ;; enabled modes and other vars
 ;;(require 'slime-autoloads)
 
-(setq inferior-lisp-program "sbcl")
+;;(load (expand-file-name "~/.quicklisp/slime-helper.el"))
+;;(setq inferior-lisp-program "sbcl")
+
 (setq-default cursor-type 'box)
 (setq-default fill-column 120)
 (pixel-scroll-precision-mode)
@@ -235,7 +241,6 @@
 (use-package web-mode
   :ensure t
   :commands web-mode
-  :hook
   :custom
   (web-mode-markup-indent-offset 2)
   (web-mode-css-indent-offset 2)
@@ -310,16 +315,8 @@
                (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
                (ruby-end-mode +1)))
 
-(use-package mix
-  :ensure t
-  :config
-  (setq mix-path-to-bin (concat my/home "/.asdf/shims/mix"))
-  (setq compilation-scroll-output t)
-  (add-hook 'elixir-ts-mode-hook 'mix-minor-mode))
-
 (use-package terraform-mode
-  :ensure t)
-
+  :ensure
 ;; language server
 
 (use-package lsp-mode
@@ -352,26 +349,11 @@
   :ensure t
   :config
   (setq org-startup-indented t)
-  ;; (setq org-agenda-files '("~/.notes/20240320T110130--personal-ious-expenses__finance.org"
-  ;;                          "~/.notes/20240422T201516--montani-devops__work.org"
-  ;;                          "~/.notes/20240430T143133--peiso-devops__work.org"))
+  (setq org-agenda-files '("~/org/gtd/gtd.org"
+                           "~/org/gtd/inbox.org"
+                           "~/org/gtd/tickler.org")))
 
-  (setq org-agenda-custom-commands
-        ;; Peiso
-        '(("p" "Peiso tasks" agenda ""
-
-           ((tags-todo "peiso"
-                  ((org-agenda-files '("~/.notes/20240430T143133--peiso-devops__work.org"))))))
-
-          ;; Valore
-          ("v" "Valore tasks"
-           ((tags-todo "valore"
-                       ((org-agenda-files '(""))))))
-
-          ("t" "Personal tasks"
-            ((tags-todo "personal")))
-          ))
-
+  ;;(setq org-agenda-custom-commands
   (setq org-capture-templates
         '(("t" "Todo [inbox]" entry
 	   (file+headline "~/org/gtd/inbox.org" "Tasks")
@@ -429,14 +411,12 @@
 (global-set-key (kbd "C-c y") #'wsl-copy)
 (global-set-key (kbd "C-SPC") #'set-mark-command)
 
-(use-package all-the-icons
-  :if (display-graphic-p))
-
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1))
+  :hook
+  (after-init . doom-modeline-mode))
 
-;; tressitter mode grammarsq
+;; tressitter mode grammars
 
 (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
@@ -457,7 +437,6 @@
      (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
      (ruby "https://github.com/tree-sitter/tree-sitter-ruby")
      (yaml "https://github.com/tree-sitter-grammars/tree-sitter-yaml")))
-
 ;; uncomment and eval block below on treesitter list update
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
@@ -479,6 +458,10 @@
   :ensure t
   :init
   (spacious-padding-mode))
+(use-package ef-themes
+  :ensure t
+  :init
+  (load-theme 'ef-bio t))
 
 (use-package company
   :bind (:map company-active-map
@@ -491,17 +474,6 @@
 
 (use-package all-the-icons
   :if (display-graphic-p))
-
-(use-package doom-modeline
-  :init (doom-modeline-mode 1)
-  :ensure t)
-
-(use-package all-the-icons
-  :if (display-graphic-p))
-
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1))
 
 ;; -nw configs and packages
 
@@ -578,14 +550,14 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
   (add-hook 'cfn-json-mode-hook 'flycheck-mode)
   (add-hook 'cfn-yaml-mode-hook 'flycheck-mode))
 
-
-(setq mac-option-key-is-meta nil
-      mac-command-key-is-meta t
-      mac-command-modifier 'meta
-      mac-option-modifier 'none)
+;; (setq mac-option-key-is-meta nil
+;;       mac-command-key-is-meta t
+;;       mac-command-modifier 'meta
+;;       mac-option-modifier 'none)
+(put 'magit-clean 'disabled nil)
 
 (toggle-frame-maximized)
 
 (provide 'init)
+
 ;;; init.el ends here
-(put 'magit-clean 'disabled nil)
