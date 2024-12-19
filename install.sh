@@ -12,26 +12,27 @@ sudo dnf install -y \
      bison sqlite-devel poppler-glib-devel libvterm ripgrep curl git clojure \
      libtool xclip xsel zsh eza util-linux-user inotify-tools stow \
      libtree-sitter libtree-sitter-devel sbcl emacs sudo docker-ce docker-ce-cli \
-     containerd.io docker-buildx-plugin docker-compose-plugin awscli python3-pip
+     containerd.io docker-buildx-plugin docker-compose-plugin awscli python3-pip just
 
 echo "Setting up asdf"
 ASDF_VERSION="v0.14.1"
+
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_VERSION
 . $HOME/.asdf/asdf.sh
 
-RUBY_VERSION=3.3.2
-NODE_VERSION=20.18.0
+RUBY_VERSION=3.3.6
+NODE_VERSION=22.12.0
 
-# ruby, node, elixir
+# ruby, node
 asdf plugin-add ruby   https://github.com/asdf-vm/asdf-ruby.git
 asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 
 asdf install ruby $RUBY_VERSION
 asdf install nodejs $NODE_VERSION
 
-touch .tool-versions
-echo -n "ruby $RUBY_VERSION" >> .tool-versions
-echo -n "nodejs $NODE_VERSION" >> .tool-versions
+touch ~/.tool-versions
+echo -n "ruby $RUBY_VERSION" >> ~/.tool-versions
+echo -n "nodejs $NODE_VERSION" >> ~/.tool-versions
 
 # 3rd party software
 read -p "Install 3rd party software from flathub (y/n)? " answer

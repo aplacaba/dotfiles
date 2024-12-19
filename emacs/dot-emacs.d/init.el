@@ -25,7 +25,7 @@
 (set-face-attribute 'default nil
                     :family "Iosevka Comfy"
                     :weight 'regular
-                    :height 130)
+                    :height 140)
 
 (setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
