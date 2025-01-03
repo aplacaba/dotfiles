@@ -25,7 +25,7 @@
 (set-face-attribute 'default nil
                     :family "Iosevka Comfy"
                     :weight 'regular
-                    :height 140)
+                    :height 120)
 
 (setq-default line-spacing 0)
 (setq-default indent-tabs-mode nil)
@@ -366,8 +366,7 @@
 
 (with-eval-after-load 'org (global-org-modern-mode))
 
-(use-package yaml-pro
-  :ensure t)
+
 
 (use-package org-journal
   :ensure t
@@ -487,6 +486,9 @@
 (use-package yaml-mode
   :ensure t)
 
+(use-package indent-bars
+  :hook ((python-mode yaml-mode) . indent-bars-mode)) ; or whichever modes you prefer
+
 (use-package cfn-mode
   :ensure t)
 
@@ -537,8 +539,6 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;       mac-command-modifier 'meta
 ;;       mac-option-modifier 'none)
 (put 'magit-clean 'disabled nil)
-(toggle-frame-maximized)
-
 (toggle-frame-maximized)
 
 (provide 'init)
