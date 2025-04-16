@@ -23,16 +23,17 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (set-face-attribute 'default nil
-                    :family "Iosevka Comfy"
+                    :family "DejaVuSansMNerdFont"
+                    ;; :font "Noto Sans Mono"
                     :weight 'regular
-                    :height 120)
+                    :height 105)
 
-(setq-default line-spacing 0)
+(setq-default line-spacing 3)
 (setq-default indent-tabs-mode nil)
 
 ;; editor config
 
-(setq
+(setopt
  custom-safe-themes t
  kill-whole-line t
  case-fold-search nil
@@ -101,9 +102,6 @@
 
 ;;; QoL packages
 
-(use-package ef-themes
-  :ensure t)
-
 (use-package exec-path-from-shell
   :ensure t
   :init
@@ -137,10 +135,12 @@
   :defer)
 
 (use-package vertico
+  :ensure t
   :init
   (vertico-mode))
 
 (use-package corfu
+  :ensure t
   :custom
   (corfu-auto t)
   (corfu-quit-no-match 'separator)
@@ -262,6 +262,9 @@
   :config
   (ultra-scroll-mode 1))
 
+(add-hook 'ultra-scroll-hide-functions 'hl-line-mode)
+
+
 ;; file ext mode support
 
 (setq auto-mode-alist
@@ -275,7 +278,9 @@
          ("\\.heex\\'" . web-mode)
          ("\\dot-zshrc?\\'" . sh-mode)
          ("\\.go\\'" . go-ts-mode)
-         ("\\Dockerfile?\\'" . dockerfile-ts-mode))
+         ("\\Dockerfile?\\'" . dockerfile-ts-mode)
+         ("\\.yml\\'" . yaml-mode)
+         ("\\.yaml\\'" . yaml-mode))
        auto-mode-alist))
 
 ;; clojure
@@ -315,7 +320,15 @@
                (ruby-end-mode +1)))
 
 (use-package terraform-mode
-  :ensure
+  :ensure t
+  :config
+  (setq terraform-format-on-save t)
+  (defun my-terraform-mode-init ()
+    ;; if you want to use outline-minor-mode
+    (outline-minor-mode 1))
+  :hook
+  (terraform-mode-hook . my-terraform-mode-init))
+
 ;; language server
 
 (use-package lsp-mode
@@ -334,8 +347,6 @@
   :commands
   lsp)
 
-
-
 ;;;; note taking
 
 (require 'org-tempo)
@@ -351,7 +362,6 @@
                            "~/org/gtd/inbox.org"
                            "~/org/gtd/tickler.org")))
 
-  ;;(setq org-agenda-custom-commands
   (setq org-capture-templates
         '(("t" "Todo [inbox]" entry
 	   (file+headline "~/org/gtd/inbox.org" "Tasks")
@@ -369,7 +379,7 @@
                                (ruby . t)
                                (python . t)
                                (elixir . t)
-                               (js . t))))
+                               (js . t)))
 
 (use-package org-modern
   :ensure t)
@@ -445,14 +455,10 @@
 ;; rice
 
 (use-package spacious-padding
-  :ensure t
-  :init
-  (spacious-padding-mode))
+  :ensure t)
 
 (use-package ef-themes
-  :ensure t
-  :init
-  (load-theme 'ef-bio t))
+  :ensure t)
 
 (use-package company
   :bind (:map company-active-map
@@ -494,10 +500,23 @@
 ;; cfn-lint
 ;; Set up a mode for JSON based templates
 (use-package yaml-mode
-  :ensure t)
+  :mode "\\.yml\\'"
+  :mode "\\.yaml\\'"
+  :ensure t
+  :hook
+  (yaml-ts-mode . yaml-mode))
 
 (use-package indent-bars
-  :hook ((python-mode yaml-mode) . indent-bars-mode)) ; or whichever modes you prefer
+  :custom
+  (indent-bars-no-descend-lists t) ; no extra bars in continued func arg lists
+  (indent-bars-treesit-support t)
+  (indent-bars-treesit-ignore-blank-lines-types '("module"))
+  ;; Add other languages as needed
+  (indent-bars-treesit-scope '((python function_definition class_definition for_statement
+	  if_statement with_statement while_statement)))
+  :ensure t
+  :hook
+  ((yaml-mode python-mode). indent-bars-mode))
 
 (use-package cfn-mode
   :ensure t)
@@ -550,7 +569,7 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;       mac-option-modifier 'none)
 (put 'magit-clean 'disabled nil)
 (toggle-frame-maximized)
-
+(load-theme 'modus-vivendi)
 (provide 'init)
 
 ;;; init.el ends here
