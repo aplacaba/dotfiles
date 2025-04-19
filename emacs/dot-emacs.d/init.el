@@ -110,8 +110,10 @@
 (use-package vterm
   :ensure t
   :config
-  (setq vterm-max-scrollback 10000)
-  (setq vterm-kill-buffer-on-exit t)
+  (setopt
+   vterm-max-scrollback 10000
+   vterm-kill-buffer-on-exit t
+   vterm-buffer-name-string "vterm: %s")
   (global-set-key (kbd "C-c t") 'vterm-copy-mode))
 
 (use-package vterm-toggle
