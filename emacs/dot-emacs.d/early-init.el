@@ -2,25 +2,31 @@
 ;;; Commentary:
 ;;; Emacs early init setup
 ;;; Code:
-(setq package-enable-at-startup t)
+(setopt package-enable-at-startup t)
 
 (defvar package-quickstart)
 
-(setq frame-inhibit-implied-resize t)
+(setopt frame-inhibit-implied-resize t)
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-(setq inhibit-splash-screen t)
-(setq use-dialog-box t)
-(setq use-file-dialog nil)
-(setq inhibit-startup-screen t)
-(setq inhibit-startup-buffer-menu t)
-(setq gc-cons-threshold most-positive-fixnum)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setopt
+ inhibit-splash-screen t
+ use-dialog-box t
+ use-file-dialog nil
+ inhibit-startup-screen t
+ gc-cons-threshold most-positive-fixnum
+ read-process-output-max (* 1024 1024))
 
-(add-hook 'emacs-startup-hook
-          (lambda ()
-            (setq gc-cons-threshold 100000000)))
+(defun restore-gc-cons-threshold ()
+  (setopt gc-cons-threshold (* 16 1024 1024)
+    gc-cons-percentage 0.1))
+
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6)
+
+(add-hook 'emacs-startup-hook #'restore-gc-cons-threshold 105)
+
 ;;; early-init.el ends here

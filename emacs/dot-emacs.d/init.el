@@ -16,7 +16,7 @@
   (package-install 'use-package))
 
 (require 'use-package)
-(setq use-package-always-ensure t)
+(setopt use-package-always-ensure t)
 
 ;;;; emacs config
 
@@ -109,32 +109,21 @@
 
 (use-package vterm
   :ensure t
-  :config
+  :init
   (setopt
    vterm-max-scrollback 10000
    vterm-kill-buffer-on-exit t
    vterm-buffer-name-string "vterm: %s")
   (global-set-key (kbd "C-c t") 'vterm-copy-mode))
 
-(use-package vterm-toggle
-  :ensure t
-  :config
-  (add-hook 'vterm-mode-hook (lambda () (setq-local global-hl-line-mode nil)))
-  (global-set-key (kbd "s-t") 'vterm-toggle)
-  (global-set-key (kbd "C-M-t") 'vterm-toggle-cd)
-  (define-key vterm-mode-map [(control return)]   #'vterm-toggle-insert-cd)
-  (define-key vterm-mode-map (kbd "s-n")   'vterm-toggle-forward)
-  (define-key vterm-mode-map (kbd "s-p")   'vterm-toggle-backward))
-
 (use-package which-key
   :ensure t
-  :config
+  :init
   (which-key-mode)
   (which-key-setup-side-window-bottom))
 
 (use-package ripgrep
-  :ensure t
-  :defer)
+  :ensure t)
 
 (use-package vertico
   :ensure t
@@ -143,10 +132,9 @@
 
 (use-package corfu
   :ensure t
-  :custom
+  :init
   (corfu-auto t)
   (corfu-quit-no-match 'separator)
-  :init
   (global-corfu-mode))
 
 (use-package orderless
@@ -177,7 +165,7 @@
   ;; Optionally configure the register formatting. This improves the register
   ;; preview for `consult-register', `consult-register-load',
   ;; `consult-register-store' and the Emacs built-ins.
-  (setq register-preview-delay 0.5
+  (setopt register-preview-delay 0.5
         register-preview-function #'consult-register-format))
 
 (use-package ibuffer
@@ -185,9 +173,10 @@
 
 (use-package switch-window
   :ensure t
-  :config
-  (setq switch-window-shortcut-style 'qwerty)
-  (setq switch-window-input-style 'minibuffer)
+  :init
+  (setopt
+   switch-window-shortcut-style 'qwerty
+   switch-window-input-style 'minibuffer)
   (global-set-key (kbd "C-x o") 'switch-window))
 
 (use-package diminish
@@ -206,7 +195,7 @@
 
 (use-package avy
   :ensure t
-  :config
+  :init
   (global-set-key (kbd "M-g e") 'avy-goto-word-0)
   (global-set-key (kbd "C-c C-j") 'avy-resume)
   (global-set-key (kbd "C-:") 'avy-goto-char))
@@ -216,7 +205,7 @@
 
 (use-package flycheck
   :ensure t
-  :config
+  :init
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'typescript-tslint 'web-mode)
   (flycheck-add-mode 'cfn-lint          'cfn-yaml-mode)
@@ -226,9 +215,10 @@
 (use-package magit
   :ensure t
   :defer t
-  :config
-  (setq magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1)
-  (setq transient-default-level 7)
+  :init
+  (setopt
+   magit-display-buffer-function #'magit-display-buffer-fullframe-status-v1
+   transient-default-level 7)
   :bind
   (("C-M-g" . magit-status)
    ("C-x g" . magit-status)))
@@ -237,10 +227,15 @@
 
 (use-package json-mode
   :ensure t
-  :config
-  (setq js-indent-level 2))
+  :init
+  (setopt js-indent-level 2))
 
 (use-package web-mode
+  :mode "\\.tsx\\'"
+  :mode "\\.jsx\\'"
+  :mode "\\.html\\'"
+  :mode "\\.css?\\'"
+  :mode "\\.scss?\\'"
   :ensure t
   :commands web-mode
   :custom
@@ -259,31 +254,31 @@
 (use-package ultra-scroll
   ;:load-path "~/code/emacs/ultra-scroll" ; if you git clone'd instead of package-vc-install
   :init
-  (setq scroll-conservatively 101 ; important!
+  (setopt scroll-conservatively 101 ; important!
         scroll-margin 0)
-  :config
-  (ultra-scroll-mode 1))
+  (ultra-scroll-mode 1)
+  :hook
+  (ultra-scroll-hide-functions . hl-line-mode))
 
-(add-hook 'ultra-scroll-hide-functions 'hl-line-mode)
-
+;; (add-hook 'ultra-scroll-hide-functions 'hl-line-mode)
 
 ;; file ext mode support
 
-(setq auto-mode-alist
-      (append
-       '(("\\.tsx\\'" . web-mode)
-         ("\\.jsx\\'" . web-mode)
-         ("\\.html?\\'" . web-mode)
-         ("\\.css?\\'" . web-mode)
-         ("\\.scss?\\'" . web-mode)
-         ("\\.erb?\\'" . web-mode)
-         ("\\.heex\\'" . web-mode)
-         ("\\dot-zshrc?\\'" . sh-mode)
-         ("\\.go\\'" . go-ts-mode)
-         ("\\Dockerfile?\\'" . dockerfile-ts-mode)
-         ("\\.yml\\'" . yaml-mode)
-         ("\\.yaml\\'" . yaml-mode))
-       auto-mode-alist))
+;; (setmode auto-mode-alist
+;;       (append
+;;        '(("\\.tsx\\'" . web-mode)
+;;          ("\\.jsx\\'" . web-mode)
+;;          ("\\.html?\\'" . web-mode)
+;;          ("\\.css?\\'" . web-mode)
+;;          ("\\.scss?\\'" . web-mode)
+;;          ("\\.erb?\\'" . web-mode)
+;;          ("\\.heex\\'" . web-mode)
+;;          ("\\dot-zshrc?\\'" . sh-mode)
+;;          ("\\.go\\'" . go-ts-mode)
+;;          ("\\Dockerfile?\\'" . dockerfile-ts-mode)
+;;          ("\\.yml\\'" . yaml-mode)
+;;          ("\\.yaml\\'" . yaml-mode))
+;;        auto-mode-alist))
 
 ;; clojure
 
@@ -323,8 +318,8 @@
 
 (use-package terraform-mode
   :ensure t
-  :config
-  (setq terraform-format-on-save t)
+  :init
+  (setopt terraform-format-on-save t)
   (defun my-terraform-mode-init ()
     ;; if you want to use outline-minor-mode
     (outline-minor-mode 1))
@@ -358,37 +353,30 @@
 
 (use-package org
   :ensure t
-  :config
-  (setq org-startup-indented t)
-  (setq org-agenda-files '("~/org/gtd/gtd.org"
+  :init
+  (setopt
+   org-startup-indented t
+   org-agenda-files '("~/org/gtd/gtd.org"
                            "~/org/gtd/inbox.org"
-                           "~/org/gtd/tickler.org")))
-
-  (setq org-capture-templates
-        '(("t" "Todo [inbox]" entry
-	   (file+headline "~/org/gtd/inbox.org" "Tasks")
-           "* TODO %i%")
-          ("T" "Tickler" entry
-	   (file+headline "~/org/gtd/tickler.org" "Tickler")
-           "* %i% \n %U")))
+                           "~/org/gtd/tickler.org")
+   org-capture-templates '(("t" "Todo [inbox]" entry
+	                    (file+headline "~/org/gtd/inbox.org" "Tasks")
+                            "* TODO %i%")
+                           ("T" "Tickler" entry
+	                    (file+headline "~/org/gtd/tickler.org" "Tickler")
+                            "* %i% \n %U"))
+   org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
+  :custom
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-x C-g") 'org-todo)
-  (setq org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
-  (org-babel-do-load-languages
-   'org-babel-load-languages '((C . t)
-                               (ruby . t)
-                               (python . t)
-                               (elixir . t)
-                               (js . t)))
-
-(use-package org-modern
-  :ensure t)
-
-(with-eval-after-load 'org (global-org-modern-mode))
-
-
+  (global-set-key (kbd "C-x C-g") 'org-todo))
+  ;; (org-babel-do-load-languages
+  ;;  'org-babel-load-languages '((C . t)
+  ;;                              (ruby . t)
+  ;;                              (python . t)
+  ;;                              (elixir . t)
+  ;;                              (js . t))))
 
 (use-package org-journal
   :ensure t
@@ -400,10 +388,11 @@
 
 (use-package denote
   :ensure t
-  :config
-  (setq denote-directory (expand-file-name "~/.notes/"))
-  (setq denote-sort-keywords t)
-  (setq denote-known-keywords '("work" "personal" "finance" "urgent"))
+  :init
+  (setopt
+   denote-directory (expand-file-name "~/.notes/")
+   denote-sort-keywords t
+   denote-known-keywords '("work" "personal" "finance" "urgent"))
   (add-hook 'dired-mode-hook #'denote-dired-mode-in-directories))
 
 ;;; Windows
@@ -424,7 +413,7 @@
 
 ;; tressitter mode grammars
 
-(setq treesit-language-source-alist
+(setopt treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
      (cmake "https://github.com/uyha/tree-sitter-cmake")
      (css "https://github.com/tree-sitter/tree-sitter-css")
@@ -448,9 +437,8 @@
 ;; (mapc #'treesit-install-language-grammar (mapcar #'car treesit-language-source-alist))
 
 (use-package treesit-auto
-  :custom
-  (treesit-auto-install 'prompt)
-  :config
+  :ensure t
+  :init
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
@@ -466,10 +454,11 @@
   :bind (:map company-active-map
          ("C-n" . company-select-next)
          ("C-p" . company-select-previous))
-  :config
-  (setq company-dabbrev-downcase nil)
-  (setq company-idle-delay 0.3)
-  (global-company-mode t))
+  :init
+  (setopt
+   company-dabbrev-downcase nil
+   company-idle-delay 0.3
+   global-company-mode t))
 
 (use-package all-the-icons
   :if (display-graphic-p))
