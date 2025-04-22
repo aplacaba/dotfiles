@@ -316,6 +316,8 @@
                (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
                (ruby-end-mode +1)))
 
+
+;; devops
 (use-package terraform-mode
   :ensure t
   :init
@@ -325,6 +327,10 @@
     (outline-minor-mode 1))
   :hook
   (terraform-mode-hook . my-terraform-mode-init))
+
+(use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
 
 ;; language server
 
