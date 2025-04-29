@@ -70,7 +70,7 @@
 (set-keyboard-coding-system 'utf-8)
 (electric-pair-mode +1)
 (global-auto-revert-mode -1)
-(global-hl-line-mode +1)
+(global-hl-line-mode -1)
 (fringe-mode +1)
 (display-time-mode 0)
 
@@ -344,9 +344,9 @@
     (setq-local completion-styles '(orderless)
                 completion-category-defaults nil))
   (add-hook 'lsp-mode-hook #'corfu-lsp-setup)
-  :hook
-  (ruby-ts-mode . lsp-deferred)
-  (elixir-ts-mode . lsp-deferred)
+  ;;:hook
+  ;;(ruby-ts-mode . lsp-deferred)
+  ;;(elixir-ts-mode . lsp-deferred)
   :commands
   lsp)
 
@@ -354,8 +354,8 @@
 
 (require 'org-tempo)
 
-(use-package ob-elixir
-  :ensure t)
+;; (use-package ob-elixir
+;;   :ensure t)
 
 (use-package org
   :ensure t
@@ -503,6 +503,13 @@
   :hook
   (yaml-ts-mode . yaml-mode))
 
+(use-package elfeed
+  :ensure t
+  :init
+  (global-set-key (kbd "C-x w") 'elfeed)
+  (setopt elfeed-feeds
+          '("https://news.ycombinator.com/rss")))
+
 (use-package indent-bars
   :custom
   (indent-bars-no-descend-lists t) ; no extra bars in continued func arg lists
@@ -566,7 +573,7 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;       mac-option-modifier 'none)
 (put 'magit-clean 'disabled nil)
 (toggle-frame-maximized)
-(load-theme 'modus-vivendi)
+(load-theme 'modus-vivendi-tritanopia)
 (provide 'init)
 
 ;;; init.el ends here

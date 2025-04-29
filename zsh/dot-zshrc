@@ -84,3 +84,6 @@ vterm_prompt_end() {
 }
 setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/tovarisch/.zshrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
