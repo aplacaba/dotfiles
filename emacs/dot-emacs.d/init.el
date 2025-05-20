@@ -114,7 +114,7 @@
    vterm-max-scrollback 10000
    vterm-kill-buffer-on-exit t
    vterm-buffer-name-string "vterm: %s")
-  (global-set-key (kbd "C-c t") 'vterm-copy-mode))
+  (global-set-key (kbd "C-c t t") 'vterm-copy-mode))
 
 (use-package which-key
   :ensure t
@@ -352,8 +352,6 @@
 
 ;;;; note taking
 
-(require 'org-tempo)
-
 ;; (use-package ob-elixir
 ;;   :ensure t)
 
@@ -362,35 +360,13 @@
   :init
   (setopt
    org-startup-indented t
-   org-agenda-files '("~/org/gtd/gtd.org"
-                           "~/org/gtd/inbox.org"
-                           "~/org/gtd/tickler.org")
-   org-capture-templates '(("t" "Todo [inbox]" entry
-	                    (file+headline "~/org/gtd/inbox.org" "Tasks")
-                            "* TODO %i%")
-                           ("T" "Tickler" entry
-	                    (file+headline "~/org/gtd/tickler.org" "Tickler")
-                            "* %i% \n %U"))
+   org-agenda-files '("~/gtd/gtd.org")
    org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
-  :custom
+  :config
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-x C-g") 'org-todo))
-  ;; (org-babel-do-load-languages
-  ;;  'org-babel-load-languages '((C . t)
-  ;;                              (ruby . t)
-  ;;                              (python . t)
-  ;;                              (elixir . t)
-  ;;                              (js . t))))
-
-(use-package org-journal
-  :ensure t
-  :config
-  (setq org-journal-dir "~/org/journal"))
-
-(use-package org-bullets
-  :ensure t)
+  (global-set-key (kbd "C-c o") 'org-todo))
 
 (use-package denote
   :ensure t
