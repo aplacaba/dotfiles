@@ -49,8 +49,6 @@
  warning-minimum-level :emergency tab-always-indent 'complete
  custom-file "~/.emacs.d/custom.el")
 
-(fringe-mode 1)
-
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode))
@@ -71,8 +69,6 @@
 (electric-pair-mode +1)
 (global-auto-revert-mode -1)
 (global-hl-line-mode -1)
-(fringe-mode +1)
-(display-time-mode 0)
 
 ;;;; hooks
 
@@ -359,6 +355,7 @@
   :ensure t
   :init
   (setopt
+   org-display-remote-inline-images 'download
    org-startup-indented t
    org-agenda-files '("~/gtd/gtd.org")
    org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
@@ -367,6 +364,9 @@
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
   (global-set-key (kbd "C-c o") 'org-todo))
+
+(use-package org-download
+  :ensure t)
 
 (use-package denote
   :ensure t
@@ -549,7 +549,6 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;       mac-option-modifier 'none)
 (put 'magit-clean 'disabled nil)
 (toggle-frame-maximized)
-(load-theme 'modus-vivendi-tritanopia)
 (provide 'init)
 
 ;;; init.el ends here

@@ -7,10 +7,13 @@
 (defvar package-quickstart)
 
 (setopt frame-inhibit-implied-resize t)
+(load-theme 'modus-vivendi-tritanopia)
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
+(fringe-mode 1)
+(display-time-mode 0)
 
 (setopt
  inhibit-splash-screen t
@@ -26,6 +29,8 @@
 
 (setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
+
+(setq native-comp-speed 2)
 
 (add-hook 'emacs-startup-hook #'restore-gc-cons-threshold 105)
 
