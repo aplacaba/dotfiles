@@ -7,7 +7,6 @@
 (defvar package-quickstart)
 
 (setopt frame-inhibit-implied-resize t)
-(load-theme 'modus-vivendi-tritanopia)
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -20,17 +19,13 @@
  use-dialog-box t
  use-file-dialog nil
  inhibit-startup-screen t
+ native-comp-speed 2
  gc-cons-threshold most-positive-fixnum
  read-process-output-max (* 1024 1024))
 
 (defun restore-gc-cons-threshold ()
-  (setopt gc-cons-threshold (* 16 1024 1024)
+  (setq gc-cons-threshold (* 50 1024 1024)
     gc-cons-percentage 0.1))
-
-(setq gc-cons-threshold most-positive-fixnum
-      gc-cons-percentage 0.6)
-
-(setq native-comp-speed 2)
 
 (add-hook 'emacs-startup-hook #'restore-gc-cons-threshold 105)
 

@@ -31,6 +31,9 @@
 (setq-default line-spacing 3)
 (setq-default indent-tabs-mode nil)
 
+(setq auth-sources '("~/.authinfo"))
+
+
 ;; editor config
 
 (setopt
@@ -56,8 +59,8 @@
 ;; enabled modes and other vars
 ;;(require 'slime-autoloads)
 
-;;(load (expand-file-name "~/.quicklisp/slime-helper.el"))
-;;(setq inferior-lisp-program "sbcl")
+(load (expand-file-name "~/.quicklisp/slime-helper.el"))
+(setopt inferior-lisp-program "sbcl")
 
 (setq-default cursor-type 'box)
 (setq-default fill-column 120)
@@ -95,6 +98,25 @@
 (define-key global-map [remap list-buffers] 'ibuffer)
 (define-key key-translation-map [?\C-t] [?\C-x])
 
+(setq modus-themes-mode-line '(accented borderless)
+      modus-themes-bold-constructs t
+      modus-themes-italic-constructs t
+      modus-themes-fringes 'subtle
+      modus-themes-tabs-accented t
+      modus-themes-paren-match '(bold intense)
+      modus-themes-prompts '(bold intense)
+      modus-themes-completions 'opinionated
+      modus-themes-org-blocks 'tinted-background
+      modus-themes-scale-headings t
+      modus-themes-region '(bg-only)
+      modus-themes-to-toggle '(modus-operandi-tritanopia modus-vivendi-tritanopia)
+      modus-themes-headings
+      '((1 . (rainbow overline background 1.4))
+        (2 . (rainbow background 1.3))
+        (3 . (rainbow bold 1.2))
+        (t . (semilight 1.1))))
+
+(load-theme 'modus-vivendi-tritanopia t)
 
 ;;; QoL packages
 
@@ -357,7 +379,7 @@
   (setopt
    org-display-remote-inline-images 'download
    org-startup-indented t
-   org-agenda-files '("~/gtd/gtd.org")
+   org-agenda-files '("~/.notes/20250523T112215--tasks__work.org")
    org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
   :config
   (global-set-key (kbd "C-c a") 'org-agenda)
