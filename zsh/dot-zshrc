@@ -19,18 +19,9 @@ zinit for \
     light-mode  zdharma-continuum/fast-syntax-highlighting \
     zdharma-continuum/history-search-multi-word
 
-setopt appendhistory
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
-
-export HISTFILE=~/.zsh_history
-export HISTSIZE=999999999
-export SAVEHIST=$HISTSIZE
-
 # Aliases
 
 alias g='git'
-alias ls='exa -l'
 alias xcopy='xclip -sel clip'
 
 # Load plugins
@@ -39,11 +30,6 @@ alias xcopy='xclip -sel clip'
 # PATHS
 export PATH="$PATH:/usr/local/bin/:$HOME/.local/bin"
 
-# Mac
-# if [ "$(uname)" == "Darwin" ]; then
-#     . $(brew --prefix)/opt/asdf/libexec/asdf.sh
-# fi
-
 # WSL specific commands
 if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
     export DISPLAY=$(awk '/nameserver/ {print $2}' /etc/resolv.conf):0.0
@@ -51,16 +37,16 @@ if [ $(uname -r | sed -n 's/.*\( *Microsoft *\).*/\1/ip') ]; then
     alias podman='podman-remote-static-linux_amd64'
 fi
 
-##############################################################################
+#########################
 # History Configuration
-##############################################################################
-HISTSIZE=1000000               #How many lines of history to keep in memory
-HISTFILE=~/.zsh_history     #Where to save history to disk
-SAVEHIST=1000000               #Number of history entries to save to disk
-#HISTDUP=erase               #Erase duplicates in the history file
-setopt    appendhistory     #Append history to the history file (no overwriting)
-setopt    sharehistory      #Share history across terminals
-setopt    incappendhistory  #Immediately append to the history file, not just when a term is killed
+#########################
+HISTSIZE=1000000            # How many lines of history to keep in memory
+HISTFILE=~/.zsh_history     # Where to save history to disk
+SAVEHIST=1000000            # Number of history entries to save to disk
+#HISTDUP=erase              # Erase duplicates in the history file
+setopt    appendhistory     # Append history to the history file (no overwriting)
+setopt    sharehistory      # Share history across terminals
+setopt    incappendhistory  # Immediately append to the history file, not just when a term is killed
 
 # Vterm
 autoload -U add-zsh-hook
@@ -82,7 +68,8 @@ vterm_printf() {
 vterm_prompt_end() {
     vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
 }
+
 setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
-
+# Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

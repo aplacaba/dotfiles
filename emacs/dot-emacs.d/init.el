@@ -56,11 +56,8 @@
   :ensure t
   :hook (after-init . doom-modeline-mode))
 
-;; enabled modes and other vars
-;;(require 'slime-autoloads)
+;; CL
 
-(load (expand-file-name "~/.quicklisp/slime-helper.el"))
-(setopt inferior-lisp-program "sbcl")
 
 (setq-default cursor-type 'box)
 (setq-default fill-column 120)
@@ -571,6 +568,10 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 ;;       mac-option-modifier 'none)
 (put 'magit-clean 'disabled nil)
 (toggle-frame-maximized)
+
+(load (expand-file-name "~/.roswell/helper.el"))
+(setq inferior-lisp-program "ros -Q run")
+
 (provide 'init)
 
-;;; init.el ends here
+;;; init.el ends her
