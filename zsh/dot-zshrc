@@ -73,3 +73,6 @@ setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 # Homebrew
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Roswell
+export PATH=$PATH:~/.roswell/bin

@@ -382,7 +382,7 @@
   (global-set-key (kbd "C-c a") 'org-agenda)
   (global-set-key (kbd "C-c c") 'org-capture)
   (global-set-key (kbd "C-c l") 'org-store-link)
-  (global-set-key (kbd "C-c o") 'org-todo))
+  (global-set-key (kbd "C-c C-;") 'org-todo))
 
 (use-package org-download
   :ensure t)
@@ -570,7 +570,63 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 (toggle-frame-maximized)
 
 (load (expand-file-name "~/.roswell/helper.el"))
-(setq inferior-lisp-program "ros -Q run")
+(setq inferior-lisp-program "")
+(setq slime-lisp-implementations
+      '((sbcl ("ros" "-Q" "run") :coding-system utf-8-unix)
+        (qlot ("qlot" "exec" "sbcl") :coding-system utf-8-unix)))
+
+(defun g-slime-start ()
+  (interactive)
+  (let ((current-prefix-arg '-))
+    (call-interactively 'slime)))
+;; email
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
+
+(use-package mu4e
+  :ensure nil
+  :config
+  (setq message-kill-buffer-on-exit t)
+  (setq mu4e-maildir-shortcuts
+      '(("/fastmail/Inbox" . ?i)
+        ("/gmail1/Inbox"   . ?a)))
+
+  (setq message-send-mail-function 'smtpmail-send-it)
+  (setq mu4e-update-interval (* 10 60))
+  (setq mu4e-get-mail-command "mbsync --config ~/.emacs.d/.mbsyncrc -a")
+  (setq mu4e-maildir "~/email")
+
+  (setq mu4e-html2text-command "w3m -T text/html" ; how to hanfle html-formatted emails
+        mu4e-update-interval 300                  ; seconds between each mail retrieval
+        mu4e-headers-auto-update t                ; avoid to type `g' to update
+        mu4e-view-show-images t                   ; show images in the view buffer
+        mu4e-compose-signature-auto-include nil   ; I don't want a message signature
+        mu4e-use-fancy-chars t)
+
+  (setq mu4e-contexts
+        (list
+         (make-mu4e-context
+          :name "Fastmail"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/fastmail" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address . "alacaba@fastmail.com")
+                  (user-full-name    . "Allan Lacaba")
+                  (smtpmail-smtp-server  . "smtp.fastmail.com")
+                  (smtpmail-smtp-service . 587)
+                  (smtpmail-stream-type  . starttls)))
+         (make-mu4e-context
+          :name "Gmail Main"
+          :match-func
+          (lambda (msg)
+            (when msg
+              (string-prefix-p "/gmail1" (mu4e-message-field msg :maildir))))
+          :vars '((user-mail-address . "lacaba.allan@gmail.com")
+                  (user-full-name    . "Allan Lacaba")
+                  (smtpmail-smtp-server  . "smtp.gmail.com")
+                  (smtpmail-smtp-service . 587)
+                  (smtpmail-stream-type  . starttls)))
+          )))
 
 (provide 'init)
 
