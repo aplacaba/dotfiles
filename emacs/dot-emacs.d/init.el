@@ -8,6 +8,7 @@
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/") t)
 (add-to-list 'package-archives '("melpa stable" . "http://stable.melpa.org/packages/") t)
+(add-to-list 'package-archives '("nongnu" . "https://elpa.nongnu.org/nongnu/") t)
 
 (package-initialize)
 
@@ -23,16 +24,15 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (set-face-attribute 'default nil
-                    :family "DejaVuSansMNerdFont"
-                    ;; :font "Noto Sans Mono"
+                    :family "Adwaita Mono"
+                    ;;:font "DejavuSans Mono"
                     :weight 'regular
-                    :height 105)
+                    :height 140)
 
-(setq-default line-spacing 3)
+(setq-default line-spacing 1)
 (setq-default indent-tabs-mode nil)
 
 (setq auth-sources '("~/.authinfo"))
-
 
 ;; editor config
 
@@ -57,7 +57,6 @@
   :hook (after-init . doom-modeline-mode))
 
 ;; CL
-
 
 (setq-default cursor-type 'box)
 (setq-default fill-column 120)
@@ -137,8 +136,10 @@
   (which-key-mode)
   (which-key-setup-side-window-bottom))
 
-(use-package ripgrep
-  :ensure t)
+(use-package rg
+  :ensure t
+  :init
+  (rg-enable-default-bindings))
 
 (use-package vertico
   :ensure t
@@ -147,10 +148,46 @@
 
 (use-package corfu
   :ensure t
-  :init
+  :custom
+  (corfu-popupinfo-delay '(0.5 . 0.5))
   (corfu-auto t)
   (corfu-quit-no-match 'separator)
+  :init
   (global-corfu-mode))
+
+(use-package cape
+  ;; Bind prefix keymap providing all Cape commands under a mnemonic key.
+  ;; Press C-c p ? to for help.
+  :bind ("C-c p" . cape-prefix-map) ;; Alternative key: M-<tab>, M-p, M-+
+  ;; Alternatively bind Cape commands individually.
+  ;; :bind (("C-c p d" . cape-dabbrev)
+  ;;        ("C-c p h" . cape-history)
+  ;;        ("C-c p f" . cape-file)
+  ;;        ...)
+  :init
+  ;; Add to the global default value of `completion-at-point-functions' which is
+  ;; used by `completion-at-point'.  The order of the functions matters, the
+  ;; first function returning a result wins.  Note that the list of buffer-local
+  ;; completion functions takes precedence over the global list.
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+  ;; (add-hook 'completion-at-point-functions #'cape-history)
+  ;; ...
+)
+
+;; Use Dabbrev with Corfu!
+(use-package dabbrev
+  ;; Swap M-/ and C-M-/
+  :bind (("M-/" . dabbrev-completion)
+         ("C-M-/" . dabbrev-expand))
+  :config
+  (add-to-list 'dabbrev-ignored-buffer-regexps "\\` ")
+  ;; Available since Emacs 29 (Use `dabbrev-ignored-buffer-regexps' on older Emacs)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'authinfo-mode)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'doc-view-mode)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'pdf-view-mode)
+  (add-to-list 'dabbrev-ignored-buffer-modes 'tags-table-mode))
 
 (use-package orderless
   :ensure t
@@ -375,7 +412,6 @@
   :init
   (setopt
    org-display-remote-inline-images 'download
-   org-startup-indented t
    org-agenda-files '("~/.notes/20250523T112215--tasks__work.org")
    org-todo-keywords '((sequence "TODO" "DOING" "WAITING" "DONE")))
   :config
@@ -450,16 +486,6 @@
 
 (use-package ef-themes
   :ensure t)
-
-(use-package company
-  :bind (:map company-active-map
-         ("C-n" . company-select-next)
-         ("C-p" . company-select-previous))
-  :init
-  (setopt
-   company-dabbrev-downcase nil
-   company-idle-delay 0.3
-   global-company-mode t))
 
 (use-package all-the-icons
   :if (display-graphic-p))
@@ -579,6 +605,7 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
   (interactive)
   (let ((current-prefix-arg '-))
     (call-interactively 'slime)))
+
 ;; email
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/mu4e")
 
@@ -630,4 +657,4 @@ See `https://github.com/aws-cloudformation/cfn-python-lint'."
 
 (provide 'init)
 
-;;; init.el ends her
+;;; init.el ends here
